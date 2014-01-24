@@ -30,18 +30,16 @@ import edu.gatech.oad.antlab.pkg2.*;
     // private AntLab31 ant31;
     
     
-    
     /**
      * the constructor that intializes all the helper classes
      */
     public AntLabMain () {
-        
+    	
         ant11 = new AntLab11();
         ant12 = new AntLab12();
         // ant21 = new AntLab21();
         // ant22 = new AntLab22();
         // ant31 = new AntLab31();
-        
         
     }
     
@@ -51,34 +49,32 @@ import edu.gatech.oad.antlab.pkg2.*;
      * 
      */
     public void printOutMessage() {
-        
+    	
         String toPrint = 
             ant11.getMessage() + ant12.getMessage(); //+ ant21.getMessage()
-          // + ant22.getMessage() + ant31.getMessage();
-		  //Person1 replace P1 with your name
-		  //and gburdell1 with your gt id
-		  Person1 p1 = new Person1("Prav Tadikonda");
-		  toPrint += p1.toString("ptadikonda3");
-		  //Person2 replace P2 with your name
-		  //and gburdell with your gt id
-		  Person2 p2 = new Person2("Jason Bires");
-		  toPrint += p2.toString("jbires6");
-		  //Person3 replace P3 with your name
-		  //and gburdell3 with your gt id
-		  Person3 p3 = new Person3("Shannon Nguyen");
-		  toPrint += p3.toString("snguyen47");
-          //Person4 replace P4 with your name
-          //and gburdell4 with your gt id
-          Person4 p4 = new Person4("Aawantika Sahu");
-          toPrint += p4.toString("asahu9");
-          //Person5 replace P4 with your name
-          //and gburdell5 with your gt id
-          Person5 p5 = new Person5("HyunJong Lee");
-          toPrint += p5.toString("hlee652");
+      	// + ant22.getMessage() + ant31.getMessage();
+	//Person1 replace P1 with your name
+	//and gburdell1 with your gt id	  
+	Person1 p1 = new Person1("Prav Tadikonda");
+	toPrint += p1.toString("ptadikonda3");
+	//Person2 replace P2 with your name
+	//and gburdell with your gt id
+	Person2 p2 = new Person2("Jason Bires");
+	toPrint += p2.toString("jbires6");
+	//Person3 replace P3 with your name
+	//and gburdell3 with your gt id
+	Person3 p3 = new Person3("Shannon Nguyen");
+	toPrint += p3.toString("snguyen47");
+        //Person4 replace P4 with your name
+        //and gburdell4 with your gt id
+        Person4 p4 = new Person4("Aawantika Sahu");
+        toPrint += p4.toString("asahu9");
+        //Person5 replace P4 with your name
+        //and gburdell5 with your gt id
+        Person5 p5 = new Person5("HyunJong Lee");
+        toPrint += p5.toString("hlee652");
 		  
         System.out.println(toPrint);
-        
-        
     }
      
     
