@@ -21,10 +21,10 @@ import edu.gatech.oad.antlab.pkg2.*;
     private AntLab12 ant12;
     
     // /**antlab21.java message class*/
-    private AntLab21 ant21;
+    // private AntLab21 ant21;
     
     // /**antlab22.java message class*/
-    private AntLab22 ant22;
+    // private AntLab22 ant22;
     
     // /**antlab31 java message class which is contained in a jar resource file*/
     // private AntLab31 ant31;
