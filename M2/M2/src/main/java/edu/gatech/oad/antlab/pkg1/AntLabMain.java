@@ -21,10 +21,10 @@ import edu.gatech.oad.antlab.pkg2.*;
     private AntLab12 ant12;
     
     // /**antlab21.java message class*/
-    // private AntLab21 ant21;
+    private AntLab21 ant21;
     
     // /**antlab22.java message class*/
-    // private AntLab22 ant22;
+    private AntLab22 ant22;
     
     // /**antlab31 java message class which is contained in a jar resource file*/
     // private AntLab31 ant31;
@@ -51,8 +51,8 @@ import edu.gatech.oad.antlab.pkg2.*;
     public void printOutMessage() {
     	
         String toPrint = 
-            ant11.getMessage() + ant12.getMessage(); //+ ant21.getMessage()
-      	// + ant22.getMessage() + ant31.getMessage();
+        	ant11.getMessage() + ant12.getMessage(); + ant21.getMessage()
+      		+ ant22.getMessage(); // + ant31.getMessage();
       	
 	//Person1 name/GT ID  
 	Person1 p1 = new Person1("Prav Tadikonda");
