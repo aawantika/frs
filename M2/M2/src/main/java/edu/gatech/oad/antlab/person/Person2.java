@@ -1,5 +1,5 @@
 package edu.gatech.oad.antlab.person;
-
+import java.util.ArrayList;
 /**
  *  A simple class for person 2
  *  returns their name and a
@@ -30,20 +30,15 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-        char[] original = input.toCharArray();
-        char[] random = new char[original.length];
-        boolean hasBeenPlaced = false;
-        int randomIndex = 0;
-        for (int i = 0; i < original.length; i++) {
-            while (!hasBeenPlaced) {
-                randomIndex = (int)(Math.random() * original.length);
-                if (random[randomIndex] != '\u0000') {
-                    random[randomIndex] = original[i];
-                    hasBeenPlaced = true;
-                }
-            }
+        ArrayList<Character> original = new ArrayList<Character>();
+        for(int i = 0; i < input.length(); i++) {
+            original.add(input.charAt(i));
         }
-        return random.toString();
+        String concat = "";
+        while (original.size() > 0) {
+            concat += original.remove((int) (Math.random() * original.size()));
+        }
+        return concat;
 	}
 	/**
 	 * Return a string rep of this object
@@ -57,8 +52,4 @@ public class Person2 {
 	  return name + calc(input);
 	}
     
-    public static void main(String[] args) {
-        Person2 bob = new Person2("SweetStuff");
-        System.out.println(bob);
-    }
 }
