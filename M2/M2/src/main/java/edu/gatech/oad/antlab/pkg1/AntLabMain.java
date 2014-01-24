@@ -57,8 +57,8 @@ import edu.gatech.oad.antlab.pkg2.*;
     	Person1 p1 = new Person1("Prav Tadikonda");
     	toPrint += p1.toString("ptadikonda3");
     	//Person2 name/GT ID
-    	// Person2 p2 = new Person2("Jason Bires"); // commented out bc doesn't work 
-    	// toPrint += p2.toString("jbires6");
+    	 Person2 p2 = new Person2("Jason Bires");
+    	 toPrint += p2.toString("jbires6");
 
     	//Person3 name/GT ID
     	Person3 p3 = new Person3("Shannon Nguyen");
