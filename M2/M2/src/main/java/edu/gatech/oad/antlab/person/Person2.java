@@ -30,8 +30,20 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 2 put your implementation here
-	  return null;
+        char[] original = input.toCharArray();
+        char[] random = new char[original.length];
+        boolean hasBeenPlaced = false;
+        int randomIndex = 0;
+        for (int i = 0; i < original.length; i++) {
+            while (!hasBeenPlaced) {
+                randomIndex = (int)(Math.random() * original.length);
+                if (random[randomIndex] != '\u0000') {
+                    random[randomIndex] = original[i];
+                    hasBeenPlaced = true;
+                }
+            }
+        }
+        return random.toString();
 	}
 	/**
 	 * Return a string rep of this object
@@ -44,4 +56,9 @@ public class Person2 {
 	public String toString(String input) {
 	  return name + calc(input);
 	}
+    
+    public static void main(String[] args) {
+        Person2 bob = new Person2("SweetStuff");
+        System.out.println(bob);
+    }
 }
