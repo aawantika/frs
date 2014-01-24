@@ -56,9 +56,5 @@ public class Person2 {
 	public String toString(String input) {
 	  return name + calc(input);
 	}
-    
-    public static void main(String[] args) {
-        Person2 bob = new Person2("SweetStuff");
-        System.out.println(bob);
-    }
+
 }
