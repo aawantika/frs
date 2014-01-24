@@ -11,10 +11,22 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java/edu/gatech/oad/antlab/pkg1'
+        }
+        resources {
+            srcDir 'src/lib'
+        }
+    }
+}
  
 jar {
    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-   manifest { attributes 'Main-Class': 'test.Main' }
+   manifest { 
+   attributes('Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain')
+   attributes('Class-Path': 'lib/resources.jar' )}
 }
 
 repositories {

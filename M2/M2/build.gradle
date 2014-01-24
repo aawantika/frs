@@ -1,0 +1,4 @@
+task build(type: GradleBuild) {
+    buildFile = 'hlee652.gradle'
+    tasks = ['jar']
+}
