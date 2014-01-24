@@ -50,8 +50,8 @@ import edu.gatech.oad.antlab.pkg2.*;
      */
     public void printOutMessage() {
         String toPrint = 
-        	ant11.getMessage() + ant12.getMessage(); //+ ant21.getMessage()
-      		//+ ant22.getMessage() + ant31.getMessage();
+        	ant11.getMessage() + ant12.getMessage() + ant21.getMessage()
+      		 + ant22.getMessage() + ant31.getMessage();
       	
     	//Person1 name/GT ID  
     	 Person1 p1 = new Person1("Prav Tadikonda");
