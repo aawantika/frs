@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:id="@+id/loginButton"
+            android:onClick="toLoginActivity"
             android:layout_below="@+id/welcomeMessage"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="104dp" />
