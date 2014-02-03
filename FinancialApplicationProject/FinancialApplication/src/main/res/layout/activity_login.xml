@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Username"
-            android:id="@+id/username"
+            android:text="@string/username"
+            android:id="@+id/userText"
             android:layout_marginLeft="75dp"
             android:layout_marginTop="147dp"
             android:layout_alignParentTop="true"
@@ -26,28 +26,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Password"
-            android:id="@+id/password"
-            android:layout_below="@+id/username"
-            android:layout_alignLeft="@+id/username"
+            android:text="@string/password"
+            android:id="@+id/passText"
+            android:layout_below="@+id/userText"
+            android:layout_alignLeft="@+id/userText"
             android:layout_marginTop="19dp" />
 
         <EditText
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:id="@+id/userIn"
-            android:layout_toRightOf="@+id/username"
+            android:id="@+id/username"
+            android:layout_toRightOf="@+id/userText"
             android:layout_marginLeft="21dp"
-            android:layout_above="@+id/password" />
+            android:layout_above="@+id/passText" />
 
         <EditText
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/passIn"
-            android:layout_alignBottom="@+id/password"
-            android:layout_toRightOf="@+id/username"
+            android:id="@+id/password"
+            android:layout_alignBottom="@+id/passText"
+            android:layout_toRightOf="@+id/userText"
             android:layout_marginLeft = "21dp"/>
+
+        <Button
+            android:id="@+id/loginBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/passIn"
+            android:onClick="onClick"
+            android:text="@string/login" />
+
     </RelativeLayout>
 </FrameLayout>
