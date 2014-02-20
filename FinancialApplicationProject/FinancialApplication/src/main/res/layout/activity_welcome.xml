@@ -24,7 +24,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             android:id="@+id/loginButton"
             android:onClick="toLoginActivity"
             android:layout_below="@+id/welcomeMessage"
@@ -34,8 +34,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register"
             android:id="@+id/registerButton"
+            android:onClick="toRegisterActivity"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
