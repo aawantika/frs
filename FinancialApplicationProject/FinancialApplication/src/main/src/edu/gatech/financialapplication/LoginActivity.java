@@ -134,7 +134,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		    .setMessage("Success")
 		    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
-		        	startActivity(new Intent(getApplicationContext(), MainActivity.class));
+		        	startActivity(new Intent(getApplicationContext(), AccountCreationActivity.class));
 		        }
 		     })
 		     .show();

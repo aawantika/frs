@@ -55,6 +55,7 @@ public class WelcomeActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_settings:
+            	startActivity(new Intent(getApplicationContext(), HateMaxActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

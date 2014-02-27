@@ -1,11 +1,17 @@
 package edu.gatech.financialapplication;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,11 +21,17 @@ import android.widget.EditText;
 public class RegisterActivity extends Activity {
 	File accounts;
 	BufferedWriter writer;
+	private ArrayList<String> userArray;
+
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+        userArray = new ArrayList<String>();
+
     	setContentView(R.layout.activity_register);
     	File directory = new File(Environment.getExternalStorageDirectory() + File.separator + "accounts");
-    	directory.mkdirs();
+    	if (!directory.exists())
+    		directory.mkdirs();
+	    	
     	accounts = new File(directory, "accounts.txt");
     	try {
     		if(!accounts.createNewFile()) {
@@ -28,20 +40,56 @@ public class RegisterActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		loadArray();
+    }
+    
+    public void loadArray() {
+		String filePath = Environment.getExternalStorageDirectory() + File.separator + "accounts" + File.separator + "accounts.txt";
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(filePath));
+			boolean done = false;
+			while (!done) {
+				userArray.add(in.readLine());
+				if(userArray.get(userArray.size() - 1) == null) {
+					userArray.remove(userArray.size()-1);
+					done = true;
+				}
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+    
+    public boolean isDuplicate(String username, String password) {
+    	return userArray.contains(username + password + "\n");
     }
     
     public void onClick(View view) {
     	String username = ((EditText)findViewById(R.id.userText)).getText().toString();
 		String password = ((EditText)findViewById(R.id.passText)).getText().toString();
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(accounts, true));
-			writer.write(username + password + "\n");
-			writer.close();
+			if (isDuplicate(username, password)) {
+				new AlertDialog.Builder(this)
+			    .setTitle("Duplicate")
+			    .setMessage("Credential is duplicate!\nPlease check again.")
+			    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int which) { 
+			        }
+			     })
+			     .show();
+			}else{
+				BufferedWriter writer = new BufferedWriter(new FileWriter(accounts, true));
+				writer.write(username + password + "\n");
+				writer.close();
+				Intent intent = new Intent(this, WelcomeActivity.class);
+		    	startActivity(intent);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	Intent intent = new Intent(this, WelcomeActivity.class);
-    	startActivity(intent);
+    	
     }
 }
