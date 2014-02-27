@@ -47,14 +47,18 @@ public class RegisterActivity extends Activity {
 		String filePath = Environment.getExternalStorageDirectory() + File.separator + "accounts" + File.separator + "accounts.txt";
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(filePath));
-			boolean done = false;
-			while (!done) {
-				userArray.add(in.readLine());
-				if(userArray.get(userArray.size() - 1) == null) {
-					userArray.remove(userArray.size()-1);
-					done = true;
-				}
+			String line = "";
+			while((line = in.readLine()) != null) {
+				userArray.add(line);
 			}
+//			boolean done = false;
+//			while (!done) {
+//				userArray.add(in.readLine());
+//				if(userArray.get(userArray.size() - 1) == null) {
+//					userArray.remove(userArray.size()-1);
+//					done = true;
+//				}
+//			}
 			in.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -64,7 +68,12 @@ public class RegisterActivity extends Activity {
 	}
     
     public boolean isDuplicate(String username, String password) {
-    	return userArray.contains(username + password + "\n");
+    	for(String u : userArray){
+    		u = u.split("&")[0];
+    		if (u.equalsIgnoreCase(username))
+    			return true;
+    	}
+    	return false;
     }
     
     public void onClick(View view) {
@@ -82,7 +91,7 @@ public class RegisterActivity extends Activity {
 			     .show();
 			}else{
 				BufferedWriter writer = new BufferedWriter(new FileWriter(accounts, true));
-				writer.write(username + password + "\n");
+				writer.write(username + "&"+password + "\n");
 				writer.close();
 				Intent intent = new Intent(this, WelcomeActivity.class);
 		    	startActivity(intent);

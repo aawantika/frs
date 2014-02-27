@@ -70,7 +70,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		loadArray();
 		String user = ((EditText)findViewById(R.id.username)).getText().toString();
 		String pass = ((EditText)findViewById(R.id.password)).getText().toString();
-		String checker = user + pass;
+		String checker = user + "&"+ pass;
 		Boolean found = false;
 		for (String log : userArray) {
 			if (log.equals(checker)) {
