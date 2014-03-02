@@ -12,41 +12,36 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
-	private SQLiteDatabase db;
-	
-	private static final String LOG = "DatabaseHelper";
-
-	// user
-	public static final String KEY_ROWID = "_id";
-	public static final String KEY_FNAME = "firstname";
-	public static final String KEY_LNAME = "lastname";
-	public static final String KEY_USER = "username";
-	public static final String KEY_PASS = "password";
-
-	public static final String KEY_EMAIL = "email";
-	public static final String KEY_SSN = "ssn";
-	public static final String KEY_DOB = "dob";
-	public static final String KEY_PHONE = "phone";
-	public static final String KEY_ACCOUNTS = "accounts";
-
-	public static final String KEY_ADDRESS = "address";
-	public static final String KEY_CITY = "city";
-	public static final String KEY_STATE = "state";
-	public static final String KEY_ZIPCODE = "zipcode";
-
-	// for account
-	public static final String KEY_BALANCE = "balance";
-	public static final String KEY_ACCOUNT_NUMBER = "account_number";
-
-	// for transaction
-	public static final String KEY_TO = "account_to";
-	public static final String KEY_FROM = "account_from";
-	public static final String KEY_DATE = "date";
-	public static final String KEY_AMOUNT = "amount";
-
-	DBHelper DB = null;
 	private static final String DATABASE_NAME = "foobarsribshack.db";
 	private static final int DATABASE_VERSION = 1;
+
+	// user
+	private static final String KEY_ROWID = "_id";
+	private static final String KEY_FNAME = "firstname";
+	private static final String KEY_LNAME = "lastname";
+	private static final String KEY_USER = "username";
+	private static final String KEY_PASS = "password";
+
+	private static final String KEY_EMAIL = "email";
+	private static final String KEY_SSN = "ssn";
+	private static final String KEY_DOB = "dob";
+	private static final String KEY_PHONE = "phone";
+	private static final String KEY_ACCOUNTS = "accounts";
+
+	private static final String KEY_ADDRESS = "address";
+	private static final String KEY_CITY = "city";
+	private static final String KEY_STATE = "state";
+	private static final String KEY_ZIPCODE = "zipcode";
+
+	// for account
+	private static final String KEY_BALANCE = "balance";
+	private static final String KEY_ACCOUNT_NUMBER = "account_number";
+
+	// for transaction
+	private static final String KEY_TO = "account_to";
+	private static final String KEY_FROM = "account_from";
+	private static final String KEY_DATE = "date";
+	private static final String KEY_AMOUNT = "amount";
 
 	// tables
 	public static final String DATABASE_TABLE_USER = "frs1";
@@ -57,9 +52,9 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ DATABASE_TABLE_USER + "(" + KEY_ROWID + " INTEGER PRIMARY KEY,"
 			+ KEY_FNAME + " TEXT," + KEY_LNAME + " TEXT," + KEY_USER + " TEXT,"
 			+ KEY_PASS + " TEXT," + KEY_EMAIL + " TEXT," + KEY_SSN
-			+ " INTEGER," + KEY_DOB + " DATE," + KEY_ADDRESS + " TEXT,"
-			+ KEY_CITY + " TEXT," + KEY_STATE + " TEXT," + KEY_ZIPCODE
-			+ " INTEGER," + KEY_PHONE + " INTEGER," + KEY_ACCOUNTS + " TEXT)";
+			+ " INTEGER," + KEY_DOB + " DATE," + KEY_PHONE + " INTEGER,"
+			+ KEY_ACCOUNTS + " TEXT," + KEY_ADDRESS + " TEXT," + KEY_CITY
+			+ " TEXT," + KEY_STATE + " TEXT," + KEY_ZIPCODE + " INTEGER)";
 
 	private static final String DATABASE_TABLE_CREATE_ACCOUNT = "CREATE TABLE "
 			+ DATABASE_TABLE_ACCOUNT + "(" + KEY_ROWID
@@ -75,11 +70,12 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ KEY_TO
 			+ " TEXT,"
 			+ KEY_FROM
-			+ " TEXT, "
+			+ " TEXT,"
 			+ KEY_DATE
 			+ " DATE,"
-			+ KEY_ACCOUNT_NUMBER
-			+ " INTEGER," + KEY_AMOUNT + " TEXT)";
+			+ KEY_AMOUNT
+			+ " DOUBLE,"
+			+ KEY_ACCOUNT_NUMBER + " INTEGER)";
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -108,10 +104,6 @@ public class DBHelper extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	public void open() {
-		getWritableDatabase();
-	}
-
 	public void addUser(User user) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -123,40 +115,37 @@ public class DBHelper extends SQLiteOpenHelper {
 		values.put(KEY_EMAIL, user.getEmail());
 		values.put(KEY_SSN, user.getSsn());
 		values.put(KEY_DOB, user.getDob());
+		values.put(KEY_PHONE, user.getPhone());
+		values.put(KEY_ACCOUNTS, user.getAccounts());
 		values.put(KEY_ADDRESS, user.getAddress());
 		values.put(KEY_CITY, user.getCity());
 		values.put(KEY_STATE, user.getState());
 		values.put(KEY_ZIPCODE, user.getZipcode());
-		values.put(KEY_PHONE, user.getPhone());
-		values.put(KEY_ACCOUNTS, user.getAccounts());
 
 		try {
-			db.insert(DBHelper.DATABASE_TABLE_USER, null, values);
-			System.out.println("Inserted");
-			Log.d("User adder : ",
-					user.getFirstname() + " " + user.getLastname());
-			Log.d("User ID: ", "" + user.getId());
+			db.insert(DATABASE_TABLE_USER, null, values);
+			Log.d("Databse User Inserted", "yay");
 			db.close();
 		} catch (Exception e) {
-			System.out.println("Didn't insert");
+			Log.d("Databse User Inserted", "boo");
 			e.printStackTrace();
 		}
 	}
 
 	public User getUserDetails(int id) throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
-		
+
+		// NEED TO CHANGE FROM ROWID TO USERNAME HERE!!!!!!!!!!!!!
 		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_ROWID,
 				KEY_FNAME, KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL, KEY_SSN,
-				KEY_DOB, KEY_ADDRESS, KEY_CITY, KEY_STATE, KEY_ZIPCODE,
-				KEY_PHONE, KEY_ACCOUNTS }, KEY_ROWID + "=?",
+				KEY_DOB, KEY_PHONE, KEY_ACCOUNTS, KEY_ADDRESS, KEY_CITY,
+				KEY_STATE, KEY_ZIPCODE }, KEY_ROWID + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 
 		if (cursor != null) {
-			System.out.println("FOUND USER");
 			cursor.moveToFirst();
 		}
-		
+
 		User user = new User(Integer.parseInt(cursor.getString(0)),
 				cursor.getString(1), cursor.getString(2), cursor.getString(3),
 				cursor.getString(4), cursor.getString(5),
@@ -164,105 +153,109 @@ public class DBHelper extends SQLiteOpenHelper {
 				Integer.parseInt(cursor.getString(8)), cursor.getString(9),
 				cursor.getString(10), cursor.getString(11),
 				cursor.getString(12), Integer.parseInt(cursor.getString(13)));
-		cursor.close();
-		db.close();
 		return user;
 	}
 
-	// Getting All Contacts
 	public List<User> getAllUsers() {
 		List<User> userList = new ArrayList<User>();
-		System.out.println("contactListSize: " + userList.size());
-		// Select All Query
 		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_USER;
-		System.out.println("selectQuery: " + selectQuery);
 
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
-		
-		System.out.println("cursorSize: " + cursor.getCount());
 
-		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
-			System.out.println("Moves to First here!");
 			do {
-				User user = new User(Integer.parseInt(cursor.getString(0)),
-						cursor.getString(1), cursor.getString(2),
-						cursor.getString(3), cursor.getString(4),
-						cursor.getString(5), Integer.parseInt(cursor
-								.getString(6)), cursor.getString(7),
-						Integer.parseInt(cursor.getString(8)),
-						cursor.getString(9), cursor.getString(10),
-						cursor.getString(11), cursor.getString(12),
-						Integer.parseInt(cursor.getString(13)));
-				if (user != null) {
-					System.out.println("GOING TO ADD");
-					// Adding contact to list
-					userList.add(user);
-				}
+				User user = new User();
+				user.setId(Integer.parseInt(cursor.getString(0)));
+				user.setFirstname(cursor.getString(1));
+				user.setLastname(cursor.getString(2));
+				user.setUsername(cursor.getString(3));
+				user.setPassword(cursor.getString(4));
+				user.setEmail(cursor.getString(5));
+				user.setSsn(Integer.parseInt(cursor.getString(6)));
+				user.setDob(cursor.getString(7));
+				user.setPhone(Integer.parseInt(cursor.getString(8)));
+				user.setAccounts(cursor.getString(9));
+				user.setAddress(cursor.getString(10));
+				user.setCity(cursor.getString(11));
+				user.setState(cursor.getString(12));
+				user.setZipcode(Integer.parseInt(cursor.getString(13)));
+				userList.add(user);
 			} while (cursor.moveToNext());
 		}
 		return userList;
 	}
 
-	private void addAccount(String fname, String lname, String uname,
-			String balance, int accountNumber) {
+	public void addAccount(Account account) {
 
-		SQLiteDatabase db = DB.getWritableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
-		values.put(KEY_LNAME, lname);
-		values.put(KEY_USER, uname);
-		values.put(KEY_BALANCE, balance);
-		values.put(KEY_ACCOUNT_NUMBER, accountNumber);
+		values.put(KEY_FNAME, account.getFirstname());
+		values.put(KEY_LNAME, account.getLastname());
+		values.put(KEY_USER, account.getUsername());
+		values.put(KEY_BALANCE, account.getBalance());
+		values.put(KEY_ACCOUNT_NUMBER, account.getAccountNumber());
 
 		try {
 			db.insert(DBHelper.DATABASE_TABLE_ACCOUNT, null, values);
-			Log.d("User adder : ", fname + " " + lname);
+			Log.d("Databse User Inserted", "yay");
+			db.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public Account getAccountDetails(int id) throws SQLException {
+		SQLiteDatabase db = this.getReadableDatabase();
+		
+		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT, new String[] {
+				KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE, KEY_ACCOUNT_NUMBER },
+				KEY_ROWID + "=?",
+				new String[] { String.valueOf(id) }, null, null, null, null);
+		if (cursor != null) {
+			cursor.moveToFirst();
+		}
+		
+		Account account = new Account(Integer.parseInt(cursor.getString(0)),
+				cursor.getString(1), cursor.getString(2), cursor.getString(3),
+				Double.parseDouble(cursor.getString(4)), Integer.parseInt(cursor.getString(5)));
+		return account;
+	}
 
-	private void addTransaction(String account_number, String to, String from,
-			String date, double amount) {
-
-		SQLiteDatabase db = DB.getWritableDatabase();
+	public void addTransaction(Transaction transaction) {
+		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
-
-		values.put(KEY_TO, to);
-		values.put(KEY_FROM, from);
-		values.put(KEY_DATE, date);
-		values.put(KEY_AMOUNT, amount);
-		values.put(KEY_ACCOUNT_NUMBER, account_number);
-
+		
+		values.put(KEY_TO, transaction.getAccountTo());
+		values.put(KEY_FROM, transaction.getAccountFrom());
+		values.put(KEY_DATE, transaction.getDate());
+		values.put(KEY_AMOUNT, transaction.getAmount());
+		values.put(KEY_ACCOUNT_NUMBER, transaction.getAccountNumber());
+		
 		try {
 			db.insert(DBHelper.DATABASE_TABLE_TRANSACTION, null, values);
-			Log.d("Account number : ", account_number);
+			Log.d("Database Transaction Inserted", "yay");
+			db.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public Cursor getAccountDetails(String text) throws SQLException {
-		Cursor mCursor = db.query(true, DATABASE_TABLE_ACCOUNT, new String[] {
-				KEY_LNAME, KEY_USER, KEY_BALANCE, KEY_ACCOUNT_NUMBER },
-				KEY_USER + "=" + text, null, null, null, null, null, null);
-		if (mCursor != null) {
-			mCursor.moveToFirst();
-		}
-		return mCursor;
-	}
 
-	public Cursor getTransactionDetails(String text) throws SQLException {
-		Cursor mCursor = db.query(true, DATABASE_TABLE_TRANSACTION,
-				new String[] { KEY_TO, KEY_FROM, KEY_DATE, KEY_AMOUNT,
-						KEY_ACCOUNT_NUMBER }, KEY_USER + "=" + text, null,
-				null, null, null, null, null);
-		if (mCursor != null) {
-			mCursor.moveToFirst();
-		}
-		return mCursor;
-	}
+	public Transaction getTransactionDetails(int accountNum) throws SQLException {
+		SQLiteDatabase db = this.getReadableDatabase();
 
+		Cursor cursor = db.query(true, DATABASE_TABLE_TRANSACTION,
+				new String[] {KEY_TO, KEY_FROM, KEY_DATE, KEY_AMOUNT,
+						KEY_ACCOUNT_NUMBER }, KEY_ACCOUNT_NUMBER + "=?",
+						new String[] {String.valueOf(accountNum)}, null, null, null, null);
+		if (cursor != null) {
+			cursor.moveToFirst();
+		}
+		Transaction transaction = new Transaction(cursor.getString(0),
+				cursor.getString(1), cursor.getString(2), Double.parseDouble(cursor.getString(3)),
+				Integer.parseInt(cursor.getString(4)));
+		return transaction;
+	}
 }

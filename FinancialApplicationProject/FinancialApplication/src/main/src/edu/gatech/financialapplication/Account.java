@@ -1,22 +1,34 @@
 package edu.gatech.financialapplication;
 
 public class Account {
-	
+
 	private int id;
 	private String firstname;
 	private String lastname;
 	private String username;
 	private double balance;
-	private int account_number;
-	
+	private int accountNumber;
+
+	public Account() {
+	}
+
+	public Account(String firstname, String lastname, String username,
+			double balance, int accountNumber) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.balance = balance;
+		this.accountNumber = accountNumber;
+	}
+
 	public Account(int id, String firstname, String lastname, String username,
-			double balance, int account_number) {
+			double balance, int accountNumber) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.balance = balance;
-		this.account_number = account_number;
+		this.accountNumber = accountNumber;
 	}
 
 	public int getId() {
@@ -59,11 +71,11 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public int getAccount_number() {
-		return account_number;
+	public int getAccountNumber() {
+		return accountNumber;
 	}
 
-	public void setAccount_number(int account_number) {
-		this.account_number = account_number;
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 }

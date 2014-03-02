@@ -1,63 +1,51 @@
 package edu.gatech.financialapplication;
 
-import java.util.Date;
-
 public class Transaction {
 
-	private int id;
-	private String username;
-	private String account_to;
-	private String account_from;
-	private Date date;
+	private int accountNumber;
+	private String accountTo;
+	private String accountFrom;
+	private String date;
 	private double amount;
 
-	public Transaction(int id, String username, String account_to,
-			String account_from, Date date, double amount) {
-		this.id = id;
-		this.username = username;
-		this.account_to = account_to;
-		this.account_from = account_from;
+	public Transaction(String accountTo, String accountFrom, String date,
+			double amount, int accountNumber) {
+		this.accountTo = accountTo;
+		this.accountFrom = accountFrom;
 		this.date = date;
 		this.amount = amount;
+		this.accountNumber = accountNumber;
 	}
 
-	public int getId() {
-		return id;
+	public int getAccountNumber() {
+		return accountNumber;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getAccountTo() {
+		return accountTo;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAccount_to(String accountTo) {
+		this.accountTo = accountTo;
 	}
 
-	public String getAccount_to() {
-		return account_to;
+	public String getAccountFrom() {
+		return accountFrom;
 	}
 
-	public void setAccount_to(String account_to) {
-		this.account_to = account_to;
+	public void setAccount_from(String accountFrom) {
+		this.accountFrom = accountFrom;
 	}
 
-	public String getAccount_from() {
-		return account_from;
-	}
-
-	public void setAccount_from(String account_from) {
-		this.account_from = account_from;
-	}
-
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

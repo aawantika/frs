@@ -1,7 +1,5 @@
 package edu.gatech.financialapplication;
 
-import java.util.Date;
-
 public class User {
 
 	private int id;
@@ -23,7 +21,29 @@ public class User {
 
 	public User() {
 	}
-	
+
+	public User(String firstname, String lastname, String username,
+			String password, String email, int ssn, String dob, int phone,
+			String accounts, String address, String city, String state,
+			int zipcode) {
+
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+
+		this.email = email;
+		this.ssn = ssn;
+		this.dob = dob;
+		this.phone = phone;
+		this.accounts = accounts;
+
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+	}
+
 	public User(int id, String firstname, String lastname, String username,
 			String password, String email, int ssn, String dob, int phone,
 			String accounts, String address, String city, String state,
