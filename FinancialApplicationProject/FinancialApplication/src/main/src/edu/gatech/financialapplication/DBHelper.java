@@ -139,24 +139,14 @@ public class DBHelper extends SQLiteOpenHelper {
 				KEY_STATE, KEY_ZIPCODE }, KEY_USER + "=?",
 				new String[] { String.valueOf(username) }, null, null, null, null);
 
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-<<<<<<< HEAD
 		User user = null;
 		if ( cursor != null && cursor.getCount() > 0){
+			cursor.moveToFirst();
 			user = new User(cursor.getString(0),
 					cursor.getString(1), cursor.getString(2), cursor.getString(3),
 					cursor.getString(4));
 		}
-=======
-		User user = new User(cursor.getString(0),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), Integer.parseInt(cursor.getString(5)), cursor.getString(6),
-				Integer.parseInt(cursor.getString(7)), cursor.getString(8),
-				cursor.getString(9), cursor.getString(10),
-				cursor.getString(11), Integer.parseInt(cursor.getString(12)));
->>>>>>> 405463225d05425841c54ca52ae79c34ec019af3
+
 		return user;
 	}
 
