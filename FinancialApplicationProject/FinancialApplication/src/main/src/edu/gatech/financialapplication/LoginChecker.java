@@ -11,9 +11,11 @@ public class LoginChecker extends IntentService {
 	private SharedPreferences sp;
 	private ResultReceiver rec;
 	private String user, pass;
+	private DBHelper db;
 	
 	public void onCreate(){
 		super.onCreate();
+		db = new DBHelper(this);
 	}
 
 	public LoginChecker() {

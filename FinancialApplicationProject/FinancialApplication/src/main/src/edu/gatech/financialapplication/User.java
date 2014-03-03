@@ -18,8 +18,19 @@ public class User {
 	private String city;
 	private String state;
 	private int zipcode;
+	
+	public User(){
+		
+	}
 
-	public User() {
+	public User(String firstname, String lastname, String username,
+			String password, String email) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+
+		this.email = email;
 	}
 
 	public User(String firstname, String lastname, String username,

@@ -111,14 +111,14 @@ public class DBHelper extends SQLiteOpenHelper {
 		values.put(KEY_USER, user.getUsername());
 		values.put(KEY_PASS, user.getPassword());
 		values.put(KEY_EMAIL, user.getEmail());
-		values.put(KEY_SSN, user.getSsn());
-		values.put(KEY_DOB, user.getDob());
-		values.put(KEY_PHONE, user.getPhone());
-		values.put(KEY_ACCOUNTS, user.getAccounts());
-		values.put(KEY_ADDRESS, user.getAddress());
-		values.put(KEY_CITY, user.getCity());
-		values.put(KEY_STATE, user.getState());
-		values.put(KEY_ZIPCODE, user.getZipcode());
+//		values.put(KEY_SSN, user.getSsn());
+//		values.put(KEY_DOB, user.getDob());
+//		values.put(KEY_PHONE, user.getPhone());
+//		values.put(KEY_ACCOUNTS, user.getAccounts());
+//		values.put(KEY_ADDRESS, user.getAddress());
+//		values.put(KEY_CITY, user.getCity());
+//		values.put(KEY_STATE, user.getState());
+//		values.put(KEY_ZIPCODE, user.getZipcode());
 
 		try {
 			db.insert(DATABASE_TABLE_USER, null, values);
@@ -129,6 +129,29 @@ public class DBHelper extends SQLiteOpenHelper {
 			e.printStackTrace();
 		}
 	}
+	
+	public User getUserDetailsByUsername(String username) throws SQLException {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		// NEED TO CHANGE FROM ROWID TO USERNAME HERE!!!!!!!!!!!!!
+		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] {
+				KEY_FNAME, KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL, KEY_SSN,
+				KEY_DOB, KEY_PHONE, KEY_ACCOUNTS, KEY_ADDRESS, KEY_CITY,
+				KEY_STATE, KEY_ZIPCODE }, KEY_USER + "=?",
+				new String[] { String.valueOf(username) }, null, null, null, null);
+
+		if (cursor != null) {
+			cursor.moveToFirst();
+		}
+		User user = new User(cursor.getString(0),
+				cursor.getString(1), cursor.getString(2), cursor.getString(3),
+				cursor.getString(4), Integer.parseInt(cursor.getString(5)), cursor.getString(6),
+				Integer.parseInt(cursor.getString(7)), cursor.getString(8),
+				cursor.getString(9), cursor.getString(10),
+				cursor.getString(11), Integer.parseInt(cursor.getString(12)));
+		return user;
+	}
+
 
 	public User getUserDetails(String firstName) throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();

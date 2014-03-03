@@ -12,16 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class WelcomeActivity extends Activity {
+	protected static DBHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+		db = new DBHelper(this);
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		DBHelper db = new DBHelper(this);
 
 		db.addUser(new User("tika", "sahu", "yolouser", "password", "email",
 				8889999, "june", 78906543, "accounts", "yellowbrickroad",
