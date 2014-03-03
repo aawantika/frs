@@ -69,4 +69,8 @@ public class Account {
 	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
+	
+	public String toString() { 
+		return "Username: " + username + " account: " + accountNumber + " balance: " + balance;
+	}
 }

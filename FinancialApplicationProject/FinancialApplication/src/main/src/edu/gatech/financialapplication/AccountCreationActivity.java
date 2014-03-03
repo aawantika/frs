@@ -5,6 +5,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class AccountCreationActivity extends Activity {
 							}).show();
 
 		} else {
-			int accNum = createAccountNumber();
+			final int accNum = createAccountNumber();
 			new AlertDialog.Builder(this)
 					.setTitle("Your account is crated")
 					.setMessage(
@@ -52,10 +53,19 @@ public class AccountCreationActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
+									WelcomeActivity.db.addAccount(new Account(firstname, lastname, 
+											username,Double.parseDouble(defaultAmount.getText().toString()),accNum ));
+									Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+						        	intent.putExtra("username", username);
+						        	intent.putExtra("password", password);
+						        	intent.putExtra("firstname", firstname);
+						        	intent.putExtra("lastname", lastname);
+						        	intent.putExtra("email", email);
+						        	startActivity(intent);
+						        	finish();
 								}
 							}).show();
-			WelcomeActivity.db.addAccount(new Account(firstname, lastname, 
-					username,Double.parseDouble(defaultAmount.getText().toString()),accNum ));
+			
 		}
 	}
 

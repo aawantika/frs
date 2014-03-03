@@ -223,6 +223,24 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 	}
 	
+	public Account getAccount(User user) throws SQLException {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,
+				new String[] { KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
+						KEY_ACCOUNT_NUMBER }, KEY_USER + "=?",
+				new String[] { String.valueOf(user.getUsername()) }, null, null,
+				null, null);
+		Account account = null;
+		if (cursor != null) {
+			cursor.moveToFirst();
+			account = new Account(cursor.getString(0), cursor.getString(1),
+					cursor.getString(2), Float.parseFloat(cursor.getString(3)),
+					Integer.parseInt(cursor.getString(4)));
+		}		
+		return account;
+	}
+	
 	public Account getAccountDetails(int accountNumber) throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
 		
