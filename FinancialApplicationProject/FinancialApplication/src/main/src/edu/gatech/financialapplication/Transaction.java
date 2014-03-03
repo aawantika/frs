@@ -2,42 +2,40 @@ package edu.gatech.financialapplication;
 
 public class Transaction {
 
-	private int accountNumber;
-	private String accountTo;
-	private String accountFrom;
+	private int accountTo;
+	private int accountFrom;
 	private String date;
 	private double amount;
-
-	public Transaction(String accountTo, String accountFrom, String date,
-			double amount, int accountNumber) {
+	private String description;
+	
+	public Transaction(int accountTo, int accountFrom, String date,
+			double amount, String description) {
 		this.accountTo = accountTo;
 		this.accountFrom = accountFrom;
 		this.date = date;
 		this.amount = amount;
-		this.accountNumber = accountNumber;
+		this.description = description;
 	}
 
-	public int getAccountNumber() {
-		return accountNumber;
-	}
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
 
-	public String getAccountTo() {
+	public int getAccountTo() {
 		return accountTo;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
 
-	public void setAccount_to(String accountTo) {
+	public void setAccount_to(int accountTo) {
 		this.accountTo = accountTo;
 	}
 
-	public String getAccountFrom() {
+	public int getAccountFrom() {
 		return accountFrom;
 	}
 
-	public void setAccount_from(String accountFrom) {
+	public void setAccount_from(int accountFrom) {
 		this.accountFrom = accountFrom;
 	}
 
@@ -55,5 +53,9 @@ public class Transaction {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+	
+	public void setdescription(String description) {
+		this.description = description;
 	}
 }
