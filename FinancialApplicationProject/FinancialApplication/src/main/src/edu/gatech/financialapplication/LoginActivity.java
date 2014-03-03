@@ -75,7 +75,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 	}
 
 	@Override
-	public void onReceiveResult(int resultCode, Bundle resultBundle) {
+	public void onReceiveResult(int resultCode, final Bundle resultBundle) {
 		boolean correcto = resultBundle.getBoolean("ServiceTag");
 		if(correcto){
 			new AlertDialog.Builder(this)
@@ -83,7 +83,13 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		    .setMessage("Success")
 		    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
-		        	startActivity(new Intent(getApplicationContext(), AccountCreationActivity.class));
+		        	Intent intent = new Intent(getApplicationContext(), AccountCreationActivity.class);
+		        	intent.putExtra("username", resultBundle.getString("username"));
+		        	intent.putExtra("password", resultBundle.getString("password"));
+		        	intent.putExtra("firstname", resultBundle.getString("firstname"));
+		        	intent.putExtra("lastname", resultBundle.getString("lastname"));
+		        	intent.putExtra("email", resultBundle.getString("email"));
+		        	startActivity(intent);
 		        }
 		     })
 		     .show();

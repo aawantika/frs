@@ -29,6 +29,11 @@ public class LoginChecker extends IntentService {
 		if (userFromDb != null && userFromDb.equals(userFromActivity)) {
 			Bundle b = new Bundle();
 			b.putBoolean("ServiceTag", true);
+			b.putString("username", username);
+			b.putString("password", password);
+			b.putString("firstname", userFromDb.getFirstname());
+			b.putString("lastname", userFromDb.getLastname());
+			b.putString("email", userFromDb.getEmail());
 			rec.send(0, b);
 		} else {
 			Bundle b = new Bundle();

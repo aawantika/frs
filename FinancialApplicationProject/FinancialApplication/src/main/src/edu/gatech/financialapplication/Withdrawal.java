@@ -2,12 +2,13 @@ package edu.gatech.financialapplication;
 
 public class Withdrawal {
 
+	private Account accountTo;
 	private Account accountFrom;
 	private String descriptor;
 	private String date;
 	private float amount;
 
-	public Withdrawal(Account accountFrom, String descriptor,
+	public Withdrawal(Account accountTo, Account accountFrom, String descriptor,
 	          String date, float amount) {
 		this.accountFrom = accountFrom;
 		this.descriptor = descriptor;
@@ -15,11 +16,11 @@ public class Withdrawal {
 		this.amount = amount;
 	}
 
-	public String getAccountFrom() {
+	public Account getAccountFrom() {
 		return accountFrom;
 	}
 
-	public void setAccountFrom(String accountFrom) {
+	public void setAccountFrom(Account accountFrom) {
 		this.accountFrom = accountFrom;
 	}
 
@@ -50,6 +51,6 @@ public class Withdrawal {
 	@Override
 	public String toString() {
 		return "Amount: " + amount + "\nTransferred To: " + accountTo
-		                  + "\nOn Date: " + data + "\nDescriptor: " + descriptor;
+		                  + "\nOn Date: " + date + "\nDescriptor: " + descriptor;
 	}
 }

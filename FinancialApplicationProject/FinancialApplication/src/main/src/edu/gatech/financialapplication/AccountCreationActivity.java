@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 public class AccountCreationActivity extends Activity {
 	private TextView cell, address, defaultAmount;
+	private Account account;
+	private String username, password, firstname, lastname, email;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,10 +20,14 @@ public class AccountCreationActivity extends Activity {
 		cell = (TextView) findViewById(R.id.phone);
 		address = (TextView) findViewById(R.id.address);
 		defaultAmount = (TextView) findViewById(R.id.defaultAmount);
+		username = getIntent().getStringExtra("username");
+		password = getIntent().getStringExtra("password");
+		firstname = getIntent().getStringExtra("firstname");
+		lastname = getIntent().getStringExtra("lastname");
+		email = getIntent().getStringExtra("email");
 	}
 
 	public void onAccountCreate(View view) {
-
 		if (cell.getText().length() < 10
 				|| Double.parseDouble(defaultAmount.getText().toString()) < 100.00) {
 			new AlertDialog.Builder(this)
@@ -36,11 +42,11 @@ public class AccountCreationActivity extends Activity {
 							}).show();
 
 		} else {
-
+			int accNum = createAccountNumber();
 			new AlertDialog.Builder(this)
 					.setTitle("Your account is crated")
 					.setMessage(
-							"Account number " + createAccountNumber()
+							"Account number " + accNum
 									+ " is created. ")
 					.setPositiveButton(android.R.string.ok,
 							new DialogInterface.OnClickListener() {
@@ -48,6 +54,8 @@ public class AccountCreationActivity extends Activity {
 										int which) {
 								}
 							}).show();
+			WelcomeActivity.db.addAccount(new Account(firstname, lastname, 
+					username,Double.parseDouble(defaultAmount.getText().toString()),accNum ));
 		}
 	}
 
