@@ -168,4 +168,12 @@ public class User {
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
+	@Override
+	public boolean equals(Object o){
+		if (o instanceof User) {
+			User that = (User) o;
+			return (username.equalsIgnoreCase(that.username) && password.equalsIgnoreCase(that.password)) ? true : false;
+		}
+		return false;
+	}
 }
