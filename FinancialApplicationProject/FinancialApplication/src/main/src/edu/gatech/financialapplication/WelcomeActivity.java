@@ -27,9 +27,14 @@ public class WelcomeActivity extends Activity {
 				8889999, "june", 78906543, "accounts", "yellowbrickroad",
 				"atlanta", "georgia", 90876));
 		Log.d("Reading: ", "Reading all contacts..");
-		Log.d("LOOK HERE: ", db.getUserDetails(1).getFirstname());
+		Log.d("LOOK HERE: ", db.getUserDetails("tika").getLastname());
 		String log = "DB HELPER";
 		Log.d("Name: ", log);
+		db.addAccount(new Account("Joseph", "Lee", "aaa", 1000.00, 1234567890));
+		Log.d("ACCOUNT: ", db.getAccountDetails(1234567890).getFirstname());
+		db.addTransaction(new Transaction(1234567890, 1234567891, "A", 100.00, "TEST"));
+		Log.d("Transaction: " , db.getTransactionWithTo(1234567890).getAmount() + " ");
+		
 	}
 
 	@Override
