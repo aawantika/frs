@@ -21,15 +21,6 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public Account(int id, String firstname, String lastname, String username,
-			double balance, int accountNumber) {
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.balance = balance;
-		this.accountNumber = accountNumber;
-	}
 
 	public int getId() {
 		return id;
