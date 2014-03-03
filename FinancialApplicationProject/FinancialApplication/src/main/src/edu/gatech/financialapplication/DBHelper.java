@@ -16,7 +16,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 
 	// user
-	private static final String KEY_ROWID = "_id";
 	private static final String KEY_FNAME = "firstname";
 	private static final String KEY_LNAME = "lastname";
 	private static final String KEY_USER = "username";
@@ -143,12 +142,12 @@ public class DBHelper extends SQLiteOpenHelper {
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
-		User user = new User(cursor.getString(0),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), Integer.parseInt(cursor.getString(5)), cursor.getString(6),
-				Integer.parseInt(cursor.getString(7)), cursor.getString(8),
-				cursor.getString(9), cursor.getString(10),
-				cursor.getString(11), Integer.parseInt(cursor.getString(12)));
+		User user = null;
+		if ( cursor != null && cursor.getCount() > 0){
+			user = new User(cursor.getString(0),
+					cursor.getString(1), cursor.getString(2), cursor.getString(3),
+					cursor.getString(4));
+		}
 		return user;
 	}
 
