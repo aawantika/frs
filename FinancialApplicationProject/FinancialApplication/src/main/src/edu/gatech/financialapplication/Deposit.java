@@ -1,13 +1,13 @@
 package edu.gatech.financialapplication;
 
-public class Transaction {
+public class Deposit {
 
 	private Account accountTo;
 	private String descriptor;
 	private String date;
 	private float amount;
 
-	public Deposit(String accountTo, String descriptor,
+	public Deposit(Account accountTo, String descriptor,
 	          String date, float amount) {
 		this.accountTo = accountTo;
 		this.descriptor = descriptor;
@@ -15,11 +15,11 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public String getAccountTo() {
+	public Account getAccountTo() {
 		return accountTo;
 	}
 
-	public void setAccountTo(String accountTo) {
+	public void setAccountTo(Account accountTo) {
 		this.accountTo = accountTo;
 	}
 	
@@ -49,7 +49,7 @@ public class Transaction {
 	
 	@Override
 	public String toString() {
-		System.out.println("Amount: " + amount + "\nTransferred To: " + accountTo +
-		            "\nOn Date: " + data + "\nDescriptor: " + descriptor);
+		return ("Amount: " + amount + "\nTransferred To: " + accountTo +
+		            "\nOn Date: " + date + "\nDescriptor: " + descriptor);
 	}
 }
