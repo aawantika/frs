@@ -1,8 +1,10 @@
 package edu.gatech.financialapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 
 public class DepositActivity extends Activity {
 
@@ -18,18 +20,23 @@ public class DepositActivity extends Activity {
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar() {
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.deposit, menu);
-		return true;
+	
+	public void onClick(View view) {
+		String tempAccountToString = ((EditText)findViewById(R.id.editTextAccountTo)).getText().toString();
+		int tempAccountTo = Integer.parseInt(tempAccountToString);
+		String tempAmountString = ((EditText)findViewById(R.id.editTextAmount)).getText().toString();
+		float tempAmount = Float.parseFloat(tempAmountString);
+		String tempReason = ((EditText)findViewById(R.id.editTextReason)).getText().toString();
+		
+		if (tempAccountTo != 0 && tempAmount != 0 && !tempReason.equals("")) {
+			Transaction transaction = new Deposit(tempAccountTo, tempAmount, tempReason);
+			WelcomeActivity.db.addTransaction(transaction);
+			Intent intent = new Intent(this, MainActivity.class);
+	    	startActivity(intent);
+		}
 	}
-
 	
 	/*
 	@Override
@@ -49,5 +56,6 @@ public class DepositActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	*/
+
 
 }

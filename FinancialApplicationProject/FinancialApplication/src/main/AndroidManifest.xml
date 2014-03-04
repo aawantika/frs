@@ -48,6 +48,18 @@
         <service
             android:name="edu.gatech.financialapplication.LoginChecker"
             android:enabled="true" />
+        <activity
+            android:name="edu.gatech.financialapplication.TransactionActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.WithdrawalActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.DepositActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

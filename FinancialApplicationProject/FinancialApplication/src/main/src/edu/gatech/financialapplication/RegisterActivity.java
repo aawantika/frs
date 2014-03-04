@@ -15,7 +15,6 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.activity_register);
-    	Log.d("A", WelcomeActivity.db.getUserDetails("tika").getUsername());
     }
 
     
@@ -32,20 +31,22 @@ public class RegisterActivity extends Activity {
 		String firstname = ((EditText)findViewById(R.id.firstText)).getText().toString();
 		String lastname = ((EditText)findViewById(R.id.lastText)).getText().toString();
 		String email = ((EditText)findViewById(R.id.emailText)).getText().toString();
-		if (isDuplicate(username, password)) {
-			new AlertDialog.Builder(this)
-		    .setTitle("Duplicate")
-		    .setMessage("Credential is duplicate!\nPlease check again.")
-		    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		        }
-		     })
-		     .show();
-		}else{
-			User user = new User(firstname, lastname, username, password, email);
-			WelcomeActivity.db.addUser(user);
-			Intent intent = new Intent(this, WelcomeActivity.class);
-	    	startActivity(intent);
+		if (!username.equals("") && !password.equals("") && !firstname.equals("") && !lastname.equals("") && !email.equals("")) {
+			if (isDuplicate(username, password)) {
+				new AlertDialog.Builder(this)
+			    .setTitle("Duplicate")
+			    .setMessage("Credential is duplicate!\nPlease check again.")
+			    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int which) { 
+			        }
+			     })
+			     .show();
+			}else{
+				User user = new User(firstname, lastname, username, password, email);
+				WelcomeActivity.db.addUser(user);
+				Intent intent = new Intent(this, WelcomeActivity.class);
+		    	startActivity(intent);
+			}
 		}
     }
 }

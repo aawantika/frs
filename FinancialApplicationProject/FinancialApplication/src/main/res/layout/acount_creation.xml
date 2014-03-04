@@ -27,7 +27,7 @@
             android:inputType="phone" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewReason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/phone"
@@ -55,11 +55,11 @@
             android:inputType="numberDecimal" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_below="@+id/textView2"
+            android:layout_alignRight="@+id/textViewReason"
+            android:layout_below="@+id/textViewReason"
             android:layout_marginTop="36dp"
             android:text="Address"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -68,7 +68,7 @@
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView1"
+            android:layout_alignBottom="@+id/textViewTo"
             android:layout_alignParentRight="true"
             android:ems="10"
             android:inputType="textPostalAddress" >

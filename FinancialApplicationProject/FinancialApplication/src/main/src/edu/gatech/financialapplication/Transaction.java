@@ -5,11 +5,12 @@ public class Transaction {
 	private int accountTo;
 	private int accountFrom;
 	private String date;
-	private double amount;
+	private float amount;
 	private String description;
+	private String category;
 	
 	public Transaction(int accountTo, int accountFrom, String date,
-			double amount, String description) {
+			float amount, String description, String category) {
 		this.accountTo = accountTo;
 		this.accountFrom = accountFrom;
 		this.date = date;
@@ -47,15 +48,23 @@ public class Transaction {
 		this.date = date;
 	}
 
-	public double getAmount() {
+	public float getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 	
 	public void setdescription(String description) {
 		this.description = description;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }
