@@ -6,16 +6,27 @@
     <string name="action_settings">Torture Max</string>
     <string name="title_activity_welcome">Welcome Activity</string>
     <string name="username">Enter a username</string>
-	<string name="password">Password</string>
-	<string name="login">Log In</string>
-	<string name="goodjob">Success</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="goodjob">Success</string>
     <string name="firstName">Enter a first name</string>
     <string name="lastName">Enter a last name</string>
     <string name="email">gburdell9@gatech.edu</string>
-	<string name="mainTitle">Main page</string>
-	<string name="register">Register</string>
-	<string name="firstNameText">First Name</string>
-	<string name="lastNameText">Last Name</string>
-	<string name="usernameText">Username</string>
-	<string name="emailSoft">Email</string>
+    <string name="mainTitle">Main page</string>
+    <string name="register">Register</string>
+    <string name="firstNameText">First Name</string>
+    <string name="lastNameText">Last Name</string>
+    <string name="usernameText">Username</string>
+    <string name="emailSoft">Email</string>
+    <string name="title_activity_deposit">DepositActivity</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
+    <string name="title_activity_withdrawal">WithdrawalActivity</string>
+      <string name="amount">Amount</string>
+    <string name="account">Account</string>
+    <string name="category">Category</string>
+    <string name="reason">Reason</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdrawal">Withdrawal</string>
+	<string name="submit">Submit</string>
+
 </resources>
