@@ -73,12 +73,10 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " TEXT,"
 			+ KEY_AMOUNT
 			+ " REAL,"
-			+ KEY_ACCOUNT_NUMBER
-			+ " INTEGER,"
 			+ KEY_DESCRIP
-			+ " TEXT "
+			+ " TEXT, "
 			+ KEY_CATEGORY + " TEXT)";
-
+	
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		System.out.println("In constructor");
@@ -272,7 +270,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		values.put(KEY_AMOUNT, transaction.getAmount());
 		values.put(KEY_DESCRIP, transaction.getDescription());
 		values.put(KEY_CATEGORY, transaction.getCategory());
-
+		
 		try {
 			db.insert(DBHelper.DATABASE_TABLE_TRANSACTION, null, values);
 			Log.d("Database Transaction Inserted", "yay");

@@ -18,8 +18,6 @@ public class Transaction {
 		this.description = description;
 	}
 
-
-
 	public int getAccountTo() {
 		return accountTo;
 	}
