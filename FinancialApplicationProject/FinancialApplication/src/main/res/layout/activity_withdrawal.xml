@@ -7,63 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".WithdrawalActivity" >
-
-    <TextView
-        android:id="@+id/textViewTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="96dp"
-        android:text="@string/accountTo"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textViewReason"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textViewTo"
-        android:layout_below="@+id/textViewTo"
-        android:layout_marginTop="21dp"
-        android:text="@string/reason"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textViewReason"
-        android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/editTextAccountTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewTo"
-        android:layout_marginLeft="26dp"
-        android:layout_toRightOf="@+id/textViewTo"
-        android:ems="10" >
-    </EditText>
-
-    <EditText
-        android:id="@+id/editTextReason"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewReason"
-        android:layout_alignLeft="@+id/editTextAccountTo"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textViewAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toLeftOf="@+id/editTextAccountTo"
-        android:text="@string/amount"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    
     <EditText
         android:id="@+id/editTextAmount"
         android:layout_width="wrap_content"
@@ -73,53 +17,79 @@
         android:layout_alignLeft="@+id/editTextReason"
         android:ems="10" />
 
-    <EditText
-        android:id="@+id/editTextCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView5"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignLeft="@+id/editTextAmount"
-        android:ems="10" />
+   <Button
+       android:id="@+id/button1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignLeft="@+id/editTextCategory"
+       android:layout_alignParentBottom="true"
+       android:layout_marginBottom="34dp"
+       android:onClick="onClick"
+       android:text="@string/submit" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextCategory"
-        android:layout_marginTop="38dp"
-        android:layout_toRightOf="@+id/textView5"
-        android:onClick="onClick"
-        android:text="@string/submit" />
+   <EditText
+       android:id="@+id/editTextCategory"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBottom="@+id/textViewCategory"
+       android:layout_toRightOf="@+id/textViewAmount"
+       android:ems="10" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="18dp"
-        android:layout_toLeftOf="@+id/editTextAccountTo"
-        android:text="@string/category"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+   <EditText
+       android:id="@+id/editTextReason"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBottom="@+id/textViewReason"
+       android:layout_alignLeft="@+id/editTextCategory"
+       android:ems="10" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editTextAccountTo"
-        android:layout_toLeftOf="@+id/editTextAccountTo"
-        android:text="@string/accountFrom"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+   <TextView
+       android:id="@+id/textViewCategory"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/button1"
+       android:layout_marginBottom="32dp"
+       android:text="@string/category"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/editTextAccountFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editTextAccountTo"
-        android:layout_alignLeft="@+id/editTextAccountTo"
-        android:ems="10" >
+   <TextView
+       android:id="@+id/textViewReason"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/editTextCategory"
+       android:layout_alignParentLeft="true"
+       android:layout_marginBottom="23dp"
+       android:text="@string/reason"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <requestFocus />
-    </EditText>
+   <TextView
+       android:id="@+id/textViewAmount"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/editTextReason"
+       android:layout_alignLeft="@+id/textViewReason"
+       android:layout_marginBottom="46dp"
+       android:text="@string/amount"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
+
+   <EditText
+       android:id="@+id/editTextDate"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/editTextAmount"
+       android:layout_alignLeft="@+id/editTextAmount"
+       android:layout_marginBottom="44dp"
+       android:ems="10"
+       android:hint="@string/enterDate"
+       android:inputType="date" />
+
+   <TextView
+       android:id="@+id/textViewDate"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBottom="@+id/editTextDate"
+       android:layout_alignLeft="@+id/textViewAmount"
+       android:text="@string/date"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

@@ -18,9 +18,9 @@ public class User {
 	private String city;
 	private String state;
 	private int zipcode;
-	
-	public User(){
-		
+
+	public User() {
+
 	}
 
 	public User(String firstname, String lastname, String username,
@@ -31,6 +31,11 @@ public class User {
 		this.password = password;
 
 		this.email = email;
+	}
+
+	public String toString() {
+		return firstname + " " + lastname + " " + username + " " + password
+				+ " " + email;
 	}
 
 	public User(String firstname, String lastname, String username,
@@ -54,8 +59,6 @@ public class User {
 		this.state = state;
 		this.zipcode = zipcode;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -168,11 +171,13 @@ public class User {
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
+
 	@Override
-	public boolean equals(Object o){
+	public boolean equals(Object o) {
 		if (o instanceof User) {
 			User that = (User) o;
-			return (username.equalsIgnoreCase(that.username) && password.equalsIgnoreCase(that.password)) ? true : false;
+			return (username.equalsIgnoreCase(that.username) && password
+					.equalsIgnoreCase(that.password)) ? true : false;
 		}
 		return false;
 	}

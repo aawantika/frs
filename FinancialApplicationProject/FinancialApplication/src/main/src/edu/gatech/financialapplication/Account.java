@@ -6,21 +6,27 @@ public class Account {
 	private String firstname;
 	private String lastname;
 	private String username;
-	private double balance;
-	private int accountNumber;
+	private String balance;
+	private String accountNumber;
 
 	public Account() {
 	}
 
 	public Account(String firstname, String lastname, String username,
-			double balance, int accountNumber) {
+			String balance, String accountNumber) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.balance = balance;
 		this.accountNumber = accountNumber;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", username=" + username + ", balance=" + balance
+				+ ", accountNumber=" + accountNumber + "]";
+	}
 
 	public int getId() {
 		return id;
@@ -54,23 +60,20 @@ public class Account {
 		this.username = username;
 	}
 
-	public double getBalance() {
+	public String getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(String balance) {
 		this.balance = balance;
 	}
 
-	public int getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	
-	public String toString() { 
-		return "Username: " + username + " account: " + accountNumber + " balance: " + balance;
-	}
 }

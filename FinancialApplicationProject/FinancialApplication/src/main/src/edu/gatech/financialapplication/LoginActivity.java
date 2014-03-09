@@ -88,7 +88,6 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		        	intent.putExtra("password", resultBundle.getString("password"));
 		        	intent.putExtra("firstname", resultBundle.getString("firstname"));
 		        	intent.putExtra("lastname", resultBundle.getString("lastname"));
-		        	intent.putExtra("email", resultBundle.getString("email"));
 		        	startActivity(intent);
 		        }
 		     })

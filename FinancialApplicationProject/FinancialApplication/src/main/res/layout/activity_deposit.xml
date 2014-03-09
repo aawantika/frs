@@ -8,64 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DepositActivity" >
 
-  <TextView
-      android:id="@+id/textViewTo"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginLeft="44dp"
-      android:layout_marginTop="96dp"
-      android:text="@string/accountTo"
-      android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textViewReason"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textViewTo"
-        android:layout_below="@+id/textViewTo"
-        android:layout_marginTop="21dp"
-        android:text="@string/reason"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textViewReason"
-        android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/editTextAccountTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewTo"
-        android:layout_marginLeft="26dp"
-        android:layout_toRightOf="@+id/textViewTo"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editTextReason"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewReason"
-        android:layout_alignLeft="@+id/editTextAccountTo"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textViewAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toLeftOf="@+id/editTextAccountTo"
-        android:text="@string/amount"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <EditText
         android:id="@+id/editTextAmount"
         android:layout_width="wrap_content"
@@ -73,16 +15,69 @@
         android:layout_alignBaseline="@+id/textViewAmount"
         android:layout_alignBottom="@+id/textViewAmount"
         android:layout_alignLeft="@+id/editTextReason"
-        android:ems="10" />
+        android:ems="10"
+        android:hint="Enter Amount"
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="92dp"
         android:onClick="onClick"
         android:text="@string/submit" />
+
+    <EditText
+        android:id="@+id/editTextReason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textViewReason"
+        android:ems="10"
+        android:hint="Enter Reason" />
+
+    <TextView
+        android:id="@+id/textViewReason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editTextReason"
+        android:layout_alignRight="@+id/textViewAmount"
+        android:text="@string/reason"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textViewAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editTextReason"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="41dp"
+        android:layout_marginLeft="14dp"
+        android:text="@string/amount"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editTextAmount"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_marginBottom="26dp"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/enterDate" >
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignLeft="@+id/textViewReason"
+        android:text="@string/date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

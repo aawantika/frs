@@ -24,19 +24,20 @@ public class WelcomeActivity extends Activity {
 		}
 		db.addUser(new User("administrator", "lastName", "admin", "pass123", "admin@gatech.edu" ));
 		
-		
-//		db.addUser(new User("tika", "sahu", "yolouser", "password", "email",
-//				8889999, "june", 78906543, "accounts", "yellowbrickroad",
-//				"atlanta", "georgia", 90876));
-//		Log.d("Reading: ", "Reading all contacts..");
-//		Log.d("LOOK HERE: ", db.getUserDetails("tika").getLastname());
-//		String log = "DB HELPER";
-//		Log.d("Name: ", log);
-//		db.addAccount(new Account("Joseph", "Lee", "aaa", 1000.00, 1234567890));
-//		Log.d("ACCOUNT: ", db.getAccountDetails(1234567890).getFirstname());
-//		db.addTransaction(new Transaction(1234567890, 1234567891, "A", 100.00, "TEST"));
-//		Log.d("Transaction: " , db.getTransactionWithTo(1234567890).getAmount() + " ");
-		
+		//USE THIS FOR FUTURE TESTING IT WORKS PERFECTLY. DON'T SCREW IT UP!
+		//DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
+//		db.addUser(new User("tika", "sahu", "yolouser", "password", "email"));
+//		User getUser = db.getUserDetailsByUsername("yolouser");
+//		db.addAccount(new Account(getUser.getFirstname(), getUser.getLastname(), getUser.getUsername(), "1000.00", "1234567890"));
+//		Account getAccount = db.getAccountDetails("yolouser");
+//		System.out.println("ORIGINAL AMOUNT: " + getAccount.getBalance());
+//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), 200.00f, "TEST"));
+//		System.out.println("NEW AMOUNT: " + getAccount.getBalance());
+		//db.addTransaction(new Transaction(getAccount.getAccountNumber(), "A", 200.00f, "TEST", "djfk", "type"));
+		//int accountNum = Integer.parseInt(getAccount.getAccountNumber());
+		//System.out.println("LOOK HERE " + getAccount.toString());
+//		Transaction transaction = db.getTransactionDetails(accountNum);
+//		Log.d("Transaction: " , transaction.toString());
 	}
 
 	@Override

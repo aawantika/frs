@@ -2,14 +2,15 @@ package edu.gatech.financialapplication;
 
 public class Deposit extends Transaction {
 
-	public Deposit(int accountTo, float amount, String descriptor) {
-		super(accountTo, 0, "", amount, descriptor, "");
+	public Deposit(String account, String date, float amount, String descriptor) {
+		super(account, date, amount, descriptor, "", "deposit");
+		
 	}
 
 	@Override
 	public String toString() {
-		return ("Amount: " + this.getAmount() + "\nTransferred To: "
-				+ this.getAccountTo() + "\nOn Date: " + this.getDate()
+		return ("Amount: " + this.getAmount() + "\nAccountTo: "
+				+ this.getAccount() + "\nOn Date: " + this.getDate()
 				+ "\nDescriptor: " + this.getDescription());
 	}
 }

@@ -27,18 +27,18 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f080004;
-        public static final int action_settings=0x7f080025;
+        public static final int action_settings=0x7f080024;
         public static final int address=0x7f080005;
-        public static final int button1=0x7f08000c;
+        public static final int button1=0x7f08000a;
         public static final int button2=0x7f08001d;
         public static final int container=0x7f08000d;
         public static final int create=0x7f080000;
         public static final int defaultAmount=0x7f080001;
         public static final int deposit=0x7f08001c;
-        public static final int editTextAccountFrom=0x7f080024;
-        public static final int editTextAccountTo=0x7f080008;
-        public static final int editTextAmount=0x7f08000b;
+        public static final int editText1=0x7f08000b;
+        public static final int editTextAmount=0x7f080007;
         public static final int editTextCategory=0x7f080021;
+        public static final int editTextDate=0x7f080023;
         public static final int editTextReason=0x7f080009;
         public static final int email=0x7f080017;
         public static final int emailText=0x7f08001a;
@@ -55,10 +55,9 @@ public final class R {
         public static final int phone=0x7f080002;
         public static final int register=0x7f08001b;
         public static final int registerButton=0x7f080020;
-        public static final int textView3=0x7f080007;
-        public static final int textView5=0x7f080022;
-        public static final int textView6=0x7f080023;
-        public static final int textViewAmount=0x7f08000a;
+        public static final int textViewAmount=0x7f080008;
+        public static final int textViewCategory=0x7f080022;
+        public static final int textViewDate=0x7f08000c;
         public static final int textViewReason=0x7f080003;
         public static final int textViewTo=0x7f080006;
         public static final int userText=0x7f08000e;
@@ -88,9 +87,11 @@ public final class R {
         public static final int amount=0x7f050014;
         public static final int app_name=0x7f050000;
         public static final int category=0x7f050017;
+        public static final int date=0x7f05001c;
         public static final int deposit=0x7f050019;
         public static final int email=0x7f05000a;
         public static final int emailSoft=0x7f050010;
+        public static final int enterDate=0x7f05001d;
         public static final int firstName=0x7f050008;
         public static final int firstNameText=0x7f05000d;
         public static final int goodjob=0x7f050007;

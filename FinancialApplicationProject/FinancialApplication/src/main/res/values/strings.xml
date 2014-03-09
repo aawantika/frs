@@ -29,5 +29,7 @@
     <string name="deposit">Deposit</string>
     <string name="withdrawal">Withdrawal</string>
 	<string name="submit">Submit</string>
+	<string name="date">Date</string>
+	<string name="enterDate">01/01/2014</string>
 
 </resources>
