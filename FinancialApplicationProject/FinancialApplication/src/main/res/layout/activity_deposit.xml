@@ -59,7 +59,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editTextAmount"
@@ -75,7 +75,7 @@
         android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignBottom="@+id/editTextDate"
         android:layout_alignLeft="@+id/textViewReason"
         android:text="@string/date"
         android:textAppearance="?android:attr/textAppearanceLarge" />

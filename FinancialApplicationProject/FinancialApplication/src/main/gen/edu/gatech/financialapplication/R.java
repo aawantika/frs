@@ -27,7 +27,7 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f080004;
-        public static final int action_settings=0x7f080024;
+        public static final int action_settings=0x7f080023;
         public static final int address=0x7f080005;
         public static final int button1=0x7f08000a;
         public static final int button2=0x7f08001d;
@@ -35,10 +35,9 @@ public final class R {
         public static final int create=0x7f080000;
         public static final int defaultAmount=0x7f080001;
         public static final int deposit=0x7f08001c;
-        public static final int editText1=0x7f08000b;
         public static final int editTextAmount=0x7f080007;
         public static final int editTextCategory=0x7f080021;
-        public static final int editTextDate=0x7f080023;
+        public static final int editTextDate=0x7f08000b;
         public static final int editTextReason=0x7f080009;
         public static final int email=0x7f080017;
         public static final int emailText=0x7f08001a;
