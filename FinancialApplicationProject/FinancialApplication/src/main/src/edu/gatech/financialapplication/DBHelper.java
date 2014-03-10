@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_TABLE_ACCOUNT = "frs2";
 	public static final String DATABASE_TABLE_TRANSACTION = "frs3";
 
-	private static final String DATABASE_TABLE_CREATE_USER = "CREATE TABLE "
+	private static final String TABLE_CREATE_USER = "CREATE TABLE "
 			+ DATABASE_TABLE_USER + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
 			+ " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT," + KEY_EMAIL
 			+ " TEXT," + KEY_SSN + " INTEGER," + KEY_DOB + " DATE," + KEY_PHONE
@@ -57,15 +57,15 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ KEY_CITY + " TEXT," + KEY_STATE + " TEXT," + KEY_ZIPCODE
 			+ " INTEGER)";
 
-	private static final String DATABASE_TABLE_CREATE_ACCOUNT = "CREATE TABLE "
+	private static final String TABLE_CREATE_ACCOUNT = "CREATE TABLE "
 			+ DATABASE_TABLE_ACCOUNT + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
 			+ " TEXT," + KEY_USER + " TEXT," + KEY_BALANCE + " REAL,"
 			+ KEY_ACCOUNT_NUMBER + " INTEGER)";
 
-	private static final String DATABASE_TABLE_CREATE_TRANSACTION = "CREATE TABLE "
+	private static final String TABLE_CREATE_TRANSACTION = "CREATE TABLE "
 			+ DATABASE_TABLE_TRANSACTION + "(" + KEY_ACCOUNT + " TEXT,"
-			+ KEY_DATE + " TEXT," + KEY_AMOUNT + " REAL," + KEY_DESCRIPTION
-			+ " TEXT, " + KEY_CATEGORY + " TEXT, " + "TYPE" + "TEXT)";
+			+ KEY_DATE + " TEXT," + KEY_AMOUNT + " TEXT," + KEY_DESCRIPTION
+			+ " TEXT," + KEY_CATEGORY + " TEXT," + KEY_TYPE + " TEXT)";
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -75,9 +75,9 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		try {
-			db.execSQL(DATABASE_TABLE_CREATE_USER);
-			db.execSQL(DATABASE_TABLE_CREATE_ACCOUNT);
-			db.execSQL(DATABASE_TABLE_CREATE_TRANSACTION);
+			db.execSQL(TABLE_CREATE_USER);
+			db.execSQL(TABLE_CREATE_ACCOUNT);
+			db.execSQL(TABLE_CREATE_TRANSACTION);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -200,7 +200,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public void addAccount(Account account) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		
+
 		ContentValues values = new ContentValues();
 		values.put(KEY_FNAME, account.getFirstname());
 		values.put(KEY_LNAME, account.getLastname());
@@ -251,14 +251,15 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 		return account;
 	}
-	
-	public Account getAccountByAccountNumber(String accountNumber) throws SQLException {
+
+	public Account getAccountByAccountNumber(String accountNumber)
+			throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,
 				new String[] { KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
 						KEY_ACCOUNT_NUMBER }, KEY_ACCOUNT_NUMBER + "=?",
-				new String[] {accountNumber}, null, null, null, null);
+				new String[] { accountNumber }, null, null, null, null);
 		Account account = null;
 		if (cursor != null) {
 			cursor.moveToFirst();
@@ -266,37 +267,37 @@ public class DBHelper extends SQLiteOpenHelper {
 					cursor.getString(2), cursor.getString(3),
 					cursor.getString(4));
 		}
-		return account;		
+		return account;
 	}
-	
+
 	public void updateAccount(Transaction transaction) throws SQLException {
-		SQLiteDatabase db = this.getWritableDatabase();	
-		
+		SQLiteDatabase db = this.getWritableDatabase();
+
 		Account account = getAccountByAccountNumber(transaction.getAccount());
 		float transactionAmount = transaction.getAmount();
 		float accountAmount = Float.parseFloat(account.getBalance());
-		
+
 		String transactionType = transaction.getType();
 		if (transactionType.equals("deposit")) {
-			accountAmount += transactionAmount; 
+			accountAmount += transactionAmount;
 			System.out.println("deposited! " + accountAmount);
-		} else{
-			accountAmount = accountAmount - transactionAmount; 
+		} else {
+			accountAmount = accountAmount - transactionAmount;
 		}
-		String accountAmountString = Float.toString(accountAmount); 
+		String accountAmountString = Float.toString(accountAmount);
 		account.setBalance(accountAmountString);
-		
+
 		System.out.println("account balance: " + account.getBalance());
-		
+
 		ContentValues values = new ContentValues();
 		values.put(KEY_FNAME, account.getFirstname());
 		values.put(KEY_LNAME, account.getLastname());
 		values.put(KEY_USER, account.getUsername());
 		values.put(KEY_BALANCE, account.getBalance());
 		values.put(KEY_ACCOUNT_NUMBER, account.getAccountNumber() + "");
-		
+
 		db.update(DATABASE_TABLE_ACCOUNT, values, KEY_USER + "=?",
-				new String[] {account.getUsername()});
+				new String[] { account.getUsername() });
 	}
 
 	public void addTransaction(Transaction transaction) {
@@ -305,13 +306,13 @@ public class DBHelper extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put(KEY_ACCOUNT, transaction.getAccount());
 		values.put(KEY_DATE, transaction.getDate());
-		values.put(KEY_AMOUNT, transaction.getAmount());
+		values.put(KEY_AMOUNT, Float.toString(transaction.getAmount()));
 		values.put(KEY_DESCRIPTION, transaction.getDescription());
 		values.put(KEY_CATEGORY, transaction.getCategory());
 		values.put(KEY_TYPE, transaction.getType());
 
 		try {
-			db.insert(DBHelper.DATABASE_TABLE_TRANSACTION, null, values);
+			db.insert(DATABASE_TABLE_TRANSACTION, null, values);
 			updateAccount(transaction);
 			Log.d("Database Transaction Inserted", "yay ");
 			db.close();
@@ -326,9 +327,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		Cursor cursor = db.query(true, DATABASE_TABLE_TRANSACTION,
 				new String[] { KEY_ACCOUNT, KEY_DATE, KEY_AMOUNT,
-						KEY_DESCRIPTION, KEY_CATEGORY, KEY_TYPE }, KEY_ACCOUNT + "=?",
-				new String[] { String.valueOf(accountNum) }, null, null, null,
-				null);
+						KEY_DESCRIPTION, KEY_CATEGORY, KEY_TYPE }, KEY_ACCOUNT
+						+ "=?", new String[] { String.valueOf(accountNum) },
+				null, null, null, null);
 		if (cursor != null) {
 			cursor.moveToFirst();
 		}
@@ -336,5 +337,30 @@ public class DBHelper extends SQLiteOpenHelper {
 				cursor.getString(1), Float.parseFloat(cursor.getString(2)),
 				cursor.getString(3), cursor.getString(4), cursor.getString(5));
 		return transaction;
+	}
+
+	// Getting All Transactions based on account number
+	public List<Transaction> getAllTransactions(String accountNumber) {
+
+		List<Transaction> transactionList = new ArrayList<Transaction>();
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_TRANSACTION;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do {
+				Transaction transaction = new Transaction(cursor.getString(0),
+						cursor.getString(1), Float.parseFloat(cursor
+								.getString(2)), cursor.getString(3),
+						cursor.getString(4), cursor.getString(5));
+				if (transaction.getAccount().equals(accountNumber)) {
+					transactionList.add(transaction);
+				}
+			} while (cursor.moveToNext());
+		}
+
+		return transactionList;
 	}
 }

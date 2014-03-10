@@ -1,5 +1,7 @@
 package edu.gatech.financialapplication;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -31,9 +33,17 @@ public class WelcomeActivity extends Activity {
 //		db.addAccount(new Account(getUser.getFirstname(), getUser.getLastname(), getUser.getUsername(), "1000.00", "1234567890"));
 //		Account getAccount = db.getAccountDetails("yolouser");
 //		System.out.println("ORIGINAL AMOUNT: " + getAccount.getBalance());
-//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), 200.00f, "TEST"));
+//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/08/2014", 200.00f, "TEST"));
+//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/09/2014", 200.00f, "TEST"));
+//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/10/2014", 200.00f, "TEST"));
 //		System.out.println("NEW AMOUNT: " + getAccount.getBalance());
+//		List<Transaction> list = db.getAllTransactions(getAccount.getAccountNumber());
+//		for (Transaction t : list) {
+//			System.out.println("TRANSACTION: " + t);
+//		}
+		//old version, don't use
 		//db.addTransaction(new Transaction(getAccount.getAccountNumber(), "A", 200.00f, "TEST", "djfk", "type"));
+		
 		//int accountNum = Integer.parseInt(getAccount.getAccountNumber());
 		//System.out.println("LOOK HERE " + getAccount.toString());
 //		Transaction transaction = db.getTransactionDetails(accountNum);
