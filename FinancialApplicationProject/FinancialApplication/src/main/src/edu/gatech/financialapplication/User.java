@@ -22,7 +22,14 @@ public class User {
 	public User() {
 
 	}
-
+	/**
+	 * 
+	 * @param firstname
+	 * @param lastname
+	 * @param username
+	 * @param password
+	 * @param email
+	 */
 	public User(String firstname, String lastname, String username,
 			String password, String email) {
 		this.firstname = firstname;

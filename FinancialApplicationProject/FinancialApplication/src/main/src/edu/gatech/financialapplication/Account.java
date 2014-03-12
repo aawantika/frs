@@ -12,6 +12,14 @@ public class Account {
 	public Account() {
 	}
 
+	/**
+	 * 
+	 * @param firstname
+	 * @param lastname
+	 * @param username
+	 * @param balance
+	 * @param accountNumber
+	 */
 	public Account(String firstname, String lastname, String username,
 			String balance, String accountNumber) {
 		this.firstname = firstname;
@@ -26,6 +34,10 @@ public class Account {
 		return "Account [id=" + id + ", firstname=" + firstname + ", lastname="
 				+ lastname + ", username=" + username + ", balance=" + balance
 				+ ", accountNumber=" + accountNumber + "]";
+	}
+	
+	public String debug() {
+		return "Username: " + username + "\nAccount: " + accountNumber + "\nBalance: " + balance;
 	}
 
 	public int getId() {

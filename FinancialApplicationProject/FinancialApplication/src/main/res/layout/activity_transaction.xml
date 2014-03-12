@@ -12,9 +12,8 @@
         android:id="@+id/deposit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="143dp"
         android:onClick="onDepositClick"
         android:text="@string/deposit" />
 
@@ -22,10 +21,19 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/deposit"
-        android:layout_below="@+id/deposit"
-        android:layout_marginTop="78dp"
+        android:layout_alignBaseline="@+id/deposit"
+        android:layout_alignBottom="@+id/deposit"
+        android:layout_alignParentRight="true"
         android:onClick="onWithdrawalClick"
         android:text="@string/withdrawal" />
+
+    <ListView
+        android:id="@+id/accountLV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deposit"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
 
 </RelativeLayout>

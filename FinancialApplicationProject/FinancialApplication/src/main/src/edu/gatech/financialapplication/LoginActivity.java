@@ -3,6 +3,7 @@ package edu.gatech.financialapplication;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +17,12 @@ import android.widget.EditText;
 
 public class LoginActivity extends Activity implements OnClickListener, LoginResultReceiver.Receiver{
 	private LoginResultReceiver receiver;
+	private Context ctx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ctx = this;
         Button loginBt = (Button)findViewById(R.id.loginBt);
         loginBt.setOnClickListener(this);
         receiver = new LoginResultReceiver(new Handler());
@@ -83,12 +86,22 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		    .setMessage("Success")
 		    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
-		        	Intent intent = new Intent(getApplicationContext(), AccountCreationActivity.class);
-		        	intent.putExtra("username", resultBundle.getString("username"));
-		        	intent.putExtra("password", resultBundle.getString("password"));
-		        	intent.putExtra("firstname", resultBundle.getString("firstname"));
-		        	intent.putExtra("lastname", resultBundle.getString("lastname"));
-		        	startActivity(intent);
+		        	DBHelper db = new DBHelper(ctx);
+		        	User user = new User(resultBundle.getString("firstname"), 
+		        			resultBundle.getString("lastname"), resultBundle.getString("username"), 
+		        			resultBundle.getString("password"), "");
+		        	if (db.hasAccount(user)){
+						Intent intent = new Intent(ctx,TransactionActivity.class);
+			        	intent.putExtra("username", resultBundle.getString("username"));
+						startActivity(intent);
+		        	} else {
+			        	Intent intent = new Intent(ctx, AccountCreationActivity.class);
+			        	intent.putExtra("username", resultBundle.getString("username"));
+			        	intent.putExtra("password", resultBundle.getString("password"));
+			        	intent.putExtra("firstname", resultBundle.getString("firstname"));
+			        	intent.putExtra("lastname", resultBundle.getString("lastname"));
+			        	startActivity(intent);
+			        }
 		        }
 		     })
 		     .show();

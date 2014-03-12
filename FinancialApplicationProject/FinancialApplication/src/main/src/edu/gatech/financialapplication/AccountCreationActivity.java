@@ -4,6 +4,7 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +15,12 @@ public class AccountCreationActivity extends Activity {
 	private TextView cell, address, defaultAmount;
 	private String username, password, firstname, lastname;
 	private String accountNumber = createAccountNumber() + "";
+	private Context ctx;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acount_creation);
-
+		ctx = this;
 		// previous intent information
 		username = getIntent().getStringExtra("username");
 		password = getIntent().getStringExtra("password");
@@ -57,23 +59,20 @@ public class AccountCreationActivity extends Activity {
 			accountNumber = createAccountNumber() + "";
 			new AlertDialog.Builder(this)
 					.setTitle("Your account is created")
-					.setMessage(
-							"Account number " + accountNumber + " is created. ")
+					.setMessage("Account number " + accountNumber + " is created. ")
 					.setPositiveButton(android.R.string.ok,
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									WelcomeActivity.db.addAccount(new Account(
-											firstname, lastname, username,
-											defaultAmount.getText().toString(),
-											accountNumber));
-									Intent intent = new Intent(
-											getApplicationContext(),
-											TransactionActivity.class);
-									intent.putExtra("accountNumber",
-											accountNumber);
-									startActivity(intent);
-									finish();
+								public void onClick(DialogInterface dialog,int which) {
+									DBHelper db = new DBHelper(ctx);
+									Account account = new Account(firstname, lastname, 
+											username, defaultAmount.getText().toString(),accountNumber);
+									if (db.addAccount(account)){
+										Intent intent = new Intent(ctx,TransactionActivity.class);
+										intent.putExtra("username", username);
+//										intent.putExtra("accountNumber",accountNumber);
+										startActivity(intent);
+										finish();
+									}
 								}
 							}).show();
 		}

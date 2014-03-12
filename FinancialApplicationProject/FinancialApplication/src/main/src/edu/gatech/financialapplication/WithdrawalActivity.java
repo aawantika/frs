@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class WithdrawalActivity extends Activity {
-	String accountNumber;
+	private String accountNumber;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,8 @@ public class WithdrawalActivity extends Activity {
 		if (tempAmount != 0 && !tempReason.equals("") && !tempCategory.equals("")) {
 			System.out.println("DATE; " + tempDate);
 			Transaction transaction = new Withdrawal(accountNumber, tempDate, tempAmount, tempReason, tempCategory);
-			WelcomeActivity.db.addTransaction(transaction);
+			DBHelper db = new DBHelper(this);
+			db.addTransaction(transaction);
 			
 			System.out.println("NEW TRANSACTION IS CREATED!!!");
 			System.out.println("TRANSACTION number: " + accountNumber);

@@ -27,7 +27,8 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f080004;
-        public static final int action_settings=0x7f080023;
+        public static final int accountLV=0x7f08001e;
+        public static final int action_settings=0x7f080025;
         public static final int address=0x7f080005;
         public static final int button1=0x7f08000a;
         public static final int button2=0x7f08001d;
@@ -36,7 +37,7 @@ public final class R {
         public static final int defaultAmount=0x7f080001;
         public static final int deposit=0x7f08001c;
         public static final int editTextAmount=0x7f080007;
-        public static final int editTextCategory=0x7f080021;
+        public static final int editTextCategory=0x7f080022;
         public static final int editTextDate=0x7f08000b;
         public static final int editTextReason=0x7f080009;
         public static final int email=0x7f080017;
@@ -48,20 +49,21 @@ public final class R {
         public static final int lastName=0x7f080016;
         public static final int lastText=0x7f080019;
         public static final int loginBt=0x7f080012;
-        public static final int loginButton=0x7f08001f;
+        public static final int loginButton=0x7f080020;
         public static final int passText=0x7f08000f;
         public static final int password=0x7f080011;
         public static final int phone=0x7f080002;
         public static final int register=0x7f08001b;
-        public static final int registerButton=0x7f080020;
+        public static final int registerButton=0x7f080021;
+        public static final int textView=0x7f080024;
         public static final int textViewAmount=0x7f080008;
-        public static final int textViewCategory=0x7f080022;
+        public static final int textViewCategory=0x7f080023;
         public static final int textViewDate=0x7f08000c;
         public static final int textViewReason=0x7f080003;
         public static final int textViewTo=0x7f080006;
         public static final int userText=0x7f08000e;
         public static final int username=0x7f080010;
-        public static final int welcomeMessage=0x7f08001e;
+        public static final int welcomeMessage=0x7f08001f;
     }
     public static final class layout {
         public static final int acount_creation=0x7f030000;
@@ -74,6 +76,7 @@ public final class R {
         public static final int activity_withdrawal=0x7f030007;
         public static final int fragment_login=0x7f030008;
         public static final int fragment_welcome=0x7f030009;
+        public static final int transaction_row=0x7f03000a;
     }
     public static final class menu {
         public static final int login=0x7f070000;

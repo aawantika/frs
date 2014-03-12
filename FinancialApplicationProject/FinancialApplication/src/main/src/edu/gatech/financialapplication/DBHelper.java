@@ -69,7 +69,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		System.out.println("In constructor");
 	}
 
 	@Override
@@ -198,7 +197,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		return userList;
 	}
 
-	public void addAccount(Account account) {
+	public boolean addAccount(Account account) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
@@ -212,9 +211,11 @@ public class DBHelper extends SQLiteOpenHelper {
 			db.insert(DATABASE_TABLE_ACCOUNT, null, values);
 			Log.d("Database Account Inserted", "yay " + account.getUsername());
 			db.close();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	public Account getAccount(User user) throws SQLException {
@@ -234,7 +235,23 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 		return account;
 	}
+	
+	public boolean hasAccount(User user) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, 
+				KEY_USER + "=?", new String[] {String.valueOf(user.getUsername())},
+				null, null, null, null);
+		if (cursor == null || cursor.getCount() == 0) 
+			return false;
+		return true;
+	}
 
+	/**
+	 * 
+	 * @param username
+	 * @return Account of firstOne
+	 * @throws SQLException
+	 */
 	public Account getAccountDetails(String username) throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
 
@@ -250,6 +267,38 @@ public class DBHelper extends SQLiteOpenHelper {
 					cursor.getString(4));
 		}
 		return account;
+	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @return list of account
+	 * @throws SQLException
+	 */
+	public ArrayList<Account> getAccountsByUsername(String username) throws SQLException {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = null;
+		if (username.equalsIgnoreCase("admin")) {
+			cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, null ,null, null, null, 
+					KEY_ACCOUNT_NUMBER + " ASC", null);
+			Log.i("Admin ", "Getting all account");
+		}else {
+			cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, KEY_USER + "=?",
+					new String[] { username }, null, null, KEY_ACCOUNT_NUMBER + " ASC", null);
+		}
+
+		ArrayList<Account> acc = new ArrayList<Account> ();
+		if (cursor != null) {
+			Log.d("cursor size: " , cursor.getCount()+"");
+			for(int i = 0; i < cursor.getCount(); i++) { 
+				if(cursor.moveToNext()) {
+					Account account = new Account(cursor.getString(0), cursor.getString(1),
+							cursor.getString(2), cursor.getDouble(3)+"", cursor.getInt(4)+"");
+					acc.add(account);
+				}
+			}
+		}
+		return acc;
 	}
 
 	public Account getAccountByAccountNumber(String accountNumber)
@@ -280,14 +329,14 @@ public class DBHelper extends SQLiteOpenHelper {
 		String transactionType = transaction.getType();
 		if (transactionType.equals("deposit")) {
 			accountAmount += transactionAmount;
-			System.out.println("deposited! " + accountAmount);
+//			System.out.println("deposited! " + accountAmount);
 		} else {
 			accountAmount = accountAmount - transactionAmount;
 		}
 		String accountAmountString = Float.toString(accountAmount);
 		account.setBalance(accountAmountString);
 
-		System.out.println("account balance: " + account.getBalance());
+//		System.out.println("account balance: " + account.getBalance());
 
 		ContentValues values = new ContentValues();
 		values.put(KEY_FNAME, account.getFirstname());
