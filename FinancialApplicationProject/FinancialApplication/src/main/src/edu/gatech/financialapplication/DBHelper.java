@@ -151,7 +151,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
 				KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL, KEY_SSN, KEY_DOB,
 				KEY_PHONE, KEY_ACCOUNTS, KEY_ADDRESS, KEY_CITY, KEY_STATE,
-				KEY_ZIPCODE }, KEY_FNAME + "=?", new String[] { username },
+				KEY_ZIPCODE }, KEY_USER	 + "=?", new String[] { username },
 				null, null, null, null);
 
 		if (cursor != null) {
@@ -164,6 +164,22 @@ public class DBHelper extends SQLiteOpenHelper {
 				Integer.parseInt(cursor.getString(7)), cursor.getString(8),
 				cursor.getString(9), cursor.getString(10),
 				cursor.getString(11), Integer.parseInt(cursor.getString(12)));
+		return user;
+	}
+	
+	public User getUserObject(String username) throws SQLException {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
+				KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL}, KEY_USER	 + "=?", new String[] { username },
+				null, null, null, null);
+
+		if (cursor != null) {
+			cursor.moveToFirst();
+		}
+
+		User user = new User(cursor.getString(0), cursor.getString(1),
+				cursor.getString(2), cursor.getString(3), cursor.getString(4));
 		return user;
 	}
 

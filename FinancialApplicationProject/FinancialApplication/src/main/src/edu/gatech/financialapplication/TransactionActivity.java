@@ -70,10 +70,10 @@ public class TransactionActivity extends Activity  {
 		startActivity(intent);
 	}
 	
-	public void createAcount(View view) {
+	public void onCreateAccount(View view) {
 		Intent intent = new Intent(this, AccountCreationActivity.class);
 		intent.putExtra("username", username);
-		User user = db.getUserDetails(username);
+		User user = db.getUserObject(username);
     	intent.putExtra("password", user.getPassword());
     	intent.putExtra("firstname", user.getFirstname());
     	intent.putExtra("lastname", user.getLastname());
