@@ -31,5 +31,6 @@
 	<string name="submit">Submit</string>
 	<string name="date">Date</string>
 	<string name="enterDate">01/01/2014</string>
-
+	<string name="createAccount">Create Account</string>
+	
 </resources>

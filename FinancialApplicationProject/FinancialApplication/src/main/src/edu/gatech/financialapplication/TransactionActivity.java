@@ -27,6 +27,7 @@ public class TransactionActivity extends Activity  {
 	private Context ctx;
 	private ArrayList<Account> acc;
 	private ArrayAdapter<Account> adapter;
+	private DBHelper db;
 
 	String username, password, lastname, firstname, email;
 	String accountNumberTemp;
@@ -47,9 +48,10 @@ public class TransactionActivity extends Activity  {
 //    	User user = new User(firstname, lastname, username, password, email);
 //    	Log.d("Account: ", WelcomeActivity.db.getAccount(user).toString());
 		
-		DBHelper db = new DBHelper(this);
+		db = new DBHelper(this);
 		if (getIntent() != null) {
-			acc = db.getAccountsByUsername(getIntent().getStringExtra("username"));
+			username = getIntent().getStringExtra("username");
+			acc = db.getAccountsByUsername(username);
 			adapter = new AccountAdapter(this, R.layout.transaction_row, acc);
 			lv.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
@@ -65,6 +67,16 @@ public class TransactionActivity extends Activity  {
 	public void onWithdrawalClick(View view) {
 		Intent intent = new Intent(this, WithdrawalActivity.class);
 		intent.putExtra("accountNumber", accountNumberTemp);
+		startActivity(intent);
+	}
+	
+	public void createAcount(View view) {
+		Intent intent = new Intent(this, AccountCreationActivity.class);
+		intent.putExtra("username", username);
+		User user = db.getUserDetails(username);
+    	intent.putExtra("password", user.getPassword());
+    	intent.putExtra("firstname", user.getFirstname());
+    	intent.putExtra("lastname", user.getLastname());
 		startActivity(intent);
 	}
 
