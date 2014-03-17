@@ -22,23 +22,25 @@ public class LoginChecker extends IntentService {
 		rec = intent.getParcelableExtra("receiverTag");
 		String username = intent.getStringExtra("username");
 		String password = intent.getStringExtra("password");
+		
 		User userFromDb = WelcomeActivity.db.getUserDetailsByUsername(username);
 		User userFromActivity = new User();
+		
 		userFromActivity.setUsername(username);
 		userFromActivity.setPassword(password);
+		
+		Bundle bundle = new Bundle();
 		if (userFromDb != null && userFromDb.equals(userFromActivity)) {
-			Bundle b = new Bundle();
-			b.putBoolean("ServiceTag", true);
-			b.putString("username", username);
-			b.putString("password", password);
-			b.putString("firstname", userFromDb.getFirstname());
-			b.putString("lastname", userFromDb.getLastname());
-			b.putString("email", userFromDb.getEmail());
-			rec.send(0, b);
+			
+			bundle.putBoolean("ServiceTag", true);
+			bundle.putString("username", username);
+			bundle.putString("password", password);
+			bundle.putString("firstname", userFromDb.getFirstname());
+			bundle.putString("lastname", userFromDb.getLastname());
+			rec.send(0, bundle);
 		} else {
-			Bundle b = new Bundle();
-			b.putBoolean("ServiceTag", false);
-			rec.send(0, b);
+			bundle.putBoolean("ServiceTag", false);
+			rec.send(0, bundle);
 		}
 	}
 

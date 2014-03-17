@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class WithdrawalActivity extends Activity {
-	private String accountNumber;
+	private String accountNumber, username;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class WithdrawalActivity extends Activity {
 		setContentView(R.layout.activity_withdrawal);
 		
 		accountNumber = getIntent().getStringExtra("accountNumber");
+		username = getIntent().getStringExtra("username");
 		Log.d("LOOK HERE ", accountNumber + "");
 	}
 
@@ -25,8 +26,7 @@ public class WithdrawalActivity extends Activity {
 		String tempReason = ((EditText)findViewById(R.id.editTextReason)).getText().toString();
 		String tempCategory = ((EditText)findViewById(R.id.editTextCategory)).getText().toString();
 		
-		if (tempAmount != 0 && !tempReason.equals("") && !tempCategory.equals("")) {
-			System.out.println("DATE; " + tempDate);
+		if (tempAmount > 0 && !tempReason.equals("") && !tempCategory.equals("")) {
 			Transaction transaction = new Withdrawal(accountNumber, tempDate, tempAmount, tempReason, tempCategory);
 			DBHelper db = new DBHelper(this);
 			db.addTransaction(transaction);
@@ -36,7 +36,10 @@ public class WithdrawalActivity extends Activity {
 			System.out.println("TRANSACTION amount " + tempAmount);
 			
 			Intent intent = new Intent(this, TransactionActivity.class);
-			intent.putExtra("accountNumber", accountNumber);
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumber);
+			bundle.putString("username", username);
+			intent.putExtras(bundle);
 	    	startActivity(intent);
 		}
 	}

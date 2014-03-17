@@ -294,11 +294,12 @@ public class DBHelper extends SQLiteOpenHelper {
 	public ArrayList<Account> getAccountsByUsername(String username) throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = null;
+		System.out.println("username: " + username);
 		if (username.equalsIgnoreCase("admin")) {
 			cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, null ,null, null, null, 
 					KEY_ACCOUNT_NUMBER + " ASC", null);
 			Log.i("Admin ", "Getting all account");
-		}else {
+		} else {
 			cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, KEY_USER + "=?",
 					new String[] { username }, null, null, KEY_ACCOUNT_NUMBER + " ASC", null);
 		}

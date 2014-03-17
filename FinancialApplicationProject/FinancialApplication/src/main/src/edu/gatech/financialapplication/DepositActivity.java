@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class DepositActivity extends Activity {
-	String accountNumber;
+	String accountNumber, username;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class DepositActivity extends Activity {
 		setContentView(R.layout.activity_deposit);
 		
 		accountNumber = getIntent().getStringExtra("accountNumber");
+		username = getIntent().getStringExtra("username");
 		Log.d("LOOK HERE ", accountNumber + "");
 	}
 
@@ -36,7 +37,10 @@ public class DepositActivity extends Activity {
 			System.out.println("TRANSACTION amount " + tempAmount);
 			
 			Intent intent = new Intent(this, TransactionActivity.class);
-			intent.putExtra("accountNumber", accountNumber);
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumber);
+			bundle.putString("username", username);
+			intent.putExtras(bundle);
 	    	startActivity(intent);
 		}
 	}

@@ -21,6 +21,7 @@ public class AccountCreationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acount_creation);
 		ctx = this;
+
 		// previous intent information
 		username = getIntent().getStringExtra("username");
 		password = getIntent().getStringExtra("password");
@@ -56,20 +57,28 @@ public class AccountCreationActivity extends Activity {
 								}
 							}).show();
 		} else {
+			// CREATES ACCOUNT
 			accountNumber = createAccountNumber() + "";
 			new AlertDialog.Builder(this)
 					.setTitle("Your account is created")
-					.setMessage("Account number " + accountNumber + " is created. ")
+					.setMessage(
+							"Account number " + accountNumber + " is created. ")
 					.setPositiveButton(android.R.string.ok,
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,int which) {
+								public void onClick(DialogInterface dialog,
+										int which) {
 									DBHelper db = new DBHelper(ctx);
-									Account account = new Account(firstname, lastname, 
-											username, defaultAmount.getText().toString(),accountNumber);
-									if (db.addAccount(account)){
-										Intent intent = new Intent(ctx,TransactionActivity.class);
-										intent.putExtra("username", username);
-//										intent.putExtra("accountNumber",accountNumber);
+									Account account = new Account(firstname,
+											lastname, username, defaultAmount
+													.getText().toString(),
+											accountNumber);
+									if (db.addAccount(account)) {
+										Intent intent = new Intent(ctx,
+												TransactionActivity.class);
+										Bundle bundle = new Bundle();
+										bundle.putString("accountNumber", accountNumber);
+										bundle.putString("username", username);
+										intent.putExtras(bundle);
 										startActivity(intent);
 										finish();
 									}
@@ -81,12 +90,14 @@ public class AccountCreationActivity extends Activity {
 	public int createAccountNumber() {
 		Random ran = new Random();
 		// Let's say ten digits
+
 		int newAccountNumber = 0;
 		for (int i = 0; i < 10; i++) {
 			int base = (int) Math.pow(10.0, (double) i);
 			int random = ran.nextInt(10);
 			newAccountNumber = newAccountNumber + (base * random);
 		}
+
 		return Math.abs(newAccountNumber);
 	}
 }
