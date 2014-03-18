@@ -67,12 +67,12 @@ public class AccountCreationActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
-									DBHelper db = new DBHelper(ctx);
+									//DBHelper db = new DBHelper(ctx);
 									Account account = new Account(firstname,
 											lastname, username, defaultAmount
 													.getText().toString(),
 											accountNumber);
-									if (db.addAccount(account)) {
+									if (WelcomeActivity.db.addAccount(account)) {
 										Intent intent = new Intent(ctx,
 												TransactionActivity.class);
 										Bundle bundle = new Bundle();

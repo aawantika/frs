@@ -284,7 +284,29 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 		return account;
 	}
-	
+
+	// Getting All Accounts based on username
+	public ArrayList<Account> getAllAccountsByUsername(String username) {
+		ArrayList<Account> accountList = new ArrayList<Account>();
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_ACCOUNT;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do {
+				Account account = new Account(cursor.getString(0), cursor.getString(1),
+						cursor.getString(2), cursor.getString(3),
+						cursor.getString(4));
+				if (account.getUsername().equals(username)) {
+					accountList.add(account);
+				}
+			} while (cursor.moveToNext());
+		}
+
+		return accountList;
+	}
 	/**
 	 * 
 	 * @param username
@@ -335,10 +357,11 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 		return account;
 	}
-
+	
+	//updates account, called in add transaction
 	public void updateAccount(Transaction transaction) throws SQLException {
 		SQLiteDatabase db = this.getWritableDatabase();
-
+		
 		Account account = getAccountByAccountNumber(transaction.getAccount());
 		float transactionAmount = transaction.getAmount();
 		float accountAmount = Float.parseFloat(account.getBalance());
@@ -346,24 +369,17 @@ public class DBHelper extends SQLiteOpenHelper {
 		String transactionType = transaction.getType();
 		if (transactionType.equals("deposit")) {
 			accountAmount += transactionAmount;
-//			System.out.println("deposited! " + accountAmount);
 		} else {
 			accountAmount = accountAmount - transactionAmount;
 		}
+		
 		String accountAmountString = Float.toString(accountAmount);
 		account.setBalance(accountAmountString);
 
-//		System.out.println("account balance: " + account.getBalance());
-
 		ContentValues values = new ContentValues();
-		values.put(KEY_FNAME, account.getFirstname());
-		values.put(KEY_LNAME, account.getLastname());
-		values.put(KEY_USER, account.getUsername());
 		values.put(KEY_BALANCE, account.getBalance());
-		values.put(KEY_ACCOUNT_NUMBER, account.getAccountNumber() + "");
-
-		db.update(DATABASE_TABLE_ACCOUNT, values, KEY_USER + "=?",
-				new String[] { account.getUsername() });
+		db.update(DATABASE_TABLE_ACCOUNT, values, KEY_ACCOUNT_NUMBER + "=?",
+				new String[] { account.getAccountNumber() });
 	}
 
 	public void addTransaction(Transaction transaction) {

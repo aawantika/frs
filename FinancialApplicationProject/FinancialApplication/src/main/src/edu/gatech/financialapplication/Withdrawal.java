@@ -9,9 +9,11 @@ public class Withdrawal extends Transaction {
 
 	@Override
 	public String toString() {
-		return "Amount: " + this.getAmount() + "\nAccount From: "
-				+ this.getAccount() + "\nOn Date: " + this.getDate()
-				+ "\nDescriptor: " + this.getDescription() + "\nCategory: "
-				+ this.getCategory();
+		return "Withdrawal [toString()=" + super.toString() + ", getAccount()="
+				+ getAccount() + ", getDate()=" + getDate() + ", getAmount()="
+				+ getAmount() + ", getDescription()=" + getDescription()
+				+ ", getCategory()=" + getCategory() + ", getType()="
+				+ getType() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + "]";
 	}
 }
