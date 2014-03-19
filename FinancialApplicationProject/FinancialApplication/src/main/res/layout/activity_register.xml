@@ -7,7 +7,6 @@
     tools:context=".LoginActivity"
     tools:ignore="MergeRootFrame" >
 
-
     <TextView
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
@@ -17,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="100dp"
-        android:text="@string/firstNameText"
+        android:text="@string/firstname"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -28,7 +27,7 @@
         android:layout_alignRight="@+id/firstName"
         android:layout_below="@+id/firstName"
         android:layout_marginTop="50dp"
-        android:text="@string/lastNameText"
+        android:text="@string/lastname"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -38,7 +37,7 @@
         android:layout_alignLeft="@+id/firstName"
         android:layout_alignStart="@+id/firstName"
         android:layout_centerVertical="true"
-        android:text="@string/usernameText"
+        android:text="@string/username"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -46,9 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/username"
-        android:layout_alignRight="@+id/username"
+        android:layout_alignLeft="@+id/lastName"
         android:layout_below="@+id/username"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="53dp"
         android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -60,64 +59,67 @@
         android:layout_alignStart="@+id/password"
         android:layout_below="@+id/password"
         android:layout_marginTop="45dp"
-        android:text="@string/emailSoft"
+        android:text="@string/email"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/firstText"
+        android:id="@+id/firstnameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/firstName"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:ems="10"
-        android:hint="@string/lastName"
+        android:hint="@string/lastnameHint"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/lastText"
+        android:id="@+id/lastnameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lastName"
-        android:layout_alignLeft="@+id/firstText"
-        android:layout_alignStart="@+id/firstText"
+        android:layout_alignLeft="@+id/firstnameText"
+        android:layout_alignStart="@+id/firstnameText"
         android:ems="10"
-        android:hint="@string/firstName"
+        android:hint="@string/firstnameHint"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/passText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/password"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/passText"
-        android:layout_alignStart="@+id/passText"
-        android:layout_alignTop="@+id/email"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/userText"
+        android:id="@+id/usernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/username"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="@string/usernameHint"
         android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/password"
+        android:ems="10"
+        android:hint="@string/passwordHint"
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
+    
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_alignStart="@+id/passwordText"
+        android:layout_alignTop="@+id/email"
+        android:ems="10"
+        android:hint="@string/emailHint"
+        android:inputType="textEmailAddress" />
+    
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"

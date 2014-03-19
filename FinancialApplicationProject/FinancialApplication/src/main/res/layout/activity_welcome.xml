@@ -11,30 +11,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Welcome to our App! (placeholder)"
+        android:text="@string/title_activity_welcome"
         android:id="@+id/welcomeMessage"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:id="@+id/loginButton"
-        android:onClick="toLoginActivity"
-        android:layout_below="@+id/welcomeMessage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="104dp" />
-
-    <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/loginButton"
-        android:layout_below="@+id/welcomeMessage"
-        android:layout_marginTop="28dp"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
         android:onClick="toRegisterActivity"
         android:text="@string/register" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomeMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="toLoginActivity"
+        android:text="@string/login" />
 
 </RelativeLayout>

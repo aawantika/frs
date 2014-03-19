@@ -1,7 +1,5 @@
 package edu.gatech.financialapplication;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;

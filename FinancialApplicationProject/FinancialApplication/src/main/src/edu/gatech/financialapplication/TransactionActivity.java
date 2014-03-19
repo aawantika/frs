@@ -70,10 +70,19 @@ public class TransactionActivity extends Activity {
 	public void onCreateAccount(View view) {
 		Intent intent = new Intent(this, AccountCreationActivity.class);
 		intent.putExtra("username", username);
-		User user = db.getUserObject(username);
+		User user = db.getUserByUsername(username);
 		intent.putExtra("password", user.getPassword());
 		intent.putExtra("firstname", user.getFirstname());
 		intent.putExtra("lastname", user.getLastname());
+		startActivity(intent);
+	}
+	
+	public void onReportsClick(View view) {
+		Intent intent = new Intent(this, ReportsActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("accountNumber", accountNumberTemp);
+		bundle.putString("username", username);
+		intent.putExtras(bundle);
 		startActivity(intent);
 	}
 }

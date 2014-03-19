@@ -2,35 +2,61 @@
 <resources>
 
     <string name="app_name">Financial Application</string>
+
+    <!-- TextView -->
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="amount">Amount</string>
+    <string name="category">Category</string>
+    <string name="reason">Reason</string>
+    <string name="date">Date</string>
+    <string name="startDate">Start Date</string>
+    <string name="endDate">End Date</string>
+    <string name="defaultAmount">Default Amount</string>
+
+    <!-- Hints/EditText -->
+    <string name="usernameHint">Enter username</string>
+    <string name="passwordHint">Enter password</string>
+    <string name="firstnameHint">Enter first name</string>
+    <string name="lastnameHint">Enter last name</string>
+    <string name="emailHint">gburdell9@gatech.edu</string>
+    <string name="dateHint">01/01/2014</string>
+    <string name="defaultAmountHint">100USD or higher</string>
+    <string name="reasonHint">Enter reason</string>
+    <string name="amountHint">Enter amount</string>
+    <string name="categoryHint">Enter category</string>
+
+    <!-- Buttons -->
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="createAccount">Create Account</string>
+    <string name="submit">Submit</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="reports">Reports</string>
+
+    <!-- Reports -->
+    <string name="csr">Consumer Spending Report</string>
+
+    <!-- MainActivity - not used -->
+    <string name="goodjob">Success</string>
+
+    <!-- Stuff to delete -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Torture Max</string>
-    <string name="title_activity_welcome">Welcome Activity</string>
-    <string name="username">Enter a username</string>
-    <string name="password">Password</string>
-    <string name="login">Log In</string>
-    <string name="goodjob">Success</string>
-    <string name="firstName">Enter a first name</string>
-    <string name="lastName">Enter a last name</string>
-    <string name="email">gburdell9@gatech.edu</string>
+    <string name="title_activity_welcome">Welcome to our app!y</string>
     <string name="mainTitle">Main page</string>
-    <string name="register">Register</string>
-    <string name="firstNameText">First Name</string>
-    <string name="lastNameText">Last Name</string>
-    <string name="usernameText">Username</string>
-    <string name="emailSoft">Email</string>
     <string name="title_activity_deposit">DepositActivity</string>
     <string name="title_activity_transaction">TransactionActivity</string>
     <string name="title_activity_withdrawal">WithdrawalActivity</string>
-    <string name="amount">Amount</string>
     <string name="accountTo">Account To</string>
     <string name="accountFrom">Account From</string>
-    <string name="category">Category</string>
-    <string name="reason">Reason</string>
-    <string name="deposit">Deposit</string>
-    <string name="withdrawal">Withdrawal</string>
-	<string name="submit">Submit</string>
-	<string name="date">Date</string>
-	<string name="enterDate">01/01/2014</string>
-	<string name="createAccount">Create Account</string>
-	
+    <string name="blah">Create an Account</string>
+    <string name="title_activity_reports">ReportsActivity</string>
+    <string name="title_activity_consumer_spending">ConsumerSpendingActivity</string>
+    <string name="title_activity_report_date">ReportDateActivity</string>
+
 </resources>

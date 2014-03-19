@@ -16,7 +16,7 @@
         android:layout_alignBottom="@+id/textViewAmount"
         android:layout_alignLeft="@+id/editTextReason"
         android:ems="10"
-        android:hint="Enter Amount"
+        android:hint="@string/amountHint"
         android:inputType="numberDecimal" />
 
     <Button
@@ -36,7 +36,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textViewReason"
         android:ems="10"
-        android:hint="Enter Reason" />
+        android:hint="@string/reasonHint" />
 
     <TextView
         android:id="@+id/textViewReason"
@@ -66,8 +66,9 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_marginBottom="26dp"
         android:ems="10"
-        android:inputType="date"
-        android:hint="@string/enterDate" >
+        android:hint="@string/dateHint"
+        android:inputType="date" >
+
         <requestFocus />
     </EditText>
 

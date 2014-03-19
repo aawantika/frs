@@ -4,7 +4,6 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,41 +11,28 @@ import android.view.View;
 import android.widget.TextView;
 
 public class AccountCreationActivity extends Activity {
-	private TextView cell, address, defaultAmount;
-	private String username, password, firstname, lastname;
+	private TextView defaultAmount;
+	private String username, firstname, lastname;
 	private String accountNumber = createAccountNumber() + "";
-	private Context ctx;
+	private DBHelper db;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acount_creation);
-		ctx = this;
+		db = new DBHelper(this);
 
 		// previous intent information
 		username = getIntent().getStringExtra("username");
-		password = getIntent().getStringExtra("password");
 		firstname = getIntent().getStringExtra("firstname");
 		lastname = getIntent().getStringExtra("lastname");
 
 		// input fields
-		cell = (TextView) findViewById(R.id.phone);
-		address = (TextView) findViewById(R.id.address);
 		defaultAmount = (TextView) findViewById(R.id.defaultAmount);
 	}
 
 	public void onAccountCreate(View view) {
-		if (cell.getText().length() < 10) {
-			new AlertDialog.Builder(this)
-					.setTitle("Information error")
-					.setMessage("Please enter in a ten-digit phone number")
-					.setPositiveButton(android.R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-								}
-							}).show();
-
-		} else if (Double.parseDouble(defaultAmount.getText().toString()) < 100.00) {
+		// check if initial amount is less than 100
+		if (Float.parseFloat(defaultAmount.getText().toString()) < 100.00f) {
 			new AlertDialog.Builder(this)
 					.setTitle("Information error")
 					.setMessage("Minimum amount must be 100 USD.")
@@ -67,16 +53,17 @@ public class AccountCreationActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
-									//DBHelper db = new DBHelper(ctx);
 									Account account = new Account(firstname,
 											lastname, username, defaultAmount
 													.getText().toString(),
 											accountNumber);
-									if (WelcomeActivity.db.addAccount(account)) {
-										Intent intent = new Intent(ctx,
+									if (db.addAccount(account)) {
+										Intent intent = new Intent(
+												AccountCreationActivity.this,
 												TransactionActivity.class);
 										Bundle bundle = new Bundle();
-										bundle.putString("accountNumber", accountNumber);
+										bundle.putString("accountNumber",
+												accountNumber);
 										bundle.putString("username", username);
 										intent.putExtras(bundle);
 										startActivity(intent);

@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -18,13 +19,13 @@
             android:name="edu.gatech.financialapplication.LoginActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity 
+        <activity
             android:name="edu.gatech.financialapplication.RegisterActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
         </activity>
-        <activity 
+        <activity
             android:name="edu.gatech.financialapplication.AccountCreationActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="edu.gatech.financialapplication.WelcomeActivity"
@@ -42,12 +43,15 @@
         <activity
             android:name="edu.gatech.financialapplication.MainActivity"
             android:label="@string/mainTitle" />
+
         <receiver
             android:name="edu.gatech.financialapplication.LoginResultReceiver"
-            android:enabled="true"/>
+            android:enabled="true" />
+
         <service
             android:name="edu.gatech.financialapplication.LoginChecker"
             android:enabled="true" />
+
         <activity
             android:name="edu.gatech.financialapplication.TransactionActivity"
             android:label="@string/app_name" >
@@ -59,6 +63,18 @@
         <activity
             android:name="edu.gatech.financialapplication.DepositActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.ReportsActivity"
+            android:label="@string/title_activity_reports" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.ConsumerSpendingActivity"
+            android:label="@string/title_activity_consumer_spending" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.ReportDateActivity"
+            android:label="@string/title_activity_report_date" >
         </activity>
     </application>
 

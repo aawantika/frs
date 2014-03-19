@@ -91,7 +91,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		        			resultBundle.getString("lastname"), resultBundle.getString("username"), 
 		        			resultBundle.getString("password"), "");
 		        	if (db.hasAccount(user)){
-						Intent intent = new Intent(ctx,TransactionActivity.class);
+						Intent intent = new Intent(ctx, TransactionActivity.class);
 			        	intent.putExtra("username", resultBundle.getString("username"));
 						startActivity(intent);
 		        	} else {

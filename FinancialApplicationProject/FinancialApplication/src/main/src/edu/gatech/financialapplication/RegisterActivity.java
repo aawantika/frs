@@ -1,6 +1,5 @@
 package edu.gatech.financialapplication;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,25 +9,28 @@ import android.view.View;
 import android.widget.EditText;
 
 public class RegisterActivity extends Activity {
+	private DBHelper db;
 
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.activity_register);
+    	
+    	db = new DBHelper(this);
     }
 
     
     public boolean isDuplicate(String username, String password) {
-    	if (WelcomeActivity.db.getUserDetailsByUsername(username) != null &&
-    			WelcomeActivity.db.getUserDetailsByUsername(username).getUsername().equalsIgnoreCase(username))
+    	if (db.getUserByUsername(username) != null &&
+    			db.getUserByUsername(username).getUsername().equalsIgnoreCase(username))
     		return true;
     	return false;
     }
     
     public void onClick(View view) {
-    	String username = ((EditText)findViewById(R.id.userText)).getText().toString();
-		String password = ((EditText)findViewById(R.id.passText)).getText().toString();
-		String firstname = ((EditText)findViewById(R.id.firstText)).getText().toString();
-		String lastname = ((EditText)findViewById(R.id.lastText)).getText().toString();
+    	String username = ((EditText)findViewById(R.id.usernameText)).getText().toString();
+		String password = ((EditText)findViewById(R.id.passwordText)).getText().toString();
+		String firstname = ((EditText)findViewById(R.id.firstnameText)).getText().toString();
+		String lastname = ((EditText)findViewById(R.id.lastnameText)).getText().toString();
 		String email = ((EditText)findViewById(R.id.emailText)).getText().toString();
 		if (!username.equals("") && !password.equals("") && !firstname.equals("") && !lastname.equals("") && !email.equals("")) {
 			if (isDuplicate(username, password)) {
@@ -42,7 +44,7 @@ public class RegisterActivity extends Activity {
 			     .show();
 			}else{
 				User user = new User(firstname, lastname, username, password, email);
-				WelcomeActivity.db.addUser(user);
+				db.addUser(user);
 				Intent intent = new Intent(this, WelcomeActivity.class);
 		    	startActivity(intent);
 			}

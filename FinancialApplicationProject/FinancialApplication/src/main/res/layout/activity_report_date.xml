@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportDateActivity"
+    tools:ignore="MergeRootFrame" >
+
+     <TextView
+        android:id="@+id/startText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="147dp"
+        android:text="@string/startDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/endText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startText"
+        android:layout_below="@+id/startText"
+        android:layout_marginTop="19dp"
+        android:text="@string/endDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/startText"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/dateHint" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/submit"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/dateHint" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/endText"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="51dp"
+        android:layout_toRightOf="@+id/startText"
+        android:onClick="onDateClick"
+        android:text="@string/submit" />
+
+</RelativeLayout>

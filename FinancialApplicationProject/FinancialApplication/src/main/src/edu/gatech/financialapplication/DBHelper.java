@@ -20,17 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String KEY_LNAME = "lastname";
 	private static final String KEY_USER = "username";
 	private static final String KEY_PASS = "password";
-
 	private static final String KEY_EMAIL = "email";
-	private static final String KEY_SSN = "ssn";
-	private static final String KEY_DOB = "dob";
-	private static final String KEY_PHONE = "phone";
-	private static final String KEY_ACCOUNTS = "accounts";
-
-	private static final String KEY_ADDRESS = "address";
-	private static final String KEY_CITY = "city";
-	private static final String KEY_STATE = "state";
-	private static final String KEY_ZIPCODE = "zipcode";
 
 	// for account
 	private static final String KEY_BALANCE = "balance";
@@ -52,10 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String TABLE_CREATE_USER = "CREATE TABLE "
 			+ DATABASE_TABLE_USER + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
 			+ " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT," + KEY_EMAIL
-			+ " TEXT," + KEY_SSN + " INTEGER," + KEY_DOB + " DATE," + KEY_PHONE
-			+ " INTEGER," + KEY_ACCOUNTS + " TEXT," + KEY_ADDRESS + " TEXT,"
-			+ KEY_CITY + " TEXT," + KEY_STATE + " TEXT," + KEY_ZIPCODE
-			+ " INTEGER)";
+			+ " TEXT)";
 
 	private static final String TABLE_CREATE_ACCOUNT = "CREATE TABLE "
 			+ DATABASE_TABLE_ACCOUNT + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
@@ -95,41 +82,29 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public void addUser(User user) {
 		SQLiteDatabase db = this.getWritableDatabase();
-
 		ContentValues values = new ContentValues();
 		values.put(KEY_FNAME, user.getFirstname());
 		values.put(KEY_LNAME, user.getLastname());
 		values.put(KEY_USER, user.getUsername());
 		values.put(KEY_PASS, user.getPassword());
 		values.put(KEY_EMAIL, user.getEmail());
-		// values.put(KEY_SSN, user.getSsn());
-		// values.put(KEY_DOB, user.getDob());
-		// values.put(KEY_PHONE, user.getPhone());
-		// values.put(KEY_ACCOUNTS, user.getAccounts());
-		// values.put(KEY_ADDRESS, user.getAddress());
-		// values.put(KEY_CITY, user.getCity());
-		// values.put(KEY_STATE, user.getState());
-		// values.put(KEY_ZIPCODE, user.getZipcode());
 
 		try {
 			db.insert(DATABASE_TABLE_USER, null, values);
-			Log.d("Database User Inserted",
-					"yay - inserted properly " + user.getLastname());
+			Log.d("Database User Inserted", "Inserted Properly, username "
+					+ user.getUsername());
 			db.close();
 		} catch (Exception e) {
-			Log.d("Databse User Inserted", "boo");
+			Log.d("Databse User Inserted", "Not inserted properly");
 			e.printStackTrace();
 		}
 	}
 
-	// smaller user
-	public User getUserDetailsByUsername(String username) throws SQLException {
+	public User getUserByUsername(String username) throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
-				KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL, KEY_SSN, KEY_DOB,
-				KEY_PHONE, KEY_ACCOUNTS, KEY_ADDRESS, KEY_CITY, KEY_STATE,
-				KEY_ZIPCODE }, KEY_USER + "=?",
+				KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL }, KEY_USER + "=?",
 				new String[] { String.valueOf(username) }, null, null, null,
 				null);
 
@@ -144,75 +119,6 @@ public class DBHelper extends SQLiteOpenHelper {
 		return user;
 	}
 
-	// full comprehensive user
-	public User getUserDetails(String username) throws SQLException {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
-				KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL, KEY_SSN, KEY_DOB,
-				KEY_PHONE, KEY_ACCOUNTS, KEY_ADDRESS, KEY_CITY, KEY_STATE,
-				KEY_ZIPCODE }, KEY_USER	 + "=?", new String[] { username },
-				null, null, null, null);
-
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-
-		User user = new User(cursor.getString(0), cursor.getString(1),
-				cursor.getString(2), cursor.getString(3), cursor.getString(4),
-				Integer.parseInt(cursor.getString(5)), cursor.getString(6),
-				Integer.parseInt(cursor.getString(7)), cursor.getString(8),
-				cursor.getString(9), cursor.getString(10),
-				cursor.getString(11), Integer.parseInt(cursor.getString(12)));
-		return user;
-	}
-	
-	public User getUserObject(String username) throws SQLException {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
-				KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL}, KEY_USER	 + "=?", new String[] { username },
-				null, null, null, null);
-
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-
-		User user = new User(cursor.getString(0), cursor.getString(1),
-				cursor.getString(2), cursor.getString(3), cursor.getString(4));
-		return user;
-	}
-
-	public List<User> getAllUsers() {
-		List<User> userList = new ArrayList<User>();
-		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_USER;
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		if (cursor.moveToFirst()) {
-			do {
-				User user = new User();
-				user.setId(Integer.parseInt(cursor.getString(0)));
-				user.setFirstname(cursor.getString(1));
-				user.setLastname(cursor.getString(2));
-				user.setUsername(cursor.getString(3));
-				user.setPassword(cursor.getString(4));
-				user.setEmail(cursor.getString(5));
-				user.setSsn(Integer.parseInt(cursor.getString(6)));
-				user.setDob(cursor.getString(7));
-				user.setPhone(Integer.parseInt(cursor.getString(8)));
-				user.setAccounts(cursor.getString(9));
-				user.setAddress(cursor.getString(10));
-				user.setCity(cursor.getString(11));
-				user.setState(cursor.getString(12));
-				user.setZipcode(Integer.parseInt(cursor.getString(13)));
-				userList.add(user);
-			} while (cursor.moveToNext());
-		}
-		return userList;
-	}
-
 	public boolean addAccount(Account account) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -225,129 +131,69 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		try {
 			db.insert(DATABASE_TABLE_ACCOUNT, null, values);
-			Log.d("Database Account Inserted", "yay " + account.getUsername());
+			Log.d("Database Account Inserted",
+					"username " + account.getUsername());
 			db.close();
 			return true;
 		} catch (Exception e) {
+			Log.d("Database Account Inserted", "not inserted");
 			e.printStackTrace();
 		}
 		return false;
 	}
 
-	public Account getAccount(User user) throws SQLException {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,
-				new String[] { KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
-						KEY_ACCOUNT_NUMBER }, KEY_USER + "=?",
-				new String[] { String.valueOf(user.getUsername()) }, null,
-				null, null, null);
-		Account account = null;
-		if (cursor != null) {
-			cursor.moveToFirst();
-			account = new Account(cursor.getString(0), cursor.getString(1),
-					cursor.getString(2), cursor.getString(3),
-					cursor.getString(4));
-		}
-		return account;
-	}
-	
 	public boolean hasAccount(User user) {
 		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, 
-				KEY_USER + "=?", new String[] {String.valueOf(user.getUsername())},
+
+		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT, null, KEY_USER
+				+ "=?", new String[] { String.valueOf(user.getUsername()) },
 				null, null, null, null);
-		if (cursor == null || cursor.getCount() == 0) 
+		if (cursor == null || cursor.getCount() == 0)
 			return false;
 		return true;
 	}
 
-	/**
-	 * 
-	 * @param username
-	 * @return Account of firstOne
-	 * @throws SQLException
-	 */
-	public Account getAccountDetails(String username) throws SQLException {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,
-				new String[] { KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
-						KEY_ACCOUNT_NUMBER }, KEY_USER + "=?",
-				new String[] { username }, null, null, null, null);
-		Account account = null;
-		if (cursor != null) {
-			cursor.moveToFirst();
-			account = new Account(cursor.getString(0), cursor.getString(1),
-					cursor.getString(2), cursor.getString(3),
-					cursor.getString(4));
-		}
-		return account;
-	}
-
-	// Getting All Accounts based on username
-	public ArrayList<Account> getAllAccountsByUsername(String username) {
-		ArrayList<Account> accountList = new ArrayList<Account>();
-		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_ACCOUNT;
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		// looping through all rows and adding to list
-		if (cursor.moveToFirst()) {
-			do {
-				Account account = new Account(cursor.getString(0), cursor.getString(1),
-						cursor.getString(2), cursor.getString(3),
-						cursor.getString(4));
-				if (account.getUsername().equals(username)) {
-					accountList.add(account);
-				}
-			} while (cursor.moveToNext());
-		}
-
-		return accountList;
-	}
-	/**
-	 * 
-	 * @param username
-	 * @return list of account
-	 * @throws SQLException
-	 */
-	public ArrayList<Account> getAccountsByUsername(String username) throws SQLException {
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = null;
-		System.out.println("username: " + username);
-		if (username.equalsIgnoreCase("admin")) {
-			cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, null ,null, null, null, 
-					KEY_ACCOUNT_NUMBER + " ASC", null);
-			Log.i("Admin ", "Getting all account");
-		} else {
-			cursor = db.query(true, DATABASE_TABLE_ACCOUNT,null, KEY_USER + "=?",
-					new String[] { username }, null, null, KEY_ACCOUNT_NUMBER + " ASC", null);
-		}
-
-		ArrayList<Account> acc = new ArrayList<Account> ();
-		if (cursor != null) {
-			Log.d("cursor size: " , cursor.getCount()+"");
-			for(int i = 0; i < cursor.getCount(); i++) { 
-				if(cursor.moveToNext()) {
-					Account account = new Account(cursor.getString(0), cursor.getString(1),
-							cursor.getString(2), cursor.getDouble(3)+"", cursor.getInt(4)+"");
-					acc.add(account);
-				}
-			}
-		}
-		return acc;
-	}
-
-	public Account getAccountByAccountNumber(String accountNumber)
+	public ArrayList<Account> getAccountsByUsername(String username)
 			throws SQLException {
 		SQLiteDatabase db = this.getReadableDatabase();
 
+		Cursor cursor = null;
+		if (username.equalsIgnoreCase("admin")) {
+			cursor = db.query(true, DATABASE_TABLE_ACCOUNT, null, null, null,
+					null, null, KEY_ACCOUNT_NUMBER + " ASC", null);
+			Log.i("Admin ", "Getting all account");
+		} else {
+			cursor = db.query(true, DATABASE_TABLE_ACCOUNT, null, KEY_USER
+					+ "=?", new String[] { username }, null, null,
+					KEY_ACCOUNT_NUMBER + " ASC", null);
+		}
+
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		if (cursor != null) {
+			Log.d("cursor size: ", cursor.getCount() + "");
+			for (int i = 0; i < cursor.getCount(); i++) {
+				if (cursor.moveToNext()) {
+					Account account = new Account(cursor.getString(0),
+							cursor.getString(1), cursor.getString(2),
+							cursor.getDouble(3) + "", cursor.getInt(4) + "");
+					accounts.add(account);
+				}
+			}
+		}
+
+		return accounts;
+	}
+
+	// Used by updateAccount
+	public Account getAccountByAccountNumber(String accountNumber)
+			throws SQLException {
+
+		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,
 				new String[] { KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
 						KEY_ACCOUNT_NUMBER }, KEY_ACCOUNT_NUMBER + "=?",
 				new String[] { accountNumber }, null, null, null, null);
+
 		Account account = null;
 		if (cursor != null) {
 			cursor.moveToFirst();
@@ -355,13 +201,14 @@ public class DBHelper extends SQLiteOpenHelper {
 					cursor.getString(2), cursor.getString(3),
 					cursor.getString(4));
 		}
+
 		return account;
 	}
-	
-	//updates account, called in add transaction
+
+	// Updates an account with new balance, used by addTransaction
 	public void updateAccount(Transaction transaction) throws SQLException {
 		SQLiteDatabase db = this.getWritableDatabase();
-		
+
 		Account account = getAccountByAccountNumber(transaction.getAccount());
 		float transactionAmount = transaction.getAmount();
 		float accountAmount = Float.parseFloat(account.getBalance());
@@ -372,7 +219,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		} else {
 			accountAmount = accountAmount - transactionAmount;
 		}
-		
+
 		String accountAmountString = Float.toString(accountAmount);
 		account.setBalance(accountAmountString);
 
@@ -403,34 +250,15 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 	}
 
-	public Transaction getTransactionDetails(int accountNum)
-			throws SQLException {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(true, DATABASE_TABLE_TRANSACTION,
-				new String[] { KEY_ACCOUNT, KEY_DATE, KEY_AMOUNT,
-						KEY_DESCRIPTION, KEY_CATEGORY, KEY_TYPE }, KEY_ACCOUNT
-						+ "=?", new String[] { String.valueOf(accountNum) },
-				null, null, null, null);
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-		Transaction transaction = new Transaction(cursor.getString(0),
-				cursor.getString(1), Float.parseFloat(cursor.getString(2)),
-				cursor.getString(3), cursor.getString(4), cursor.getString(5));
-		return transaction;
-	}
-
 	// Getting All Transactions based on account number
-	public List<Transaction> getAllTransactions(String accountNumber) {
+	public ArrayList<Transaction> getAllTransactions(String accountNumber) {
 
-		List<Transaction> transactionList = new ArrayList<Transaction>();
+		ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
 		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_TRANSACTION;
 
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
 				Transaction transaction = new Transaction(cursor.getString(0),
