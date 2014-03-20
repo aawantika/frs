@@ -17,6 +17,15 @@
         android:text="@string/username"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/userText"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:hint="@string/usernameHint" />
+
     <TextView
         android:id="@+id/passText"
         android:layout_width="wrap_content"
@@ -26,26 +35,6 @@
         android:layout_marginTop="19dp"
         android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/loginBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/password"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
-        android:onClick="onClick"
-        android:text="@string/login" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/userText"
-        android:layout_alignParentRight="true"
-        android:ems="10"
-        android:hint="@string/usernameHint" />
 
     <EditText
         android:id="@+id/password"
@@ -59,5 +48,28 @@
 
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/loginBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/password"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onClick"
+        android:text="@string/login" />
+
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginBt"
+        android:layout_marginTop="71dp"
+        android:layout_toRightOf="@+id/passText"
+        android:clickable="true"
+        android:onClick="onForgotPasswordClick"
+        android:text="@string/forgotPassword"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

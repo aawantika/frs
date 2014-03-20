@@ -20,6 +20,8 @@ public class ConsumerSpendingActivity extends Activity {
 		username = getIntent().getStringExtra("username");
 
 		transactionList = db.getAllTransactions(accountNumberTemp);
-		//DO FANCY STUFF HERE.
+		// DO FANCY STUFF HERE.
+		// make sure to remove the date fields from the deposit/withdrawal xmls
+		// and fix their activities!
 	}
 }

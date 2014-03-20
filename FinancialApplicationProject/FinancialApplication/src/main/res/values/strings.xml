@@ -16,6 +16,7 @@
     <string name="startDate">Start Date</string>
     <string name="endDate">End Date</string>
     <string name="defaultAmount">Default Amount</string>
+    <string name="forgotPassword">Forgot Password?</string>
 
     <!-- Hints/EditText -->
     <string name="usernameHint">Enter username</string>
@@ -44,6 +45,18 @@
     <!-- MainActivity - not used -->
     <string name="goodjob">Success</string>
 
+    <!-- Categories for Withdrawal -->
+    <string name="category_prompt">Choose category</string>
+
+    <string-array name="category_array">
+        <item>Gas</item>
+        <item>Rent</item>
+        <item>Clothing</item>
+        <item>Business</item>
+        <item>Groceries</item>
+        <item>Entertainment</item>
+    </string-array>
+
     <!-- Stuff to delete -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Torture Max</string>
@@ -58,5 +71,6 @@
     <string name="title_activity_reports">ReportsActivity</string>
     <string name="title_activity_consumer_spending">ConsumerSpendingActivity</string>
     <string name="title_activity_report_date">ReportDateActivity</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
 
 </resources>

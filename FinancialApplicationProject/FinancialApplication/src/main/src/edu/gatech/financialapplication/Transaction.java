@@ -15,6 +15,7 @@ public class Transaction {
 		this.date = date;
 		this.amount = amount;
 		this.description = description;
+		this.category = category;
 		this.type = type;
 	}
 
@@ -48,7 +49,7 @@ public class Transaction {
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -64,7 +65,7 @@ public class Transaction {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
 	public String getType() {
 		return type;
 	}

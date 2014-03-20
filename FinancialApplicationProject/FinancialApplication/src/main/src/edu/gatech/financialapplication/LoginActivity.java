@@ -74,7 +74,11 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		default:
 			break;
 		}
+	}
 	
+	public void onForgotPasswordClick(View view) {
+		Intent intent = new Intent(this, ForgotPasswordActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

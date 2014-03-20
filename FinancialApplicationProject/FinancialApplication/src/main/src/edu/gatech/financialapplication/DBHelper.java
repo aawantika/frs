@@ -1,7 +1,6 @@
 package edu.gatech.financialapplication;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -272,5 +271,51 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 
 		return transactionList;
+	}
+	
+	public ArrayList<Transaction> getAllDeposits() {
+
+		ArrayList<Transaction> depositList = new ArrayList<Transaction>();
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_TRANSACTION;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		if (cursor.moveToFirst()) {
+			do {
+				Transaction transaction = new Transaction(cursor.getString(0),
+						cursor.getString(1), Float.parseFloat(cursor
+								.getString(2)), cursor.getString(3),
+						cursor.getString(4), cursor.getString(5));
+				if (transaction.getType().equals("deposit")) {
+					depositList.add(transaction);
+				}
+			} while (cursor.moveToNext());
+		}
+
+		return depositList;
+	}
+	
+	public ArrayList<Transaction> getAllWithdrawals() {
+
+		ArrayList<Transaction> withdrawalList = new ArrayList<Transaction>();
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_TRANSACTION;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		if (cursor.moveToFirst()) {
+			do {
+				Transaction transaction = new Transaction(cursor.getString(0),
+						cursor.getString(1), Float.parseFloat(cursor
+								.getString(2)), cursor.getString(3),
+						cursor.getString(4), cursor.getString(5));
+				if (transaction.getType().equals("withdrawal")) {
+					withdrawalList.add(transaction);
+				}
+			} while (cursor.moveToNext());
+		}
+
+		return withdrawalList;
 	}
 }

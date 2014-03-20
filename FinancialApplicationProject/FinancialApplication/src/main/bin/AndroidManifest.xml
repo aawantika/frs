@@ -76,6 +76,10 @@
             android:name="edu.gatech.financialapplication.ReportDateActivity"
             android:label="@string/title_activity_report_date" >
         </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.ForgotPasswordActivity"
+            android:label="@string/title_activity_forgot_password" >
+        </activity>
     </application>
 
 </manifest>
