@@ -1,6 +1,7 @@
 package edu.gatech.financialapplication;
 
-import javax.mail.MessagingException;
+import java.util.Arrays;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,19 +20,21 @@ public class ForgotPasswordActivity extends Activity {
 		db = new DBHelper(this);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void onClick(View view) {
 		Intent intent = new Intent(this, WelcomeActivity.class);
 		username = ((EditText) findViewById(R.id.editTextUser)).getText()
 				.toString();
-		System.out.println(username + "USERNAME");
-		// check valid username
 		if (!username.equals("")) {
 			User user = db.getUserByUsername(username);
 			String email = user.getEmail();
+			List<String> toEmailList = Arrays.asList(email);
 			String password = user.getPassword();
-			System.out.println("email " + email + " password " + password);
-			ForgotPassword fp = new ForgotPassword();
-			fp.sendMessage(email, password);
+			String emailBody = "Dear Customer, your forgotten password is: "
+					+ password;
+
+			new SendMailTask(ForgotPasswordActivity.this).execute(toEmailList,
+					emailBody);
 		}
 		startActivity(intent);
 	}
