@@ -109,7 +109,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		        }
 		     })
 		     .show();
-		}else{
+		} else {
 			new AlertDialog.Builder(this)
 		    .setTitle("Wrong crendential!")
 		    .setMessage("Please check your username or password.")

@@ -42,8 +42,7 @@ public class AccountCreationActivity extends Activity {
 										int which) {
 								}
 							}).show();
-		} else {
-			// CREATES ACCOUNT
+		} else { // CREATES ACCOUNT
 			accountNumber = createAccountNumber() + "";
 			new AlertDialog.Builder(this)
 					.setTitle("Your account is created")
