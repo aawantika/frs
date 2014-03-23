@@ -6,9 +6,10 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -75,6 +76,10 @@
         <activity
             android:name="edu.gatech.financialapplication.ReportDateActivity"
             android:label="@string/title_activity_report_date" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.ForgotPasswordActivity"
+            android:label="@string/title_activity_forgot_password" >
         </activity>
     </application>
 

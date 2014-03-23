@@ -75,4 +75,16 @@
         android:text="@string/username"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginBt"
+        android:layout_marginTop="71dp"
+        android:layout_toRightOf="@+id/passText"
+        android:clickable="true"
+        android:onClick="onForgotPasswordClick"
+        android:text="@string/forgotPassword"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </RelativeLayout>

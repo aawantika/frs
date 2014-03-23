@@ -74,7 +74,11 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		default:
 			break;
 		}
+	}
 	
+	public void onForgotPasswordClick(View view) {
+		Intent intent = new Intent(this, ForgotPasswordActivity.class);
+		startActivity(intent);
 	}
 
 	@Override
@@ -105,7 +109,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 		        }
 		     })
 		     .show();
-		}else{
+		} else {
 			new AlertDialog.Builder(this)
 		    .setTitle("Wrong crendential!")
 		    .setMessage("Please check your username or password.")
