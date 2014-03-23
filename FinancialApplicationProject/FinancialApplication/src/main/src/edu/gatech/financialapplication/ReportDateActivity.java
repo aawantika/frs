@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class ReportDateActivity extends Activity {
 	private String username, accountNumberTemp, type;
-	
+	private EditText dateFrom;
+	private EditText dateTo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -16,6 +18,8 @@ public class ReportDateActivity extends Activity {
 		accountNumberTemp = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 		type = getIntent().getStringExtra("type");
+		dateFrom = (EditText)findViewById(R.id.editText1);
+		dateTo = (EditText)findViewById(R.id.editText2);
 	}
 
 
@@ -29,6 +33,8 @@ public class ReportDateActivity extends Activity {
 		Bundle bundle = new Bundle();
 		bundle.putString("accountNumber", accountNumberTemp);
 		bundle.putString("username", username);
+		bundle.putString("dateFrom", dateFrom.getText().toString());
+		bundle.putString("dateTo", dateTo.getText().toString());
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}

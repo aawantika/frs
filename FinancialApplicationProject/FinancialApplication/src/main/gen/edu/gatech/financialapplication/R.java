@@ -59,60 +59,77 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f0a0002;
-        public static final int accountLV=0x7f0a002a;
-        public static final int action_settings=0x7f0a0036;
-        public static final int border1=0x7f0a0027;
-        public static final int bottomBorder=0x7f0a0030;
-        public static final int button1=0x7f0a000b;
-        public static final int buttonSubmit=0x7f0a000e;
-        public static final int categorySpinner=0x7f0a0034;
+        public static final int accountLV=0x7f0a003b;
+        public static final int action_settings=0x7f0a0047;
+        public static final int border1=0x7f0a0038;
+        public static final int bottomBorder=0x7f0a0041;
+        public static final int button1=0x7f0a001c;
+        public static final int buttonSubmit=0x7f0a001f;
+        public static final int categorySpinner=0x7f0a0045;
         public static final int container=0x7f0a0004;
         public static final int create=0x7f0a0003;
-        public static final int createAccount=0x7f0a002c;
-        public static final int csr=0x7f0a0026;
+        public static final int createAccount=0x7f0a003d;
+        public static final int csr=0x7f0a0037;
         public static final int defaultAmount=0x7f0a0001;
-        public static final int deposit=0x7f0a002e;
-        public static final int divider=0x7f0a0029;
-        public static final int divider2=0x7f0a002b;
-        public static final int editText1=0x7f0a0022;
-        public static final int editText2=0x7f0a0024;
-        public static final int editTextAmount=0x7f0a0008;
-        public static final int editTextDate=0x7f0a0006;
-        public static final int editTextReason=0x7f0a000a;
-        public static final int editTextUser=0x7f0a000d;
-        public static final int email=0x7f0a001d;
-        public static final int emailText=0x7f0a001e;
-        public static final int endText=0x7f0a0023;
-        public static final int firstName=0x7f0a001f;
-        public static final int firstnameText=0x7f0a0019;
-        public static final int forgotPasswordText=0x7f0a0015;
-        public static final int imageView1=0x7f0a0010;
-        public static final int imageView2=0x7f0a0017;
-        public static final int lastName=0x7f0a0018;
-        public static final int lastnameText=0x7f0a001a;
-        public static final int loginBt=0x7f0a0014;
-        public static final int loginButton=0x7f0a0032;
-        public static final int passText=0x7f0a0012;
-        public static final int password=0x7f0a0013;
-        public static final int passwordText=0x7f0a001c;
-        public static final int register=0x7f0a0020;
-        public static final int registerButton=0x7f0a0031;
-        public static final int reports=0x7f0a002d;
-        public static final int startText=0x7f0a0021;
-        public static final int submit=0x7f0a0025;
-        public static final int textView=0x7f0a0035;
+        public static final int deposit=0x7f0a003f;
+        public static final int divider=0x7f0a003a;
+        public static final int divider2=0x7f0a003c;
+        public static final int editText1=0x7f0a0033;
+        public static final int editText2=0x7f0a0035;
+        public static final int editTextAmount=0x7f0a0019;
+        public static final int editTextDate=0x7f0a0017;
+        public static final int editTextReason=0x7f0a001b;
+        public static final int editTextUser=0x7f0a001e;
+        public static final int email=0x7f0a002e;
+        public static final int emailText=0x7f0a002f;
+        public static final int endText=0x7f0a0034;
+        public static final int firstName=0x7f0a0030;
+        public static final int firstnameText=0x7f0a002a;
+        public static final int forgotPasswordText=0x7f0a0026;
+        public static final int imageView1=0x7f0a0021;
+        public static final int imageView2=0x7f0a0028;
+        public static final int lastName=0x7f0a0029;
+        public static final int lastnameText=0x7f0a002b;
+        public static final int loginBt=0x7f0a0025;
+        public static final int loginButton=0x7f0a0043;
+        public static final int passText=0x7f0a0023;
+        public static final int password=0x7f0a0024;
+        public static final int passwordText=0x7f0a002d;
+        public static final int register=0x7f0a0031;
+        public static final int registerButton=0x7f0a0042;
+        public static final int reports=0x7f0a003e;
+        public static final int startText=0x7f0a0032;
+        public static final int submit=0x7f0a0036;
+        public static final int textView=0x7f0a0046;
         public static final int textView1=0x7f0a0000;
-        public static final int textViewAmount=0x7f0a0007;
-        public static final int textViewCategory=0x7f0a0033;
-        public static final int textViewDate=0x7f0a0005;
-        public static final int textViewReason=0x7f0a0009;
-        public static final int textViewTo=0x7f0a0016;
-        public static final int textViewWarning=0x7f0a000f;
-        public static final int topBorder=0x7f0a0028;
-        public static final int userText=0x7f0a000c;
-        public static final int username=0x7f0a0011;
-        public static final int usernameText=0x7f0a001b;
-        public static final int withdrawal=0x7f0a002f;
+        public static final int textView10=0x7f0a000d;
+        public static final int textView11=0x7f0a000e;
+        public static final int textView12=0x7f0a000f;
+        public static final int textView13=0x7f0a0010;
+        public static final int textView14=0x7f0a0011;
+        public static final int textView15=0x7f0a0012;
+        public static final int textView16=0x7f0a0013;
+        public static final int textView17=0x7f0a0014;
+        public static final int textView18=0x7f0a0015;
+        public static final int textView2=0x7f0a0005;
+        public static final int textView3=0x7f0a0006;
+        public static final int textView4=0x7f0a0008;
+        public static final int textView5=0x7f0a0007;
+        public static final int textView6=0x7f0a0009;
+        public static final int textView7=0x7f0a000a;
+        public static final int textView8=0x7f0a000b;
+        public static final int textView9=0x7f0a000c;
+        public static final int textViewAmount=0x7f0a0018;
+        public static final int textViewCategory=0x7f0a0044;
+        public static final int textViewDate=0x7f0a0016;
+        public static final int textViewReason=0x7f0a001a;
+        public static final int textViewTo=0x7f0a0027;
+        public static final int textViewWarning=0x7f0a0020;
+        public static final int topBorder=0x7f0a0039;
+        public static final int userText=0x7f0a001d;
+        public static final int username=0x7f0a0022;
+        public static final int usernameText=0x7f0a002c;
+        public static final int withdrawal=0x7f0a0040;
     }
     public static final class layout {
         public static final int acount_creation=0x7f030000;
@@ -144,75 +161,86 @@ public final class R {
         public static final int welcome=0x7f090005;
     }
     public static final class string {
-        public static final int accountFrom=0x7f060031;
-        public static final int accountTo=0x7f060030;
-        public static final int action_settings=0x7f06002a;
+        public static final int accountFrom=0x7f06003a;
+        public static final int accountTo=0x7f060039;
+        public static final int action_settings=0x7f060033;
         public static final int amount=0x7f060006;
-        public static final int amountHint=0x7f06001d;
+        public static final int amountHint=0x7f060020;
         public static final int app_name=0x7f060000;
-        public static final int blah=0x7f060032;
-        public static final int category=0x7f060007;
-        public static final int categoryHint=0x7f06001e;
+        public static final int balance=0x7f060007;
+        public static final int blah=0x7f06003b;
+        public static final int business=0x7f06002f;
+        public static final int category=0x7f06000a;
+        public static final int categoryHint=0x7f060021;
         /**  Categories for Withdrawal 
          */
-        public static final int category_prompt=0x7f060028;
-        public static final int createAccount=0x7f060021;
-        public static final int createAccountTitle=0x7f060010;
+        public static final int category_prompt=0x7f06002b;
+        public static final int clothing=0x7f06002e;
+        public static final int createAccount=0x7f060024;
+        public static final int createAccountTitle=0x7f060013;
         /**  Reports 
          */
-        public static final int csr=0x7f060026;
-        public static final int date=0x7f060009;
-        public static final int dateHint=0x7f06001a;
-        public static final int defaultAmount=0x7f06000c;
-        public static final int defaultAmountHint=0x7f06001b;
-        public static final int deposit=0x7f060023;
-        public static final int depositTitle=0x7f060011;
+        public static final int csr=0x7f060029;
+        public static final int date=0x7f06000c;
+        public static final int dateHint=0x7f06001d;
+        public static final int defaultAmount=0x7f06000f;
+        public static final int defaultAmountHint=0x7f06001e;
+        public static final int deposit=0x7f060026;
+        public static final int depositTitle=0x7f060014;
         public static final int email=0x7f060005;
-        public static final int emailHint=0x7f060019;
-        public static final int endDate=0x7f06000b;
+        public static final int emailHint=0x7f06001c;
+        public static final int endDate=0x7f06000e;
+        public static final int entertainment=0x7f060031;
         /**  TextView 
          */
         public static final int firstname=0x7f060001;
-        public static final int firstnameHint=0x7f060017;
-        public static final int forgotPassword=0x7f06000d;
+        public static final int firstnameHint=0x7f06001a;
+        public static final int forgotPassword=0x7f060010;
+        /**  Replace with other stuff later 
+         */
+        public static final int gas=0x7f06002c;
         /**  MainActivity - not used 
          */
-        public static final int goodjob=0x7f060027;
+        public static final int goodjob=0x7f06002a;
+        public static final int groceries=0x7f060030;
         /**  Stuff to delete 
          */
-        public static final int hello_world=0x7f060029;
+        public static final int hello_world=0x7f060032;
         public static final int lastname=0x7f060002;
-        public static final int lastnameHint=0x7f060018;
+        public static final int lastnameHint=0x7f06001b;
         /**  Buttons 
          */
-        public static final int login=0x7f06001f;
-        public static final int loginTitle=0x7f060014;
-        public static final int mainTitle=0x7f06002c;
+        public static final int login=0x7f060022;
+        public static final int loginTitle=0x7f060017;
+        public static final int mainTitle=0x7f060035;
         public static final int password=0x7f060004;
-        public static final int passwordHint=0x7f060016;
-        public static final int reason=0x7f060008;
-        public static final int reasonHint=0x7f06001c;
-        public static final int register=0x7f060020;
-        public static final int registration=0x7f06000f;
-        public static final int reports=0x7f060025;
-        public static final int reportsTitle=0x7f060013;
-        public static final int startDate=0x7f06000a;
-        public static final int submit=0x7f060022;
-        public static final int title_activity_consumer_spending=0x7f060034;
-        public static final int title_activity_deposit=0x7f06002d;
-        public static final int title_activity_forgot_password=0x7f060036;
-        public static final int title_activity_report_date=0x7f060035;
-        public static final int title_activity_reports=0x7f060033;
-        public static final int title_activity_transaction=0x7f06002e;
-        public static final int title_activity_welcome=0x7f06002b;
-        public static final int title_activity_withdrawal=0x7f06002f;
+        public static final int passwordHint=0x7f060019;
+        public static final int reason=0x7f06000b;
+        public static final int reasonHint=0x7f06001f;
+        public static final int register=0x7f060023;
+        public static final int registration=0x7f060012;
+        public static final int rent=0x7f06002d;
+        public static final int reports=0x7f060028;
+        public static final int reportsTitle=0x7f060016;
+        public static final int startDate=0x7f06000d;
+        public static final int submit=0x7f060025;
+        public static final int title_activity_consumer_spending=0x7f06003d;
+        public static final int title_activity_deposit=0x7f060036;
+        public static final int title_activity_forgot_password=0x7f06003f;
+        public static final int title_activity_report_date=0x7f06003e;
+        public static final int title_activity_reports=0x7f06003c;
+        public static final int title_activity_transaction=0x7f060037;
+        public static final int title_activity_welcome=0x7f060034;
+        public static final int title_activity_withdrawal=0x7f060038;
+        public static final int totalDeposits=0x7f060008;
+        public static final int totalWithdrawals=0x7f060009;
         public static final int username=0x7f060003;
         /**  Hints/EditText 
          */
-        public static final int usernameHint=0x7f060015;
-        public static final int warning=0x7f06000e;
-        public static final int withdrawal=0x7f060024;
-        public static final int withdrawalTitle=0x7f060012;
+        public static final int usernameHint=0x7f060018;
+        public static final int warning=0x7f060011;
+        public static final int withdrawal=0x7f060027;
+        public static final int withdrawalTitle=0x7f060015;
     }
     public static final class style {
         /**  Base application theme. 

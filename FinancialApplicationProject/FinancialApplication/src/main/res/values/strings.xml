@@ -10,6 +10,9 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="amount">Amount</string>
+    <string name="balance">Balance</string>
+    <string name="totalDeposits">Total Deposits</string>
+    <string name="totalWithdrawals">Total Withdrawals</string>
     <string name="category">Category</string>
     <string name="reason">Reason</string>
     <string name="date">Date</string>
@@ -63,7 +66,14 @@
         <item>Groceries</item>
         <item>Entertainment</item>
     </string-array>
-
+    
+	<!-- Replace with other stuff later -->
+	<string name="gas">Gas</string>
+	<string name="rent">Rent</string>
+	<string name="clothing">Clothing</string>
+	<string name="business">Business</string>
+	<string name="groceries">Groceries</string>
+	<string name="entertainment">Entertainment</string>
     <!-- Stuff to delete -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Torture Max</string>
