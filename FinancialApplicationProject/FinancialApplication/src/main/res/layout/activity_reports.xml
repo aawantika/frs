@@ -3,17 +3,39 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e3ecef"
     tools:context="edu.gatech.financialapplication.ReportsActivity"
     tools:ignore="MergeRootFrame" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="@string/reportsTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
      <Button
          android:id="@+id/csr"
-         android:layout_width="wrap_content"
+         android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:layout_alignParentTop="true"
          android:layout_centerHorizontal="true"
-         android:layout_marginTop="113dp"
+         android:layout_below="@+id/textView1"
          android:onClick="onCSRClick"
-         android:text="@string/csr" />
+         android:text="@string/csr"
+         android:textColor="#1c3f5a"
+         android:background="@drawable/large_rectangle_selectorbutton" />
+
+     <TextView
+         android:id="@+id/border1"
+         android:layout_width="fill_parent"
+         android:layout_height="0.5dp"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/csr"
+         android:background="#3a7099"/>
 
 </RelativeLayout>

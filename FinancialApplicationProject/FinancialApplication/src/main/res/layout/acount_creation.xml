@@ -1,57 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#e3ecef" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="386dp" >
-
+        
         <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/defaultAmount"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="15dp"
-            android:text="@string/defaultAmount"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:background="#16718d"
+        android:text="@string/createAccountTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/defaultAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="88dp"
-            android:layout_toRightOf="@+id/TextView01"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:background="#ffffff"
             android:ems="10"
+            android:padding="5dp"
             android:hint="@string/defaultAmountHint"
             android:inputType="numberDecimal" >
 
             <requestFocus />
         </EditText>
 
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/defaultAmount"
+            android:layout_alignLeft="@+id/defaultAmount"
+            android:layout_marginBottom="40dp"
+            android:text="@string/defaultAmount"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
         <Button
             android:id="@+id/create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TextView01"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="88dp"
+            android:layout_below="@+id/defaultAmount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
             android:onClick="onAccountCreate"
-            android:text="@string/createAccount" />
+            android:background="@drawable/rounded_rectanglebutton"
+            android:text="@string/createAccount"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <!-- NEEDS TO BE REMOVED -->
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TextView01"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="29dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/blah" />
     </RelativeLayout>
 
 </ScrollView>

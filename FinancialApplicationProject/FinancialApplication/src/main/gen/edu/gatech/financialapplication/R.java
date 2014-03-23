@@ -24,60 +24,87 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int bg_key=0x7f020000;
-        public static final int goodjob=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int images=0x7f020003;
-        public static final int iwill=0x7f020004;
+        public static final int bg=0x7f020000;
+        public static final int bg_key=0x7f020001;
+        public static final int goodjob=0x7f020002;
+        public static final int grid_button=0x7f020003;
+        public static final int grid_button2=0x7f020004;
+        public static final int grid_itembutton=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int images=0x7f020007;
+        public static final int iwill=0x7f020008;
+        public static final int large_rectangle_selector=0x7f020009;
+        public static final int large_rectangle_selector2=0x7f02000a;
+        public static final int large_rectangle_selectorbutton=0x7f02000b;
+        public static final int loginbox=0x7f02000c;
+        public static final int register_header=0x7f02000d;
+        public static final int register_register_button=0x7f02000e;
+        public static final int register_register_button2=0x7f02000f;
+        public static final int registration_button=0x7f020010;
+        public static final int rounded_rectangle=0x7f020011;
+        public static final int rounded_rectangle2=0x7f020012;
+        public static final int rounded_rectanglebutton=0x7f020013;
+        public static final int welcome_login=0x7f020014;
+        public static final int welcome_login2=0x7f020015;
+        public static final int welcome_login_button=0x7f020016;
+        public static final int welcome_register=0x7f020017;
+        public static final int welcome_register2=0x7f020018;
+        public static final int welcome_register_button=0x7f020019;
+        public static final int welcomebox=0x7f02001a;
+        public static final int whitebg=0x7f02001b;
     }
     public static final class id {
-        public static final int TextView01=0x7f090000;
-        public static final int accountLV=0x7f090023;
-        public static final int action_settings=0x7f09002e;
-        public static final int button1=0x7f090008;
+        public static final int TextView01=0x7f090002;
+        public static final int accountLV=0x7f090026;
+        public static final int action_settings=0x7f090032;
+        public static final int border1=0x7f090023;
+        public static final int bottomBorder=0x7f09002c;
+        public static final int button1=0x7f09000b;
         public static final int container=0x7f090004;
-        public static final int create=0x7f090002;
-        public static final int createAccount=0x7f090026;
+        public static final int create=0x7f090003;
+        public static final int createAccount=0x7f090028;
         public static final int csr=0x7f090022;
         public static final int defaultAmount=0x7f090001;
-        public static final int deposit=0x7f090025;
-        public static final int editText1=0x7f09001f;
+        public static final int deposit=0x7f09002a;
+        public static final int divider=0x7f090025;
+        public static final int divider2=0x7f090027;
+        public static final int editText1=0x7f09001e;
         public static final int editText2=0x7f090020;
-        public static final int editTextAmount=0x7f090005;
-        public static final int editTextCategory=0x7f09002b;
-        public static final int editTextDate=0x7f09000a;
-        public static final int editTextReason=0x7f090007;
-        public static final int email=0x7f090016;
-        public static final int emailText=0x7f09001b;
-        public static final int endText=0x7f09001e;
-        public static final int firstName=0x7f090014;
-        public static final int firstnameText=0x7f090017;
-        public static final int imageView1=0x7f090011;
+        public static final int editTextAmount=0x7f090008;
+        public static final int editTextCategory=0x7f090030;
+        public static final int editTextDate=0x7f090006;
+        public static final int editTextReason=0x7f09000a;
+        public static final int email=0x7f090019;
+        public static final int emailText=0x7f09001a;
+        public static final int endText=0x7f09001f;
+        public static final int firstName=0x7f09001b;
+        public static final int firstnameText=0x7f090015;
+        public static final int imageView1=0x7f09000c;
         public static final int imageView2=0x7f090013;
-        public static final int lastName=0x7f090015;
-        public static final int lastnameText=0x7f090018;
-        public static final int loginBt=0x7f09000e;
-        public static final int loginButton=0x7f09002a;
-        public static final int passText=0x7f09000d;
-        public static final int password=0x7f09000f;
-        public static final int passwordText=0x7f09001a;
+        public static final int lastName=0x7f090014;
+        public static final int lastnameText=0x7f090016;
+        public static final int loginBt=0x7f090011;
+        public static final int loginButton=0x7f09002e;
+        public static final int passText=0x7f09000f;
+        public static final int password=0x7f090010;
+        public static final int passwordText=0x7f090018;
         public static final int register=0x7f09001c;
-        public static final int registerButton=0x7f090029;
-        public static final int reports=0x7f090027;
+        public static final int registerButton=0x7f09002d;
+        public static final int reports=0x7f090029;
         public static final int startText=0x7f09001d;
         public static final int submit=0x7f090021;
-        public static final int textView=0x7f09002d;
-        public static final int textView1=0x7f090003;
-        public static final int textViewAmount=0x7f090006;
-        public static final int textViewCategory=0x7f09002c;
-        public static final int textViewDate=0x7f09000b;
+        public static final int textView=0x7f090031;
+        public static final int textView1=0x7f090000;
+        public static final int textViewAmount=0x7f090007;
+        public static final int textViewCategory=0x7f09002f;
+        public static final int textViewDate=0x7f090005;
         public static final int textViewReason=0x7f090009;
         public static final int textViewTo=0x7f090012;
-        public static final int userText=0x7f09000c;
-        public static final int username=0x7f090010;
-        public static final int usernameText=0x7f090019;
-        public static final int welcomeMessage=0x7f090028;
-        public static final int withdrawal=0x7f090024;
+        public static final int topBorder=0x7f090024;
+        public static final int userText=0x7f09000e;
+        public static final int username=0x7f09000d;
+        public static final int usernameText=0x7f090017;
+        public static final int withdrawal=0x7f09002b;
     }
     public static final class layout {
         public static final int acount_creation=0x7f030000;
@@ -116,6 +143,7 @@ public final class R {
         public static final int category=0x7f060007;
         public static final int categoryHint=0x7f060016;
         public static final int createAccount=0x7f060019;
+        public static final int createAccountTitle=0x7f06002e;
         /**  Reports 
          */
         public static final int csr=0x7f06001e;
@@ -124,6 +152,7 @@ public final class R {
         public static final int defaultAmount=0x7f06000c;
         public static final int defaultAmountHint=0x7f060013;
         public static final int deposit=0x7f06001b;
+        public static final int depositTitle=0x7f06002f;
         public static final int email=0x7f060005;
         public static final int emailHint=0x7f060011;
         public static final int endDate=0x7f06000b;
@@ -142,13 +171,16 @@ public final class R {
         /**  Buttons 
          */
         public static final int login=0x7f060017;
+        public static final int loginTitle=0x7f060032;
         public static final int mainTitle=0x7f060023;
         public static final int password=0x7f060004;
         public static final int passwordHint=0x7f06000e;
         public static final int reason=0x7f060008;
         public static final int reasonHint=0x7f060014;
         public static final int register=0x7f060018;
+        public static final int registration=0x7f06002d;
         public static final int reports=0x7f06001d;
+        public static final int reportsTitle=0x7f060031;
         public static final int startDate=0x7f06000a;
         public static final int submit=0x7f06001a;
         public static final int title_activity_consumer_spending=0x7f06002b;
@@ -163,6 +195,7 @@ public final class R {
          */
         public static final int usernameHint=0x7f06000d;
         public static final int withdrawal=0x7f06001c;
+        public static final int withdrawalTitle=0x7f060030;
     }
     public static final class style {
         /**  Base application theme. 

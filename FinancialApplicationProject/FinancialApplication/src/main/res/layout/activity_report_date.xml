@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e3ecef"
     tools:context=".ReportDateActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -10,39 +11,41 @@
         android:id="@+id/startText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="147dp"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_marginTop="116dp"
         android:text="@string/startDate"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/endText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/startText"
-        android:layout_below="@+id/startText"
-        android:layout_marginTop="19dp"
-        android:text="@string/endDate"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/startText"
-        android:layout_alignParentRight="true"
+        android:layout_below="@+id/startText"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#ffffff"
+        android:padding="5dp"
         android:ems="10"
         android:inputType="date"
         android:hint="@string/dateHint" />
+
+    <TextView
+        android:id="@+id/endText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/editText1"
+        android:text="@string/endDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/submit"
-        android:layout_alignParentRight="true"
+        android:layout_below="@+id/endText"
+        android:layout_alignLeft="@+id/endText"
+        android:background="#ffffff"
+        android:padding="5dp"
         android:ems="10"
         android:inputType="date"
         android:hint="@string/dateHint" />
@@ -51,11 +54,13 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/endText"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="51dp"
-        android:layout_toRightOf="@+id/startText"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_rectanglebutton"
         android:onClick="onDateClick"
-        android:text="@string/submit" />
+        android:text="@string/submit"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

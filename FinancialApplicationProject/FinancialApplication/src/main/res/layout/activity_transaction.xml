@@ -1,9 +1,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:gravity="top"
+    android:background="@drawable/bg"
     tools:context=".TransactionActivity" >
+    
+    <TextView
+        android:id="@+id/topBorder"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:textColor="#ffffff" />
+    
+    <View  
+        android:id="@+id/divider"  
+        android:layout_width=".05dp"  
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topBorder" 
+        android:layout_above="@+id/accountLV" 
+        android:layout_alignParentTop="true"  
+        android:layout_centerHorizontal="true"
+        android:background="#16718d" />
+    
+    <View  
+        android:id="@+id/divider2"  
+        android:layout_width="fill_parent"  
+        android:layout_height=".75dp"
+        android:layout_below="@+id/createAccount"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d" />
+
+    <Button
+        android:id="@+id/createAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topBorder"
+        android:layout_alignParentLeft="true" 
+        android:layout_toLeftOf="@+id/divider"
+        android:layout_margin="0dp"
+        android:background="@drawable/grid_itembutton"
+        android:onClick="onCreateAccount"
+        android:text="@string/createAccount"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/reports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/divider2"
+        android:layout_below="@+id/topBorder"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/divider"
+        android:layout_margin="0dp"
+        android:background="@drawable/grid_itembutton"
+        android:onClick="onReportsClick"
+        android:text="@string/reports"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/deposit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/accountLV"
+        android:layout_alignParentLeft="true" 
+        android:layout_toLeftOf="@+id/divider"
+        android:layout_margin="0dp"
+        android:background="@drawable/grid_itembutton"
+        android:onClick="onDepositClick"
+        android:text="@string/deposit"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/withdrawal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/reports"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/divider2"
+        android:layout_margin="0dp"
+        android:background="@drawable/grid_itembutton"
+        android:onClick="onWithdrawalClick"
+        android:text="@string/withdrawal"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
         android:id="@+id/accountLV"
@@ -12,50 +98,21 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/withdrawal"
+        android:layout_above="@+id/bottomBorder"
         android:background="@drawable/bg_key"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin" >
-    </ListView>
-
-    <Button
-        android:id="@+id/deposit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/accountLV"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
-        android:onClick="onDepositClick"
-        android:text="@string/deposit" />
-
-    <Button
-        android:id="@+id/withdrawal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+    </ListView>  
+    
+    <TextView
+        android:id="@+id/bottomBorder"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
-        android:onClick="onWithdrawalClick"
-        android:text="@string/withdrawal" />
-
-    <Button
-        android:id="@+id/createAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/deposit"
-        android:layout_centerHorizontal="true"
-        android:onClick="onCreateAccount"
-        android:text="@string/createAccount" />
-
-    <Button
-        android:id="@+id/reports"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/accountLV"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="7dp"
-        android:onClick="onReportsClick"
-        android:text="@string/reports" />
+        android:background="#16718d"
+        android:gravity="center" />
 
 </RelativeLayout>

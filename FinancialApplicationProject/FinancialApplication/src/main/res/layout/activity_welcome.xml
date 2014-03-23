@@ -4,37 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="left|top"
+    android:background="@drawable/bg"
     tools:context=".WelcomeActivity"
     tools:ignore="MergeRootFrame" >
-
-    <TextView
+    
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/title_activity_welcome"
-        android:id="@+id/welcomeMessage"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:layout_centerVertical="true"
+        android:src="@drawable/welcomebox" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginButton"
+        android:layout_alignBottom="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="59dp"
         android:onClick="toRegisterActivity"
-        android:text="@string/register" />
+        android:background="@drawable/welcome_register_button" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcomeMessage"
+        android:layout_above="@+id/registerButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:onClick="toLoginActivity"
-        android:text="@string/login" />
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/welcome_login_button"
+        android:onClick="toLoginActivity" />
 
 </RelativeLayout>

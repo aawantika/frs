@@ -58,5 +58,11 @@
     <string name="title_activity_reports">ReportsActivity</string>
     <string name="title_activity_consumer_spending">ConsumerSpendingActivity</string>
     <string name="title_activity_report_date">ReportDateActivity</string>
+    <string name="registration">REGISTRATION</string>
+    <string name="createAccountTitle">CREATE ACCOUNT</string>
+    <string name="depositTitle">DEPOSIT</string>
+    <string name="withdrawalTitle">WITHDRAWAL</string>
+    <string name="reportsTitle">REPORTS</string>
+    <string name="loginTitle">LOGIN</string>
 
 </resources>
