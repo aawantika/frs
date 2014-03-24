@@ -1,6 +1,8 @@
 package edu.gatech.financialapplication;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -47,15 +49,32 @@ public class WithdrawalActivity extends Activity {
 
 	public void onClick(View view) {
 		date = dg.createDate();
-		amount = Float
-				.parseFloat(((EditText) findViewById(R.id.editTextAmount))
-						.getText().toString());
-		reason = ((EditText) findViewById(R.id.editTextReason)).getText()
-				.toString();
-
-		if (amount > 0 && !reason.equals("")) {
-			Transaction transaction = new Withdrawal(accountNumber, date,
-					amount, reason, category);
+		amount = Float.parseFloat(((EditText) findViewById(R.id.editTextAmount)).getText().toString());
+		reason = ((EditText) findViewById(R.id.editTextReason)).getText().toString();
+		
+		if (amount <= 0) { // empty amount
+			new AlertDialog.Builder(this)
+					.setTitle("Information error")
+					.setMessage(
+							"Sorry, invalid amount. \nAmount must be greater than 0.")
+					.setPositiveButton(android.R.string.ok,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).show();
+		} else if (reason.equals("")) { // empty reason
+			new AlertDialog.Builder(this)
+					.setTitle("Information error")
+					.setMessage("Sorry, reason can't be blank.")
+					.setPositiveButton(android.R.string.ok,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).show();
+		} else {
+			Transaction transaction = new Withdrawal(accountNumber, date,amount, reason, category);
 			db.addTransaction(transaction);
 
 			Intent intent = new Intent(this, TransactionActivity.class);

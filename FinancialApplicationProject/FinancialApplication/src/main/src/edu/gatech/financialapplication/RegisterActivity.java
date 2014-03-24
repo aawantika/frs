@@ -102,7 +102,7 @@ public class RegisterActivity extends Activity {
 										int which) {
 								}
 							}).show();
-		} else if (!email.contains("@")
+		} else if ((email.indexOf("@") != email.lastIndexOf("@"))
 				|| !email.substring(emailLength - 4, emailLength - 3).equals(
 						".")) { //invalid email
 			new AlertDialog.Builder(this)
@@ -130,6 +130,5 @@ public class RegisterActivity extends Activity {
 			Intent intent = new Intent(this, WelcomeActivity.class);
 			startActivity(intent);
 		}
-		
 	}
 }
