@@ -48,6 +48,7 @@
     <string name="deposit">Deposit</string>
     <string name="withdrawal">Withdrawal</string>
     <string name="reports">Reports</string>
+    <string name="back">Transactions</string>
 
     <!-- Reports -->
     <string name="csr">Consumer Spending Report</string>

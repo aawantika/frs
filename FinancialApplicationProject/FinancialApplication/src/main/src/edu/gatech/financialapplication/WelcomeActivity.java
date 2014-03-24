@@ -18,6 +18,7 @@ public class WelcomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		db = new DBHelper(this);
+		//db.removeAll();
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -25,17 +26,18 @@ public class WelcomeActivity extends Activity {
 		db.addUser(new User("administrator", "lastName", "admin", "pass123", "admin@gatech.edu" ));
 		
 		//USE THIS FOR FUTURE TESTING IT WORKS PERFECTLY. DON'T SCREW IT UP!
-		//DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
+//		//DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
 //		db.addUser(new User("tika", "sahu", "yolouser", "password", "email"));
-//		User getUser = db.getUserDetailsByUsername("yolouser");
-//		db.addAccount(new Account(getUser.getFirstname(), getUser.getLastname(), getUser.getUsername(), "1000.00", "1234567890"));
-//		Account getAccount = db.getAccountDetails("yolouser");
+//		User getUser = db.getUserByUsername("yolouser");
+//		Account newAccount = new Account(getUser.getFirstname(), getUser.getLastname(), getUser.getUsername(), "1000.00", "1234567890"); 
+//		db.addAccount(newAccount);
+//		Account getAccount = db.getAccountByAccountNumber(newAccount.getAccountNumber());
 //		System.out.println("ORIGINAL AMOUNT: " + getAccount.getBalance());
 //		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/08/2014", 200.00f, "TEST"));
-//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/09/2014", 200.00f, "TEST"));
-//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/10/2014", 200.00f, "TEST"));
+//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/09/2014", 600.00f, "TEST"));
+//		db.addTransaction(new Deposit(getAccount.getAccountNumber(), "04/10/2014", 800.00f, "TEST"));
 //		System.out.println("NEW AMOUNT: " + getAccount.getBalance());
-//		List<Transaction> list = db.getAllTransactions(getAccount.getAccountNumber());
+//		ArrayList<Transaction> list = db.getAllTransactions(getAccount.getAccountNumber());
 //		for (Transaction t : list) {
 //			System.out.println("TRANSACTION: " + t);
 //		}

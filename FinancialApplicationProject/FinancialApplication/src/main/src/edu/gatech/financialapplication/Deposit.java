@@ -3,7 +3,7 @@ package edu.gatech.financialapplication;
 public class Deposit extends Transaction {
 
 	public Deposit(String account, String date, float amount, String descriptor) {
-		super(account, date, amount, descriptor, "", "deposit");
+		super(account, date, amount, descriptor, "something", "deposit");
 		
 	}
 

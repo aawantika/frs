@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
+	protected int size = 0;
 	private static final String DATABASE_NAME = "foobarsribshack.db";
 	private static final int DATABASE_VERSION = 1;
 
@@ -241,8 +242,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		try {
 			db.insert(DATABASE_TABLE_TRANSACTION, null, values);
+			size++;
 			updateAccount(transaction);
 			Log.d("Database Transaction Inserted", "yay ");
+			
 			db.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -251,26 +254,42 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	// Getting All Transactions based on account number
 	public ArrayList<Transaction> getAllTransactions(String accountNumber) {
-
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = null;
+		
+		cursor = db.query(true, DATABASE_TABLE_TRANSACTION, null, KEY_ACCOUNT
+				+ "=?", new String[] { accountNumber }, null, null,
+				KEY_ACCOUNT + " ASC", null);		
 		ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
-		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_TRANSACTION;
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		if (cursor.moveToFirst()) {
-			do {
-				Transaction transaction = new Transaction(cursor.getString(0),
-						cursor.getString(1), Float.parseFloat(cursor
-								.getString(2)), cursor.getString(3),
-						cursor.getString(4), cursor.getString(5));
-				if (transaction.getAccount().equals(accountNumber)) {
+		
+		if (cursor != null) {
+			Log.d("cursor size - transaction: ", cursor.getCount() + "");
+			for (int i = 0; i < cursor.getCount(); i++) {
+				if (cursor.moveToNext()) {
+					Transaction transaction = new Transaction(cursor.getString(0),
+							cursor.getString(1), Float.parseFloat(cursor
+									.getString(2)), cursor.getString(3),
+							cursor.getString(4), cursor.getString(5));
 					transactionList.add(transaction);
 				}
-			} while (cursor.moveToNext());
+			}
 		}
-
 		return transactionList;
+	}
+	
+	public ArrayList<Transaction> getAllTransactionsByUsername(String username) {
+		ArrayList<Transaction> fullTransactionList = new ArrayList<Transaction>();
+		ArrayList<Account> accountList = getAccountsByUsername(username);
+		
+		for (Account a : accountList) {
+			String accountNumber = a.getAccountNumber();
+			ArrayList<Transaction> transactionList = getAllTransactions(accountNumber);
+			for (Transaction t : transactionList) {
+				fullTransactionList.add(t);
+			}
+		}
+		
+		return fullTransactionList;
 	}
 	
 	public ArrayList<Transaction> getAllDeposits() {

@@ -7,27 +7,29 @@ import android.view.View;
 import android.widget.EditText;
 
 public class DepositActivity extends Activity {
-	String accountNumber, username;
+	private String accountNumber, username;
 	private DBHelper db;
+	private DateGrabber dg;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_deposit);
 		db = new DBHelper(this);
-		
+		dg = new DateGrabber();
 		accountNumber = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 	}
 
 	public void onClick(View view) {
-		String tempDate = ((EditText)findViewById(R.id.editTextDate)).getText().toString();
+		String tempDate = dg.createDate();
 		String tempAmountString = ((EditText)findViewById(R.id.editTextAmount)).getText().toString();
 		float tempAmount = Float.parseFloat(tempAmountString);
 		String tempReason = ((EditText)findViewById(R.id.editTextReason)).getText().toString();
 		
 		if (!tempReason.equals("")) {
 			Transaction transaction = new Deposit(accountNumber, tempDate, tempAmount, tempReason);
+			System.out.println(transaction.toString());
 			db.addTransaction(transaction);
 			
 			Intent intent = new Intent(this, TransactionActivity.class);

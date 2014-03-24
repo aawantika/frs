@@ -15,13 +15,15 @@ public class WithdrawalActivity extends Activity {
 	private String date, reason, category;
 	private float amount;
 	private DBHelper db;
+	private DateGrabber dg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_withdrawal);
 		db = new DBHelper(this);
-
+		dg = new DateGrabber();
+		
 		accountNumber = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 
@@ -44,8 +46,7 @@ public class WithdrawalActivity extends Activity {
 	}
 
 	public void onClick(View view) {
-		date = ((EditText) findViewById(R.id.editTextDate)).getText()
-				.toString();
+		date = dg.createDate();
 		amount = Float
 				.parseFloat(((EditText) findViewById(R.id.editTextAmount))
 						.getText().toString());
