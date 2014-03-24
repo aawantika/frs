@@ -8,8 +8,7 @@ import android.widget.EditText;
 
 public class ReportDateActivity extends Activity {
 	private String username, accountNumberTemp, type;
-	private EditText dateFrom;
-	private EditText dateTo;
+	private EditText monthFrom, dayFrom, yearFrom, monthTo, dayTo, yearTo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,41 +17,32 @@ public class ReportDateActivity extends Activity {
 		accountNumberTemp = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 		type = getIntent().getStringExtra("type");
-		dateFrom = (EditText)findViewById(R.id.editText1);
-		dateTo = (EditText)findViewById(R.id.editText2);
+		monthFrom = (EditText)findViewById(R.id.monthFrom);
+		dayFrom = (EditText)findViewById(R.id.dayFrom);
+		yearFrom = (EditText)findViewById(R.id.yearFrom);
+		monthTo = (EditText)findViewById(R.id.monthTo);
+		dayTo = (EditText)findViewById(R.id.dayTo);
+		yearTo = (EditText)findViewById(R.id.yearTo);
 	}
 
 
 	public void onDateClick(View view) {
 		Intent intent = null;
-		String dF = dateFrom.getText().toString();
-		String dT = dateTo.getText().toString();
 		if (type.equals("consumerSpending")) {
 			intent = new Intent(this, ConsumerSpendingActivity.class);
 		}
-		if (Integer.valueOf(dT.substring(0, 2)) - Integer.valueOf(dF.substring(0, 2)) >= 0
-				&& Integer.valueOf(dT.substring(3, 5)) - Integer.valueOf(dF.substring(3, 5)) >= 0 
-				&& Integer.valueOf(dT.substring(6, 10)) - Integer.valueOf(dF.substring(6, 10)) >= 0){
-			Bundle bundle = new Bundle();
-			bundle.putString("accountNumber", accountNumberTemp);
-			bundle.putString("username", username);
-			bundle.putString("dateFrom", dateFrom.getText().toString());
-			bundle.putString("dateTo", dateTo.getText().toString());
-			intent.putExtras(bundle);
-			startActivity(intent);
-		} else {
-			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Date Range is invalid\nPlease check it.")
-		    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-					
-				}}).show();
-			
-		}
+		//add other elseifs
 		
+		Bundle bundle = new Bundle();
+		bundle.putString("accountNumber", accountNumberTemp);
+		bundle.putString("username", username);
+		bundle.putString("monthFrom", monthFrom.getText().toString());
+		bundle.putString("dayFrom", dayFrom.getText().toString());
+		bundle.putString("yearFrom", yearFrom.getText().toString());
+		bundle.putString("monthTo", monthTo.getText().toString());
+		bundle.putString("dayTo", dayTo.getText().toString());
+		bundle.putString("yearTo", yearTo.getText().toString());
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 }

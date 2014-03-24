@@ -22,22 +22,19 @@ public class ConsumerSpendingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_consumer_spending);
 		db = new DBHelper(this);
-
+		withinDates = new ArrayList<Transaction>();
+		
+		//pull from intent
 		accountNumberTemp = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
-		dateFrom = getIntent().getStringExtra("dateFrom");
-		dateTo = getIntent().getStringExtra("dateTo");
-		withinDates = new ArrayList<Transaction>();
-		System.out.println("accountNumber and username: " + accountNumberTemp
-				+ " " + username);
-
-		monthFrom = Integer.valueOf(dateFrom.substring(0, 2));
-		dayFrom = Integer.valueOf(dateFrom.substring(3, 5));
-		yearFrom = Integer.valueOf(dateFrom.substring(6, 10));
-
-		monthTo = Integer.valueOf(dateTo.substring(0, 2));
-		dayTo = Integer.valueOf(dateTo.substring(3, 5));
-		yearTo = Integer.valueOf(dateTo.substring(6, 10));
+		
+		monthFrom = Integer.valueOf(getIntent().getStringExtra("monthFrom"));
+		dayFrom = Integer.valueOf(getIntent().getStringExtra("dayFrom"));
+		yearFrom = Integer.valueOf(getIntent().getStringExtra("yearFrom"));
+		
+		monthTo = Integer.valueOf(getIntent().getStringExtra("monthTo"));
+		dayTo = Integer.valueOf(getIntent().getStringExtra("dayTo"));
+		yearTo = Integer.valueOf(getIntent().getStringExtra("yearTo"));
 
 		transactionList = db.getAllTransactionsByUsername(username);
 		System.out.println("SIZE " + transactionList.size());
