@@ -25,17 +25,34 @@ public class ReportDateActivity extends Activity {
 
 	public void onDateClick(View view) {
 		Intent intent = null;
+		String dF = dateFrom.getText().toString();
+		String dT = dateTo.getText().toString();
 		if (type.equals("consumerSpending")) {
 			intent = new Intent(this, ConsumerSpendingActivity.class);
 		}
-		//add other elseifs
+		if (Integer.valueOf(dT.substring(0, 2)) - Integer.valueOf(dF.substring(0, 2)) >= 0
+				&& Integer.valueOf(dT.substring(3, 5)) - Integer.valueOf(dF.substring(3, 5)) >= 0 
+				&& Integer.valueOf(dT.substring(6, 10)) - Integer.valueOf(dF.substring(6, 10)) >= 0){
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumberTemp);
+			bundle.putString("username", username);
+			bundle.putString("dateFrom", dateFrom.getText().toString());
+			bundle.putString("dateTo", dateTo.getText().toString());
+			intent.putExtras(bundle);
+			startActivity(intent);
+		} else {
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Date Range is invalid\nPlease check it.")
+		    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					
+				}}).show();
+			
+		}
 		
-		Bundle bundle = new Bundle();
-		bundle.putString("accountNumber", accountNumberTemp);
-		bundle.putString("username", username);
-		bundle.putString("dateFrom", dateFrom.getText().toString());
-		bundle.putString("dateTo", dateTo.getText().toString());
-		intent.putExtras(bundle);
-		startActivity(intent);
 	}
 }
