@@ -30,8 +30,8 @@ public class ForgotPassword {
 		Session session = Session.getDefaultInstance(props,
 				new Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication("emailUsername",
-								"emailPassword");
+						return new PasswordAuthentication(emailUsername,
+								emailPassword);
 					}
 				});
 
