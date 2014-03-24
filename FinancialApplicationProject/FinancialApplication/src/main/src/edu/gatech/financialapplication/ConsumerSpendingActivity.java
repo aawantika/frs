@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class ConsumerSpendingActivity extends Activity {
 	private DBHelper db;
-	private String username, accountNumberTemp, dateFrom, dateTo;
+	private String username, accountNumberTemp;
 	private int dayTo, dayFrom, monthTo, monthFrom, yearTo, yearFrom;
 	private float totalWithdrawals, gas, rent,
 			clothing, business, groceries, entertainment;
@@ -37,8 +37,13 @@ public class ConsumerSpendingActivity extends Activity {
 		yearTo = Integer.valueOf(getIntent().getStringExtra("yearTo"));
 
 		transactionList = db.getAllTransactionsByUsername(username);
-		System.out.println("SIZE " + transactionList.size());
 
+		populateCorrectList();
+		populateCashCategories();
+		populateTextFields();
+	}
+	
+	private void populateCorrectList() {
 		for (Transaction t : transactionList) {
 			System.out.println("MONTH " + t.getDate());
 			int month = Integer.valueOf(t.getDate().substring(0, 2));
@@ -58,7 +63,6 @@ public class ConsumerSpendingActivity extends Activity {
 					}
 				}
 			}
-			
 			if (goodToGoForward) {
 				if (year < yearTo) {
 					goodToGoBackward = true;
@@ -78,7 +82,9 @@ public class ConsumerSpendingActivity extends Activity {
 				withinDates.add(t);
 			}
 		}
-
+	}
+	
+	private void populateCashCategories() {
 		for (Transaction t : withinDates) {
 			if (t.getType().equals("withdrawal")) {
 				totalWithdrawals += t.getAmount();
@@ -97,7 +103,9 @@ public class ConsumerSpendingActivity extends Activity {
 				}
 			}
 		}
-
+	}
+	
+	private void populateTextFields() {
 		TextView text = (TextView)findViewById(R.id.textView12);
 		text.setText(Float.toString(totalWithdrawals));
 		text = (TextView)findViewById(R.id.textView13);
