@@ -49,7 +49,7 @@
     <string name="withdrawal">Withdrawal</string>
     <string name="reports">Reports</string>
     <string name="back">Transactions</string>
-
+	<string name="unused"></string>
     <!-- Reports -->
     <string name="csr">Consumer Spending Report</string>
 

@@ -47,27 +47,36 @@ public class ConsumerSpendingActivity extends Activity {
 			int month = Integer.valueOf(t.getDate().substring(0, 2));
 			int day = Integer.valueOf(t.getDate().substring(3, 5));
 			int year = Integer.valueOf(t.getDate().substring(6, 10));
-			boolean withinMonthRange = (monthFrom < month && month < monthTo);
-			boolean withinDayRange = (dayFrom <= day && day <= dayTo);
-			boolean withinYearRange = (yearFrom < year && year < yearTo);
-			boolean goodToGo = false;
-			if (withinYearRange == true) {
-				goodToGo = true;
-			} else {
-				if (year == yearFrom || year == yearTo) {
-					if (withinMonthRange) {
-						goodToGo = true;
-					} else {
-						if (month == monthFrom || month == monthTo) {
-							if (withinDayRange) {
-								goodToGo = true;
-							}
+			boolean goodToGoForward = false;
+			boolean goodToGoBackward = false;
+			//evaluate forward
+			if (year > yearFrom) {
+				goodToGoForward = true;
+			} else if (year == yearFrom) {
+				if (month > monthFrom) {
+					goodToGoForward = true;
+				} else if (month == monthFrom) {
+					if (day >= dayFrom) {
+						goodToGoForward = true;
+					}
+				}
+			}
+			
+			if (goodToGoForward) {
+				if (year < yearTo) {
+					goodToGoBackward = true;
+				} else if (year == yearTo) {
+					if (month < monthTo) {
+						goodToGoBackward = true;
+					} else if (month == monthTo) {
+						if (day <= dayTo) {
+							goodToGoBackward = true;
 						}
 					}
 				}
 			}
 
-			if (goodToGo) {
+			if (goodToGoForward && goodToGoBackward) {
 				System.out.println(t);
 				withinDates.add(t);
 			}
