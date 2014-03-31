@@ -10,55 +10,81 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/**
+ * Account adapter to change from one account to another.
+ * 
+ * @author Team 15
+ * 
+ */
 public class AccountAdapter extends ArrayAdapter<Account> {
-	private Context context;
-	private int rowResourceId;
-	private ArrayList<Account> objects;
 
-	public AccountAdapter(Context context, int resource,
-			ArrayList<Account> objects) {
-		super(context, resource, objects);
-		this.context = context;
-		this.rowResourceId = resource;
-		this.objects = objects;
-	}
+    /**
+     * New context.
+     */
+    private Context context;
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(rowResourceId, parent, false);
-		TextView textView = (TextView) rowView.findViewById(R.id.textView);
-		textView.setTextColor(Color.BLACK);
+    /**
+     * New int.
+     */
+    private int rowResourceId;
 
-		textView.setText(objects.get(position).debug());
-		// Log.e(objects.get(position).getName(),
-		// objects.get(position).debug());
+    /**
+     * New arraylist of accounts.
+     */
+    private ArrayList<Account> objects;
 
-		return rowView;
-	}
+    /**
+     * New account adapter.
+     * 
+     * @param aContext  New context hides a field.
+     * @param resource 
+     * @param newObjects ArrayList of accounts.
+     */
+    public AccountAdapter(Context aContext, int resource,
+            ArrayList<Account> newObjects) {
+        super(aContext, resource, newObjects);
+        this.context = aContext;
+        this.rowResourceId = resource;
+        this.objects = newObjects;
+    }
 
-	@Override
-	public int getCount() {
-		return objects.size();
-	}
+    @Override
+    public final View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(rowResourceId, parent, false);
+        TextView textView = (TextView) rowView.findViewById(R.id.textView);
+        textView.setTextColor(Color.BLACK);
 
-	public int getPosition(Account item) {
-		return objects.indexOf(item);
-	}
+        textView.setText(objects.get(position).debug());
+        // Log.e(objects.get(position).getName(),
+        // objects.get(position).debug());
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+        return rowView;
+    }
 
-	@Override
-	public Account getItem(int position) {
-		return objects.get(position);
-	}
+    @Override
+    public final int getCount() {
+        return objects.size();
+    }
 
-	public boolean hasStableIds() {
-		return true;
-	}
+    @Override
+    public final int getPosition(final Account item) {
+        return objects.indexOf(item);
+    }
 
+    @Override
+    public final long getItemId(final int position) {
+        return position;
+    }
+
+    @Override
+    public final Account getItem(final int position) {
+        return objects.get(position);
+    }
+
+    @Override
+    public final boolean hasStableIds() {
+        return true;
+    }
 }
