@@ -26,29 +26,29 @@ public class ReportDateActivity extends Activity {
     private String type;
     
     /**
-     * New edittext monthFrom.
+     * New strng monthFrom.
      */
-    private EditText monthFrom;
+    private String monthFrom;
     /**
-     * New edittext dayFrom.
+     * New string dayFrom.
      */
-    private EditText dayFrom;
+    private String dayFrom;
     /**
-     * New edittext yearFrom.
+     * New string yearFrom.
      */
-    private EditText yearFrom;
+    private String yearFrom;
     /**
-     * New edittext monthTo.
+     * New string monthTo.
      */
-    private EditText monthTo;
+    private String monthTo;
     /**
-     * New edittext dayTo.
+     * New string dayTo.
      */
-    private EditText dayTo;
+    private String dayTo;
     /**
-     * New edittext yearTo.
+     * New string yearTo.
      */
-    private EditText yearTo;
+    private String yearTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +58,12 @@ public class ReportDateActivity extends Activity {
         accountNumberTemp = getIntent().getStringExtra("accountNumber");
         username = getIntent().getStringExtra("username");
         type = getIntent().getStringExtra("type");
-        monthFrom = (EditText) findViewById(R.id.monthFrom);
-        dayFrom = (EditText) findViewById(R.id.dayFrom);
-        yearFrom = (EditText) findViewById(R.id.yearFrom);
-        monthTo = (EditText) findViewById(R.id.monthTo);
-        dayTo = (EditText) findViewById(R.id.dayTo);
-        yearTo = (EditText) findViewById(R.id.yearTo);
+        monthFrom = ((EditText) findViewById(R.id.monthFrom)).getText().toString();
+        dayFrom = ((EditText) findViewById(R.id.dayFrom)).getText().toString();
+        yearFrom = ((EditText) findViewById(R.id.yearFrom)).getText().toString();
+        monthTo = ((EditText) findViewById(R.id.monthTo)).getText().toString();
+        dayTo = ((EditText) findViewById(R.id.dayTo)).getText().toString();
+        yearTo = ((EditText) findViewById(R.id.yearTo)).getText().toString();
     }
 
     /**
@@ -80,12 +80,12 @@ public class ReportDateActivity extends Activity {
         Bundle bundle = new Bundle();
         bundle.putString("accountNumber", accountNumberTemp);
         bundle.putString("username", username);
-        bundle.putString("monthFrom", monthFrom.getText().toString());
-        bundle.putString("dayFrom", dayFrom.getText().toString());
-        bundle.putString("yearFrom", yearFrom.getText().toString());
-        bundle.putString("monthTo", monthTo.getText().toString());
-        bundle.putString("dayTo", dayTo.getText().toString());
-        bundle.putString("yearTo", yearTo.getText().toString());
+        bundle.putString("monthFrom", monthFrom);
+        bundle.putString("dayFrom", dayFrom);
+        bundle.putString("yearFrom", yearFrom);
+        bundle.putString("monthTo", monthTo);
+        bundle.putString("dayTo", dayTo);
+        bundle.putString("yearTo", yearTo);
         intent.putExtras(bundle);
         startActivity(intent);
     }

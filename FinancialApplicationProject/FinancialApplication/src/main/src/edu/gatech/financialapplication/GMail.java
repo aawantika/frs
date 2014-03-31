@@ -151,7 +151,7 @@ public class GMail {
     public void sendEmail() throws AddressException, MessagingException {
         Transport transport = mailSession.getTransport("smtp");
         transport.connect(emailHost, fromUser, fromPassword);
-        Log.i(gmail, "allrecipients: " + emailMessage.getAllRecipients());
+        //Log.i(gmail, "allrecipients: " + emailMessage.getAllRecipients().toString());
         transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
         transport.close();
         Log.i("GMail", "Email sent successfully.");
