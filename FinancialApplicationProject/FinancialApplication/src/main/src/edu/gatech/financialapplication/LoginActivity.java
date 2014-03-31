@@ -26,7 +26,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
         Button loginBt = (Button)findViewById(R.id.loginBt);
         loginBt.setOnClickListener(this);
         receiver = new LoginResultReceiver(new Handler());
-        receiver.setReceiver(this);
+        receiver.setmReceiver(this);
     }
 
     @Override

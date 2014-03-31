@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This activity provides the action for the account creation page.
+ * @version 1.0
+ */
 public class AccountCreationActivity extends Activity {
 	private TextView defaultAmount;
 	private String username, firstname, lastname;
