@@ -111,7 +111,7 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
                         User user = new User(resultBundle.getString("firstname"), //string necessary
                             resultBundle.getString("lastname"), resultBundle.getString("username"), //strings necessary
                             //CHECKSTYLE:ON
-                            resultBundle.getString("password"), "");
+                            resultBundle.getString("password"), "", "");
                         if (db.hasAccount(user)) {
                             Intent intent = new Intent(ctx, TransactionActivity.class);
                             intent.putExtra("username", resultBundle.getString("username"));

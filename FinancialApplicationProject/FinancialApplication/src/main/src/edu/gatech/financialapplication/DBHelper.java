@@ -50,6 +50,10 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     private static final String KEY_PASS = "password";
     /**
+     * Password Hint column for user.
+     */
+    private static final String KEY_PASS_HINT = "password_hint";
+    /**
      * Email column for user.
      */
     private static final String KEY_EMAIL = "email";
@@ -106,8 +110,8 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     private static final String TABLE_CREATE_USER = "CREATE TABLE "
             + DATABASE_TABLE_USER + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
-            + " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT," + KEY_EMAIL
-            + " TEXT)";
+            + " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT,"
+            + KEY_PASS_HINT + " TEXT," + KEY_EMAIL + " TEXT)";
 
     /**
      * Account table.
@@ -170,6 +174,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(KEY_LNAME, user.getLastname());
         values.put(KEY_USER, user.getUsername());
         values.put(KEY_PASS, user.getPassword());
+        values.put(KEY_PASS_HINT, user.getPasswordHint());
         values.put(KEY_EMAIL, user.getEmail());
 
         try {
@@ -196,16 +201,16 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
-                KEY_LNAME, KEY_USER, KEY_PASS, KEY_EMAIL }, KEY_USER + "=?",
-                new String[] { String.valueOf(username) }, null, null, null,
-                null);
+                KEY_LNAME, KEY_USER, KEY_PASS, KEY_PASS_HINT, KEY_EMAIL },
+                KEY_USER + "=?", new String[] { String.valueOf(username) },
+                null, null, null, null);
 
         User user = null;
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             user = new User(cursor.getString(0), cursor.getString(1),
                     cursor.getString(2), cursor.getString(3),
-                    cursor.getString(4));
+                    cursor.getString(4), cursor.getString(5));
         }
 
         return user;

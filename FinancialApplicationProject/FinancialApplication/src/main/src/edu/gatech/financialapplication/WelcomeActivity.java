@@ -32,7 +32,7 @@ public class WelcomeActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment()).commit();
         }
         db.addUser(new User("administrator", "lastName", "admin", "pass123",
-                "admin@gatech.edu"));
+                "passwordHint", "admin@gatech.edu"));
 
         // USE THIS FOR FUTURE TESTING IT WORKS PERFECTLY. DON'T SCREW IT UP!
         // //DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
@@ -93,7 +93,9 @@ public class WelcomeActivity extends Activity {
 
     /**
      * On click for login activity button.
-     * @param view The view being used.
+     * 
+     * @param view
+     *            The view being used.
      */
     public void toLoginActivity(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -102,7 +104,9 @@ public class WelcomeActivity extends Activity {
 
     /**
      * On click for register activity button.
-     * @param view The view being used.
+     * 
+     * @param view
+     *            The view being used.
      */
     public void toRegisterActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);

@@ -24,6 +24,10 @@ public class User {
      */
     private String password;
     /**
+     * Password Hint instance variable.
+     */
+    private String passwordHint;
+    /**
      * E-mail instance variable.
      */
     private String email;
@@ -44,11 +48,12 @@ public class User {
      * @param aEmail email name of User.
      */
     public User(String aFirstname, String aLastname, String aUsername,
-            String aPassword, String aEmail) {
+            String aPassword, String aPasswordHint, String aEmail) {
         this.firstname = aFirstname;
         this.lastname = aLastname;
         this.username = aUsername;
         this.password = aPassword;
+        this.passwordHint = aPasswordHint;
         this.email = aEmail;
     }
 
@@ -124,6 +129,24 @@ public class User {
         this.password = aPassword;
     }
 
+    /**
+     * Gets the password hint of the user.
+     * 
+     * @return String gets the password hint of the user.
+     */
+    public String getPasswordHint() {
+        return passwordHint;
+    }
+
+    /**
+     * Sets a new password hint for user.
+     * 
+     * @param aPassword sets the password hint of user.
+     */
+    public void setPasswordHint(String aPasswordHint) {
+        this.password = aPasswordHint;
+    }
+    
     /**
      * Gets the email of the user.
      * 

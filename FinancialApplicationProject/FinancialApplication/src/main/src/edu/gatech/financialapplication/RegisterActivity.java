@@ -59,6 +59,8 @@ public class RegisterActivity extends Activity {
                 .getText().toString();
         String lastname = ((EditText) findViewById(R.id.lastnameText))
                 .getText().toString();
+        String passwordHint = ((EditText) findViewById(R.id.passwordHintText))
+                .getText().toString();
         String email = ((EditText) findViewById(R.id.emailText)).getText()
                 .toString();
 
@@ -79,7 +81,8 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else { // add user
-            User user = new User(firstname, lastname, username, password, email);
+            User user = new User(firstname, lastname, username, password,
+                    passwordHint, email);
             db.addUser(user);
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
@@ -96,7 +99,7 @@ public class RegisterActivity extends Activity {
     private boolean checkFirstname(String firstname) {
         boolean result = false;
 
-        if (firstname.equals("")) { 
+        if (firstname.equals("")) {
             new AlertDialog.Builder(this)
                     .setTitle("First name error.")
                     .setMessage("Sorry, first name can't be blank.")
