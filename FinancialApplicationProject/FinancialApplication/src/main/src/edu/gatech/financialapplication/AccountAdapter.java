@@ -1,6 +1,7 @@
 package edu.gatech.financialapplication;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -29,11 +30,15 @@ public class AccountAdapter extends ArrayAdapter<Account> {
     /**
      * New arraylist of accounts.
      */
-    private ArrayList<Account> objects;
+    private List<Account> objects;
     /**
      * New textview textview.
      */
     private TextView textView;
+    /**
+     * New view rowview.
+     */
+    private View rowView; 
 
     /**
      * New account adapter.
@@ -54,7 +59,7 @@ public class AccountAdapter extends ArrayAdapter<Account> {
     public final View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(rowResourceId, parent, false);
+        rowView = inflater.inflate(rowResourceId, parent, false);
         textView = (TextView) rowView.findViewById(R.id.textView);
         textView.setTextColor(Color.BLACK);
         textView.setText(objects.get(position).debug());

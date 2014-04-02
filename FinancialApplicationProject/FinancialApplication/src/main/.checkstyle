@@ -4,7 +4,10 @@
   <local-check-config name="2340" location="C:\Users\Shannon\Documents\School\CS 2340\Code Review\CS2340.checkstyle.rules" type="external" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="2340" local="true">
+  <local-check-config name="waters-checkstyle" location="/home/tika/Downloads/CS2340.checkstyle.rules" type="external" description="">
+    <additional-data name="protect-config-file" value="false"/>
+  </local-check-config>
+  <fileset name="all" enabled="true" check-config-name="waters-checkstyle" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

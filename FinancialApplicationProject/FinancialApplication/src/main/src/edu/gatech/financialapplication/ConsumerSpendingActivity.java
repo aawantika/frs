@@ -1,23 +1,26 @@
 package edu.gatech.financialapplication;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 /**
  * A class that generates consumer spending reports.
- * @author AI to EU
- *
+ * 
+ * @author Team 15
  */
 public class ConsumerSpendingActivity extends Activity {
 	/**
 	 * A helper for accessing the database.
 	 */
     private DBHelper db;
-    /**
+    /**View r
      * String for accessing the proper user.
      */
     private String username;
@@ -92,11 +95,11 @@ public class ConsumerSpendingActivity extends Activity {
     /**
      * represents all transactions.
      */
-    private ArrayList<Transaction> transactionList;
+    private List<Transaction> transactionList;
     /**
      * represents all date range valid transactions.
      */
-    private ArrayList<Transaction> withinDates;
+    private List<Transaction> withinDates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +131,7 @@ public class ConsumerSpendingActivity extends Activity {
      */
     private void populateCorrectList() {
         for (Transaction t : transactionList) {
-            System.out.println("MONTH " + t.getDate());
+            Log.i("MONTH ", t.getDate());
             month = Integer.valueOf(t.getDate().substring(0, 2));
             day = Integer.valueOf(t.getDate().substring(3, 5));
             year = Integer.valueOf(t.getDate().substring(6, 10));
@@ -137,7 +140,7 @@ public class ConsumerSpendingActivity extends Activity {
             goodToGoForward = evalForward(goodToGoForward);
             goodToGoBackward = evalBackward(goodToGoForward, goodToGoBackward);
             if (goodToGoForward && goodToGoBackward) {
-                System.out.println(t);
+                Log.i("transaction in cs", t.toString());
                 withinDates.add(t);
             }
         }
@@ -154,10 +157,8 @@ public class ConsumerSpendingActivity extends Activity {
         } else if (year == yearFrom) {
             if (month > monthFrom) {
                 goodToGoForward = true;
-            } else if (month == monthFrom) {
-                if (day >= dayFrom) {
+            } else if (month == monthFrom && day >= dayFrom) {
                     goodToGoForward = true;
-                }
             }
         }
     	return goodToGoForward;
@@ -177,10 +178,8 @@ public class ConsumerSpendingActivity extends Activity {
             } else if (year == yearTo) {
                 if (month < monthTo) {
                     goodToGoBackward = true;
-                } else if (month == monthTo) {
-                    if (day <= dayTo) {
+                } else if (month == monthTo && day <= dayTo) {
                         goodToGoBackward = true;
-                    }
                 }
             }
         }
