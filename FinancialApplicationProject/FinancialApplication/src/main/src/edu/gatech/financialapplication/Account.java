@@ -8,10 +8,6 @@ package edu.gatech.financialapplication;
 public class Account {
 
     /**
-     * id instance variable.
-     */
-    private int id;
-    /**
      * first name instance variable.
      */
     private String firstname;
@@ -33,7 +29,7 @@ public class Account {
     private String accountNumber;
 
     /**
-     * Default Constructor.
+     * Default empty Constructor.
      */
     public Account() {
     }
@@ -59,7 +55,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account [id=" + id + ", firstname=" + firstname + ","
+        return "Account [firstname=" + firstname + ","
                 + "lastname=" + lastname + ", username=" + username + ","
                 + "balance=" + balance + ", accountNumber=" + accountNumber
                 + "]";
@@ -74,24 +70,6 @@ public class Account {
     public String debug() {
         return "Username: " + username + "\nAccount: " + accountNumber
                 + "\nBalance: " + balance;
-    }
-
-    /**
-     * Gets the id of the account.
-     * 
-     * @return int gets the id of account.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Sets a new id of the account.
-     * 
-     * @param aId sets the id of the account.
-     */
-    public void setId(int aId) {
-        this.id = aId;
     }
 
     /**

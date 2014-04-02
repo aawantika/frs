@@ -22,16 +22,18 @@ public class AccountAdapter extends ArrayAdapter<Account> {
      * New context.
      */
     private Context context;
-
     /**
      * New int.
      */
     private int rowResourceId;
-
     /**
      * New arraylist of accounts.
      */
     private ArrayList<Account> objects;
+    /**
+     * New textview textview.
+     */
+    private TextView textView;
 
     /**
      * New account adapter.
@@ -53,9 +55,8 @@ public class AccountAdapter extends ArrayAdapter<Account> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(rowResourceId, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.textView);
+        textView = (TextView) rowView.findViewById(R.id.textView);
         textView.setTextColor(Color.BLACK);
-
         textView.setText(objects.get(position).debug());
         // Log.e(objects.get(position).getName(),
         // objects.get(position).debug());

@@ -60,7 +60,8 @@ public class AccountCreationActivity extends Activity {
     /**
      * On click for account creation to create a new account.
      * 
-     * @param view The view being used.
+     * @param view
+     *            The view being used.
      */
     public void onAccountCreate(View view) {
         // check if initial amount is less than 100
@@ -75,7 +76,6 @@ public class AccountCreationActivity extends Activity {
                                 }
                             }).show();
         } else { // CREATES ACCOUNT
-            accountNumber = createAccountNumber() + "";
             new AlertDialog.Builder(this)
                     .setTitle("Your account is created")
                     .setMessage(
@@ -111,13 +111,13 @@ public class AccountCreationActivity extends Activity {
      * @return a new account number.
      */
     public int createAccountNumber() {
-        Random ran = new Random();
+        Random r = new Random();
         // Let's say ten digits
 
         int newAccountNumber = 0;
         for (int i = 0; i < 10; i++) {
             int base = (int) Math.pow(10.0, (double) i);
-            int random = ran.nextInt(10);
+            int random = r.nextInt(10);
             newAccountNumber = newAccountNumber + (base * random);
         }
 
