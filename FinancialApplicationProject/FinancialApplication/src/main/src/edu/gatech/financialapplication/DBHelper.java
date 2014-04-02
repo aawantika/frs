@@ -1,6 +1,7 @@
 package edu.gatech.financialapplication;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -432,7 +433,7 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public ArrayList<Transaction> getAllTransactionsByUsername(String username) {
         ArrayList<Transaction> fullTransactionList = new ArrayList<Transaction>();
-        ArrayList<Account> accountList = getAccountsByUsername(username);
+        List<Account> accountList = getAccountsByUsername(username);
 
         for (Account a : accountList) {
             String accountNumber = a.getAccountNumber();
