@@ -26,7 +26,7 @@ public class SendMailTask extends AsyncTask {
     /**
      * A new activity.
      */
-    private Activity sendMailActivity;
+    private final Activity sendMailActivity;
 
     /**
      * Creates a new send mail task with an activity.

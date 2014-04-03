@@ -19,29 +19,27 @@ public class RegisterActivity extends Activity {
     /**
      * New DBHelper db.
      */
-    private DBHelper db;
+    private DBHelper dbHelp;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceStt) {
+        super.onCreate(savedInstanceStt);
         setContentView(R.layout.activity_register);
 
-        db = new DBHelper(this);
+        dbHelp = new DBHelper(this);
     }
 
     /**
      * Checks if username and password (the user) is a duplicate or not.
      * 
-     * @param username
-     *            The username of the user.
-     * @param password
-     *            The password of the user.
+     * @param username The username of the user.
+     * @param password The password of the user.
      * @return If the user is a duplicate or not.
      */
     public boolean isDuplicate(String username, String password) {
-        return (db.getUserByUsername(username) != null && db
+        return dbHelp.getUserByUsername(username) != null && dbHelp
                 .getUserByUsername(username).getUsername()
-                .equalsIgnoreCase(username));
+                .equalsIgnoreCase(username);
     }
 
     /**
@@ -78,12 +76,13 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
         } else { // add user
             User user = new User(firstname, lastname, username, password,
                     passwordHint, email);
-            db.addUser(user);
+            dbHelp.addUser(user);
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
         }
@@ -99,7 +98,7 @@ public class RegisterActivity extends Activity {
     private boolean checkFirstname(String firstname) {
         boolean result = false;
 
-        if (firstname.equals("")) {
+        if ("".equals(firstname)) {
             new AlertDialog.Builder(this)
                     .setTitle("First name error.")
                     .setMessage("Sorry, first name can't be blank.")
@@ -107,6 +106,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty
                                 }
                             }).show();
         } else {
@@ -124,7 +124,7 @@ public class RegisterActivity extends Activity {
      */
     private boolean checkLastname(String lastname) {
         boolean result = false;
-        if (lastname.equals("")) { // empty lastname
+        if ("".equals(lastname)) { // empty lastname
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, last name can't be blank.")
@@ -132,6 +132,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
         } else {
@@ -150,7 +151,7 @@ public class RegisterActivity extends Activity {
      */
     private boolean checkUsername(String username) {
         boolean result = false;
-        if (username.equals("")) { // empty username
+        if ("".equals(username)) { // empty username
             new AlertDialog.Builder(this)
                     .setTitle("Username error.")
                     .setMessage("Sorry, username can't be blank.")
@@ -158,9 +159,10 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
-        } else if (username.equals("admin")) { // create admin account
+        } else if ("admin".equals(username)) { // create admin account
             new AlertDialog.Builder(this)
                     .setTitle("Username error")
                     .setMessage("Sorry, cannot create new admin account.")
@@ -168,6 +170,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
         } else {
@@ -186,7 +189,7 @@ public class RegisterActivity extends Activity {
      */
     private boolean checkPassword(String password) {
         boolean result = false;
-        if (password.equals("")) { // empty password
+        if ("".equals(password)) { // empty password
             new AlertDialog.Builder(this)
                     .setTitle("Password error")
                     .setMessage("Sorry, password can't be blank.")
@@ -194,6 +197,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
         } else if (password.length() < 6) { // short password
@@ -205,6 +209,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
         } else {
@@ -225,7 +230,7 @@ public class RegisterActivity extends Activity {
         int emailLength = email.length();
         boolean result = false;
 
-        if (email.equals("")) { // empty email
+        if ("".equals(email)) { // empty email
             new AlertDialog.Builder(this)
                     .setTitle("Email error")
                     .setMessage("Sorry, email can't be blank.")
@@ -233,9 +238,10 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
-        } else if ((email.indexOf("@") != email.lastIndexOf("@"))
+        } else if (email.indexOf('@') != email.lastIndexOf('@') //i think?? this can be ignored
                 || !email.substring(emailLength - 4, emailLength - 3).equals(
                         ".")) { // invalid email
             new AlertDialog.Builder(this)
@@ -245,6 +251,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                	//Empty method
                                 }
                             }).show();
         } else {

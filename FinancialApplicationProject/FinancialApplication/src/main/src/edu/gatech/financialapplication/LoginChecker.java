@@ -17,7 +17,7 @@ public class LoginChecker extends IntentService {
     /**
      * The database to search for data in.
      */
-    private DBHelper db;
+    private DBHelper dbHelp;
 
     /**
      * The initializing method that sets the database.
@@ -25,7 +25,7 @@ public class LoginChecker extends IntentService {
     public void onCreate() {
         super.onCreate();
 
-        db = new DBHelper(this);
+        dbHelp = new DBHelper(this);
     }
 
     /**
@@ -44,7 +44,7 @@ public class LoginChecker extends IntentService {
         //CHECKSTYLE:ON
         String password = intent.getStringExtra("password");
 
-        User userFromDb = db.getUserByUsername(username);
+        User userFromDb = dbHelp.getUserByUsername(username);
         User userFromActivity = new User();
 
         userFromActivity.setUsername(username);

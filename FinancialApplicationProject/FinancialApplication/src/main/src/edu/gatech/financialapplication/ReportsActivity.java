@@ -20,8 +20,8 @@ public class ReportsActivity extends Activity {
     private String accountNumberTemp;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceStt) {
+        super.onCreate(savedInstanceStt);
         setContentView(R.layout.activity_reports);
 
         accountNumberTemp = getIntent().getStringExtra("accountNumber");

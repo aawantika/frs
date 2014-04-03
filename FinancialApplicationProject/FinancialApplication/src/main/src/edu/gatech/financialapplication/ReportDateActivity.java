@@ -51,8 +51,8 @@ public class ReportDateActivity extends Activity {
     private EditText yearTo;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceStt) {
+        super.onCreate(savedInstanceStt);
         setContentView(R.layout.activity_report_date);
 
         accountNumberTemp = getIntent().getStringExtra("accountNumber");
@@ -73,7 +73,7 @@ public class ReportDateActivity extends Activity {
      */
     public void onDateClick(View view) {
         Intent intent = null;
-        if (type.equals("consumerSpending")) {
+        if ("consumerSpending".equals(type)) {
             intent = new Intent(this, ConsumerSpendingActivity.class);
         }
 
