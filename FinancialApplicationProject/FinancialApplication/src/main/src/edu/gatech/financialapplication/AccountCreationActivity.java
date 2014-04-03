@@ -65,7 +65,19 @@ public class AccountCreationActivity extends Activity {
      */
     public void onAccountCreate(View view) {
         // check if initial amount is less than 100
-        if (Float.parseFloat(defaultAmount.getText().toString()) < 100.00f) {
+    	if (defaultAmount.getText().toString().equals("")) { // empty reason
+            new AlertDialog.Builder(this)
+                    //CHECKSTYLE:OFF
+                    .setTitle("Information error") //string necessary
+                    //CHECKSTYLE:ON
+                    .setMessage("Please enter an amount.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                }
+                            }).show();
+    	} else if (Float.parseFloat(defaultAmount.getText().toString()) < 100.00f) {
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Minimum amount must be 100 USD.")
