@@ -49,13 +49,13 @@ public class RegisterActivity extends Activity {
      *            The view being used.
      */
     public void onClick(View view) {
-        String username = ((EditText) findViewById(R.id.usernameText))
-                .getText().toString();
-        String password = ((EditText) findViewById(R.id.passwordText))
-                .getText().toString();
         String firstname = ((EditText) findViewById(R.id.firstnameText))
                 .getText().toString();
         String lastname = ((EditText) findViewById(R.id.lastnameText))
+                .getText().toString();
+        String username = ((EditText) findViewById(R.id.usernameText))
+                .getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordText))
                 .getText().toString();
         String passwordHint = ((EditText) findViewById(R.id.passwordHintText))
                 .getText().toString();

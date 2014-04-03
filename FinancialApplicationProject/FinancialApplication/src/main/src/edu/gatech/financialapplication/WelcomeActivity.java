@@ -36,8 +36,10 @@ public class WelcomeActivity extends Activity {
 
         // USE THIS FOR FUTURE TESTING IT WORKS PERFECTLY. DON'T SCREW IT UP!
         // //DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
-        // db.addUser(new User("tika", "sahu", "yolouser", "password",
-        // "email"));
+/*        db.addUser(new User("tika", "sahu", "yolouser", "password",
+                "passwordHint", "email"));
+
+        System.out.println(db.getUserByUsername("yolouser"));*/
         // User getUser = db.getUserByUsername("yolouser");
         // Account newAccount = new Account(getUser.getFirstname(),
         // getUser.getLastname(), getUser.getUsername(), "1000.00",

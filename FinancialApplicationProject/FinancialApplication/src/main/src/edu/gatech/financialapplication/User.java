@@ -184,6 +184,6 @@ public class User {
     public String toString() {
         return "User [firstname=" + firstname + ", lastname=" + lastname
                 + ", username=" + username + ", password=" + password
-                + ", email=" + email + "]";
+                + ", passwordHint=" + passwordHint + ", email=" + email + "]";
     }
 }

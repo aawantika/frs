@@ -13,13 +13,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Backend database using S QLite.
+ * Back-end database using S QLite.
  * 
  * @author Team 15
  */
 public class DBHelper extends SQLiteOpenHelper {
     /**
-     * Used to check if databse works properly or not.
+     * Used to check if database works properly or not.
      */
     protected int size = 0;
 
@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Database version.
      */
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     /**
      * First name column for user.
@@ -52,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Password Hint column for user.
      */
-    private static final String KEY_PASS_HINT = "password_hint";
+    private static final String KEY_PHINT = "phint";
     /**
      * Email column for user.
      */
@@ -110,8 +110,8 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     private static final String TABLE_CREATE_USER = "CREATE TABLE "
             + DATABASE_TABLE_USER + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
-            + " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT,"
-            + KEY_PASS_HINT + " TEXT," + KEY_EMAIL + " TEXT)";
+            + " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT," + KEY_PHINT
+            + " TEXT," + KEY_EMAIL + " TEXT)";
 
     /**
      * Account table.
@@ -174,13 +174,13 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(KEY_LNAME, user.getLastname());
         values.put(KEY_USER, user.getUsername());
         values.put(KEY_PASS, user.getPassword());
-        values.put(KEY_PASS_HINT, user.getPasswordHint());
+        values.put(KEY_PHINT, user.getPasswordHint());
         values.put(KEY_EMAIL, user.getEmail());
 
         try {
             db.insert(DATABASE_TABLE_USER, null, values);
             Log.d("Database User Inserted", "Inserted Properly, username "
-                    + user.getUsername());
+                    + user.toString());
             db.close();
         } catch (SQLiteException e) {
             Log.d("Databse User Inserted", "Not inserted properly");
@@ -201,9 +201,9 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(DATABASE_TABLE_USER, new String[] { KEY_FNAME,
-                KEY_LNAME, KEY_USER, KEY_PASS, KEY_PASS_HINT, KEY_EMAIL },
-                KEY_USER + "=?", new String[] { String.valueOf(username) },
-                null, null, null, null);
+                KEY_LNAME, KEY_USER, KEY_PASS, KEY_PHINT, KEY_EMAIL }, KEY_USER
+                + "=?", new String[] { String.valueOf(username) }, null, null,
+                null, null);
 
         User user = null;
         if (cursor != null && cursor.getCount() > 0) {
