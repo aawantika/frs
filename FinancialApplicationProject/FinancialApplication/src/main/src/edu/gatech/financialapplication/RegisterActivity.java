@@ -30,19 +30,6 @@ public class RegisterActivity extends Activity {
     }
 
     /**
-     * Checks if username and password (the user) is a duplicate or not.
-     * 
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @return If the user is a duplicate or not.
-     */
-    public boolean isDuplicate(String username, String password) {
-        return dbHelp.getUserByUsername(username) != null && dbHelp
-                .getUserByUsername(username).getUsername()
-                .equalsIgnoreCase(username);
-    }
-
-    /**
      * On click for register activity to register a new user.
      * 
      * @param view
@@ -62,13 +49,33 @@ public class RegisterActivity extends Activity {
         String email = ((EditText) findViewById(R.id.emailText)).getText()
                 .toString();
 
-        checkFirstname(firstname);
-        checkLastname(lastname);
-        checkUsername(username);
-        checkPassword(password);
-        checkEmail(email);
+        if (checkFirstname(firstname) && checkLastname(lastname)
+                && checkUsername(username) && checkPassword(password)
+                && checkPHint(passwordHint) && checkEmail(email)
+                && isDuplicate(username, password)) {
 
-        if (isDuplicate(username, password)) { // duplicate username
+            User user = new User(firstname, lastname, username, password,
+                    passwordHint, email);
+            dbHelp.addUser(user);
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * Checks if username and password (the user) is a duplicate or not.
+     * 
+     * @param username
+     *            The username of the user.
+     * @param password
+     *            The password of the user.
+     * @return If the user is a duplicate or not.
+     */
+    public boolean isDuplicate(String username, String password) {
+        boolean result = true;
+        if (dbHelp.getUserByUsername(username) != null
+                && dbHelp.getUserByUsername(username).getUsername()
+                        .equalsIgnoreCase(username)) { // duplicate username
             new AlertDialog.Builder(this)
                     .setTitle("Duplicate")
                     .setMessage("Credential is duplicate!\nPlease check again.")
@@ -76,16 +83,13 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
                                 }
                             }).show();
-        } else { // add user
-            User user = new User(firstname, lastname, username, password,
-                    passwordHint, email);
-            dbHelp.addUser(user);
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
+        } else {
+            result = false;
         }
+        return result;
     }
 
     /**
@@ -106,7 +110,18 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty
+                                    // Empty
+                                }
+                            }).show();
+        } else if (" ".equals(firstname.substring(0, 1))) {
+            new AlertDialog.Builder(this)
+                    .setTitle("First name error.")
+                    .setMessage("Sorry, first name can't start with a space.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty
                                 }
                             }).show();
         } else {
@@ -132,7 +147,18 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
+                                }
+                            }).show();
+        } else if (" ".equals(lastname.substring(0, 1))) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Last name error.")
+                    .setMessage("Sorry, last name can't start with a space.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty
                                 }
                             }).show();
         } else {
@@ -159,7 +185,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
                                 }
                             }).show();
         } else if ("admin".equals(username)) { // create admin account
@@ -170,7 +196,18 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
+                                }
+                            }).show();
+        } else if (" ".equals(username.substring(0, 1))) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Username error.")
+                    .setMessage("Sorry, username can't start with a space.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty
                                 }
                             }).show();
         } else {
@@ -197,7 +234,18 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
+                                }
+                            }).show();
+        } else if (" ".equals(password.substring(0, 1))) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Password error.")
+                    .setMessage("Sorry, password can't start with a space.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty
                                 }
                             }).show();
         } else if (password.length() < 6) { // short password
@@ -209,7 +257,46 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
+                                }
+                            }).show();
+        } else {
+            result = true;
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks if password hint is blank or not.
+     * 
+     * @param phint
+     *            The password hint being checked.
+     * @return If the password hint is blank or not.
+     */
+    private boolean checkPHint(String phint) {
+        boolean result = false;
+        if ("".equals(phint)) { // empty phint
+            new AlertDialog.Builder(this)
+                    .setTitle("Last name error.")
+                    .setMessage("Sorry, password hint can't be blank.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty method
+                                }
+                            }).show();
+        } else if (" ".equals(phint.substring(0, 1))) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Password hint error.")
+                    .setMessage(
+                            "Sorry, password hint can't start with a space.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty
                                 }
                             }).show();
         } else {
@@ -238,10 +325,21 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
                                 }
                             }).show();
-        } else if (email.indexOf('@') != email.lastIndexOf('@') //i think?? this can be ignored
+        } else if (" ".equals(email.substring(0, 1))) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Email error.")
+                    .setMessage("Sorry, email can't start with a space.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    // Empty
+                                }
+                            }).show();
+        } else if (email.indexOf('@') != email.lastIndexOf('@')
                 || !email.substring(emailLength - 4, emailLength - 3).equals(
                         ".")) { // invalid email
             new AlertDialog.Builder(this)
@@ -251,7 +349,7 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                	//Empty method
+                                    // Empty method
                                 }
                             }).show();
         } else {
