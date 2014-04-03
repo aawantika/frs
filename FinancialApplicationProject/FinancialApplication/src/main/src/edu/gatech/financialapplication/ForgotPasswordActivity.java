@@ -15,21 +15,16 @@ import android.widget.EditText;
  * @author Team 15
  */
 public class ForgotPasswordActivity extends Activity {
-    
     /**
-     * New string username.
+     * New DBHelper database.
      */
-    private String username;
-    /**
-     * New DBHelper db.
-     */
-    private DBHelper db;
+    private DBHelper database;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(final Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_forgot_password);
-        db = new DBHelper(this);
+        database = new DBHelper(this);
     }
 
     /**
@@ -37,16 +32,17 @@ public class ForgotPasswordActivity extends Activity {
      * @param view The view being used.
      */
     @SuppressWarnings("unchecked")
-    public void onClick(View view) {
-        Intent intent = new Intent(this, WelcomeActivity.class);
+    public void onClick(final View view) {
+    	String username;
+        final Intent intent = new Intent(this, WelcomeActivity.class);
         username = ((EditText) findViewById(R.id.editTextUser)).getText()
                 .toString();
-        if (!username.equals("")) {
-            User user = db.getUserByUsername(username);
-            String email = user.getEmail();
-            List<String> toEmailList = Arrays.asList(email);
-            String password = user.getPassword();
-            String emailBody = "Dear Customer, your forgotten password is: "
+        if (!"".equals(username)) {
+            final User user = database.getUserByUsername(username);
+            final String email = user.getEmail();
+            final List<String> toEmailList = Arrays.asList(email);
+            final String password = user.getPassword();
+            final String emailBody = "Dear Customer, your forgotten password is: "
                     + password;
 
             new SendMailTask(ForgotPasswordActivity.this).execute(toEmailList,

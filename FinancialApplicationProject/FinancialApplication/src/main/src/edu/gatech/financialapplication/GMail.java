@@ -25,39 +25,39 @@ public class GMail {
     /**
      * E-mail Port constant instance variable.
      */
-    private final String emailPort = "587"; // gmail's smtp port
+    private static final String EMAIL_PORT = "587"; // gmail's smtp port
    
     /**
-     * smtpAuth constant instance variable.
+     * SMTP_AUTH constant instance variable.
      */
     //CHECKSTYLE:OFF
-    private final String smtpAuth = "true"; //string necessary
+    private static final String SMTP_AUTH = "true"; //string necessary
     //CHECKSTYLE:ON
     
     /**
-     * starttls instance variable.
+     * START_TLS instance variable.
      */
-    private final String starttls = "true";
+    private static final String START_TLS = "true";
     
     /**
-     * emailHost constant instance variable.
+     * EMAIL_HOST constant instance variable.
      */
-    private final String emailHost = "smtp.gmail.com";
+    private static final String EMAIL_HOST = "smtp.gmail.com";
    
     /**
-     * fromUser constant instance variable.
+     * FROM_USER constant instance variable.
      */
-    private final String fromUser = "cs2340frs@gmail.com";
+    private static final String FROM_USER = "cs2340frs@gmail.com";
    
     /**
-     * fromPassword constant instance variable.
+     * FROM_PASSWORD constant instance variable.
      */
-    private final String fromPassword = "foobarsribshack";
+    private static final String FROM_PASSWORD = "foobarsribshack";
     
     /**
-     * emailSubject constant instance variable.
+     * EMAIL_SUBJECT constant instance variable.
      */
-    private final String emailSubject = "CS 2340 Forgotten Password";
+    private static final String EMAIL_SUBJECT = "CS 2340 Forgotten Password";
 
     /**
      * toEmailList instance variable.
@@ -87,7 +87,7 @@ public class GMail {
     /**
      * gmail instance variable.
      */
-    private String gmail;
+    private String email;
 
     /**
      * Default Constructor.
@@ -101,21 +101,20 @@ public class GMail {
      * @param aToEmailList is the list of people the email would be sent out to.
      * @param aEmailBody is what the email says.
      */
-    public GMail(List<String> aToEmailList, String aEmailBody) {
+    public GMail(final List<String> aToEmailList, final String aEmailBody) {
         this.toEmailList = aToEmailList;
         this.emailBody = aEmailBody;
-        this.gmail = "Gmail";
+        this.email = "Gmail";
 
         emailProperties = System.getProperties();
-        emailProperties.put("mail.smtp.port", emailPort);
-        emailProperties.put("mail.smtp.auth", smtpAuth);
-        emailProperties.put("mail.smtp.starttls.enable", starttls);
-        Log.i(gmail, "Mail server properties set.");
+        emailProperties.put("mail.smtp.port", EMAIL_PORT);
+        emailProperties.put("mail.smtp.auth", SMTP_AUTH);
+        emailProperties.put("mail.smtp.START_TLS.enable", START_TLS);
+        Log.i(email, "Mail server properties set.");
     }
 
     /**
      * Creates the email message and sends it to the users.
-     * 
      * @return MimeMessage the message to send to all the users.
      * @throws AddressException - in case the address is not correct
      * @throws MessagingException - in case the message is not correct
@@ -127,18 +126,18 @@ public class GMail {
 
         mailSession = Session.getDefaultInstance(emailProperties, null);
         emailMessage = new MimeMessage(mailSession);
-        emailMessage.setFrom(new InternetAddress(fromUser, fromUser));
+        emailMessage.setFrom(new InternetAddress(FROM_USER, FROM_USER));
 
-        for (String toEmail : toEmailList) {
-            Log.i(gmail, "toEmail: " + toEmail);
+        for (final String toEmail : toEmailList) {
+            Log.i(email, "toEmail: " + toEmail);
             emailMessage.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(toEmail));
+                    new InternetAddress(toEmail)); //ignore
         }
 
-        emailMessage.setSubject(emailSubject);
+        emailMessage.setSubject(EMAIL_SUBJECT);
         emailMessage.setContent(emailBody, "text/html"); // for a html email
         // emailMessage.setText(emailBody); // for a text email
-        Log.i(gmail, "Email Message created.");
+        Log.i(email, "Email Message created.");
         return emailMessage;
     }
 
@@ -149,8 +148,8 @@ public class GMail {
      * @throws MessagingException - in case the message is not correct
      */
     public void sendEmail() throws AddressException, MessagingException {
-        Transport transport = mailSession.getTransport("smtp");
-        transport.connect(emailHost, fromUser, fromPassword);
+        final Transport transport = mailSession.getTransport("smtp");
+        transport.connect(EMAIL_HOST, FROM_USER, FROM_PASSWORD);
        // Log.i(gmail, "allrecipients: " + emailMessage.getAllRecipients().toString());
         transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
         transport.close();
