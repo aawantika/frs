@@ -18,7 +18,7 @@ public class TransactionActivity extends Activity {
     /**
      * The list of all accounts of the user.
      */
-    private ArrayList<Account> accounts;
+    private ArrayList<Account> accounts; //need to use ArrayList
     /**
      * The adapter for listing the accounts.
      */
@@ -65,7 +65,7 @@ public class TransactionActivity extends Activity {
 
         db = new DBHelper(this);
         if (getIntent() != null) {
-        	//CHECKSTYLE:OFF
+            //CHECKSTYLE:OFF
             accountNumberTemp = getIntent().getStringExtra("accountNumber"); //string necessary
             username = getIntent().getStringExtra("username"); //string necessary
             //CHECKSTYLE:ON

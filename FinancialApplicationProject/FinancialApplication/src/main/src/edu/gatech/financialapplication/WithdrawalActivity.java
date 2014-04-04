@@ -62,7 +62,7 @@ public class WithdrawalActivity extends Activity {
         setContentView(R.layout.activity_withdrawal);
         db = new DBHelper(this);
         dg = new DateGrabber();
-
+        
         accountNumber = getIntent().getStringExtra("accountNumber");
         username = getIntent().getStringExtra("username");
 
@@ -89,7 +89,7 @@ public class WithdrawalActivity extends Activity {
         public void onItemSelected(AdapterView<?> parent, View view, int pos,
                 long id) {
             category = parent.getItemAtPosition(pos).toString();
-            System.out.println("CATEGORY " + category);
+            //System.out.println("CATEGORY " + category);
         }
 
         @Override
@@ -118,6 +118,7 @@ public class WithdrawalActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                    //empty method
                                 }
                             }).show();
         } else if (reason.equals("")) { // empty reason
@@ -128,6 +129,7 @@ public class WithdrawalActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
+                                    //empty method
                                 }
                             }).show();
         } else {

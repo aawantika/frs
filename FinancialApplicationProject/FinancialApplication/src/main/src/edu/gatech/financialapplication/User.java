@@ -141,10 +141,10 @@ public class User {
     /**
      * Sets a new password hint for user.
      * 
-     * @param aPassword sets the password hint of user.
+     * @param aPasswordHint sets the password hint of user.
      */
     public void setPasswordHint(String aPasswordHint) {
-        this.password = aPasswordHint;
+        this.passwordHint = aPasswordHint;
     }
     
     /**
