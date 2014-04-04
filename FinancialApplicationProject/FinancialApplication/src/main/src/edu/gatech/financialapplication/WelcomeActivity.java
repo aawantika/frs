@@ -124,6 +124,7 @@ public class WelcomeActivity extends Activity {
          * Placeholder fragment constructor.
          */
         public PlaceholderFragment() {
+            //empty method
         }
 
         @Override
