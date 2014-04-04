@@ -52,14 +52,26 @@
 
         <requestFocus />
     </EditText>
+    
+    <TextView
+        android:id="@+id/passwordHintText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/password"
+        android:layout_below="@+id/password"
+        android:clickable="true"
+        android:onClick=""
+        android:text="@string/passwordHintText"
+        android:textColor="#0076a3"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
         android:id="@+id/loginBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/passwordHintText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/rounded_rectanglebutton"
         android:onClick="onClick"
         android:text="@string/loginTitle"
