@@ -26,7 +26,8 @@
         android:background="#ffffff"
         android:ems="10"
         android:hint="@string/amountHint"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/textViewReason"

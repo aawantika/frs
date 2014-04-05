@@ -1,6 +1,5 @@
 package edu.gatech.financialapplication;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,15 +10,17 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * The Activity that enables users to enter their credentials and login.
+ * 
  * @author Team 15
  */
-public class LoginActivity extends Activity implements OnClickListener, LoginResultReceiver.Receiver {
+public class LoginActivity extends Activity implements
+        LoginResultReceiver.Receiver {
+
     /**
      * The LoginResultReceiver takes in login submissions.
      */
@@ -28,13 +29,25 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
      * The Context to be used by the activity.
      */
     private Context ctx;
+
+    private String usernameInput;
+    private String passwordInput;
+
+    private String firstnameDB;
+    private String lastnameDB;
+    private String usernameDB;
+    private String passwordDB;
+    private String phintDB;
+    private DBHelper db;
+    private User user;
+    private boolean userInDatabase;
+
     @Override
     protected void onCreate(final Bundle savedState) {
         super.onCreate(savedState);
         setContentView(R.layout.activity_login);
+        db = new DBHelper(this);
         ctx = this;
-        final Button loginBt = (Button) findViewById(R.id.loginBt);
-        loginBt.setOnClickListener(this);
         receiver = new LoginResultReceiver(new Handler());
         receiver.setmReceiver(this);
     }
@@ -48,34 +61,29 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
+        case R.id.action_settings:
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(final View view) {
-        switch(view.getId()) {
-            case R.id.loginBt:
-            	final String username = ((EditText) findViewById(R.id.username)).getText().toString();
-                final String password = ((EditText) findViewById(R.id.password)).getText().toString();
-                final Intent intent = new Intent(this, LoginChecker.class);
-                intent.putExtra("receiverTag", receiver);
-                //CHECKSTYLE:OFF
-                intent.putExtra("username", username); //string necessary
-                intent.putExtra("password", password); //string necessary
-                //CHECKSTYLE:ON
-                startService(intent);
-                break;
-            default:
-                break;
-        }
+    public void onButtonClick(View view) {
+        usernameInput = ((EditText) findViewById(R.id.username)).getText()
+                .toString();
+        passwordInput = ((EditText) findViewById(R.id.password)).getText()
+                .toString();
+        Intent intent = new Intent(this, LoginChecker.class);
+        intent.putExtra("receiverTag", receiver);
+        intent.putExtra("username", usernameInput);
+        intent.putExtra("password", passwordInput);
+        startService(intent);
     }
-    
+
     /**
      * The click for the ForgotPassword Activity that will switch activities.
-     * @param view The view being used
+     * 
+     * @param view
+     *            The view being used
      */
     public void onForgotPasswordClick(final View view) {
         final Intent intent = new Intent(this, ForgotPasswordActivity.class);
@@ -84,44 +92,70 @@ public class LoginActivity extends Activity implements OnClickListener, LoginRes
 
     @Override
     public void onReceiveResult(final int resultCode, final Bundle resultBundle) {
-        final boolean correcto = resultBundle.getBoolean("ServiceTag");
-        if (correcto) {
-            new AlertDialog.Builder(this)
-                .setTitle("Success!")
-                .setMessage("Success")
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int which) { 
-                        final DBHelper database = new DBHelper(ctx);
-                        //CHECKSTYLE:OFF
-                        final User user = new User(resultBundle.getString("firstname"), //string necessary
-                            resultBundle.getString("lastname"), resultBundle.getString("username"), //strings necessary
-                            //CHECKSTYLE:ON
-                            resultBundle.getString("password"), "", "");
-                        if (database.hasAccount(user)) {
-                            final Intent intent = new Intent(ctx, TransactionActivity.class);
-                            intent.putExtra("username", resultBundle.getString("username"));
-                            startActivity(intent);
-                        } else {
-                            final Intent intent = new Intent(ctx, AccountCreationActivity.class);
-                            intent.putExtra("username", resultBundle.getString("username"));
-                            intent.putExtra("password", resultBundle.getString("password"));
-                            intent.putExtra("firstname", resultBundle.getString("firstname"));
-                            intent.putExtra("lastname", resultBundle.getString("lastname"));
-                            startActivity(intent);
-                        }
-                    }
-                }  )
-                .show();
+        firstnameDB = resultBundle.getString("firstname");
+        lastnameDB = resultBundle.getString("lastname");
+        usernameDB = resultBundle.getString("username");
+        passwordDB = resultBundle.getString("password");
+        phintDB = resultBundle.getString("phint");
+        user = db.getUserByUsername(usernameDB);
+
+        if (user != null) {
+            userInDatabase = db.hasAccount(user);
+            if (user != null && user.getUsername().equals(usernameInput)
+                    && user.getPassword().equals(passwordInput)) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Success!")
+                        .setMessage("Success")
+                        .setPositiveButton(android.R.string.ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(
+                                            final DialogInterface dialog,
+                                            final int which) {
+                                        if (userInDatabase) {
+                                            Intent intent = new Intent(ctx, TransactionActivity.class);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("username", usernameDB);
+                                            intent.putExtras(bundle);
+                                            startActivity(intent);
+                                        } else {
+                                            Intent intent = new Intent(ctx, AccountCreationActivity.class);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("username", usernameDB);
+                                            bundle.putString("password", passwordDB);
+                                            bundle.putString("firstname", firstnameDB);
+                                            bundle.putString("lastname", lastnameDB);
+                                            intent.putExtras(bundle);
+                                            startActivity(intent);
+                                        }
+                                    }
+                                }).show();
+            } else if (user != null && user.getUsername().equals(usernameInput)
+                    && !user.getPassword().equals(passwordInput)) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Wrong Password")
+                        .setMessage("Check password hint for hint.")
+                        .setPositiveButton(android.R.string.ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(
+                                            final DialogInterface dialog,
+                                            final int which) {
+                                    }
+                                }).show();
+                TextView pHintText = (TextView) findViewById(R.id.passwordHintText);
+                pHintText.setText("Password Hint: " + phintDB);
+            }
         } else {
             new AlertDialog.Builder(this)
-               .setTitle("Wrong crendential!")
-                .setMessage("Please check your username or password.")
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int which) { 
-                    }
-                }   )
-                .show();
-        }    
+                    .setTitle("Wrong crendential!")
+                    .setMessage("Please check your username or password.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(
+                                        final DialogInterface dialog,
+                                        final int which) {
+                                }
+                            }).show();
+        }
     }
 
 }

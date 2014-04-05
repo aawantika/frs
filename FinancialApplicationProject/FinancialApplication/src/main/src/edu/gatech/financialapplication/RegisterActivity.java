@@ -72,7 +72,7 @@ public class RegisterActivity extends Activity {
      * @return If the user is a duplicate or not.
      */
     public boolean isDuplicate(String username, String password) {
-        boolean result = true;
+        boolean result = false;
         if (dbHelp.getUserByUsername(username) != null
                 && dbHelp.getUserByUsername(username).getUsername()
                         .equalsIgnoreCase(username)) { // duplicate username
@@ -87,7 +87,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else {
-            result = false;
+            result = true;
         }
         return result;
     }

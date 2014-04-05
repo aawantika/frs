@@ -39,9 +39,7 @@ public class LoginChecker extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         rec = intent.getParcelableExtra("receiverTag");
-        //CHECKSTYLE:OFF
-        String username = intent.getStringExtra("username"); //String literal necessary
-        //CHECKSTYLE:ON
+        String username = intent.getStringExtra("username"); 
         String password = intent.getStringExtra("password");
 
         User userFromDb = dbHelp.getUserByUsername(username);
@@ -51,13 +49,13 @@ public class LoginChecker extends IntentService {
         userFromActivity.setPassword(password);
 
         Bundle bundle = new Bundle();
-        if (userFromDb != null && userFromDb.equals(userFromActivity)) {
-        	//CHECKSTYLE:OFF
-            bundle.putBoolean("ServiceTag", true); //String literal necessary
-            //CHECKSTYLE:ON
-            bundle.putString("username", userFromDb.getUsername());
+        if (userFromDb != null && 
+                userFromDb.getUsername().equals(userFromActivity.getUsername())) {
             bundle.putString("firstname", userFromDb.getLastname());
             bundle.putString("lastname", userFromDb.getFirstname());
+            bundle.putString("username", userFromDb.getUsername());
+            bundle.putString("password", userFromDb.getPassword());
+            bundle.putString("phint", userFromDb.getPasswordHint());
             rec.send(0, bundle);
         } else {
             bundle.putBoolean("ServiceTag", false);

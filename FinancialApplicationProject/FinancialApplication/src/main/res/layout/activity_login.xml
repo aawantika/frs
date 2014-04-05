@@ -27,7 +27,9 @@
         android:ems="10"
         android:hint="@string/usernameHint"
         android:padding="5dp"
-        android:singleLine="true" />
+        android:singleLine="true">
+        <requestFocus />
+        </EditText>
 
     <TextView
         android:id="@+id/passText"
@@ -48,10 +50,7 @@
         android:ems="10"
         android:hint="@string/passwordHint"
         android:inputType="textPassword"
-        android:padding="5dp" >
-
-        <requestFocus />
-    </EditText>
+        android:padding="5dp" />
     
     <TextView
         android:id="@+id/passwordHintText"
@@ -73,7 +72,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:background="@drawable/rounded_rectanglebutton"
-        android:onClick="onClick"
+        android:onClick="onButtonClick"
         android:text="@string/loginTitle"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff" />
