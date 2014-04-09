@@ -39,14 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.HateMaxActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.MainActivity"
-            android:label="@string/mainTitle" />
-
         <receiver
             android:name="edu.gatech.financialapplication.LoginResultReceiver"
             android:enabled="true" />

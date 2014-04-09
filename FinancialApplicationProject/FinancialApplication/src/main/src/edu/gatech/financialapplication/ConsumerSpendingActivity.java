@@ -16,54 +16,14 @@ import android.widget.TextView;
  * @author Team 15
  */
 public class ConsumerSpendingActivity extends Activity {
-	/**
-	 * A helper for accessing the database.
-	 */
+
     private DBHelper db;
-    /**View r
-     * String for accessing the proper user.
-     */
     private String username;
-    /**
-     * String for accessing the correct accounts.
-     */
     private String accountNumberTemp;
-    /**
-     * represents the maximum day range.
-     */
-    private int dayTo;
-    /**
-     * represents min day range.
-     */
-    private int dayFrom;
-    /**
-     * represents day of transaction.
-     */
-    private int day;
-    /**
-     * represents max month range.
-     */
-    private int monthTo;
-    /**
-     * represents min month range.
-     */
-    private int monthFrom;
-    /**
-     * represents month of transaction.
-     */
-    private int month;
-    /**
-     * represents max year range.
-     */
-    private int yearTo;
-    /**
-     * represents min year range.
-     */
-    private int yearFrom;
-    /**
-     * represents year of transaction.
-     */
-    private int year;
+    
+    private int dayTo, dayFrom, day;
+    private int monthTo, monthFrom, month;
+    private int yearTo, yearFrom, year;
     /**
      * represents total amt withdrawn.
      */
