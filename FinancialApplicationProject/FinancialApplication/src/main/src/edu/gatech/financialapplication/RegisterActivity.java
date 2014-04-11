@@ -314,7 +314,6 @@ public class RegisterActivity extends Activity {
      * @return If the email is valid or not.
      */
     private boolean checkEmail(String email) {
-        int emailLength = email.length();
         boolean result = false;
 
         if ("".equals(email)) { // empty email
@@ -339,12 +338,10 @@ public class RegisterActivity extends Activity {
                                     // Empty
                                 }
                             }).show();
-        } else if (email.indexOf('@') != email.lastIndexOf('@')
-                || !email.substring(emailLength - 4, emailLength - 3).equals(
-                        ".")) { // invalid email
+        } else if (!email.matches("[a-zA-Z][^@&]*@[a-zA-Z][^@]*\\.(com|org|net|edu)")) { // invalid email
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
-                    .setMessage("Sorry, invalid email address.")
+                    .setMessage("Sorry, invalid email address; must end in com, org, net or edu.")
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
