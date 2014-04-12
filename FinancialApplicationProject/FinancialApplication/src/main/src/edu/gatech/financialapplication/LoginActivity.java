@@ -21,23 +21,10 @@ import android.widget.TextView;
 public class LoginActivity extends Activity implements
         LoginResultReceiver.Receiver {
 
-    /**
-     * The LoginResultReceiver takes in login submissions.
-     */
     private LoginResultReceiver receiver;
-    /**
-     * The Context to be used by the activity.
-     */
     private Context ctx;
-
-    private String usernameInput;
-    private String passwordInput;
-
-    private String firstnameDB;
-    private String lastnameDB;
-    private String usernameDB;
-    private String passwordDB;
-    private String phintDB;
+    private String usernameInput, passwordInput;
+    private String firstnameDB, lastnameDB, usernameDB, passwordDB, phintDB;
     private DBHelper db;
     private User user;
     private boolean userInDatabase;
