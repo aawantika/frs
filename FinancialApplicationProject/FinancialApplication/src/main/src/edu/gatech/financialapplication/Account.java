@@ -7,26 +7,7 @@ package edu.gatech.financialapplication;
  */
 public class Account {
 
-    /**
-     * first name instance variable.
-     */
-    private String firstname;
-    /**
-     * last name instance variable.
-     */
-    private String lastname;
-    /**
-     * username instance variable.
-     */
-    private String username;
-    /**
-     * balance instance variable.
-     */
-    private String balance;
-    /**
-     * account number instance variable.
-     */
-    private String accountNumber;
+    private String firstname, lastname, username, balance, accountNumber;
 
     /**
      * Default empty Constructor.
