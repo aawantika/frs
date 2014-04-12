@@ -112,4 +112,8 @@ public class DepositActivity extends Activity {
             startActivity(intent);
         }
     }
+    
+    public void onBackClick(View view){
+        finish();
+    }
 }

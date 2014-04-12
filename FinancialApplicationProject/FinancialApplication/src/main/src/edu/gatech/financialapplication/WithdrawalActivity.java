@@ -145,4 +145,8 @@ public class WithdrawalActivity extends Activity {
             startActivity(intent);
         }
     }
+    
+    public void onBackClick(View view){
+        finish();
+    }
 }

@@ -157,5 +157,8 @@ public class LoginActivity extends Activity implements
                             }).show();
         }
     }
-
+    
+    public void onCancelClick(View view){
+        finish();
+    }
 }

@@ -135,4 +135,13 @@ public class AccountCreationActivity extends Activity {
 
         return Math.abs(newAccountNumber);
     }
+   
+    /**
+     * Returns to the previous activity
+     * 
+     * @param view the view being used
+     */
+    public void onBackClick(View view){
+        finish();
+    }
 }

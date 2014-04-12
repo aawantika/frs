@@ -34,6 +34,7 @@
     <string name="joseph">Hyun Jong Lee</string>
     <string name="prav">Pravallika Tadikonda</string>
     <string name="shanSucks">Shannon Nguyen</string>
+    <string name="cancel">CANCEL</string>
     
     <!-- Hints/EditText -->
     <string name="usernameHint">Enter username</string>

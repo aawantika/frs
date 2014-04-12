@@ -40,5 +40,9 @@ public class ReportsActivity extends Activity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
+    
+    public void onBackClick(View view){
+        finish();
+    }
 
 }

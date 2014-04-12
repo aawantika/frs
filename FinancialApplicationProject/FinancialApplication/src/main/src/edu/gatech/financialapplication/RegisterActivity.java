@@ -355,4 +355,8 @@ public class RegisterActivity extends Activity {
 
         return result;
     }
+    
+    public void onBackClick(View view){
+        finish();
+    }
 }
