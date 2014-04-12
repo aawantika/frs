@@ -24,41 +24,10 @@ public class ConsumerSpendingActivity extends Activity {
     private int dayTo, dayFrom, day;
     private int monthTo, monthFrom, month;
     private int yearTo, yearFrom, year;
-    /**
-     * represents total amt withdrawn.
-     */
+    
     private float totalWithdrawals;
-    /**
-     * represents total amt gas spent.
-     */
-    private float gas;
-    /**
-     * represents total amt rent spent.
-     */
-    private float rent;
-    /**
-     * represents total amt clothing spent.
-     */
-    private float clothing;
-    /**
-     * represents total amt business spent.
-     */
-    private float business;
-    /**
-     * represents total amt groceries spent.
-     */
-    private float groceries;
-    /**
-     * represents total amt entertainment spent.
-     */
-    private float entertainment;
-    /**
-     * represents all transactions.
-     */
+    private float gas, rent, clothing, business, groceries, entertainment;
     private List<Transaction> transactionList;
-    /**
-     * represents all date range valid transactions.
-     */
     private List<Transaction> withinDates;
 
     @Override
@@ -86,6 +55,7 @@ public class ConsumerSpendingActivity extends Activity {
         populateCashCategories();
         populateTextFields();
     }
+    
     /**
      * Populates a list with transactions that are within date range.
      */
@@ -145,6 +115,7 @@ public class ConsumerSpendingActivity extends Activity {
         }
     	return goodToGoBackward;
     }
+    
     /**
      * Fills in money buckets with corresponding transaction values.
      */
@@ -168,6 +139,7 @@ public class ConsumerSpendingActivity extends Activity {
             }
         }
     }
+    
     /**
      * Loads up the report data into the text fields.
      */
