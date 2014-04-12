@@ -155,12 +155,6 @@ public class ReportDateActivity extends Activity {
 			Bundle bundle = new Bundle();
 			bundle.putString("accountNumber", accountNumberTemp);
 			bundle.putString("username", username);
-			bundle.putString("monthFrom", monthFromString);
-			bundle.putString("dayFrom", dayFromString);
-			bundle.putString("yearFrom", yearFrom + "");
-			bundle.putString("monthTo", monthToString);
-			bundle.putString("dayTo", dayToString);
-			bundle.putString("yearTo", yearTo + "");
 			bundle.putString("finalStart", finalStart);
 			bundle.putString("finalEnd", finalEnd);
 			intent.putExtras(bundle);

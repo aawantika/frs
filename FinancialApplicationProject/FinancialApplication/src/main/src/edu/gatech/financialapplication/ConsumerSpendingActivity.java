@@ -18,12 +18,7 @@ import android.widget.TextView;
 public class ConsumerSpendingActivity extends Activity {
 
     private DBHelper db;
-    private String username;
-    private String accountNumberTemp;
-    
-    private int dayTo, dayFrom, day;
-    private int monthTo, monthFrom, month;
-    private int yearTo, yearFrom, year;
+    private String username, accountNumberTemp;    
     private String finalStart, finalEnd;
     
     private float totalWithdrawals;
@@ -41,14 +36,6 @@ public class ConsumerSpendingActivity extends Activity {
         //pull from intent
         accountNumberTemp = getIntent().getStringExtra("accountNumber");
         username = getIntent().getStringExtra("username");
-        
-        monthFrom = Integer.valueOf(getIntent().getStringExtra("monthFrom"));
-        dayFrom = Integer.valueOf(getIntent().getStringExtra("dayFrom"));
-        yearFrom = Integer.valueOf(getIntent().getStringExtra("yearFrom"));
-        
-        monthTo = Integer.valueOf(getIntent().getStringExtra("monthTo"));
-        dayTo = Integer.valueOf(getIntent().getStringExtra("dayTo"));
-        yearTo = Integer.valueOf(getIntent().getStringExtra("yearTo"));
         
         finalStart = getIntent().getStringExtra("finalStart");
         finalEnd = getIntent().getStringExtra("finalEnd");
