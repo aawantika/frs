@@ -28,6 +28,12 @@
     <string name="withdrawalTitle">WITHDRAWAL</string>
     <string name="reportsTitle">REPORTS</string>
     <string name="loginTitle">LOGIN</string>
+    <string name="teamNumber">Team 15</string>
+    <string name="tika">Aawantika Sahu</string>
+    <string name="max">Jason Bires</string>
+    <string name="joseph">Hyun Jong Lee</string>
+    <string name="prav">Pravallika Tadikonda</string>
+    <string name="shanSucks">Shannon Nguyen</string>
     
     <!-- Hints/EditText -->
     <string name="usernameHint">Enter username</string>

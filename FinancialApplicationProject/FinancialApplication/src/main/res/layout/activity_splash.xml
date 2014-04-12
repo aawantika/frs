@@ -5,11 +5,72 @@
     android:background="@drawable/bg">
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/logoView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/teamNumText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="#004a80"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/teamNumber" />
+
+    <TextView
+        android:id="@+id/tikaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/teamNumText"
+        android:layout_centerHorizontal="true"
+        android:textColor="#004a80"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/tika" />
+    
+    <TextView
+        android:id="@+id/maxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tikaText"
+        android:layout_centerHorizontal="true"
+        android:textColor="#004a80"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/max" />
+    
+    <TextView
+        android:id="@+id/josephText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/maxText"
+        android:layout_centerHorizontal="true"
+        android:textColor="#004a80"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/joseph" />
+    
+    <TextView
+        android:id="@+id/pravText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/josephText"
+        android:layout_centerHorizontal="true"
+        android:textColor="#004a80"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/prav" />
+    
+    <TextView
+        android:id="@+id/loserText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pravText"
+        android:layout_centerHorizontal="true"
+        android:textColor="#004a80"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/shanSucks" />
 
 </RelativeLayout>
