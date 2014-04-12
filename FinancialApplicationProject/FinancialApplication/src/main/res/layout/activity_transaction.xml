@@ -35,6 +35,14 @@
         android:layout_below="@+id/graphs"
         android:layout_centerHorizontal="true"
         android:background="#16718d" />
+    
+    <View  
+        android:id="@+id/divider3"  
+        android:layout_width="fill_parent"  
+        android:layout_height=".75dp"
+        android:layout_below="@+id/createAccount"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d" />
 
     <Button
         android:id="@+id/createAccount"
@@ -52,13 +60,13 @@
         android:id="@+id/graphs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/createAccount"
+        android:layout_below="@+id/divider3"
         android:layout_alignParentLeft="true" 
         android:layout_toLeftOf="@+id/divider"
         android:layout_margin="0dp"
         android:background="@drawable/grid_itembutton"
-        android:onClick="onCreateAccount"
-        android:text="@string/createAccount"
+        android:onClick="onReportsClick"
+        android:text="@string/graphs"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -67,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/divider2"
-        android:layout_below="@+id/createAccount"
+        android:layout_below="@+id/divider3"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/divider"
         android:layout_margin="0dp"

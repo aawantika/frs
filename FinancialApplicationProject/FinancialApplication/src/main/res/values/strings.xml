@@ -47,6 +47,7 @@
     <string name="deposit">Deposit</string>
     <string name="withdrawal">Withdrawal</string>
     <string name="reports">Reports</string>
+    <string name="graphs">Graphs</string>
     <string name="back">Transactions</string>
     <string name="unused"></string>
     <string name="cancel">Cancel</string>
