@@ -1,4 +1,5 @@
 package edu.gatech.financialapplication;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
@@ -17,6 +18,7 @@ public class LoginResultReceiver extends ResultReceiver {
      * Default constructor for LoginResultReceiver that sets the handler.
      * @param handler a new handler
      */
+    @SuppressLint("Instantiatable")
     public LoginResultReceiver(Handler handler) {
         super(handler);
     }

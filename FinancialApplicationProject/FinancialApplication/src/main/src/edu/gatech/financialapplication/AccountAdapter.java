@@ -19,25 +19,10 @@ import android.widget.TextView;
  */
 public class AccountAdapter extends ArrayAdapter<Account> {
 
-    /**
-     * New context.
-     */
     private Context context;
-    /**
-     * New int.
-     */
     private int rowResourceId;
-    /**
-     * New arraylist of accounts.
-     */
     private List<Account> objects;
-    /**
-     * New textview textview.
-     */
     private TextView textView;
-    /**
-     * New view rowview.
-     */
     private View rowView; 
 
     /**
@@ -63,9 +48,7 @@ public class AccountAdapter extends ArrayAdapter<Account> {
         textView = (TextView) rowView.findViewById(R.id.textView);
         textView.setTextColor(Color.BLACK);
         textView.setText(objects.get(position).debug());
-        // Log.e(objects.get(position).getName(),
-        // objects.get(position).debug());
-
+        
         return rowView;
     }
 

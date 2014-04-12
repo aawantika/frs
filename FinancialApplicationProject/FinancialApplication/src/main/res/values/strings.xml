@@ -55,6 +55,12 @@
     <string name="reports">Reports</string>
     <string name="back">Transactions</string>
 	<string name="unused"></string>
+	
+	
+	<!-- Date Picker -->
+	<string name="startDateTV">Enter Start Date</string>
+	<string name="endDateTV">Enter End Date</string>
+	
     <!-- Reports -->
     <string name="csr">Consumer Spending Report</string>
 

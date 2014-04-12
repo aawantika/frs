@@ -7,16 +7,6 @@
     tools:context=".ReportDateActivity"
     tools:ignore="MergeRootFrame" >
 
-    <TextView
-        android:id="@+id/startText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
-        android:text="@string/startDate"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
@@ -30,84 +20,45 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff" />
 
-    <EditText
-        android:id="@+id/monthFrom"
+    <TextView
+        android:id="@+id/startText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/startText"
-        android:layout_below="@+id/startText"
-        android:ems="10"
-        android:hint="@string/month"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/dayFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/monthFrom"
-        android:layout_alignBottom="@+id/monthFrom"
-        android:layout_alignLeft="@+id/submit"
-        android:layout_alignRight="@+id/submit"
-        android:ems="10"
-        android:hint="@string/day"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/yearFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/dayFrom"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/dayFrom"
-        android:ems="10"
-        android:hint="@string/year"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/monthTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/endText"
-        android:layout_below="@+id/endText"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:hint="@string/month"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/dayTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/monthTo"
-        android:layout_alignBottom="@+id/monthTo"
-        android:layout_alignLeft="@+id/submit"
-        android:layout_alignRight="@+id/submit"
-        android:ems="10"
-        android:hint="@string/day"
-        android:inputType="date" />
-
-    <EditText
-        android:id="@+id/yearTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/dayTo"
-        android:layout_alignLeft="@+id/yearFrom"
-        android:ems="10"
-        android:hint="@string/year"
-        android:inputType="number" />
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="76dp"
+        android:layout_toLeftOf="@+id/submit"
+        android:text="@string/startDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/endText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/monthFrom"
-        android:layout_below="@+id/monthFrom"
-        android:layout_marginTop="17dp"
+        android:layout_alignLeft="@+id/startText"
+        android:layout_below="@+id/startText"
+        android:layout_marginTop="42dp"
         android:text="@string/endDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/endText"
+        android:layout_alignLeft="@+id/submit"
+        android:layout_marginLeft="9dp"
+        android:text="@string/startDateTV"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/endText"
+        android:layout_alignBottom="@+id/endText"
+        android:layout_alignLeft="@+id/startDate"
+        android:text="@string/endDateTV"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
