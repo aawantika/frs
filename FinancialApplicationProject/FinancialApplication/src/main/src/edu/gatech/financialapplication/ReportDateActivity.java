@@ -23,181 +23,181 @@ import android.widget.TextView;
  */
 public class ReportDateActivity extends Activity {
 
-    private String username, accountNumberTemp, type;
-    private int monthFrom, dayFrom, yearFrom;
-    private String monthFromString, dayFromString;
-    private int monthTo, dayTo, yearTo;
-    private String monthToString, dayToString;
+	private String username, accountNumberTemp, type;
+	private int monthFrom, dayFrom, yearFrom;
+	private String monthFromString, dayFromString;
+	private int monthTo, dayTo, yearTo;
+	private String monthToString, dayToString;
 
-    private TextView startDateText;
-    private TextView endDateText;
+	private TextView startDateText;
+	private TextView endDateText;
 
-    static final int DATE_DIALOG_START = 000;
-    static final int DATE_DIALOG_END = 999;
+	static final int DATE_DIALOG_START = 000;
+	static final int DATE_DIALOG_END = 999;
 
-    private Calendar c;
+	private Calendar c;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceStt) {
-        super.onCreate(savedInstanceStt);
-        setContentView(R.layout.activity_report_date);
+	@Override
+	protected void onCreate(Bundle savedInstanceStt) {
+		super.onCreate(savedInstanceStt);
+		setContentView(R.layout.activity_report_date);
 
-        accountNumberTemp = getIntent().getStringExtra("accountNumber");
-        username = getIntent().getStringExtra("username");
-        type = getIntent().getStringExtra("type");
+		accountNumberTemp = getIntent().getStringExtra("accountNumber");
+		username = getIntent().getStringExtra("username");
+		type = getIntent().getStringExtra("type");
 
-        setCurrentDateOnView();
-        addListenerOnButton();
-    }
+		setCurrentDateOnView();
+		addListenerOnButton();
+	}
 
-    public void setCurrentDateOnView() {
-        startDateText = (TextView) findViewById(R.id.startDate);
-        endDateText = (TextView) findViewById(R.id.endDate);
+	public void setCurrentDateOnView() {
+		startDateText = (TextView) findViewById(R.id.startDate);
+		endDateText = (TextView) findViewById(R.id.endDate);
 
-        c = Calendar.getInstance();
-        yearFrom = c.get(Calendar.YEAR);
-        monthFrom = c.get(Calendar.MONTH);
-        dayFrom = c.get(Calendar.DAY_OF_MONTH);
+		c = Calendar.getInstance();
+		yearFrom = c.get(Calendar.YEAR);
+		monthFrom = c.get(Calendar.MONTH);
+		dayFrom = c.get(Calendar.DAY_OF_MONTH);
 
-        monthFromString = fixMonth(monthFrom);
-        dayFromString = fixDay(dayFrom);
+		monthFromString = fixMonth(monthFrom);
+		dayFromString = fixDay(dayFrom);
 
-        yearTo = c.get(Calendar.YEAR);
-        monthTo = c.get(Calendar.MONTH);
-        dayTo = c.get(Calendar.DAY_OF_MONTH);
+		yearTo = c.get(Calendar.YEAR);
+		monthTo = c.get(Calendar.MONTH);
+		dayTo = c.get(Calendar.DAY_OF_MONTH);
 
-        monthToString = fixMonth(monthTo);
-        dayToString = fixDay(dayTo);
-        
-        startDateText.setText(new StringBuilder().append(monthFromString)
-                .append("-").append(dayFromString).append("-").append(yearFrom)
-                .append(" "));
-        endDateText.setText(new StringBuilder().append(monthToString)
-                .append("-").append(dayToString).append("-").append(yearTo)
-                .append(" "));
-    }
+		monthToString = fixMonth(monthTo);
+		dayToString = fixDay(dayTo);
 
-    // fancy schmancy listeners for the textviews.
-    public void addListenerOnButton() {
-        startDateText = (TextView) findViewById(R.id.startDate);
-        startDateText.setOnClickListener(new OnClickListener() {
-            @SuppressWarnings("deprecation")
-            @Override
-            public void onClick(View v) {
-                showDialog(DATE_DIALOG_START);
-            }
-        });
+		startDateText.setText(new StringBuilder().append(monthFromString)
+				.append("-").append(dayFromString).append("-").append(yearFrom)
+				.append(" "));
+		endDateText.setText(new StringBuilder().append(monthToString)
+				.append("-").append(dayToString).append("-").append(yearTo)
+				.append(" "));
+	}
 
-        endDateText = (TextView) findViewById(R.id.endDate);
-        endDateText.setOnClickListener(new OnClickListener() {
-            @SuppressWarnings("deprecation")
-            @Override
-            public void onClick(View v) {
-                showDialog(DATE_DIALOG_END);
-            }
-        });
-    }
+	// fancy schmancy listeners for the textviews.
+	public void addListenerOnButton() {
+		startDateText = (TextView) findViewById(R.id.startDate);
+		startDateText.setOnClickListener(new OnClickListener() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onClick(View v) {
+				showDialog(DATE_DIALOG_START);
+			}
+		});
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DATE_DIALOG_START) {
-            return new DatePickerDialog(this, startDateListener, yearFrom,
-                    monthFrom, dayFrom);
-        } else if (id == DATE_DIALOG_END) {
-            return new DatePickerDialog(this, endDateListener, yearTo, monthTo,
-                    dayTo);
-        }
-        return null;
-    }
+		endDateText = (TextView) findViewById(R.id.endDate);
+		endDateText.setOnClickListener(new OnClickListener() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onClick(View v) {
+				showDialog(DATE_DIALOG_END);
+			}
+		});
+	}
 
-    private DatePickerDialog.OnDateSetListener startDateListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int selectedYear,
-                int selectedMonth, int selectedDay) {
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		if (id == DATE_DIALOG_START) {
+			return new DatePickerDialog(this, startDateListener, yearFrom,
+					monthFrom, dayFrom);
+		} else if (id == DATE_DIALOG_END) {
+			return new DatePickerDialog(this, endDateListener, yearTo, monthTo,
+					dayTo);
+		}
+		return null;
+	}
 
-            monthFromString = fixMonth(selectedMonth);
-            dayFromString = fixDay(selectedDay);
-            yearFrom = selectedYear;
+	private DatePickerDialog.OnDateSetListener startDateListener = new DatePickerDialog.OnDateSetListener() {
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
 
-            startDateText.setText(new StringBuilder().append(monthFromString)
-                    .append("-").append(dayFromString).append("-")
-                    .append(yearFrom).append(" "));
-        }
-    };
+			monthFromString = fixMonth(selectedMonth);
+			dayFromString = fixDay(selectedDay);
+			yearFrom = selectedYear;
 
-    private DatePickerDialog.OnDateSetListener endDateListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int selectedYear,
-                int selectedMonth, int selectedDay) {
-            
-            monthToString = fixMonth(selectedMonth);
-            dayToString = fixDay(selectedDay);
-            yearTo = selectedYear;
+			startDateText.setText(new StringBuilder().append(monthFromString)
+					.append("-").append(dayFromString).append("-")
+					.append(yearFrom).append(" "));
+		}
+	};
 
-            endDateText.setText(new StringBuilder().append(monthToString)
-                    .append("-").append(dayToString).append("-")
-                    .append(yearTo).append(" "));
-        }
-    };
+	private DatePickerDialog.OnDateSetListener endDateListener = new DatePickerDialog.OnDateSetListener() {
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
 
-    public void onDateClick(View view) {
-        Intent intent = null;
-        if ("consumerSpending".equals(type)) {
-            intent = new Intent(this, ConsumerSpendingActivity.class);
-        }
+			monthToString = fixMonth(selectedMonth);
+			dayToString = fixDay(selectedDay);
+			yearTo = selectedYear;
 
-        String finalStart = monthFromString + "" + dayFromString + "" + yearFrom;
-        String finalEnd = monthToString + "" + dayToString + "" + yearTo;
+			endDateText.setText(new StringBuilder().append(monthToString)
+					.append("-").append(dayToString).append("-").append(yearTo)
+					.append(" "));
+		}
+	};
 
-        if (checkDate(finalStart, finalEnd)) {
-            Bundle bundle = new Bundle();
-            bundle.putString("accountNumber", accountNumberTemp);
-            bundle.putString("username", username);
-            bundle.putString("monthFrom", monthFromString);
-            bundle.putString("dayFrom", dayFromString);
-            bundle.putString("yearFrom", yearFrom + "");
-            bundle.putString("monthTo", monthToString);
-            bundle.putString("dayTo", dayToString);
-            bundle.putString("yearTo", yearTo + "");
-            intent.putExtras(bundle);
-            startActivity(intent);
-        }
-    }
+	public void onDateClick(View view) {
+		Intent intent = null;
+		if ("spendingCategory".equals(type)) {
+			intent = new Intent(this, ConsumerSpendingActivity.class);
+		} else if ("incomeSource".equals(type)) {
+			intent = new Intent(this, IncomeSourceActivity.class);
+		}
 
-    private boolean checkDate(String start, String end) {
-        boolean result = false;
+		String finalStart = monthFromString + "" + dayFromString + ""
+				+ yearFrom;
+		String finalEnd = monthToString + "" + dayToString + "" + yearTo;
+		System.out.println("FINALDATE: " + finalStart + " " + finalEnd);
 
-        if (start.compareTo(end) > 0) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Date input error.")
-                    .setMessage("Sorry, end date can't be before start date.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                    // Empty
-                                }
-                            }).show();
-        } else {
-            result = true;
-        }
-        return result;
-    }
+		if (checkDate(finalStart, finalEnd)) {
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumberTemp);
+			bundle.putString("username", username);
+			bundle.putString("finalStart", finalStart);
+			bundle.putString("finalEnd", finalEnd);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+	}
 
-    private String fixMonth(int monthInput) {
-        String month = monthInput + "";
-        if ((monthInput + 1) < 10) {
-            month = "0" + (monthInput + 1);
-        }
+	private boolean checkDate(String start, String end) {
+		boolean result = false;
 
-        return month;
-    }
+		if (start.compareTo(end) > 0) {
+			new AlertDialog.Builder(this)
+					.setTitle("Date input error.")
+					.setMessage("Sorry, end date can't be before start date.")
+					.setPositiveButton(android.R.string.ok,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// Empty
+								}
+							}).show();
+		} else {
+			result = true;
+		}
+		return result;
+	}
 
-    private String fixDay(int dayInput) {
-        String day = dayInput + "";
-        if (dayInput < 10) {
-            day = "0" + dayInput;
-        }
+	private String fixMonth(int monthInput) {
+		String month = monthInput + "";
+		if ((monthInput + 1) < 10) {
+			month = "0" + (monthInput + 1);
+		}
 
-        return day;
-    }
+		return month;
+	}
+
+	private String fixDay(int dayInput) {
+		String day = dayInput + "";
+		if (dayInput < 10) {
+			day = "0" + dayInput;
+		}
+
+		return day;
+	}
 
 }

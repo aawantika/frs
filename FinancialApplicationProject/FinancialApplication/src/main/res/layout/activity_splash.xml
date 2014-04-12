@@ -64,13 +64,13 @@
         android:text="@string/prav" />
     
     <TextView
-        android:id="@+id/loserText"
+        android:id="@+id/shannonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pravText"
         android:layout_centerHorizontal="true"
         android:textColor="#004a80"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/shanSucks" />
+        android:text="@string/shannon" />
 
 </RelativeLayout>

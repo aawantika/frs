@@ -18,47 +18,12 @@ import android.widget.TextView;
 public class ConsumerSpendingActivity extends Activity {
 
     private DBHelper db;
-    private String username;
-    private String accountNumberTemp;
+    private String username, accountNumberTemp;    
+    private String finalStart, finalEnd;
     
-    private int dayTo, dayFrom, day;
-    private int monthTo, monthFrom, month;
-    private int yearTo, yearFrom, year;
-    /**
-     * represents total amt withdrawn.
-     */
     private float totalWithdrawals;
-    /**
-     * represents total amt gas spent.
-     */
-    private float gas;
-    /**
-     * represents total amt rent spent.
-     */
-    private float rent;
-    /**
-     * represents total amt clothing spent.
-     */
-    private float clothing;
-    /**
-     * represents total amt business spent.
-     */
-    private float business;
-    /**
-     * represents total amt groceries spent.
-     */
-    private float groceries;
-    /**
-     * represents total amt entertainment spent.
-     */
-    private float entertainment;
-    /**
-     * represents all transactions.
-     */
+    private float gas, rent, clothing, business, groceries, entertainment;
     private List<Transaction> transactionList;
-    /**
-     * represents all date range valid transactions.
-     */
     private List<Transaction> withinDates;
 
     @Override
@@ -72,13 +37,8 @@ public class ConsumerSpendingActivity extends Activity {
         accountNumberTemp = getIntent().getStringExtra("accountNumber");
         username = getIntent().getStringExtra("username");
         
-        monthFrom = Integer.valueOf(getIntent().getStringExtra("monthFrom"));
-        dayFrom = Integer.valueOf(getIntent().getStringExtra("dayFrom"));
-        yearFrom = Integer.valueOf(getIntent().getStringExtra("yearFrom"));
-        
-        monthTo = Integer.valueOf(getIntent().getStringExtra("monthTo"));
-        dayTo = Integer.valueOf(getIntent().getStringExtra("dayTo"));
-        yearTo = Integer.valueOf(getIntent().getStringExtra("yearTo"));
+        finalStart = getIntent().getStringExtra("finalStart");
+        finalEnd = getIntent().getStringExtra("finalEnd");
 
         transactionList = db.getAllTransactionsByUsername(username);
 
@@ -86,65 +46,21 @@ public class ConsumerSpendingActivity extends Activity {
         populateCashCategories();
         populateTextFields();
     }
+    
     /**
      * Populates a list with transactions that are within date range.
      */
     private void populateCorrectList() {
         for (Transaction t : transactionList) {
             Log.i("MONTH ", t.getDate());
-            month = Integer.valueOf(t.getDate().substring(0, 2));
-            day = Integer.valueOf(t.getDate().substring(3, 5));
-            year = Integer.valueOf(t.getDate().substring(6, 10));
-            boolean goodToGoForward = false;
-            boolean goodToGoBackward = false;
-            goodToGoForward = evalForward(goodToGoForward);
-            goodToGoBackward = evalBackward(goodToGoForward, goodToGoBackward);
-            if (goodToGoForward && goodToGoBackward) {
-                Log.i("transaction in cs", t.toString());
-                withinDates.add(t);
+            String date = t.getDate();
+            if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)) {
+            	Log.i("transaction in cs", t.toString());
+            	withinDates.add(t);
             }
         }
     }
-    /**
-     * evaluates the forward direction.
-     * @param toEval the boolean to be returned
-     * @return if the forward date range is good
-     */
-    private boolean evalForward(boolean toEval) {
-    	boolean goodToGoForward = toEval;
-    	if (year > yearFrom) {
-            goodToGoForward = true;
-        } else if (year == yearFrom) {
-            if (month > monthFrom) {
-                goodToGoForward = true;
-            } else if (month == monthFrom && day >= dayFrom) {
-                    goodToGoForward = true;
-            }
-        }
-    	return goodToGoForward;
-    }
-    /**
-     * Checks if the date range is fine going backwards.
-     * @param efficiencyCheck check and see if the forward range was good
-     * @param toEval evaluate if the backward date range is good
-     * @return if the backward date range is good
-     */
-    private boolean evalBackward(boolean efficiencyCheck, boolean toEval) {
-    	boolean goodToGoForward = efficiencyCheck;
-    	boolean goodToGoBackward = toEval;
-    	if (goodToGoForward) {
-            if (year < yearTo) {
-                goodToGoBackward = true;
-            } else if (year == yearTo) {
-                if (month < monthTo) {
-                    goodToGoBackward = true;
-                } else if (month == monthTo && day <= dayTo) {
-                        goodToGoBackward = true;
-                }
-            }
-        }
-    	return goodToGoBackward;
-    }
+    
     /**
      * Fills in money buckets with corresponding transaction values.
      */
@@ -168,6 +84,7 @@ public class ConsumerSpendingActivity extends Activity {
             }
         }
     }
+    
     /**
      * Loads up the report data into the text fields.
      */

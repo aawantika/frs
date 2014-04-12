@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/goodjob"
-        android:contentDescription="@string/goodjob" />
+        android:contentDescription="@string/hello_world" />
 
     <TextView
         android:id="@+id/textViewTo"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:text="@string/goodjob"
+        android:text="@string/hello_world"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:src="@drawable/images"
-        android:contentDescription="@string/goodjob" />
+        android:contentDescription="@string/hello_world" />
 
 </RelativeLayout>

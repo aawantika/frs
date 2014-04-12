@@ -43,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
             android:name="edu.gatech.financialapplication.LoginResultReceiver"
             android:enabled="true" />
@@ -78,6 +79,10 @@
         <activity
             android:name="edu.gatech.financialapplication.ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.IncomeSourceActivity"
+            android:label="@string/title_activity_income_source" >
         </activity>
     </application>
 

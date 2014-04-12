@@ -18,42 +18,14 @@ import android.widget.Spinner;
  */
 public class WithdrawalActivity extends Activity {
     
-    /**
-     * New Spinner spinner.
-     */
     private Spinner spinner;
-    /**
-     * New String account number.
-     */
     private String accountNumber;
-    /**
-     * New String username.
-     */
     private String username;
-    /**
-     * New String date.
-     */
     private String date;
-    /**
-     * New String reason.
-     */
     private String reason;
-    /**
-     * New String category.
-     */
     private String category;
-    
-    /**
-     * New float amount.
-     */
     private float amount;
-    /**
-     * New DBHelper db.
-     */
     private DBHelper db;
-    /**
-     * New DateGrabber dg.
-     */
     private DateGrabber dg;
 
     @Override
@@ -75,8 +47,7 @@ public class WithdrawalActivity extends Activity {
      * @author Team 15.
      *
      */
-    public class SpinnerOnItemSelectedListener implements
-            OnItemSelectedListener {
+    public class SpinnerOnItemSelectedListener implements OnItemSelectedListener {
 
         /**
          * Changes the option to the one selected.
@@ -89,7 +60,6 @@ public class WithdrawalActivity extends Activity {
         public void onItemSelected(AdapterView<?> parent, View view, int pos,
                 long id) {
             category = parent.getItemAtPosition(pos).toString();
-            //System.out.println("CATEGORY " + category);
         }
 
         @Override
@@ -103,17 +73,13 @@ public class WithdrawalActivity extends Activity {
      */
     public void onClick(View view) {
         date = dg.createDate();
-        amount = Float
-                .parseFloat(((EditText) findViewById(R.id.editTextAmount))
-                        .getText().toString());
-        reason = ((EditText) findViewById(R.id.editTextReason)).getText()
-                .toString();
+        amount = Float.parseFloat(((EditText) findViewById(R.id.editTextAmount)).getText().toString());
+        reason = ((EditText) findViewById(R.id.editTextReason)).getText().toString();
 
         if (amount <= 0) { // empty amount
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
-                    .setMessage(
-                            "Sorry, invalid amount. \nAmount must be greater than 0.")
+                    .setMessage("Sorry, invalid amount. \nAmount must be greater than 0.")
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,

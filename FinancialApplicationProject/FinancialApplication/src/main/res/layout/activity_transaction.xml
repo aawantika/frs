@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     android:gravity="top"
     android:background="@drawable/bg"
+    android:listSelector="@null"
     tools:context=".TransactionActivity" >
     
     <TextView
