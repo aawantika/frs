@@ -10,14 +10,8 @@ import android.view.View;
  *
  */
 public class ReportsActivity extends Activity {
-    /**
-     * The current username.
-     */
-    private String username;
-	/**
-	 * The current account number.
-	 */
-    private String accountNumberTemp;
+    
+	private String username, accountNumberTemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceStt) {
@@ -27,14 +21,29 @@ public class ReportsActivity extends Activity {
         accountNumberTemp = getIntent().getStringExtra("accountNumber");
         username = getIntent().getStringExtra("username");
     }
+    
     /**
      * Opens a date reporter and tells what type of report to generate.
      * @param view the current view
      */
-    public void onCSRClick(View view) {
+    public void onSCRClick(View view) {
         Intent intent = new Intent(this, ReportDateActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("type", "consumerSpending");
+        bundle.putString("type", "spendingCategory");
+        bundle.putString("accountNumber", accountNumberTemp);
+        bundle.putString("username", username);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+    
+    /**
+     * Opens a date reporter and tells what type of report to generate.
+     * @param view the current view
+     */
+    public void onISRClick(View view) {
+        Intent intent = new Intent(this, ReportDateActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", "incomeSource");
         bundle.putString("accountNumber", accountNumberTemp);
         bundle.putString("username", username);
         intent.putExtras(bundle);

@@ -24,6 +24,7 @@ public class ConsumerSpendingActivity extends Activity {
     private int dayTo, dayFrom, day;
     private int monthTo, monthFrom, month;
     private int yearTo, yearFrom, year;
+    private String finalStart, finalEnd;
     
     private float totalWithdrawals;
     private float gas, rent, clothing, business, groceries, entertainment;
@@ -48,6 +49,9 @@ public class ConsumerSpendingActivity extends Activity {
         monthTo = Integer.valueOf(getIntent().getStringExtra("monthTo"));
         dayTo = Integer.valueOf(getIntent().getStringExtra("dayTo"));
         yearTo = Integer.valueOf(getIntent().getStringExtra("yearTo"));
+        
+        finalStart = getIntent().getStringExtra("finalStart");
+        finalEnd = getIntent().getStringExtra("finalEnd");
 
         transactionList = db.getAllTransactionsByUsername(username);
 
@@ -62,58 +66,12 @@ public class ConsumerSpendingActivity extends Activity {
     private void populateCorrectList() {
         for (Transaction t : transactionList) {
             Log.i("MONTH ", t.getDate());
-            month = Integer.valueOf(t.getDate().substring(0, 2));
-            day = Integer.valueOf(t.getDate().substring(3, 5));
-            year = Integer.valueOf(t.getDate().substring(6, 10));
-            boolean goodToGoForward = false;
-            boolean goodToGoBackward = false;
-            goodToGoForward = evalForward(goodToGoForward);
-            goodToGoBackward = evalBackward(goodToGoForward, goodToGoBackward);
-            if (goodToGoForward && goodToGoBackward) {
-                Log.i("transaction in cs", t.toString());
-                withinDates.add(t);
+            String date = t.getDate();
+            if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)) {
+            	Log.i("transaction in cs", t.toString());
+            	withinDates.add(t);
             }
         }
-    }
-    /**
-     * evaluates the forward direction.
-     * @param toEval the boolean to be returned
-     * @return if the forward date range is good
-     */
-    private boolean evalForward(boolean toEval) {
-    	boolean goodToGoForward = toEval;
-    	if (year > yearFrom) {
-            goodToGoForward = true;
-        } else if (year == yearFrom) {
-            if (month > monthFrom) {
-                goodToGoForward = true;
-            } else if (month == monthFrom && day >= dayFrom) {
-                    goodToGoForward = true;
-            }
-        }
-    	return goodToGoForward;
-    }
-    /**
-     * Checks if the date range is fine going backwards.
-     * @param efficiencyCheck check and see if the forward range was good
-     * @param toEval evaluate if the backward date range is good
-     * @return if the backward date range is good
-     */
-    private boolean evalBackward(boolean efficiencyCheck, boolean toEval) {
-    	boolean goodToGoForward = efficiencyCheck;
-    	boolean goodToGoBackward = toEval;
-    	if (goodToGoForward) {
-            if (year < yearTo) {
-                goodToGoBackward = true;
-            } else if (year == yearTo) {
-                if (month < monthTo) {
-                    goodToGoBackward = true;
-                } else if (month == monthTo && day <= dayTo) {
-                        goodToGoBackward = true;
-                }
-            }
-        }
-    	return goodToGoBackward;
     }
     
     /**

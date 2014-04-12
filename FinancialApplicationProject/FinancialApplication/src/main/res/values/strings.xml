@@ -22,7 +22,7 @@
     <string name="defaultAmount">Default Amount</string>
     <string name="forgotPassword">Forgot Password?</string>
     <string name="warning">Warning! You need internet connection for this to work!</string>
-   
+
     <!-- Hints/EditText -->
     <string name="usernameHint">Enter username</string>
     <string name="passwordHint">Enter password</string>
@@ -36,9 +36,9 @@
     <string name="amountHint">Enter amount</string>
     <string name="categoryHint">Enter category</string>
     <string name="day">DD</string>
-	<string name="month">MM</string>
+    <string name="month">MM</string>
     <string name="year">YYYY</string>
-	
+
     <!-- Buttons -->
     <string name="login">Log In</string>
     <string name="register">Register</string>
@@ -48,17 +48,17 @@
     <string name="withdrawal">Withdrawal</string>
     <string name="reports">Reports</string>
     <string name="back">Transactions</string>
-	<string name="unused"></string>
-	<string name="cancel">CANCEL</string>
-	
-	<!-- Titles -->
-	<string name="registration">REGISTRATION</string>
+    <string name="unused"></string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Titles -->
+    <string name="registration">REGISTRATION</string>
     <string name="createAccountTitle">CREATE ACCOUNT</string>
     <string name="depositTitle">DEPOSIT</string>
     <string name="withdrawalTitle">WITHDRAWAL</string>
     <string name="reportsTitle">REPORTS</string>
-    <string name="loginTitle">LOGIN</string> 
-    
+    <string name="loginTitle">LOGIN</string>
+
     <!-- Splash Screen -->
     <string name="teamNumber">Team 15</string>
     <string name="tika">Aawantika Sahu</string>
@@ -66,17 +66,21 @@
     <string name="joseph">Hyun Jong Lee</string>
     <string name="prav">Pravallika Tadikonda</string>
     <string name="shannon">Shannon Nguyen</string>
-	
-	<!-- Date Picker -->
-	<string name="startDateTV">Enter Start Date</string>
-	<string name="endDateTV">Enter End Date</string>
-	
+
+    <!-- Date Picker -->
+    <string name="startDateTV">Enter Start Date</string>
+    <string name="endDateTV">Enter End Date</string>
+
     <!-- Reports -->
     <string name="scr">Spending Category Report</string>
-
+    <string name="isr">Income Source Report</string>
+    <string name="cfr">Cash Flow Report</string>
+    <string name="alr">Account Listing Report</string>
+    <string name="thr">Transaction History Report</string>
 
     <!-- Categories for Withdrawal -->
     <string name="category_prompt">Choose category</string>
+
     <string-array name="category_array">
         <item>Gas</item>
         <item>Rent</item>
@@ -85,7 +89,27 @@
         <item>Groceries</item>
         <item>Entertainment</item>
     </string-array>
-   
-	<!-- Stuff to delete -->
+
+    <!-- ?? -->
+    <string name="gas">Gas</string>
+    <string name="rent">Rent</string>
+    <string name="clothing">Clothing</string>
+    <string name="business">Business</string>
+    <string name="groceries">Groceries</string>
+    <string name="entertainment">Entertainment</string>
+
+    <!-- Manifest -->
+    <string name="title_activity_deposit">DepositActivity</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
+    <string name="title_activity_withdrawal">WithdrawalActivity</string>
+    <string name="title_activity_income_source">IncomeSourceActivity</string>
+    <string name="title_activity_reports">ReportsActivity</string>
+    <string name="title_activity_consumer_spending">ConsumerSpendingActivity</string>
+    <string name="title_activity_report_date">ReportDateActivity</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+
+    <!-- Stuff to delete -->
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

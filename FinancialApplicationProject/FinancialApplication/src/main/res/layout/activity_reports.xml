@@ -15,38 +15,58 @@
         android:layout_centerHorizontal="true"
         android:background="#16718d"
         android:gravity="center"
-        android:textColor="#ffffff"
         android:text="@string/reportsTitle"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
+
     <Button
         android:id="@+id/back"
         android:layout_width="71dp"
         android:layout_height="28dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="11dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"
         android:background="@drawable/back_button"
-        android:onClick="onBackClick"/>
+        android:onClick="onBackClick" />
 
-     <Button
-         android:id="@+id/csr"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-         android:layout_below="@+id/textView1"
-         android:onClick="onCSRClick"
-         android:text="@string/csr"
-         android:textColor="#1c3f5a"
-         android:background="@drawable/large_rectangle_selectorbutton" />
+    <Button
+        android:id="@+id/scr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onSCRClick"
+        android:text="@string/scr"
+        android:textColor="#1c3f5a" />
 
-     <TextView
-         android:id="@+id/border1"
-         android:layout_width="fill_parent"
-         android:layout_height="0.5dp"
-         android:layout_alignParentLeft="true"
-         android:layout_below="@+id/csr"
-         android:background="#3a7099"/>
+    <TextView
+        android:id="@+id/border1"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/scr"
+        android:background="#3a7099" />
+
+    <Button
+        android:id="@+id/isr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:onClick="onISRClick"
+        android:text="@string/isr" />
+
+    <Button
+        android:id="@+id/cfr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/isr"
+        android:layout_marginTop="38dp"
+        android:layout_toRightOf="@+id/back"
+        android:onClick="onCFRClick"
+        android:text="@string/cfr" />
 
 </RelativeLayout>
