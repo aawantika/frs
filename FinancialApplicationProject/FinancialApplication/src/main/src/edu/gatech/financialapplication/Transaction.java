@@ -3,34 +3,12 @@ package edu.gatech.financialapplication;
 /**
  * This class does the transactions from an account.
  * 
- * @author Prav Tadikonda
+ * @author Team 15
  */
 public class Transaction {
 
-    /**
-     * Account instance variable.
-     */
-    private String account;
-    /**
-     * Date instance variable.
-     */
-    private String date;
-    /**
-     * Amount instance variable.
-     */
+    private String account, date, description, category, type;
     private float amount;
-    /**
-     * Description instance variable.
-     */
-    private String description;
-    /**
-     * Category instance variable.
-     */
-    private String category;
-    /**
-     * Type instance variable.
-     */
-    private String type;
 
     /**
      * Modified Constructor: takes in the transaction's information and either
