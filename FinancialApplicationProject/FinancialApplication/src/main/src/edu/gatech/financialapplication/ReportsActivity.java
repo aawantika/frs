@@ -63,6 +63,20 @@ public class ReportsActivity extends Activity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
+    
+    /**
+     * Opens a date reporter and tells what type of report to generate.
+     * @param view the current view
+     */
+    public void onTHRClick(View view) {
+        Intent intent = new Intent(this, ReportDateActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", "transactionHistory");
+        bundle.putString("accountNumber", accountNumberTemp);
+        bundle.putString("username", username);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
         
     public void onBackClick(View view){
         finish();
