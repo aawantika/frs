@@ -43,7 +43,7 @@ public class LoginActivity extends Activity implements
         receiver.setmReceiver(this);
         CurrencyConverter c = new CurrencyConverter();
         c.execute();
-        Toast.makeText(getApplicationContext(), "KRW is " + c.getExchangeValue("KRW") , Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "USD is " + c.getExchangeValue("USD") , Toast.LENGTH_LONG).show();
     }
 
     @Override
