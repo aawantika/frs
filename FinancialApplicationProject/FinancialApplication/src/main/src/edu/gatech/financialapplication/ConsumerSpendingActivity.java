@@ -40,7 +40,9 @@ public class ConsumerSpendingActivity extends Activity {
 		finalEnd = getIntent().getStringExtra("finalEnd");
 		
 		TextView dateText = (TextView) findViewById(R.id.dateText);
-		dateText.setText(finalStart + " - " + finalEnd);
+		String fixStart = DateGrabber.convertStringToDate(finalStart);
+		String fixEnd = DateGrabber.convertStringToDate(finalEnd);
+		dateText.setText(fixStart + " - " + fixEnd);
 
 		transactionList = db.getAllTransactionsByUsername(username);
 

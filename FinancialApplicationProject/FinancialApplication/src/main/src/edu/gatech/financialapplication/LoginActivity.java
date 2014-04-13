@@ -69,8 +69,7 @@ public class LoginActivity extends Activity implements
     /**
      * The click for the ForgotPassword Activity that will switch activities.
      * 
-     * @param view
-     *            The view being used
+     * @param view The view being used
      */
     public void onForgotPasswordClick(final View view) {
         final Intent intent = new Intent(this, ForgotPasswordActivity.class);

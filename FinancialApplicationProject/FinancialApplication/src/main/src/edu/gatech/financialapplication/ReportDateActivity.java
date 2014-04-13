@@ -144,12 +144,13 @@ public class ReportDateActivity extends Activity {
 			intent = new Intent(this, ConsumerSpendingActivity.class);
 		} else if ("incomeSource".equals(type)) {
 			intent = new Intent(this, IncomeSourceActivity.class);
+		} else if ("cashFlow".equals(type)) {
+			intent = new Intent(this, CashFlowActivity.class);
 		}
 
 		String finalStart = monthFromString + "" + dayFromString + ""
 				+ yearFrom;
 		String finalEnd = monthToString + "" + dayToString + "" + yearTo;
-		System.out.println("FINALDATE: " + finalStart + " " + finalEnd);
 
 		if (checkDate(finalStart, finalEnd)) {
 			Bundle bundle = new Bundle();

@@ -15,8 +15,7 @@ import android.widget.TextView;
 public class IncomeSourceActivity extends Activity {
 
 	private DBHelper db;
-	private String username, accountNumberTemp;
-	private String finalStart, finalEnd;
+	private String username, accountNumberTemp, finalStart, finalEnd;
 
 	private float totalDeposits;
 	private List<Transaction> transactionList;
@@ -39,7 +38,10 @@ public class IncomeSourceActivity extends Activity {
 		finalEnd = getIntent().getStringExtra("finalEnd");
 		
 		TextView dateText = (TextView) findViewById(R.id.dateText);
-		dateText.setText(finalStart + " - " + finalEnd);
+		String fixStart = DateGrabber.convertStringToDate(finalStart);
+		String fixEnd = DateGrabber.convertStringToDate(finalEnd);
+		dateText.setText(fixStart + " - " + fixEnd);
+		
 		getProperDeposits();
 		TextView totalDepositText = (TextView) findViewById(R.id.totalDepositsText);
 		totalDepositText.setText(Float.toString(totalDeposits));
