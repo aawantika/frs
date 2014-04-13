@@ -67,6 +67,7 @@
     <string name="csrTitle">CONSUMER SPENDING</string>
     <string name="isrTitle">INCOME SOURCE</string>
     <string name="cfrTitle">CASH FLOW</string>
+    <string name="thrTitle">TRANSACTION HISTORY</string>
 
     <!-- Splash Screen -->
     <string name="teamNumber">Team 15</string>

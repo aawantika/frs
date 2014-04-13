@@ -6,6 +6,29 @@
     android:background="#e3ecef"
     tools:context=".ReportDateActivity"
     tools:ignore="MergeRootFrame" >
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:text="@string/reportsTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="71dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/back_button"
+        android:onClick="onBackClick" />
 
     <Button
         android:id="@+id/submit"
@@ -24,7 +47,7 @@
         android:id="@+id/startText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/title"
         android:layout_marginRight="15dp"
         android:layout_marginTop="76dp"
         android:layout_toLeftOf="@+id/submit"

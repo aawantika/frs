@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e3ecef"
     tools:context="edu.gatech.financialapplication.TransactionHistoryActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -10,17 +11,21 @@
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_rectanglebutton"
         android:onClick="onBackClick"
-        android:text="@string/back" />
+        android:text="@string/home"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/backBtn"
+        android:layout_below="@+id/title"
         android:text="@string/date"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -38,7 +43,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/accountNum" >
+        android:layout_below="@+id/accountNum"
+        android:layout_above="@+id/backBtn"
+        android:paddingBottom="5dp" >
     </ListView>
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="@string/thrTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

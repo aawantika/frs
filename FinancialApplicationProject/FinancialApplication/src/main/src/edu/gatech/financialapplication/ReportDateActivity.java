@@ -203,4 +203,7 @@ public class ReportDateActivity extends Activity {
 		return day;
 	}
 
+	public void onBackClick(View view) {
+		finish();
+	}
 }
