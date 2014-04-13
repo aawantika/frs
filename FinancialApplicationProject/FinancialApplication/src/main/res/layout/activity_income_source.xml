@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e3ecef"
     tools:context="edu.gatech.financialapplication.IncomeSourceActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -10,7 +11,13 @@
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_rectanglebutton"
+        android:text="@string/home"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
         android:onClick="onTransactionClick" />
 
     <TextView
@@ -29,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/backBtn"
+        android:layout_below="@+id/dateText"
         android:layout_marginLeft="17dp"
         android:layout_marginTop="19dp"
         android:text="@string/totalDeposits"
@@ -39,17 +46,32 @@
         android:id="@+id/depositLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/backBtn"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/dateText" >
+        android:layout_below="@+id/totalDeposits"
+        android:paddingBottom="5dp" >
+
     </ListView>
 
     <TextView
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/backBtn"
-        android:layout_below="@+id/totalDeposits"
+        android:layout_alignLeft="@+id/totalDeposits"
+        android:layout_below="@+id/title"
         android:text="@string/date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="@string/isrTitle"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

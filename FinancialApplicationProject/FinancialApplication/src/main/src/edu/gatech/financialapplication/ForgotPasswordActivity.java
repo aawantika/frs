@@ -106,4 +106,13 @@ public class ForgotPasswordActivity extends Activity {
             }
         }
     }
+    
+    /**
+     * On click, sends users back
+     * 
+     * @param view the view being used
+     */
+    public void onBackClick(View view) {
+    	finish();
+    }
 }
