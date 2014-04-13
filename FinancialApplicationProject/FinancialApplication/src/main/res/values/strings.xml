@@ -22,6 +22,7 @@
     <string name="defaultAmount">Default Amount</string>
     <string name="forgotPassword">Forgot Password?</string>
     <string name="netFlow">Net Flow</string>
+    <string name="accountNum">Account Number:</string>
     <string name="warning">Warning! You need internet connection for this to work!</string>
 
     <!-- Hints/EditText -->
