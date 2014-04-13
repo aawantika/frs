@@ -1,11 +1,22 @@
 package edu.gatech.financialapplication;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 /**
@@ -20,6 +31,8 @@ public class RegisterActivity extends Activity {
      * New DBHelper db.
      */
     private DBHelper dbHelp;
+    private ProgressDialog pDialog;
+    private String POSTURL = "http://tomcatjndi-mygatech.rhcloud.com/CS2340postfrs1";
 
     @Override
     protected void onCreate(Bundle savedInstanceStt) {
@@ -52,11 +65,62 @@ public class RegisterActivity extends Activity {
 
             User user = new User(firstname, lastname, username, password,
                     passwordHint, email);
+            (new PostUserToServer(firstname, lastname, username, dbHelp.getEncryptedPassword(user), passwordHint, email)).execute();
             dbHelp.addUser(user);
+            
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
         }
     }
+    
+    private class PostUserToServer extends AsyncTask<Void, Void, Void> {
+    	private String firstname, lastname,  username,  password,  phint,  email;
+    	
+    	public PostUserToServer(String firstname, String lastname, String username, String password, String phint, String email) {
+    		this.firstname = firstname;
+			this.lastname = lastname;
+			this.username = username;
+			this.password = password;
+			this.phint = phint;
+			this.email = email;
+    	}
+    	
+		protected void onPreExecute() {
+			super.onPreExecute();
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+			// Showing progress dialog
+			pDialog = new ProgressDialog(RegisterActivity.this);
+			pDialog.setMessage("Please wait...");
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			// Creating service handler class instance
+			ServiceHandler sh = new ServiceHandler();
+			List<NameValuePair> np = new ArrayList<NameValuePair>();
+			np.add(new BasicNameValuePair("firstname", firstname));
+			np.add(new BasicNameValuePair("lastname", lastname));
+			np.add(new BasicNameValuePair("username", username));
+			np.add(new BasicNameValuePair("password", password));
+			np.add(new BasicNameValuePair("phint", phint));
+			np.add(new BasicNameValuePair("email", email));
+
+			String jsonStr = sh.makeServiceCall(POSTURL, ServiceHandler.POST,np);
+			if (jsonStr.equals("200"))
+				Log.d("Server: ", "Okay!");
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			// Dismiss the progress dialog
+			if (pDialog.isShowing())
+				pDialog.dismiss();
+		}
+	}
 
     /**
      * Checks if username and password (the user) is a duplicate or not.

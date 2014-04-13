@@ -198,6 +198,18 @@ public class DBHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
+    
+    public String getEncryptedPassword(User user) {
+    	String encrypted = "";
+        try {
+			AESCrypt a = new AESCrypt(seed);
+			encrypted = a.encrypt(user.getPassword());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        return encrypted;
+    }
 
     /**
      * Gets user by username.
