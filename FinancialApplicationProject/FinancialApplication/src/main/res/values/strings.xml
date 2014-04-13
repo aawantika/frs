@@ -52,6 +52,7 @@
     <string name="back">Transactions</string>
     <string name="unused">unused</string>
     <string name="cancel">Cancel</string>
+    <string name="home">Home</string>
 
     <!-- Titles -->
     <string name="registration">REGISTRATION</string>
@@ -62,6 +63,7 @@
     <string name="loginTitle">LOGIN</string>
     <string name="homeTitle">HOME</string>
     <string name="forgotTitle">FORGOT PASSWORD</string>
+    <string name="csrTitle">CONSUMER SPENDING</string>
 
     <!-- Splash Screen -->
     <string name="teamNumber">Team 15</string>
