@@ -108,19 +108,19 @@
     <string name="entertainment">Entertainment</string>
 
     <!-- Manifest -->
-    <string name="title_activity_deposit">DepositActivity</string>
-    <string name="title_activity_transaction">TransactionActivity</string>
-    <string name="title_activity_withdrawal">WithdrawalActivity</string>
-    <string name="title_activity_income_source">IncomeSourceActivity</string>
-    <string name="title_activity_reports">ReportsActivity</string>
-    <string name="title_activity_consumer_spending">ConsumerSpendingActivity</string>
-    <string name="title_activity_report_date">ReportDateActivity</string>
-    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="title_activity_deposit">Deposit</string>
+    <string name="title_activity_transaction">Transaction</string>
+    <string name="title_activity_withdrawal">Withdrawal</string>
+    <string name="title_activity_reports">Reports</string>
+    <string name="title_activity_report_date">Enter Date for Report </string>
+    <string name="title_activity_forgot_password">Forgot Password</string>
+    <string name="title_activity_cash_flow">Cash Flow Report</string>
+    <string name="title_activity_income_source">Income Source Report</string>
+    <string name="title_activity_consumer_spending">Spending Category Report</string>
+    <string name="title_activity_transaction_history">Transaction History Report</string>
 
     <!-- ??? -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_cash_flow">CashFlowActivity</string>
-    <string name="title_activity_transaction_history">TransactionHistoryActivity</string>
 
 </resources>
