@@ -43,7 +43,8 @@ public class LoginActivity extends Activity implements
         receiver.setmReceiver(this);
         CurrencyConverter c = new CurrencyConverter();
         c.execute();
-        Toast.makeText(getApplicationContext(), "USD is " + c.getExchangeValue("USD") , Toast.LENGTH_LONG).show();
+        if (c.getExchangeValue("USD") != null)
+        	Toast.makeText(getApplicationContext(), "USD is " + c.getExchangeValue("USD") , Toast.LENGTH_LONG).show();
     }
 
     @Override
