@@ -18,6 +18,7 @@ import android.util.Log;
  * @author Team 15
  */
 public class DBHelper extends SQLiteOpenHelper {
+	private static final String seed = "GATECH_CS2340";
     /**
      * Used to check if database works properly or not.
      */
@@ -169,14 +170,24 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
+        String encrypted = "";
+        try {
+			AESCrypt a = new AESCrypt(seed);
+			encrypted = a.encrypt(user.getPassword());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
         ContentValues values = new ContentValues();
         values.put(KEY_FNAME, user.getFirstname());
         values.put(KEY_LNAME, user.getLastname());
         values.put(KEY_USER, user.getUsername());
-        values.put(KEY_PASS, user.getPassword());
+        values.put(KEY_PASS, encrypted);
         values.put(KEY_PHINT, user.getPasswordHint());
         values.put(KEY_EMAIL, user.getEmail());
-
+        
+        Log.d("Encryption:", "From " + user.getPassword() + " encrypted to " + encrypted);
         try {
             db.insert(DATABASE_TABLE_USER, null, values);
             Log.d("Database User Inserted", "Inserted Properly, username "
@@ -208,8 +219,16 @@ public class DBHelper extends SQLiteOpenHelper {
         User user = null;
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
+            String decrypted = "";
+			try {
+				AESCrypt a = new AESCrypt(seed);
+	            decrypted = a.decrypt(cursor.getString(3));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	        Log.d("Decryption:", "From " + cursor.getString(3) + " decrypted to " + decrypted);
             user = new User(cursor.getString(0), cursor.getString(1),
-                    cursor.getString(2), cursor.getString(3),
+                    cursor.getString(2), decrypted,
                     cursor.getString(4), cursor.getString(5));
         }
 
