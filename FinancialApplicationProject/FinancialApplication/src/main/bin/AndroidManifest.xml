@@ -97,6 +97,10 @@
             android:name="edu.gatech.financialapplication.IncomeSourceActivity"
             android:label="@string/title_activity_income_source" >
         </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.CashFlowActivity"
+            android:label="@string/title_activity_cash_flow" >
+        </activity>
     </application>
 
 </manifest>
