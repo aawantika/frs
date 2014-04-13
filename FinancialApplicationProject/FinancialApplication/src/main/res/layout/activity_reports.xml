@@ -51,22 +51,40 @@
 
     <Button
         android:id="@+id/isr"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/scr"
+        android:layout_below="@+id/border1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
         android:onClick="onISRClick"
-        android:text="@string/isr" />
+        android:text="@string/isr"
+        android:textColor="#1c3f5a"
+        android:background="@drawable/large_rectangle_selectorbutton" />
+    
+    <TextView
+        android:id="@+id/border2"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/isr"
+        android:background="#3a7099" />
 
     <Button
         android:id="@+id/cfr"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/isr"
-        android:layout_marginTop="38dp"
-        android:layout_toRightOf="@+id/back"
+        android:layout_below="@+id/border2"
+        android:layout_centerHorizontal="true"
         android:onClick="onCFRClick"
-        android:text="@string/cfr" />
+        android:text="@string/cfr"
+        android:textColor="#1c3f5a"
+        android:background="@drawable/large_rectangle_selectorbutton" />
+    
+    <TextView
+        android:id="@+id/border3"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cfr"
+        android:background="#3a7099" />
 
 </RelativeLayout>

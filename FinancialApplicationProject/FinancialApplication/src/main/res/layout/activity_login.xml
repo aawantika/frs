@@ -6,6 +6,29 @@
     android:background="@drawable/bg"
     tools:context=".LoginActivity"
     tools:ignore="MergeRootFrame" >
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:background="#16718d"
+        android:text="@string/loginTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="71dp"
+        android:layout_height="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/back_button"
+        android:onClick="onCancelClick"/>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -15,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="110dp"
         android:contentDescription="@string/unused"
-        android:src="@drawable/loginbox" />
+        android:src="@drawable/emptybox" />
 
     <EditText
         android:id="@+id/username"
@@ -70,25 +93,12 @@
         android:id="@+id/loginBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/password"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/passwordHintText"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_rectanglebutton"
         android:onClick="onButtonClick"
         android:text="@string/loginTitle"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff" />
-
-    <Button
-        android:id="@+id/cancelBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/password"
-        android:layout_below="@+id/passwordHintText"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rounded_rectanglebutton"
-        android:onClick="onCancelClick"
-        android:text="@string/cancel"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff" />
 
@@ -98,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/username"
         android:layout_alignTop="@+id/imageView1"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/username"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

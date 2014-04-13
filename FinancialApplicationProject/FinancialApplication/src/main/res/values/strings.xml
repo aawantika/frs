@@ -61,6 +61,7 @@
     <string name="reportsTitle">REPORTS</string>
     <string name="loginTitle">LOGIN</string>
     <string name="homeTitle">HOME</string>
+    <string name="forgotTitle">FORGOT PASSWORD</string>
 
     <!-- Splash Screen -->
     <string name="teamNumber">Team 15</string>
