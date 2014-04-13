@@ -101,6 +101,10 @@
             android:name="edu.gatech.financialapplication.CashFlowActivity"
             android:label="@string/title_activity_cash_flow" >
         </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.TransactionHistoryActivity"
+            android:label="@string/title_activity_transaction_history" >
+        </activity>
     </application>
 
 </manifest>

@@ -79,7 +79,6 @@
     <string name="scr">Spending Category Report</string>
     <string name="isr">Income Source Report</string>
     <string name="cfr">Cash Flow Report</string>
-    <string name="alr">Account Listing Report</string>
     <string name="thr">Transaction History Report</string>
 
     <!-- Categories for Withdrawal -->
@@ -116,5 +115,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_cash_flow">CashFlowActivity</string>
+    <string name="title_activity_transaction_history">TransactionHistoryActivity</string>
 
 </resources>

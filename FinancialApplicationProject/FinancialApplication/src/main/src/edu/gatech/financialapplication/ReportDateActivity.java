@@ -146,8 +146,10 @@ public class ReportDateActivity extends Activity {
 			intent = new Intent(this, IncomeSourceActivity.class);
 		} else if ("cashFlow".equals(type)) {
 			intent = new Intent(this, CashFlowActivity.class);
+		} else if ("transactionHistory".equals(type)) {
+			intent = new Intent(this, TransactionHistoryActivity.class);
 		}
-
+		
 		String finalStart = monthFromString + "" + dayFromString + ""
 				+ yearFrom;
 		String finalEnd = monthToString + "" + dayToString + "" + yearTo;

@@ -87,4 +87,14 @@
         android:layout_below="@+id/cfr"
         android:background="#3a7099" />
 
+    <Button
+        android:id="@+id/thr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cfr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:onClick="onTHRClick"
+        android:text="@string/thr" />
+
 </RelativeLayout>
