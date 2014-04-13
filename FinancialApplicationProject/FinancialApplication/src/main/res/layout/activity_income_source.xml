@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -13,4 +13,34 @@
         android:text="@string/back"
         android:onClick="onTransactionClick" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/totalDepositsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/totalDeposits"
+        android:layout_alignBottom="@+id/totalDeposits"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="27dp"
+        android:text="@string/unused"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/totalDeposits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/backBtn"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/totalDeposits"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/depositLV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/totalDeposits" >
+    </ListView>
+
+</RelativeLayout>

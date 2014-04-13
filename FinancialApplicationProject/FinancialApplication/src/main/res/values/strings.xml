@@ -49,7 +49,7 @@
     <string name="reports">Reports</string>
     <string name="graphs">Graphs</string>
     <string name="back">Transactions</string>
-    <string name="unused"></string>
+    <string name="unused">unused</string>
     <string name="cancel">Cancel</string>
 
     <!-- Titles -->
@@ -82,7 +82,6 @@
 
     <!-- Categories for Withdrawal -->
     <string name="category_prompt">Choose category</string>
-
     <string-array name="category_array">
         <item>Gas</item>
         <item>Rent</item>

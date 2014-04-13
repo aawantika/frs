@@ -145,4 +145,14 @@ public class Transaction {
     public void setType(String aType) {
         this.type = aType;
     }
+
+	/**
+     * Used for debugging code - for deposit
+     * 
+     * @return String: returns description and amount.
+     *
+     */
+    public String debugDeposit() {
+        return "Reason: " + description + "\nBalance: " + amount;
+    }
 }

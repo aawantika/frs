@@ -45,8 +45,7 @@ public class Account {
     /**
      * Used for debugging code.
      * 
-     * @return String: returns username, account number, and balance for
-     *         debugging.
+     * @return String: returns username, account number, and balance for debugging.
      */
     public String debug() {
         return "Username: " + username + "\nAccount: " + accountNumber

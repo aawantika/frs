@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView5"
         android:layout_alignRight="@+id/textView12"
-        android:text="Small Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignRight="@+id/textView13"
-        android:text="Small Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView6"
         android:layout_alignRight="@+id/textView14"
-        android:text="Small Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView7"
         android:layout_alignRight="@+id/textView15"
-        android:text="Small Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView8"
         android:layout_alignRight="@+id/textView16"
-        android:text="Small Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -116,7 +116,7 @@
         android:layout_alignBaseline="@+id/textView9"
         android:layout_alignBottom="@+id/textView9"
         android:layout_alignRight="@+id/textView17"
-        android:text="Small Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -126,7 +126,7 @@
         android:layout_above="@+id/textView4"
         android:layout_marginLeft="28dp"
         android:layout_toRightOf="@+id/textView3"
-        android:text="Medium Text"
+        android:text="@string/unused"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView

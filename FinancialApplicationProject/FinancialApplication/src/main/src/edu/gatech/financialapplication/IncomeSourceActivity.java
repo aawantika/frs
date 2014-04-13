@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class IncomeSourceActivity extends Activity {
 
@@ -18,6 +21,8 @@ public class IncomeSourceActivity extends Activity {
 	private float totalDeposits;
 	private List<Transaction> transactionList;
 	private List<Transaction> withinDates;
+	private ArrayAdapter<Transaction> depositAdapter;
+	private ListView listview;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,7 @@ public class IncomeSourceActivity extends Activity {
 		setContentView(R.layout.activity_income_source);
 		db = new DBHelper(this);
 		withinDates = new ArrayList<Transaction>();
+		listview = (ListView) findViewById(R.id.depositLV);
 
 		// pull from intent
 		accountNumberTemp = getIntent().getStringExtra("accountNumber");
@@ -32,38 +38,36 @@ public class IncomeSourceActivity extends Activity {
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
 
-		transactionList = db.getAllTransactionsByUsername(username);
-
-		populateCorrectList();
-		populateCashCategories();
+		getProperDeposits();
+		TextView totalDepositText = (TextView) findViewById(R.id.totalDepositsText);
+		totalDepositText.setText(Float.toString(totalDeposits));
+		
+		System.out.println(withinDates.toString());
+		
+		depositAdapter = new DepositAdapter(this, R.layout.deposit_row, withinDates);
+		listview.setAdapter(depositAdapter);
+		depositAdapter.notifyDataSetChanged();
 	}
 
 	/**
 	 * Populates a list with transactions that are within date range.
 	 */
-	private void populateCorrectList() {
+	private void getProperDeposits() {
+		transactionList = db.getAllTransactionsByUsername(username);
 		for (Transaction t : transactionList) {
 			Log.i("MONTH ", t.getDate());
 			String date = t.getDate();
 			if ((finalStart.compareTo(date) <= 0)
 					&& (finalEnd.compareTo(date) >= 0)
 					&& t.getType().equals("deposit")) {
-
+				
 				Log.i("transaction in cs", t.toString());
 				withinDates.add(t);
+				totalDeposits += t.getAmount();
 			}
 		}
 	}
 
-	/**
-	 * Fills in money buckets with corresponding transaction values.
-	 */
-	private void populateCashCategories() {
-		for (Transaction t : withinDates) {
-			totalDeposits += t.getAmount();
-		}
-	}
-	
 	/**
 	 * On click to go back to the general menu.
 	 * 

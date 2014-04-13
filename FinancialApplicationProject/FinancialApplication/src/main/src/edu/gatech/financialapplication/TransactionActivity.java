@@ -34,41 +34,39 @@ public class TransactionActivity extends Activity {
 		listview = (ListView) findViewById(R.id.accountLV);
 
 		db = new DBHelper(this);
-		if (getIntent() != null) {
-			accountNumberTemp = getIntent().getStringExtra("accountNumber");
-			username = getIntent().getStringExtra("username");
+		accountNumberTemp = getIntent().getStringExtra("accountNumber");
+		username = getIntent().getStringExtra("username");
 
-			accounts = db.getAccountsByUsername(username);
-			adapter = new AccountAdapter(this, R.layout.transaction_row,
-					accounts);
-			listview.setAdapter(adapter);
-			adapter.notifyDataSetChanged();
+		accounts = db.getAccountsByUsername(username);
+		adapter = new AccountAdapter(this, R.layout.transaction_row, accounts);
+		listview.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
 
-			listview.setSelection(0);
-			accountNumberTemp = accounts.get(0).getAccountNumber();
+		listview.setSelection(0);
+		accountNumberTemp = accounts.get(0).getAccountNumber();
 
-			listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				public void onItemClick(AdapterView<?> parentAdapter,
-						View view, int position, long id) {
-					
-					if (position != 0) {
-						View rowView = listview.getChildAt(0);
-						TextView textView = (TextView) rowView
-								.findViewById(R.id.textView);
-						textView.setBackgroundColor(Color.rgb(227, 236, 239));
-					} else {
-						View rowView = listview.getChildAt(0);
-						TextView textView = (TextView) rowView
-								.findViewById(R.id.textView);
-						textView.setBackgroundColor(Color.rgb(173, 211, 224));
-					}
+		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentAdapter, View view,
+					int position, long id) {
 
-					view.setSelected(true);
-					Account accountFromClick = accounts.get(position);
-					accountNumberTemp = accountFromClick.getAccountNumber();
+				if (position != 0) {
+					View rowView = listview.getChildAt(0);
+					TextView textView = (TextView) rowView
+							.findViewById(R.id.textView);
+					textView.setBackgroundColor(Color.rgb(227, 236, 239));
+				} else {
+					View rowView = listview.getChildAt(0);
+					TextView textView = (TextView) rowView
+							.findViewById(R.id.textView);
+					textView.setBackgroundColor(Color.rgb(173, 211, 224));
 				}
-			});
-		}
+
+				view.setSelected(true);
+				Account accountFromClick = accounts.get(position);
+				accountNumberTemp = accountFromClick.getAccountNumber();
+			}
+		});
+
 	}
 
 	/**
