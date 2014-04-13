@@ -22,7 +22,7 @@
     <string name="defaultAmount">Default Amount</string>
     <string name="forgotPassword">Forgot Password?</string>
     <string name="warning">Warning! You need internet connection for this to work!</string>
-    
+
     <!-- Hints/EditText -->
     <string name="usernameHint">Enter username</string>
     <string name="passwordHint">Enter password</string>
@@ -82,6 +82,7 @@
 
     <!-- Categories for Withdrawal -->
     <string name="category_prompt">Choose category</string>
+
     <string-array name="category_array">
         <item>Gas</item>
         <item>Rent</item>
@@ -109,7 +110,7 @@
     <string name="title_activity_report_date">ReportDateActivity</string>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
 
-    <!-- Stuff to delete -->
+    <!-- ??? -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 

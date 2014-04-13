@@ -37,13 +37,14 @@ public class IncomeSourceActivity extends Activity {
 		username = getIntent().getStringExtra("username");
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
-
+		
+		TextView dateText = (TextView) findViewById(R.id.dateText);
+		dateText.setText(finalStart + " - " + finalEnd);
 		getProperDeposits();
 		TextView totalDepositText = (TextView) findViewById(R.id.totalDepositsText);
 		totalDepositText.setText(Float.toString(totalDeposits));
 		
-		System.out.println(withinDates.toString());
-		
+				
 		depositAdapter = new DepositAdapter(this, R.layout.deposit_row, withinDates);
 		listview.setAdapter(depositAdapter);
 		depositAdapter.notifyDataSetChanged();
