@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class IncomeSourceActivity extends Activity {
 
 	private DBHelper db;
-	private String username, accountNumberTemp, finalStart, finalEnd;
+	private String username, accountNumber, finalStart, finalEnd;
 
 	private float totalDeposits;
 	private List<Transaction> transactionList;
@@ -32,7 +32,7 @@ public class IncomeSourceActivity extends Activity {
 		listview = (ListView) findViewById(R.id.depositLV);
 
 		// pull from intent
-		accountNumberTemp = getIntent().getStringExtra("accountNumber");
+		accountNumber = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
@@ -46,7 +46,6 @@ public class IncomeSourceActivity extends Activity {
 		TextView totalDepositText = (TextView) findViewById(R.id.totalDepositsText);
 		totalDepositText.setText(Float.toString(totalDeposits));
 		
-				
 		depositAdapter = new DepositAdapter(this, R.layout.deposit_row, withinDates);
 		listview.setAdapter(depositAdapter);
 		depositAdapter.notifyDataSetChanged();
@@ -79,7 +78,7 @@ public class IncomeSourceActivity extends Activity {
 	public void onTransactionClick (View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("accountNumber", accountNumberTemp);
+		bundle.putString("accountNumber", accountNumber);
 		bundle.putString("username", username);
 		intent.putExtras(bundle);
 		startActivity(intent);

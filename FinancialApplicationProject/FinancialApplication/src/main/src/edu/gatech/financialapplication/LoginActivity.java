@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * The Activity that enables users to enter their credentials and login.
@@ -38,10 +37,10 @@ public class LoginActivity extends Activity implements
         ctx = this;
         receiver = new LoginResultReceiver(new Handler());
         receiver.setmReceiver(this);
-        CurrencyConverter c = new CurrencyConverter();
-        c.execute();
-        if (c.getExchangeValue("USD") != null)
-        	Toast.makeText(getApplicationContext(), "USD is " + c.getExchangeValue("USD") , Toast.LENGTH_LONG).show();
+//        CurrencyConverter c = new CurrencyConverter();
+//        c.execute();
+//        if (c.getExchangeValue("USD") != null)
+//        	Toast.makeText(getApplicationContext(), "USD is " + c.getExchangeValue("USD") , Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -19,112 +19,41 @@ import android.util.Log;
  */
 public class DBHelper extends SQLiteOpenHelper {
 	private static final String seed = "GATECH_CS2340";
-    /**
-     * Used to check if database works properly or not.
-     */
     protected int size = 0;
-
-    /**
-     * Database name.
-     */
     private static final String DATABASE_NAME = "foobarsribshack.db";
-
-    /**
-     * Database version.
-     */
     private static final int DATABASE_VERSION = 2;
-
-    /**
-     * First name column for user.
-     */
+    
     private static final String KEY_FNAME = "firstname";
-    /**
-     * Last name column for user.
-     */
     private static final String KEY_LNAME = "lastname";
-    /**
-     * Username column for user.
-     */
     private static final String KEY_USER = "username";
-    /**
-     * Password column for user.
-     */
     private static final String KEY_PASS = "password";
-    /**
-     * Password Hint column for user.
-     */
     private static final String KEY_PHINT = "phint";
-    /**
-     * Email column for user.
-     */
     private static final String KEY_EMAIL = "email";
 
-    /**
-     * Balance column for account.
-     */
     private static final String KEY_BALANCE = "balance";
-    /**
-     * Account number column for account.
-     */
     private static final String KEY_ACCOUNT_NUMBER = "account_number";
 
-    /**
-     * Account number column for transaction.
-     */
     private static final String KEY_ACCOUNT = "account";
-    /**
-     * Date column for transaction.
-     */
     private static final String KEY_DATE = "date";
-    /**
-     * Amount column for transaction.
-     */
     private static final String KEY_AMOUNT = "amount";
-    /**
-     * Description column for transaction.
-     */
     private static final String KEY_DESCRIPTION = "description";
-    /**
-     * Category column for transaction.
-     */
     private static final String KEY_CATEGORY = "category";
-    /**
-     * Type column for transaction.
-     */
     private static final String KEY_TYPE = "type";
 
-    /**
-     * First table - for users.
-     */
     public static final String DATABASE_TABLE_USER = "frs1";
-    /**
-     * Second table - for account.
-     */
     public static final String DATABASE_TABLE_ACCOUNT = "frs2";
-    /**
-     * Third table - for transactions.
-     */
     public static final String DATABASE_TABLE_TRANSACTION = "frs3";
 
-    /**
-     * User table.
-     */
     private static final String TABLE_CREATE_USER = "CREATE TABLE "
             + DATABASE_TABLE_USER + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
             + " TEXT," + KEY_USER + " TEXT," + KEY_PASS + " TEXT," + KEY_PHINT
             + " TEXT," + KEY_EMAIL + " TEXT)";
 
-    /**
-     * Account table.
-     */
     private static final String TABLE_CREATE_ACCOUNT = "CREATE TABLE "
             + DATABASE_TABLE_ACCOUNT + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
             + " TEXT," + KEY_USER + " TEXT," + KEY_BALANCE + " REAL,"
             + KEY_ACCOUNT_NUMBER + " INTEGER)";
 
-    /**
-     * Transaction table.
-     */
     private static final String TABLE_CREATE_TRANSACTION = "CREATE TABLE "
             + DATABASE_TABLE_TRANSACTION + "(" + KEY_ACCOUNT + " TEXT,"
             + KEY_DATE + " TEXT," + KEY_AMOUNT + " TEXT," + KEY_DESCRIPTION
@@ -133,8 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Creates a new DB Helper.
      * 
-     * @param context
-     *            The context it's created in.
+     * @param context The context it's created in.
      */
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -196,7 +196,8 @@ public final class R {
         public static final int fragment_reports=0x7f030017;
         public static final int fragment_transaction_history=0x7f030018;
         public static final int fragment_welcome=0x7f030019;
-        public static final int transaction_row=0x7f03001a;
+        public static final int transaction_history_row=0x7f03001a;
+        public static final int transaction_row=0x7f03001b;
     }
     public static final class menu {
         public static final int cash_flow=0x7f090000;

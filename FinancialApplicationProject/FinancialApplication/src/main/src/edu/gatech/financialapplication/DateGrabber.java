@@ -90,4 +90,8 @@ public class DateGrabber {
         
     	return monthString + " " + date.substring(2, 4) + ", " + date.substring(4);
     }
+    
+    public static String convertToDate(String date) {
+    	return date.substring(0,2)+ "/" + date.substring(2, 4) + "/" + date.substring(4);
+    }
 }

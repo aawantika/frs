@@ -155,4 +155,20 @@ public class Transaction {
     public String debugDeposit() {
         return "Reason: " + description + "\nBalance: " + amount;
     }
+    
+    /**
+     * Used for debugging code - for deposit
+     * 
+     * @return String: returns description and amount.
+     *
+     */
+    public String debugHistory() {
+    	String result = "";
+    	if (type.equals("deposit")) {
+    		result = DateGrabber.convertToDate(date) + " " + description + " " + amount;
+    	} else if (type.equals("withdrawal")) {
+    		result = DateGrabber.convertToDate(date) + " " + category + " " + amount;
+    	}
+        return result;
+    }
 }
