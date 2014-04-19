@@ -32,6 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String KEY_BALANCE = "balance";
     private static final String KEY_ACCOUNT_NUMBER = "account_number";
+    private static final String KEY_INITIAL_BALANCE = "initial_balance";
 
     private static final String KEY_ACCOUNT = "account";
     private static final String KEY_DATE = "date";
@@ -52,7 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_CREATE_ACCOUNT = "CREATE TABLE "
             + DATABASE_TABLE_ACCOUNT + "(" + KEY_FNAME + " TEXT," + KEY_LNAME
             + " TEXT," + KEY_USER + " TEXT," + KEY_BALANCE + " REAL,"
-            + KEY_ACCOUNT_NUMBER + " INTEGER)";
+            + KEY_ACCOUNT_NUMBER + " INTEGER," + KEY_INITIAL_BALANCE + " TEXT)";
 
     private static final String TABLE_CREATE_TRANSACTION = "CREATE TABLE "
             + DATABASE_TABLE_TRANSACTION + "(" + KEY_ACCOUNT + " TEXT,"
@@ -191,6 +192,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(KEY_USER, account.getUsername());
         values.put(KEY_BALANCE, account.getBalance());
         values.put(KEY_ACCOUNT_NUMBER, account.getAccountNumber());
+        values.put(KEY_INITIAL_BALANCE, account.getInitialBalance());
 
         try {
             db.insert(DATABASE_TABLE_ACCOUNT, null, values);
@@ -208,8 +210,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Checks if there is an account.
      * 
-     * @param user
-     *            The user being looked for.
+     * @param user The user being looked for.
      * @return If the user is found or not.
      */
     public boolean hasAccount(User user) {
@@ -227,11 +228,9 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Gets account by username.
      * 
-     * @param username
-     *            The username being searched with.
+     * @param username The username being searched with.
      * @return All the accounts associated with the username.
-     * @throws SQLException
-     *             If the userame isn't there.
+     * @throws SQLException If the userame isn't there.
      */
     public ArrayList<Account> getAccountsByUsername(String username)
             throws SQLException {
@@ -248,20 +247,21 @@ public class DBHelper extends SQLiteOpenHelper {
                     KEY_ACCOUNT_NUMBER + " ASC", null);
         }
 
-        ArrayList<Account> accounts = new ArrayList<Account>();
-        if (cursor != null) {
-            Log.d("cursor size: ", cursor.getCount() + "");
-            Account account = null;
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		if (cursor != null) {
+			Log.d("cursor size: ", cursor.getCount() + "");
+			Account account = null;
 
-            for (int i = 0; i < cursor.getCount(); i++) {
-                if (cursor.moveToNext()) {
-                    account = new Account(cursor.getString(0),
-                            cursor.getString(1), cursor.getString(2),
-                            cursor.getDouble(3) + "", cursor.getInt(4) + "");
-                    accounts.add(account);
-                }
-            }
-        }
+			for (int i = 0; i < cursor.getCount(); i++) {
+				if (cursor.moveToNext()) {
+					account = new Account(cursor.getString(0),
+							cursor.getString(1), cursor.getString(2),
+							cursor.getDouble(3) + "", cursor.getInt(4) + "",
+							cursor.getString(5));
+					accounts.add(account);
+				}
+			}
+		}
 
         return accounts;
     }
@@ -269,28 +269,26 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Gets account by account number.
      * 
-     * @param accountNumber
-     *            The account number being searched with.
+     * @param accountNumber The account number being searched with.
      * @return The account looking for.
-     * @throws SQLException
-     *             If account is not there.
+     * @throws SQLException If account is not there.
      */
     public Account getAccountByAccountNumber(String accountNumber)
             throws SQLException {
 
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT,
-                new String[] { KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
-                        KEY_ACCOUNT_NUMBER }, KEY_ACCOUNT_NUMBER + "=?",
-                new String[] { accountNumber }, null, null, null, null);
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.query(true, DATABASE_TABLE_ACCOUNT, new String[] {
+				KEY_FNAME, KEY_LNAME, KEY_USER, KEY_BALANCE,
+				KEY_ACCOUNT_NUMBER, KEY_INITIAL_BALANCE }, KEY_ACCOUNT_NUMBER
+				+ "=?", new String[] { accountNumber }, null, null, null, null);
 
-        Account account = null;
-        if (cursor != null) {
-            cursor.moveToFirst();
-            account = new Account(cursor.getString(0), cursor.getString(1),
-                    cursor.getString(2), cursor.getString(3),
-                    cursor.getString(4));
-        }
+		Account account = null;
+		if (cursor != null) {
+			cursor.moveToFirst();
+			account = new Account(cursor.getString(0), cursor.getString(1),
+					cursor.getString(2), cursor.getString(3),
+					cursor.getString(4), cursor.getString(5));
+		}
 
         return account;
     }
@@ -298,10 +296,8 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Updates the respective account with a transaction.
      * 
-     * @param transaction
-     *            The transaction being added.
-     * @throws SQLException
-     *             If the transaction is not added properly.
+     * @param transaction The transaction being added.
+     * @throws SQLException If the transaction is not added properly.
      */
     public void updateAccount(Transaction transaction) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -329,8 +325,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Add a transaction.
      * 
-     * @param transaction
-     *            The transaction being added.
+     * @param transaction The transaction being added.
      */
     public void addTransaction(Transaction transaction) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -358,8 +353,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Gets all transactions by account number.
      * 
-     * @param accountNumber
-     *            The account number being searched for.
+     * @param accountNumber The account number being searched for.
      * @return An arraylist of transactions.
      */
     public ArrayList<Transaction> getAllTransactions(String accountNumber) {
@@ -391,8 +385,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Gets all transactions by username.
      * 
-     * @param username
-     *            The username being searched for.
+     * @param username The username being searched for.
      * @return An arraylist of transactions.
      */
     public ArrayList<Transaction> getAllTransactionsByUsername(String username) {

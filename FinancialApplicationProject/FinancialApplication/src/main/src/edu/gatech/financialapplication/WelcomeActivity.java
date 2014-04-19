@@ -36,17 +36,16 @@ public class WelcomeActivity extends Activity {
 
         // USE THIS FOR FUTURE TESTING IT WORKS PERFECTLY. DON'T SCREW IT UP!
         // //DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
-/*        db.addUser(new User("tika", "sahu", "yolouser", "password",
-                "passwordHint", "email"));
-
-        System.out.println(db.getUserByUsername("yolouser"));*/
-        // User getUser = db.getUserByUsername("yolouser");
-        // Account newAccount = new Account(getUser.getFirstname(),
-        // getUser.getLastname(), getUser.getUsername(), "1000.00",
-        // "1234567890");
-        // db.addAccount(newAccount);
-        // Account getAccount =
-        // db.getAccountByAccountNumber(newAccount.getAccountNumber());
+//        db.addUser(new User("tika", "sahu", "yolouser", "password",
+//                "passwordHint", "email"));
+//		User getUser = db.getUserByUsername("yolouser");
+//		System.out.println(getUser);
+//		Account newAccount = new Account(getUser.getFirstname(),
+//				getUser.getLastname(), getUser.getUsername(), "1000.00",
+//				"1234567890", "1000.00");
+//        db.addAccount(newAccount);
+//        Account getAccount = db.getAccountByAccountNumber(newAccount.getAccountNumber());
+//        System.out.println(getAccount);
         // System.out.println("ORIGINAL AMOUNT: " + getAccount.getBalance());
         // db.addTransaction(new Deposit(getAccount.getAccountNumber(),
         // "04/08/2014", 200.00f, "TEST"));

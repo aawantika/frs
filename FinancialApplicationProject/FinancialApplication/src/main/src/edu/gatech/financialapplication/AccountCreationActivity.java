@@ -17,29 +17,9 @@ import android.widget.TextView;
  */
 public class AccountCreationActivity extends Activity {
 
-    /**
-     * Default amount textview.
-     */
     private TextView defaultAmount;
-    /**
-     * New string username.
-     */
-    private String username;
-    /**
-     * New string firstname.
-     */
-    private String firstname;
-    /**
-     * New string lastname.
-     */
-    private String lastname;
-    /**
-     * New string accountNumber.
-     */
+    private String username, firstname, lastname;
     private String accountNumber = createAccountNumber() + "";
-    /**
-     * Default amount textview.
-     */
     private DBHelper db;
 
     @Override
@@ -65,11 +45,9 @@ public class AccountCreationActivity extends Activity {
      */
     public void onAccountCreate(View view) {
         // check if initial amount is less than 100
-    	if (defaultAmount.getText().toString().equals("")) { // empty reason
+    	if (defaultAmount.getText().toString().equals("")) {
             new AlertDialog.Builder(this)
-                    //CHECKSTYLE:OFF
-                    .setTitle("Information error") //string necessary
-                    //CHECKSTYLE:ON
+                    .setTitle("Information error")
                     .setMessage("Please enter an amount.")
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
@@ -87,19 +65,17 @@ public class AccountCreationActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else { // CREATES ACCOUNT
+        } else {
             new AlertDialog.Builder(this)
                     .setTitle("Your account is created")
-                    .setMessage(
-                            "Account number " + accountNumber + " is created. ")
+                    .setMessage("Account number " + accountNumber + " is created. ")
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
                                     Account account = new Account(firstname,
-                                            lastname, username, defaultAmount
-                                                    .getText().toString(),
-                                            accountNumber);
+                                            lastname, username, defaultAmount.getText().toString(),
+                                            accountNumber, defaultAmount.getText().toString());
                                     if (db.addAccount(account)) {
                                         Intent intent = new Intent(
                                                 AccountCreationActivity.this,
