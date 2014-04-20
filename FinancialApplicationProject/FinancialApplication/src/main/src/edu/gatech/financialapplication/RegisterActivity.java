@@ -159,10 +159,11 @@ public class RegisterActivity extends Activity {
      * @return If the user is a duplicate or not.
      */
     private boolean isDuplicate(String username, String password) {
-        boolean result = false;
+        boolean result = true;
         if (dbHelp.getUserByUsername(username) != null
                 && dbHelp.getUserByUsername(username).getUsername()
                         .equalsIgnoreCase(username)) { 
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Duplicate")
                     .setMessage("Credential is duplicate!\nPlease check again.")
@@ -172,8 +173,6 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else {
-            result = true;
         }
         return result;
     }
@@ -185,9 +184,10 @@ public class RegisterActivity extends Activity {
      * @return If the first name is blank or not.
      */
     private boolean checkFirstname(String firstname) {
-        boolean result = false;
+        boolean result = true;
 
         if ("".equals(firstname)) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("First name error.")
                     .setMessage("Sorry, first name can't be blank.")
@@ -198,6 +198,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (" ".equals(firstname.substring(0, 1))) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("First name error.")
                     .setMessage("Sorry, first name can't start with a space.")
@@ -207,9 +208,7 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else {
-            result = true;
-        }
+        } 
         return result;
     }
 
@@ -220,8 +219,9 @@ public class RegisterActivity extends Activity {
      * @return If the last name is blank or not.
      */
     private boolean checkLastname(String lastname) {
-        boolean result = false;
+        boolean result = true;
         if ("".equals(lastname)) { 
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, last name can't be blank.")
@@ -232,6 +232,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (" ".equals(lastname.substring(0, 1))) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, last name can't start with a space.")
@@ -241,10 +242,7 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else {
-            result = true;
-        }
-
+        } 
         return result;
     }
 
@@ -255,8 +253,9 @@ public class RegisterActivity extends Activity {
      * @return If the username is valid or not.
      */
     private boolean checkUsername(String username) {
-        boolean result = false;
+        boolean result = true;
         if ("".equals(username)) { 
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Username error.")
                     .setMessage("Sorry, username can't be blank.")
@@ -267,6 +266,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if ("admin".equals(username)) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Username error")
                     .setMessage("Sorry, cannot create new admin account.")
@@ -277,6 +277,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (" ".equals(username.substring(0, 1))) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Username error.")
                     .setMessage("Sorry, username can't start with a space.")
@@ -286,10 +287,7 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else {
-            result = true;
-        }
-
+        } 
         return result;
     }
 
@@ -300,8 +298,9 @@ public class RegisterActivity extends Activity {
      * @return If the password is valid or not.
      */
     private boolean checkPassword(String password) {
-        boolean result = false;
+        boolean result = true;
         if ("".equals(password)) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Password error")
                     .setMessage("Sorry, password can't be blank.")
@@ -312,6 +311,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (" ".equals(password.substring(0, 1))) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Password error.")
                     .setMessage("Sorry, password can't start with a space.")
@@ -321,7 +321,8 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else if (password.length() < 6) { // short password
+        } else if (password.length() < 6) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Password error")
                     .setMessage(
@@ -330,13 +331,9 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
-        } else {
-            result = true;
         }
-
         return result;
     }
 
@@ -347,8 +344,9 @@ public class RegisterActivity extends Activity {
      * @return If the password hint is blank or not.
      */
     private boolean checkPHint(String phint) {
-        boolean result = false;
+        boolean result = true;
         if ("".equals(phint)) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, password hint can't be blank.")
@@ -359,6 +357,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (" ".equals(phint.substring(0, 1))) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Password hint error.")
                     .setMessage(
@@ -369,10 +368,7 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else {
-            result = true;
         }
-
         return result;
     }
 
@@ -383,9 +379,9 @@ public class RegisterActivity extends Activity {
      * @return If the email is valid or not.
      */
     private boolean checkEmail(String email) {
-        boolean result = false;
-
+        boolean result = true;
         if ("".equals(email)) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Email error")
                     .setMessage("Sorry, email can't be blank.")
@@ -396,6 +392,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (" ".equals(email.substring(0, 1))) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Email error.")
                     .setMessage("Sorry, email can't start with a space.")
@@ -406,6 +403,7 @@ public class RegisterActivity extends Activity {
                                 }
                             }).show();
         } else if (!email.matches("[a-zA-Z][^@&]*@[a-zA-Z][^@]*\\.(com|org|net|edu)")) {
+        	result = false;
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Sorry, invalid email address; must end in com, org, net or edu.")
@@ -415,10 +413,7 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else {
-            result = true;
         }
-
         return result;
     }
     

@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public class AccountCreationActivity extends Activity {
 
-    private TextView defaultAmount;
+    private String defaultAmount;
     private String username, firstname, lastname;
     private String accountNumber = createAccountNumber() + "";
     private DBHelper db;
@@ -31,66 +31,71 @@ public class AccountCreationActivity extends Activity {
         // previous intent information
         username = getIntent().getStringExtra("username");
         firstname = getIntent().getStringExtra("firstname");
-        lastname = getIntent().getStringExtra("lastname");
-
-        // input fields
-        defaultAmount = (TextView) findViewById(R.id.defaultAmount);
+        lastname = getIntent().getStringExtra("lastname");       
     }
 
     /**
      * On click for account creation to create a new account.
      * 
-     * @param view
-     *            The view being used.
+     * @param view The view being used.
      */
     public void onAccountCreate(View view) {
-        // check if initial amount is less than 100
-    	if (defaultAmount.getText().toString().equals("")) {
+    	 defaultAmount = ((TextView) findViewById(R.id.defaultAmount)).getText().toString();
+    	 
+		if (checkAmount(defaultAmount)) {
+			new AlertDialog.Builder(this)
+			.setTitle("Your account is created!")
+			.setMessage("Account number " + accountNumber + " is created. ")
+			.setPositiveButton(android.R.string.ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int which) {
+							Account account = new Account(firstname,
+									lastname, username, defaultAmount,
+									accountNumber, defaultAmount);
+									if (db.addAccount(account)) {
+										Intent intent = new Intent(AccountCreationActivity.this,
+												TransactionActivity.class);
+										Bundle bundle = new Bundle();
+										bundle.putString("accountNumber",accountNumber);
+										bundle.putString("username", username);
+										intent.putExtras(bundle);
+										startActivity(intent);
+										finish();
+									}
+								}
+							}).show();
+		}
+    }
+    
+    private boolean checkAmount(String defaultAmount) {
+    	boolean result = true;
+
+    	if (defaultAmount.equals("")) {
+    		 result = false;
+			new AlertDialog.Builder(this)
+			.setTitle("Information error")
+			.setMessage("Please enter an amount.")
+			.setPositiveButton(android.R.string.ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int which) {
+						}
+					}).show();
+    	} else if (Float.parseFloat(defaultAmount) < 100.00f) {
+    		result = false;
             new AlertDialog.Builder(this)
-                    .setTitle("Information error")
-                    .setMessage("Please enter an amount.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                }
-                            }).show();
-    	} else if (Float.parseFloat(defaultAmount.getText().toString()) < 100.00f) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Information error")
-                    .setMessage("Minimum amount must be 100 USD.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                }
-                            }).show();
-        } else {
-            new AlertDialog.Builder(this)
-                    .setTitle("Your account is created")
-                    .setMessage("Account number " + accountNumber + " is created. ")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                    Account account = new Account(firstname,
-                                            lastname, username, defaultAmount.getText().toString(),
-                                            accountNumber, defaultAmount.getText().toString());
-                                    if (db.addAccount(account)) {
-                                        Intent intent = new Intent(
-                                                AccountCreationActivity.this,
-                                                TransactionActivity.class);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("accountNumber",
-                                                accountNumber);
-                                        bundle.putString("username", username);
-                                        intent.putExtras(bundle);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                }
-                            }).show();
-        }
+            .setTitle("Information error")
+            .setMessage("Minimum amount must be 100 USD.")
+            .setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                int which) {
+                        }
+                    }).show();
+    	}
+    	
+        return result;   
     }
 
     /**
@@ -100,9 +105,8 @@ public class AccountCreationActivity extends Activity {
      */
     public int createAccountNumber() {
         Random r = new Random();
-        // Let's say ten digits
-
         int newAccountNumber = 0;
+        
         for (int i = 0; i < 10; i++) {
             int base = (int) Math.pow(10.0, (double) i);
             int random = r.nextInt(10);

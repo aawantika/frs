@@ -78,14 +78,15 @@ public class CashFlowActivity extends Activity {
 			netFlowString = "-" + Float.toString(netFlow);
 			netFlowText.setText(netFlowString);
 			netFlowText.setTextColor(Color.RED);
+		} else {
+			netFlowText.setText("0");
 		}
 	}
 
 	/**
 	 * On click to go back to the general menu.
 	 * 
-	 * @param view
-	 *            The view being used.
+	 * @param view The view being used.
 	 */
 	public void onBackClick(View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);
