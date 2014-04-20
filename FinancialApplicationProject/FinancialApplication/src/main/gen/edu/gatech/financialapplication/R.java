@@ -70,7 +70,7 @@ public final class R {
     public static final class id {
         public static final int TextView01=0x7f0a0003;
         public static final int accountLV=0x7f0a0055;
-        public static final int accountNum=0x7f0a005c;
+        public static final int accountNum=0x7f0a005d;
         public static final int action_settings=0x7f0a0064;
         public static final int back=0x7f0a0001;
         public static final int backBtn=0x7f0a0028;
@@ -163,7 +163,7 @@ public final class R {
         public static final int topBorder=0x7f0a0052;
         public static final int totalDeposits=0x7f0a002a;
         public static final int totalDepositsText=0x7f0a0029;
-        public static final int transactionHistoryLV=0x7f0a005d;
+        public static final int transactionHistoryLV=0x7f0a005c;
         public static final int userText=0x7f0a0024;
         public static final int username=0x7f0a002c;
         public static final int usernameText=0x7f0a0038;
