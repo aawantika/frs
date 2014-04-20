@@ -10,18 +10,11 @@ import android.os.ResultReceiver;
  * @author Team 15
  */
 public class LoginChecker extends IntentService {
-	/**
-	 * Receives user input.
-	 */
-    private ResultReceiver rec;
-    /**
-     * The database to search for data in.
-     */
-    private DBHelper dbHelp;
 
-    /**
-     * The initializing method that sets the database.
-     */
+	private ResultReceiver rec;
+    private DBHelper dbHelp;
+    
+    @Override
     public void onCreate() {
         super.onCreate();
 
@@ -49,8 +42,7 @@ public class LoginChecker extends IntentService {
         userFromActivity.setPassword(password);
 
         Bundle bundle = new Bundle();
-        if (userFromDb != null && 
-                userFromDb.getUsername().equals(userFromActivity.getUsername())) {
+        if (userFromDb != null && userFromDb.getUsername().equals(userFromActivity.getUsername())) {
             bundle.putString("firstname", userFromDb.getLastname());
             bundle.putString("lastname", userFromDb.getFirstname());
             bundle.putString("username", userFromDb.getUsername());

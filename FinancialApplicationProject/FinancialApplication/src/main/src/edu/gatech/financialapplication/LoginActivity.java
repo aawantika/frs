@@ -37,6 +37,7 @@ public class LoginActivity extends Activity implements
         ctx = this;
         receiver = new LoginResultReceiver(new Handler());
         receiver.setmReceiver(this);
+        
 //        CurrencyConverter c = new CurrencyConverter();
 //        c.execute();
 //        if (c.getExchangeValue("USD") != null)
@@ -59,10 +60,9 @@ public class LoginActivity extends Activity implements
     }
 
     public void onButtonClick(View view) {
-        usernameInput = ((EditText) findViewById(R.id.username)).getText()
-                .toString();
-        passwordInput = ((EditText) findViewById(R.id.password)).getText()
-                .toString();
+    	usernameInput = ((EditText) findViewById(R.id.username)).getText().toString();
+        passwordInput = ((EditText) findViewById(R.id.password)).getText().toString();
+        
         Intent intent = new Intent(this, LoginChecker.class);
         intent.putExtra("receiverTag", receiver);
         intent.putExtra("username", usernameInput);
@@ -95,7 +95,7 @@ public class LoginActivity extends Activity implements
                     && user.getPassword().equals(passwordInput)) {
                 new AlertDialog.Builder(this)
                         .setTitle("Success!")
-                        .setMessage("Success")
+                        .setMessage("Successful login.")
                         .setPositiveButton(android.R.string.ok,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(

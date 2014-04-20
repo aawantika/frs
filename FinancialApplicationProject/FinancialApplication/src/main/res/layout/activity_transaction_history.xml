@@ -20,24 +20,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff" />
 
-    <TextView
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/title"
-        android:text="@string/date"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/accountNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/dateText"
-        android:text="@string/accountNum"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <ListView
         android:id="@+id/transactionHistoryLV"
         android:layout_width="match_parent"
@@ -58,6 +40,25 @@
         android:gravity="center"
         android:textColor="#ffffff"
         android:text="@string/thrTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title"
+        android:layout_marginLeft="14dp"
+        android:text="@string/date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/accountNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dateText"
+        android:layout_below="@+id/dateText"
+        android:text="@string/accountNum"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

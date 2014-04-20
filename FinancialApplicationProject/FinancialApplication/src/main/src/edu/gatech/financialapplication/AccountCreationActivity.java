@@ -31,7 +31,7 @@ public class AccountCreationActivity extends Activity {
         // previous intent information
         username = getIntent().getStringExtra("username");
         firstname = getIntent().getStringExtra("firstname");
-        lastname = getIntent().getStringExtra("lastname");       
+        lastname = getIntent().getStringExtra("lastname");      
     }
 
     /**
@@ -40,7 +40,7 @@ public class AccountCreationActivity extends Activity {
      * @param view The view being used.
      */
     public void onAccountCreate(View view) {
-    	 defaultAmount = ((TextView) findViewById(R.id.defaultAmount)).getText().toString();
+    	defaultAmount = ((TextView) findViewById(R.id.defaultAmount)).getText().toString();
     	 
 		if (checkAmount(defaultAmount)) {
 			new AlertDialog.Builder(this)

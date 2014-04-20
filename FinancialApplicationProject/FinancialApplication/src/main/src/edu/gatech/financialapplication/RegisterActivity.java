@@ -29,15 +29,16 @@ import android.widget.EditText;
 public class RegisterActivity extends Activity {
 
     private DBHelper dbHelp;
+    private String firstname, lastname, username, password, passwordHint, email;
     private ProgressDialog pDialog;
     private String POSTURL = "http://tomcatjndi-mygatech.rhcloud.com/CS2340postfrs1";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceStt) {
         super.onCreate(savedInstanceStt);
         setContentView(R.layout.activity_register);
-
         dbHelp = new DBHelper(this);
+       
     }
 
     /**
@@ -46,13 +47,13 @@ public class RegisterActivity extends Activity {
      * @param view The view being used.
      */
     public void onClick(View view) {
-        final String firstname = ((EditText) findViewById(R.id.firstnameText)).getText().toString();
-        String lastname = ((EditText) findViewById(R.id.lastnameText)).getText().toString();
-        String username = ((EditText) findViewById(R.id.usernameText)).getText().toString();
-        String password = ((EditText) findViewById(R.id.passwordText)).getText().toString();
-        String passwordHint = ((EditText) findViewById(R.id.passwordHintText)).getText().toString();
-        String email = ((EditText) findViewById(R.id.emailText)).getText().toString();
-
+    	 firstname = ((EditText) findViewById(R.id.firstnameText)).getText().toString();
+         lastname = ((EditText) findViewById(R.id.lastnameText)).getText().toString();
+         username = ((EditText) findViewById(R.id.usernameText)).getText().toString();
+         password = ((EditText) findViewById(R.id.passwordText)).getText().toString();
+         passwordHint = ((EditText) findViewById(R.id.passwordHintText)).getText().toString();
+         email = ((EditText) findViewById(R.id.emailText)).getText().toString();
+         
         if (checkFirstname(firstname) && checkLastname(lastname)
                 && checkUsername(username) && checkPassword(password)
                 && checkPHint(passwordHint) && checkEmail(email)
