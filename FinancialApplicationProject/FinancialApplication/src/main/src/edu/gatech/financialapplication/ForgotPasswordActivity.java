@@ -19,9 +19,7 @@ import android.widget.EditText;
  * @author Team 15
  */
 public class ForgotPasswordActivity extends Activity {
-    /**
-     * New DBHelper database.
-     */
+ 
     private DBHelper database;
     private String username;
 
@@ -43,8 +41,7 @@ public class ForgotPasswordActivity extends Activity {
         if (!isNetworkAvailable(this)) {
             new AlertDialog.Builder(this)
                     .setTitle("Internet connection")
-                    .setMessage(
-                            "Dear customer, please turn on wifi or mobile data to proceed.")
+                    .setMessage("Dear customer, please turn on wifi or mobile data to proceed.")
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
@@ -60,8 +57,7 @@ public class ForgotPasswordActivity extends Activity {
     /**
      * On click for forgot password to send email for forgotten password.
      * 
-     * @param view
-     *            The view being used.
+     * @param view The view being used.
      */
     @SuppressWarnings("unchecked")
     public void onClick(final View view) {

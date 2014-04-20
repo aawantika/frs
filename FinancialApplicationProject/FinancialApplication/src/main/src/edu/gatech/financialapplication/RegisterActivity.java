@@ -6,12 +6,13 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,9 +28,6 @@ import android.widget.EditText;
  */
 public class RegisterActivity extends Activity {
 
-    /**
-     * New DBHelper db.
-     */
     private DBHelper dbHelp;
     private ProgressDialog pDialog;
     private String POSTURL = "http://tomcatjndi-mygatech.rhcloud.com/CS2340postfrs1";
@@ -51,26 +49,48 @@ public class RegisterActivity extends Activity {
         String firstname = ((EditText) findViewById(R.id.firstnameText)).getText().toString();
         String lastname = ((EditText) findViewById(R.id.lastnameText)).getText().toString();
         String username = ((EditText) findViewById(R.id.usernameText)).getText().toString();
-        String password = ((EditText) findViewById(R.id.passwordText))
-                .getText().toString();
-        String passwordHint = ((EditText) findViewById(R.id.passwordHintText))
-                .getText().toString();
-        String email = ((EditText) findViewById(R.id.emailText)).getText()
-                .toString();
+        String password = ((EditText) findViewById(R.id.passwordText)).getText().toString();
+        String passwordHint = ((EditText) findViewById(R.id.passwordHintText)).getText().toString();
+        String email = ((EditText) findViewById(R.id.emailText)).getText().toString();
 
         if (checkFirstname(firstname) && checkLastname(lastname)
                 && checkUsername(username) && checkPassword(password)
                 && checkPHint(passwordHint) && checkEmail(email)
-                && isDuplicate(username, password)) {
+                && isDuplicate(username, password) && checkNetwork()) {
 
-            User user = new User(firstname, lastname, username, password,
-                    passwordHint, email);
-            (new PostUserToServer(firstname, lastname, username, dbHelp.getEncryptedPassword(user), passwordHint, email)).execute();
+            User user = new User(firstname, lastname, username, password, passwordHint, email);
+            PostUserToServer post = new PostUserToServer(firstname, lastname, username, dbHelp.getEncryptedPassword(user), passwordHint, email);
+            post.execute();
             dbHelp.addUser(user);
             
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
         }
+    }
+    
+    private boolean isNetworkAvailable(Context context) {
+        return ((ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE))
+                .getActiveNetworkInfo() != null;
+    }
+
+    private boolean checkNetwork() {
+        boolean result = true;
+        if (!isNetworkAvailable(this)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Internet connection")
+                    .setMessage(
+                            "Dear customer, please turn on wifi or mobile data to proceed.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(
+                                        final DialogInterface dialog,
+                                        final int which) {
+                                }
+                            }).show();
+            result = false;
+        }
+        return result;
     }
     
     private class PostUserToServer extends AsyncTask<Void, Void, Void> {
@@ -125,10 +145,8 @@ public class RegisterActivity extends Activity {
     /**
      * Checks if username and password (the user) is a duplicate or not.
      * 
-     * @param username
-     *            The username of the user.
-     * @param password
-     *            The password of the user.
+     * @param username The username of the user.
+     * @param password The password of the user.
      * @return If the user is a duplicate or not.
      */
     public boolean isDuplicate(String username, String password) {
@@ -155,8 +173,7 @@ public class RegisterActivity extends Activity {
     /**
      * Checks if the first name is blank or not.
      * 
-     * @param firstname
-     *            The first name being checked.
+     * @param firstname The first name being checked.
      * @return If the first name is blank or not.
      */
     private boolean checkFirstname(String firstname) {
@@ -193,8 +210,7 @@ public class RegisterActivity extends Activity {
     /**
      * Checks if last name is blank or not.
      * 
-     * @param lastname
-     *            The last name being checked.
+     * @param lastname The last name being checked.
      * @return If the last name is blank or not.
      */
     private boolean checkLastname(String lastname) {
@@ -231,8 +247,7 @@ public class RegisterActivity extends Activity {
     /**
      * Checks for valid username.
      * 
-     * @param username
-     *            The username being checked.
+     * @param username The username being checked.
      * @return If the username is valid or not.
      */
     private boolean checkUsername(String username) {
@@ -330,8 +345,7 @@ public class RegisterActivity extends Activity {
     /**
      * Checks if password hint is blank or not.
      * 
-     * @param phint
-     *            The password hint being checked.
+     * @param phint The password hint being checked.
      * @return If the password hint is blank or not.
      */
     private boolean checkPHint(String phint) {
@@ -369,14 +383,13 @@ public class RegisterActivity extends Activity {
     /**
      * Checks for valid email.
      * 
-     * @param email
-     *            The email being checked.
+     * @param email The email being checked.
      * @return If the email is valid or not.
      */
     private boolean checkEmail(String email) {
         boolean result = false;
 
-        if ("".equals(email)) { // empty email
+        if ("".equals(email)) {
             new AlertDialog.Builder(this)
                     .setTitle("Email error")
                     .setMessage("Sorry, email can't be blank.")
@@ -384,7 +397,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else if (" ".equals(email.substring(0, 1))) {
