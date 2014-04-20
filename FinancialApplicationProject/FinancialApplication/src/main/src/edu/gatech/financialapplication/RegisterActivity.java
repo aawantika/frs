@@ -46,7 +46,7 @@ public class RegisterActivity extends Activity {
      * @param view The view being used.
      */
     public void onClick(View view) {
-        String firstname = ((EditText) findViewById(R.id.firstnameText)).getText().toString();
+        final String firstname = ((EditText) findViewById(R.id.firstnameText)).getText().toString();
         String lastname = ((EditText) findViewById(R.id.lastnameText)).getText().toString();
         String username = ((EditText) findViewById(R.id.usernameText)).getText().toString();
         String password = ((EditText) findViewById(R.id.passwordText)).getText().toString();
@@ -57,14 +57,24 @@ public class RegisterActivity extends Activity {
                 && checkUsername(username) && checkPassword(password)
                 && checkPHint(passwordHint) && checkEmail(email)
                 && isDuplicate(username, password) && checkNetwork()) {
-
-            User user = new User(firstname, lastname, username, password, passwordHint, email);
-            PostUserToServer post = new PostUserToServer(firstname, lastname, username, dbHelp.getEncryptedPassword(user), passwordHint, email);
-            post.execute();
-            dbHelp.addUser(user);
-            
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
+			User user = new User(firstname, lastname, username, password, passwordHint, email);
+			PostUserToServer post = new PostUserToServer(firstname, lastname,
+					username, dbHelp.getEncryptedPassword(user), passwordHint, email);
+			post.execute();
+			dbHelp.addUser(user);
+			final Intent intent = new Intent(this, WelcomeActivity.class);
+			
+			new AlertDialog.Builder(this)
+					.setTitle("Registration")
+					.setMessage("New user has been registered successfully.")
+					.setPositiveButton(android.R.string.ok,
+							new DialogInterface.OnClickListener() {
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+									startActivity(intent);
+								}
+							}).show();
         }
     }
     
@@ -79,8 +89,7 @@ public class RegisterActivity extends Activity {
         if (!isNetworkAvailable(this)) {
             new AlertDialog.Builder(this)
                     .setTitle("Internet connection")
-                    .setMessage(
-                            "Dear customer, please turn on wifi or mobile data to proceed.")
+                    .setMessage("Dear customer, please turn on wifi or mobile data to proceed.")
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
@@ -149,11 +158,11 @@ public class RegisterActivity extends Activity {
      * @param password The password of the user.
      * @return If the user is a duplicate or not.
      */
-    public boolean isDuplicate(String username, String password) {
+    private boolean isDuplicate(String username, String password) {
         boolean result = false;
         if (dbHelp.getUserByUsername(username) != null
                 && dbHelp.getUserByUsername(username).getUsername()
-                        .equalsIgnoreCase(username)) { // duplicate username
+                        .equalsIgnoreCase(username)) { 
             new AlertDialog.Builder(this)
                     .setTitle("Duplicate")
                     .setMessage("Credential is duplicate!\nPlease check again.")
@@ -161,7 +170,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else {
@@ -187,7 +195,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
         } else if (" ".equals(firstname.substring(0, 1))) {
@@ -198,7 +205,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
         } else {
@@ -215,7 +221,7 @@ public class RegisterActivity extends Activity {
      */
     private boolean checkLastname(String lastname) {
         boolean result = false;
-        if ("".equals(lastname)) { // empty lastname
+        if ("".equals(lastname)) { 
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, last name can't be blank.")
@@ -223,7 +229,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else if (" ".equals(lastname.substring(0, 1))) {
@@ -234,7 +239,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
         } else {
@@ -252,7 +256,7 @@ public class RegisterActivity extends Activity {
      */
     private boolean checkUsername(String username) {
         boolean result = false;
-        if ("".equals(username)) { // empty username
+        if ("".equals(username)) { 
             new AlertDialog.Builder(this)
                     .setTitle("Username error.")
                     .setMessage("Sorry, username can't be blank.")
@@ -260,10 +264,9 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
-        } else if ("admin".equals(username)) { // create admin account
+        } else if ("admin".equals(username)) {
             new AlertDialog.Builder(this)
                     .setTitle("Username error")
                     .setMessage("Sorry, cannot create new admin account.")
@@ -271,7 +274,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else if (" ".equals(username.substring(0, 1))) {
@@ -282,7 +284,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
         } else {
@@ -295,13 +296,12 @@ public class RegisterActivity extends Activity {
     /**
      * Checks for valid password.
      * 
-     * @param password
-     *            The password being checked.
+     * @param password The password being checked.
      * @return If the password is valid or not.
      */
     private boolean checkPassword(String password) {
         boolean result = false;
-        if ("".equals(password)) { // empty password
+        if ("".equals(password)) {
             new AlertDialog.Builder(this)
                     .setTitle("Password error")
                     .setMessage("Sorry, password can't be blank.")
@@ -309,7 +309,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else if (" ".equals(password.substring(0, 1))) {
@@ -320,7 +319,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
         } else if (password.length() < 6) { // short password
@@ -350,7 +348,7 @@ public class RegisterActivity extends Activity {
      */
     private boolean checkPHint(String phint) {
         boolean result = false;
-        if ("".equals(phint)) { // empty phint
+        if ("".equals(phint)) {
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, password hint can't be blank.")
@@ -358,7 +356,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else if (" ".equals(phint.substring(0, 1))) {
@@ -370,7 +367,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
         } else {
@@ -407,10 +403,9 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty
                                 }
                             }).show();
-        } else if (!email.matches("[a-zA-Z][^@&]*@[a-zA-Z][^@]*\\.(com|org|net|edu)")) { // invalid email
+        } else if (!email.matches("[a-zA-Z][^@&]*@[a-zA-Z][^@]*\\.(com|org|net|edu)")) {
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Sorry, invalid email address; must end in com, org, net or edu.")
@@ -418,7 +413,6 @@ public class RegisterActivity extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    // Empty method
                                 }
                             }).show();
         } else {
