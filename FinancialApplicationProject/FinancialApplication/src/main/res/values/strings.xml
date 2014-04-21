@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Financial Application</string>
+    <string name="app_name">FooBar's Rib Shack</string>
 
     <!-- TextView -->
     <string name="firstname">First Name</string>
@@ -113,20 +113,6 @@
     <string name="groceries">Groceries</string>
     <string name="entertainment">Entertainment</string>
 
-    <!-- Manifest -->
-    <string name="title_activity_deposit">Deposit</string>
-    <string name="title_activity_transaction">Transaction</string>
-    <string name="title_activity_withdrawal">Withdrawal</string>
-    <string name="title_activity_reports">Reports</string>
-    <string name="title_activity_report_date">Enter Date for Report </string>
-    <string name="title_activity_forgot_password">Forgot Password</string>
-    <string name="title_activity_cash_flow">Cash Flow Report</string>
-    <string name="title_activity_income_source">Income Source Report</string>
-    <string name="title_activity_consumer_spending">Spending Category Report</string>
-    <string name="title_activity_transaction_history">Transaction History Report</string>
-    <string name="title_activity_change_password">Change Password</string>
-    <string name="title_activity_new_password">New Password</string>
-    
     <!-- ??? -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

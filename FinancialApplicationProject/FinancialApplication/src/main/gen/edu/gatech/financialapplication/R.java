@@ -226,7 +226,7 @@ public final class R {
     }
     public static final class string {
         public static final int accountNum=0x7f060013;
-        public static final int action_settings=0x7f060061;
+        public static final int action_settings=0x7f060055;
         public static final int amount=0x7f060007;
         public static final int amountHint=0x7f060020;
         public static final int app_name=0x7f060000;
@@ -271,9 +271,10 @@ public final class R {
         public static final int gas=0x7f06004e;
         public static final int graphs=0x7f06002f;
         public static final int groceries=0x7f060052;
-        /**  ??? 
+        /**  Manifest 
+ ??? 
          */
-        public static final int hello_world=0x7f060060;
+        public static final int hello_world=0x7f060054;
         public static final int home=0x7f060033;
         public static final int homeTitle=0x7f06003b;
         public static final int isr=0x7f06004a;
@@ -285,7 +286,7 @@ public final class R {
          */
         public static final int login=0x7f060028;
         public static final int loginTitle=0x7f06003a;
-        public static final int logout=0x7f060062;
+        public static final int logout=0x7f060056;
         public static final int max=0x7f060043;
         public static final int month=0x7f060026;
         public static final int netFlow=0x7f060012;
@@ -322,20 +323,6 @@ public final class R {
         public static final int thr=0x7f06004c;
         public static final int thrTitle=0x7f060040;
         public static final int tika=0x7f060042;
-        public static final int title_activity_cash_flow=0x7f06005a;
-        public static final int title_activity_change_password=0x7f06005e;
-        public static final int title_activity_consumer_spending=0x7f06005c;
-        /**  Manifest 
-         */
-        public static final int title_activity_deposit=0x7f060054;
-        public static final int title_activity_forgot_password=0x7f060059;
-        public static final int title_activity_income_source=0x7f06005b;
-        public static final int title_activity_new_password=0x7f06005f;
-        public static final int title_activity_report_date=0x7f060058;
-        public static final int title_activity_reports=0x7f060057;
-        public static final int title_activity_transaction=0x7f060055;
-        public static final int title_activity_transaction_history=0x7f06005d;
-        public static final int title_activity_withdrawal=0x7f060056;
         public static final int totalDeposits=0x7f060009;
         public static final int totalWithdrawals=0x7f06000a;
         public static final int unused=0x7f060031;
