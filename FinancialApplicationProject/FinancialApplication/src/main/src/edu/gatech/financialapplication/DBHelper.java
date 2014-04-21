@@ -94,8 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Adds a new user.
      * 
-     * @param user
-     *            The user being added.
+     * @param user The user being added.
      */
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -143,11 +142,9 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Gets user by username.
      * 
-     * @param username
-     *            The username being searched for.
+     * @param username The username being searched for.
      * @return The user that is found.
-     * @throws SQLException
-     *             If the username isn't in the database.
+     * @throws SQLException If the username isn't in the database.
      */
     public User getUserByUsername(String username) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -176,11 +173,53 @@ public class DBHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public ArrayList<User> getAllUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<User> userList = new ArrayList<User>();
+        
+        Cursor cursor = null;
+        cursor = db.query(true, DATABASE_TABLE_USER, null, null, null,
+                    null, null, KEY_USER + " ASC", null);
+        Log.i("Admin ", "Getting all users");
+        
+		if (cursor != null) {
+			Log.d("cursor size: ", cursor.getCount() + "");
+			User user = null;
+
+			for (int i = 0; i < cursor.getCount(); i++) {
+				if (cursor.moveToNext()) {
+					user = new User(cursor.getString(0),
+							cursor.getString(1), cursor.getString(2),
+							cursor.getString(3), cursor.getString(4),
+							cursor.getString(5));
+					userList.add(user);
+				}
+			}
+		}
+		
+		// removing admin from the list
+		for (User user : userList) {
+			if (user.getUsername().equals("admin")) {
+				userList.remove(user);
+				break;
+			}
+		}
+            
+        return userList;
+    }
+    
+    public void changePassword(String username, String newPassword) {
+    	 SQLiteDatabase db = this.getWritableDatabase();
+         ContentValues values = new ContentValues();
+         values.put(KEY_PASS, newPassword);
+         db.update(DATABASE_TABLE_USER, values, KEY_USER + "=?",
+                 new String[] { username });
+    }
+    
     /**
      * Adds a new account.
      * 
-     * @param account
-     *            The new account being added.
+     * @param account The new account being added.
      * @return If account is added successfully.
      */
     public boolean addAccount(Account account) {
@@ -236,16 +275,10 @@ public class DBHelper extends SQLiteOpenHelper {
             throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = null;
-        if (username.equalsIgnoreCase("admin")) {
-            cursor = db.query(true, DATABASE_TABLE_ACCOUNT, null, null, null,
-                    null, null, KEY_ACCOUNT_NUMBER + " ASC", null);
-            Log.i("Admin ", "Getting all account");
-        } else {
-            cursor = db.query(true, DATABASE_TABLE_ACCOUNT, null, KEY_USER
-                    + "=?", new String[] { username }, null, null,
-                    KEY_ACCOUNT_NUMBER + " ASC", null);
-        }
+		Cursor cursor = null;
+		cursor = db.query(true, DATABASE_TABLE_ACCOUNT, null, KEY_USER + "=?",
+				new String[] { username }, null, null, KEY_ACCOUNT_NUMBER
+						+ " ASC", null);
 
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		if (cursor != null) {

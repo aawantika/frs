@@ -32,8 +32,8 @@ public class TransactionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_transaction);
 		listview = (ListView) findViewById(R.id.accountLV);
-
 		db = new DBHelper(this);
+		
 		accountNumberTemp = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 

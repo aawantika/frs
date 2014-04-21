@@ -63,8 +63,7 @@ public class ForgotPasswordActivity extends Activity {
     public void onClick(final View view) {
         if (checkNetwork()) {
             Intent intent = new Intent(this, WelcomeActivity.class);
-            username = ((EditText) findViewById(R.id.editTextUser)).getText()
-                    .toString();
+            username = ((EditText) findViewById(R.id.editTextUser)).getText().toString();
             User userDb = database.getUserByUsername(username);
             if (username.equals("admin")) {
                 new AlertDialog.Builder(this)

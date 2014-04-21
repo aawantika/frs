@@ -31,14 +31,15 @@ public class RegisterActivity extends Activity {
     private DBHelper dbHelp;
     private String firstname, lastname, username, password, passwordHint, email;
     private ProgressDialog pDialog;
+    private Context context;
     private String POSTURL = "http://tomcatjndi-mygatech.rhcloud.com/CS2340postfrs1";
     
     @Override
     protected void onCreate(Bundle savedInstanceStt) {
         super.onCreate(savedInstanceStt);
         setContentView(R.layout.activity_register);
-        dbHelp = new DBHelper(this);
-       
+        dbHelp = new DBHelper(this); 
+        context = this;
     }
 
     /**
@@ -58,24 +59,23 @@ public class RegisterActivity extends Activity {
                 && checkUsername(username) && checkPassword(password)
                 && checkPHint(passwordHint) && checkEmail(email)
                 && isDuplicate(username, password) && checkNetwork()) {
+        	
 			User user = new User(firstname, lastname, username, password, passwordHint, email);
 			PostUserToServer post = new PostUserToServer(firstname, lastname,
 					username, dbHelp.getEncryptedPassword(user), passwordHint, email);
 			post.execute();
 			dbHelp.addUser(user);
-			final Intent intent = new Intent(this, WelcomeActivity.class);
 			
 			new AlertDialog.Builder(this)
-					.setTitle("Registration")
-					.setMessage("New user has been registered successfully.")
-					.setPositiveButton(android.R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(
-										final DialogInterface dialog,
-										final int which) {
+			.setTitle("Registration")
+			.setMessage("New user has been registered successfully.")
+			.setPositiveButton(android.R.string.ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog, final int which) {
+									Intent intent = new Intent(context, WelcomeActivity.class);
 									startActivity(intent);
-								}
-							}).show();
+						}
+					}).show();
         }
     }
     

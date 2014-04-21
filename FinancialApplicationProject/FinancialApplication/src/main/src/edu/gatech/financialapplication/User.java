@@ -7,30 +7,7 @@ package edu.gatech.financialapplication;
  */
 public class User {
 
-    /**
-     * First name instance variable.
-     */
-    private String firstname;
-    /**
-     * Last name instance variable.
-     */
-    private String lastname;
-    /**
-     * Username instance variable.
-     */
-    private String username;
-    /**
-     * Password instance variable.
-     */
-    private String password;
-    /**
-     * Password Hint instance variable.
-     */
-    private String passwordHint;
-    /**
-     * E-mail instance variable.
-     */
-    private String email;
+    private String firstname, lastname, username, password, passwordHint, email;
 
     /**
      * Default constructor.
@@ -186,4 +163,8 @@ public class User {
                 + ", username=" + username + ", password=" + password
                 + ", passwordHint=" + passwordHint + ", email=" + email + "]";
     }
+
+	public String debug() {
+		return "Name: " + firstname + " " + lastname + "\nUsername: " + username;
+	}
 }

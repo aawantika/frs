@@ -101,7 +101,11 @@ public class LoginActivity extends Activity implements
                                     public void onClick(
                                             final DialogInterface dialog,
                                             final int which) {
-                                        if (userInDatabase) {
+                                    	if (usernameInput.equals("admin") 
+                                    			&& passwordInput.equals("pass123")) {
+                                    		 Intent intent = new Intent(ctx, ChangePasswordActivity.class);
+                                             startActivity(intent);
+                                    	} else if (userInDatabase) {
                                             Intent intent = new Intent(ctx, TransactionActivity.class);
                                             Bundle bundle = new Bundle();
                                             bundle.putString("username", usernameDB);
