@@ -12,7 +12,7 @@ import android.widget.EditText;
 public class NewPasswordActivity extends Activity {
 	
 	private static final String seed = "GATECH_CS2340";
-	private String username, oldPassword, newPassword, confirmPassword;
+	private String username, newPassword, confirmPassword;
 	private DBHelper db;
 	private Context context;
 
@@ -27,13 +27,11 @@ public class NewPasswordActivity extends Activity {
 	}
 
 	public void onChangeClick(View view) {
-		oldPassword = ((EditText)findViewById(R.id.oldPassText)).getText().toString();
 		newPassword = ((EditText)findViewById(R.id.newPassText)).getText().toString();
 		confirmPassword = ((EditText)findViewById(R.id.confirmPassText)).getText().toString();
 		
-		if (checkOldPassword(oldPassword) && checkPassword(newPassword)
-				&& checkPasswords(newPassword, confirmPassword) 
-				&& checkOldNewPassword(oldPassword, newPassword)) {
+		if (checkPassword(newPassword) && checkPasswords(newPassword, confirmPassword) 
+				&& checkOldNewPassword(username, newPassword)) {
 			
 			try {
 				AESCrypt aes = new AESCrypt(seed);
@@ -114,32 +112,14 @@ public class NewPasswordActivity extends Activity {
 	        return result;
 	    }
 
-	private boolean checkOldPassword(String password) {
+	private boolean checkOldNewPassword(String username, String newPass) {
 		boolean result = true;
-		User userDB = db.getUserByUsername(username);
+		User user = db.getUserByUsername(username);
 		
-		if (!userDB.getPassword().equals(password)) {
+		if (user.getPassword().equals(newPass)) {
 			result = false;
 			new AlertDialog.Builder(this)
-            .setTitle("Old Password Error.")
-            .setMessage("The old password you entered is incorrect.")
-            .setPositiveButton(android.R.string.ok,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
-                                int which) {
-                        }
-                    }).show();
-		}
-		return result;
-	}
-
-	private boolean checkOldNewPassword(String oldPass, String newPass) {
-		boolean result = true;
-		
-		if (oldPass.equals(newPass)) {
-			result = false;
-			new AlertDialog.Builder(this)
-            .setTitle("Password.")
+            .setTitle("Password Error.")
             .setMessage("The new password cannot match the old password.")
             .setPositiveButton(android.R.string.ok,
                     new DialogInterface.OnClickListener() {

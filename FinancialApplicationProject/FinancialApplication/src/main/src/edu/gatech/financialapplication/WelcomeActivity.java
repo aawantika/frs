@@ -36,13 +36,13 @@ public class WelcomeActivity extends Activity {
 
         // USE THIS FOR FUTURE TESTING IT WORKS PERFECTLY. DON'T SCREW IT UP!
         // //DO NOT TOUCH EITHER; WRITE YOUR OWN CODE FOR THIS.
-        db.addUser(new User("tika", "sahu", "yolouser", "password",
-                "passwordHint", "email"));
-        db.addUser(new User("test`", "test1", "ahhaha", "password1",
-                "jdlfka", "emaidfadfal"));
-        db.addUser(new User("test1", "test1", "dflkdja", "password12",
-                "dfjalkdf", "emaidfal"));
-        
+//        db.addUser(new User("tika", "sahu", "yolouser", "password",
+//                "passwordHint", "email"));
+//        db.addUser(new User("test`", "test1", "ahhaha", "password1",
+//                "jdlfka", "emaidfadfal"));
+//        db.addUser(new User("test1", "test1", "dflkdja", "password12",
+//                "dfjalkdf", "emaidfal"));
+//        
 //        System.out.println("ALL USERS: " + db.getAllUsers());
 //        
 //        db.changePassword("yolouser", "NEWPASSWORD");
