@@ -127,6 +127,7 @@
     
    
 
+    <!-- 
     <LinearLayout
         android:id="@+id/stingLinear"
         android:layout_width="fill_parent"
@@ -144,4 +145,5 @@
             ads:adUnitId="ca-app-pub-4276464708789528/2007844892"
             android:gravity="bottom" />
     </LinearLayout>
+     -->
 </RelativeLayout>
