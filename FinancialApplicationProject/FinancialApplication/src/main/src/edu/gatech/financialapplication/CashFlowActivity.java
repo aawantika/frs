@@ -96,5 +96,9 @@ public class CashFlowActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
+	
+	public void returnToPrev(View view){
+        finish();
+    }
 
 }

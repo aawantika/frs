@@ -81,5 +81,14 @@ public class IncomeSourceActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
+	
+	/**
+	 * Go back to date page
+	 * 
+	 * @param view View being used
+	 */
+	public void returnToPrev(View view){
+        finish();
+    }
 
 }

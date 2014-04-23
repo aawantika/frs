@@ -40,7 +40,18 @@
         android:gravity="center"
         android:textColor="#ffffff"
         android:text="@string/thrTitle"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="52dp"
+        android:layout_height="21dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/back_button"
+        android:onClick="returnToPrev"/>
 
     <TextView
         android:id="@+id/dateText"

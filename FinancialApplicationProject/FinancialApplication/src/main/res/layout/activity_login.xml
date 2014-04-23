@@ -123,6 +123,15 @@
         android:onClick="onForgotPasswordClick"
         android:text="@string/forgotPassword"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#0076a3" />
+        android:textColor="#0076a3" />  
+    
+    <TextView
+        android:id="@+id/bottomBorder"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center" />
 
 </RelativeLayout>
