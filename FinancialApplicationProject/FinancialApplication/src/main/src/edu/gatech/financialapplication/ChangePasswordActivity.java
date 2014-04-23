@@ -84,7 +84,7 @@ public class ChangePasswordActivity extends Activity {
 		}
 	}
 
-	public void onLogoutClick(View view) {
+	public void onBackClick(View view) {
 		Intent intent = new Intent(this, WelcomeActivity.class);
 		startActivity(intent);
 	}
