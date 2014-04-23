@@ -392,17 +392,6 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else if (" ".equals(email.substring(0, 1))) {
-        	result = false;
-            new AlertDialog.Builder(this)
-                    .setTitle("Email error.")
-                    .setMessage("Sorry, email can't start with a space.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                }
-                            }).show();
         } else if (!email.matches("[a-zA-Z][^@&]*@[a-zA-Z][^@]*\\.(com|org|net|edu)")) {
         	result = false;
             new AlertDialog.Builder(this)

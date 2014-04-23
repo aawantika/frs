@@ -271,8 +271,7 @@ public final class R {
         public static final int gas=0x7f06004e;
         public static final int graphs=0x7f06002f;
         public static final int groceries=0x7f060052;
-        /**  Manifest 
- ??? 
+        /**  ??? 
          */
         public static final int hello_world=0x7f060054;
         public static final int home=0x7f060033;
