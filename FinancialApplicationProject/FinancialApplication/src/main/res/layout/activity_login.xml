@@ -125,13 +125,23 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#0076a3" />  
     
-    <TextView
-        android:id="@+id/bottomBorder"
+   
+
+    <LinearLayout
+        android:id="@+id/stingLinear"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#16718d"
-        android:gravity="center" />
+        android:orientation="vertical" >
 
+     <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-4276464708789528/2007844892"
+            android:gravity="bottom" />
+    </LinearLayout>
 </RelativeLayout>
