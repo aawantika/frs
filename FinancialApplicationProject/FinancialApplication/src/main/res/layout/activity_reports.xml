@@ -108,12 +108,20 @@
 
     <Button
         android:id="@+id/cfrUser"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/border3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
+        android:background="@drawable/large_rectangle_selectorbutton"
         android:text="@string/cfrUser"
-        android:onClick="onCFRUserClick" />
+        android:onClick="onCFRUserClick"
+        android:textColor="#1c3f5a" />
+    
+    <TextView
+        android:id="@+id/border5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cfrUser"
+        android:background="#3a7099" />
 
 </RelativeLayout>
