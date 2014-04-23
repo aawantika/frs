@@ -8,6 +8,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,7 @@ public class ForgotPasswordActivity extends Activity {
  
     private DBHelper database;
     private String username;
+    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(final Bundle savedState) {
@@ -39,6 +42,7 @@ public class ForgotPasswordActivity extends Activity {
     private boolean checkNetwork() {
         boolean result = true;
         if (!isNetworkAvailable(this)) {
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Internet connection")
                     .setMessage("Dear customer, please turn on wifi or mobile data to proceed.")
@@ -66,6 +70,7 @@ public class ForgotPasswordActivity extends Activity {
             User userDb = database.getUserByUsername(username);
             
             if (username.equals("admin")) {
+            	playError();
                 new AlertDialog.Builder(this)
                         .setTitle("Username error")
                         .setMessage("Cannot email the admin password.")
@@ -77,6 +82,7 @@ public class ForgotPasswordActivity extends Activity {
                                     }
                                 }).show();
             } else if (userDb == null) {
+            	playError();
                 new AlertDialog.Builder(this)
                         .setTitle("Username error")
                         .setMessage("Username doesn't exist in database.")
@@ -110,5 +116,16 @@ public class ForgotPasswordActivity extends Activity {
      */
     public void onBackClick(View view) {
     	finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }
