@@ -83,9 +83,14 @@ public class ChangePasswordActivity extends Activity {
 			startActivity(intent);
 		}
 	}
-
-	public void onBackClick(View view) {
-		Intent intent = new Intent(this, WelcomeActivity.class);
-		startActivity(intent);
-	}
+	
+	/**
+     * Logs the user out
+     * 
+     * @param view the view being used
+     */
+    public void onLogoutClick(View view) {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
 }

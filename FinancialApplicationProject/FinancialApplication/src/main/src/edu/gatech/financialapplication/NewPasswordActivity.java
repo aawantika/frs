@@ -130,4 +130,13 @@ public class NewPasswordActivity extends Activity {
 		}
 		return result;
 	}
+	
+	/**
+	 * Goes to the previous screen
+	 * 
+	 * @param view the view being used
+	 */
+	public void onBackClick(View view) {
+		finish();
+	}
 }
