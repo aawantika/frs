@@ -122,4 +122,8 @@ public class ConsumerSpendingActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
+	
+	public void returnToPrev(View view){
+        finish();
+    }
 }
