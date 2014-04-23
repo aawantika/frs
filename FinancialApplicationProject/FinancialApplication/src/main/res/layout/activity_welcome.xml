@@ -7,15 +7,16 @@
     android:background="@drawable/bg"
     tools:context=".WelcomeActivity"
     tools:ignore="MergeRootFrame" >
-    
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/unused"
         android:src="@drawable/welcomebox" />
-    
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
         android:layout_above="@+id/loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:contentDescription="@string/unused"
         android:src="@drawable/logo" />
 
     <Button
