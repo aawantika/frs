@@ -330,8 +330,6 @@ public final class R {
         public static final int thr=0x7f06004e;
         public static final int thrTitle=0x7f060040;
         public static final int tika=0x7f060044;
-        public static final int title_activity_cash_flow_account=0x7f060059;
-        public static final int title_activity_cash_flow_user=0x7f06005a;
         public static final int totalDeposits=0x7f060009;
         public static final int totalWithdrawals=0x7f06000a;
         public static final int unused=0x7f060031;
