@@ -21,7 +21,7 @@ public class CashFlowUserActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cash_flow);
+		setContentView(R.layout.activity_cash_flow_user);
 		db = new DBHelper(this);
 
 		// pull from intent

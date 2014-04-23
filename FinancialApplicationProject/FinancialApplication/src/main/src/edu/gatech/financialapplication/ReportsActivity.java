@@ -54,10 +54,24 @@ public class ReportsActivity extends Activity {
      * Opens a date reporter and tells what type of report to generate.
      * @param view the current view
      */
-    public void onCFRClick(View view) {
+    public void onCFRAccountClick(View view) {
         Intent intent = new Intent(this, ReportDateActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("type", "cashFlow");
+        bundle.putString("type", "cashFlowAccount");
+        bundle.putString("accountNumber", accountNumberTemp);
+        bundle.putString("username", username);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+    
+    /**
+     * Opens a date reporter and tells what type of report to generate.
+     * @param view the current view
+     */
+    public void onCFRUserClick(View view) {
+        Intent intent = new Intent(this, ReportDateActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", "cashFlowUser");
         bundle.putString("accountNumber", accountNumberTemp);
         bundle.putString("username", username);
         intent.putExtras(bundle);
