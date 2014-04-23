@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class ConsumerSpendingActivity extends Activity {
 
 	private DBHelper db;
-	private String username, accountNumberTemp;
+	private String username, accountNumber;
 	private String finalStart, finalEnd;
 
 	private float totalWithdrawals;
@@ -34,7 +34,7 @@ public class ConsumerSpendingActivity extends Activity {
 		withinDates = new ArrayList<Transaction>();
 
 		// pull from intent
-		accountNumberTemp = getIntent().getStringExtra("accountNumber");
+		accountNumber = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
@@ -58,10 +58,8 @@ public class ConsumerSpendingActivity extends Activity {
 		for (Transaction t : transactionList) {
 			Log.i("MONTH ", t.getDate());
 			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)
-					&& t.getType().equals("withdrawal")) {
-				Log.i("transaction in cs", t.toString());
+			if (t.getAccount().equals(accountNumber) && t.getType().equals("withdrawal") 
+					&& (finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)) {
 				withinDates.add(t);
 			}
 		}
@@ -117,9 +115,13 @@ public class ConsumerSpendingActivity extends Activity {
 	public void onClick(View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("accountNumber", accountNumberTemp);
+		bundle.putString("accountNumber", accountNumber);
 		bundle.putString("username", username);
 		intent.putExtras(bundle);
 		startActivity(intent);
+	}
+
+	public void returnToPrev(View view){
+        finish();
 	}
 }

@@ -59,10 +59,8 @@ public class IncomeSourceActivity extends Activity {
 		for (Transaction t : transactionList) {
 			Log.i("MONTH ", t.getDate());
 			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)
-					&& t.getType().equals("deposit")) {
-				
+			if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)
+					&& t.getType().equals("deposit") && t.getAccount().equals(accountNumber)) {
 				Log.i("transaction in cs", t.toString());
 				withinDates.add(t);
 				totalDeposits += t.getAmount();
