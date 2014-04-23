@@ -1,13 +1,10 @@
 package edu.gatech.financialapplication;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * Activity file for welcome activity.
@@ -16,9 +13,6 @@ import android.view.ViewGroup;
  */
 public class WelcomeActivity extends Activity {
 
-    /**
-     * New DBHelper db.
-     */
     protected static DBHelper db;
 
     @Override
@@ -26,11 +20,7 @@ public class WelcomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         db = new DBHelper(this);
-        // db.removeAll();
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment()).commit();
-        }
+
         db.addUser(new User("administrator", "lastName", "admin", "pass123",
                 "passwordHint", "admin@gatech.edu"));
 
@@ -96,8 +86,6 @@ public class WelcomeActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.welcome, menu);
         return true;
     }
@@ -105,8 +93,7 @@ public class WelcomeActivity extends Activity {
     /**
      * On click for login activity button.
      * 
-     * @param view
-     *            The view being used.
+     * @param view The view being used.
      */
     public void toLoginActivity(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -116,33 +103,11 @@ public class WelcomeActivity extends Activity {
     /**
      * On click for register activity button.
      * 
-     * @param view
-     *            The view being used.
+     * @param view The view being used.
      */
     public void toRegisterActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        /**
-         * Placeholder fragment constructor.
-         */
-        public PlaceholderFragment() {
-            //empty method
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_welcome,
-                    container, false);
-            return rootView;
-        }
     }
 
 }

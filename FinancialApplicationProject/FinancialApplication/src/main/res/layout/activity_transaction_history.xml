@@ -7,26 +7,12 @@
     tools:context="edu.gatech.financialapplication.TransactionHistoryActivity"
     tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_rectanglebutton"
-        android:onClick="onBackClick"
-        android:text="@string/home"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff" />
-
     <ListView
         android:id="@+id/transactionHistoryLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/accountNum"
-        android:layout_above="@+id/backBtn"
         android:paddingBottom="5dp" >
     </ListView>
     

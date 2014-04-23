@@ -35,7 +35,7 @@
     <string name="lastnameHint">Enter last name</string>
     <string name="emailHint">gburdell9@gatech.edu</string>
     <string name="dateHint">01/01/2014</string>
-    <string name="defaultAmountHint">100USD or higher</string>
+    <string name="defaultAmountHint">100 USD or higher</string>
     <string name="reasonHint">Enter reason</string>
     <string name="amountHint">Enter amount</string>
     <string name="categoryHint">Enter category</string>
@@ -71,7 +71,7 @@
     <string name="loginTitle">LOGIN</string>
     <string name="homeTitle">HOME</string>
     <string name="forgotTitle">FORGOT PASSWORD</string>
-    <string name="csrTitle">CONSUMER SPENDING</string>
+    <string name="csrTitle">SPENDING CATEGORY</string>
     <string name="isrTitle">INCOME SOURCE</string>
     <string name="cfrTitle">CASH FLOW</string>
     <string name="thrTitle">TRANSACTION HISTORY</string>
