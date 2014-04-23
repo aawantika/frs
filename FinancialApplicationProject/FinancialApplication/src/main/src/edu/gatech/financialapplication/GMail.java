@@ -22,137 +22,84 @@ import android.util.Log;
 
 public class GMail {
 
-    /**
-     * E-mail Port constant instance variable.
-     */
-    private static final String EMAIL_PORT = "587"; // gmail's smtp port
-   
-    /**
-     * SMTP_AUTH constant instance variable.
-     */
-    //CHECKSTYLE:OFF
-    private static final String SMTP_AUTH = "true"; //string necessary
-    //CHECKSTYLE:ON
-    
-    /**
-     * START_TLS instance variable.
-     */
-    private static final String START_TLS = "true";
-    
-    /**
-     * EMAIL_HOST constant instance variable.
-     */
-    private static final String EMAIL_HOST = "smtp.gmail.com";
-   
-    /**
-     * FROM_USER constant instance variable.
-     */
-    private static final String FROM_USER = "cs2340frs@gmail.com";
-   
-    /**
-     * FROM_PASSWORD constant instance variable.
-     */
-    private static final String FROM_PASSWORD = "foobarsribshack";
-    
-    /**
-     * EMAIL_SUBJECT constant instance variable.
-     */
-    private static final String EMAIL_SUBJECT = "CS 2340 Forgotten Password";
+	private String EMAIL_PORT = "587";
+	private String SMTP_AUTH = "true";
+	private String START_TLS = "true";
+	private String EMAIL_HOST = "smtp.gmail.com";
 
-    /**
-     * toEmailList instance variable.
-     */
-    private List<String> toEmailList;
-    
-    /**
-     * emailBody instance variable.
-     */
-    private String emailBody;
+	private static final String FROM_USER = "cs2340frs@gmail.com";
+	private static final String FROM_PASSWORD = "foobarsribshack";
+	private static final String EMAIL_SUBJECT = "CS 2340 Forgotten Password";
 
-    /**
-     * emailProperties instance variable.
-     */
-    private Properties emailProperties;
-   
-    /**
-     * mailSession instance variable.
-     */
-    private Session mailSession;
-    
-    /**
-     * emailMessage instance variable.
-     */
-    private MimeMessage emailMessage;
-    
-    /**
-     * gmail instance variable.
-     */
-    private String email;
+	private List<String> toEmailList;
+	private String emailBody, email;
+	private Properties emailProperties;
+	private Session mailSession;
+	private MimeMessage emailMessage;
 
-    /**
-     * Default Constructor.
-     */
-    public GMail() {
-    }
+	/**
+	 * Default Constructor.
+	 */
+	public GMail() {
+	}
 
-    /**
-     * Creates the email to send out to all the users.
-     * 
-     * @param aToEmailList is the list of people the email would be sent out to.
-     * @param aEmailBody is what the email says.
-     */
-    public GMail(final List<String> aToEmailList, final String aEmailBody) {
-        this.toEmailList = aToEmailList;
-        this.emailBody = aEmailBody;
-        this.email = "Gmail";
+	/**
+	 * Creates the email to send out to all the users.
+	 * 
+	 * @param aToEmailList is the list of people the email would be sent out to.
+	 * @param aEmailBody is what the email says.
+	 */
+	public GMail(List<String> toEmailList, String emailBody) {
+		this.toEmailList = toEmailList;
+		this.emailBody = emailBody;
+		this.email = "Gmail";
 
-        emailProperties = System.getProperties();
-        emailProperties.put("mail.smtp.port", EMAIL_PORT);
-        emailProperties.put("mail.smtp.auth", SMTP_AUTH);
-        emailProperties.put("mail.smtp.START_TLS.enable", START_TLS);
-        Log.i(email, "Mail server properties set.");
-    }
+		emailProperties = System.getProperties();
+		emailProperties.put("mail.smtp.port", EMAIL_PORT);
+		emailProperties.put("mail.smtp.auth", SMTP_AUTH);
+		emailProperties.put("mail.smtp.START_TLS.enable", START_TLS);
+		Log.i(email, "Mail server properties set.");
+	}
 
-    /**
-     * Creates the email message and sends it to the users.
-     * @return MimeMessage the message to send to all the users.
-     * @throws AddressException - in case the address is not correct
-     * @throws MessagingException - in case the message is not correct
-     * @throws UnsupportedEncodingException - in case the the encoding is
-     * unsupported
-     */
-    public MimeMessage createEmailMessage() throws AddressException,
-            MessagingException, UnsupportedEncodingException {
+	/**
+	 * Creates the email message and sends it to the users.
+	 * 
+	 * @return MimeMessage the message to send to all the users.
+	 * @throws AddressException - in case the address is not correct
+	 * @throws MessagingException - in case the message is not correct
+	 * @throws UnsupportedEncodingException - in case the the encoding is unsupported
+	 */
+	public MimeMessage createEmailMessage() throws AddressException,
+			MessagingException, UnsupportedEncodingException {
 
-        mailSession = Session.getDefaultInstance(emailProperties, null);
-        emailMessage = new MimeMessage(mailSession);
-        emailMessage.setFrom(new InternetAddress(FROM_USER, FROM_USER));
+		mailSession = Session.getDefaultInstance(emailProperties, null);
+		emailMessage = new MimeMessage(mailSession);
+		emailMessage.setFrom(new InternetAddress(FROM_USER, FROM_USER));
 
-        for (final String toEmail : toEmailList) {
-            Log.i(email, "toEmail: " + toEmail);
-            emailMessage.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(toEmail)); //ignore
-        }
+		for (final String toEmail : toEmailList) {
+			Log.i(email, "toEmail: " + toEmail);
+			emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+		}
 
-        emailMessage.setSubject(EMAIL_SUBJECT);
-        emailMessage.setContent(emailBody, "text/html"); // for a html email
-        // emailMessage.setText(emailBody); // for a text email
-        Log.i(email, "Email Message created.");
-        return emailMessage;
-    }
-
-    /**
-     * Sends an e-mail out to the user.
-     *
-     * @throws AddressException - in case the address is not correct
-     * @throws MessagingException - in case the message is not correct
-     */
-    public void sendEmail() throws AddressException, MessagingException {
-        final Transport transport = mailSession.getTransport("smtp");
-        transport.connect(EMAIL_HOST, FROM_USER, FROM_PASSWORD);
-       // Log.i(gmail, "allrecipients: " + emailMessage.getAllRecipients().toString());
-        transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
-        transport.close();
-        Log.i("GMail", "Email sent successfully.");
-    }
+		emailMessage.setSubject(EMAIL_SUBJECT);
+		emailMessage.setContent(emailBody, "text/html"); // for a html email
+		// emailMessage.setText(emailBody); // for a text email
+		Log.i(email, "Email Message created.");
+		return emailMessage;
+	}
+	
+	/**
+	 * Sends an e-mail out to the user.
+	 * 
+	 * @throws AddressException - in case the address is not correct
+	 * @throws MessagingException - in case the message is not correct
+	 */
+	public void sendEmail() throws AddressException, MessagingException {
+		Transport transport = mailSession.getTransport("smtp");
+		transport.connect(EMAIL_HOST, FROM_USER, FROM_PASSWORD);
+		Log.i("gmail", "allrecipients: " + emailMessage.getAllRecipients().toString());
+		transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
+		transport.close();
+		Log.i("GMail", "Email sent successfully.");
+	}
 }

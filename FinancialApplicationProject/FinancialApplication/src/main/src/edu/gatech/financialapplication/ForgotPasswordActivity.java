@@ -62,9 +62,9 @@ public class ForgotPasswordActivity extends Activity {
     @SuppressWarnings("unchecked")
     public void onClick(final View view) {
         if (checkNetwork()) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
             username = ((EditText) findViewById(R.id.editTextUser)).getText().toString();
             User userDb = database.getUserByUsername(username);
+            
             if (username.equals("admin")) {
                 new AlertDialog.Builder(this)
                         .setTitle("Username error")
@@ -88,15 +88,16 @@ public class ForgotPasswordActivity extends Activity {
                                     }
                                 }).show();
             } else {
-                final User user = database.getUserByUsername(username);
-                final String email = user.getEmail();
-                final List<String> toEmailList = Arrays.asList(email);
-                final String password = user.getPassword();
-                final String emailBody = "Dear Customer, your forgotten password is: "
+                User user = database.getUserByUsername(username);
+                System.out.println("USER PRINTED HERE: " + user);
+                String email = user.getEmail();
+                List<String> toEmailList = Arrays.asList(email);
+                String password = user.getPassword();
+                String emailBody = "Dear Customer, your forgotten password is: "
                         + password;
 
-                new SendMailTask(ForgotPasswordActivity.this).execute(
-                        toEmailList, emailBody);
+                new SendMailTask(ForgotPasswordActivity.this).execute(toEmailList, emailBody);
+                Intent intent = new Intent(this, WelcomeActivity.class);
                 startActivity(intent);
             }
         }
