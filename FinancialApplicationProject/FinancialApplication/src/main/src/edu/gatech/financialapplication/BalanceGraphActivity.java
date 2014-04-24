@@ -129,7 +129,7 @@ public class BalanceGraphActivity extends Activity {
 		public AFreeChart createChart(XYSeriesCollection data) {
 			XYDataset dataset = data;
 			AFreeChart chart = ChartFactory.createXYLineChart(
-					"Transaction History", // Title
+					"Balance vs Date", // Title
 					"Date", // x-axis Label
 					"Amount", // y-axis Label
 					dataset, // Dataset

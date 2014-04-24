@@ -139,7 +139,7 @@ public class CategoryChartActivity extends Activity {
 		
 		private AFreeChart createChart(PieDataset data) {
 			AFreeChart chart = ChartFactory.createPieChart(
-					"Spending per Category", 
+					"Money per Category", 
 					data, 
 					false,
 					false,
