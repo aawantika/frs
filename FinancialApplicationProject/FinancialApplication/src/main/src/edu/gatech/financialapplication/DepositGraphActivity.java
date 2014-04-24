@@ -97,7 +97,6 @@ public class DepositGraphActivity extends Activity {
 			
 			for (String date : dates) {
 				double withdrawalAmount = depositData.get(date);
-				date = date.replaceAll("/", "");
 				double dateValue = Double.parseDouble(date);
 				deposits.add(dateValue, withdrawalAmount);
 			}

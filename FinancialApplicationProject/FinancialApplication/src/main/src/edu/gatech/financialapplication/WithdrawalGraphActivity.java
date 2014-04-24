@@ -98,7 +98,6 @@ public class WithdrawalGraphActivity extends Activity {
 			
 			for (String date : dates) {
 				double withdrawalAmount = withdrawalData.get(date);
-				date = date.replaceAll("/", "");
 				double dateValue = Double.parseDouble(date);
 				withdrawals.add(dateValue, withdrawalAmount);
 			}
