@@ -1,6 +1,6 @@
 package edu.gatech.financialapplication;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -22,36 +22,12 @@ public class ForgotPasswordActivity extends Activity {
  
     private DBHelper database;
     private String username;
-
+    
     @Override
     protected void onCreate(final Bundle savedState) {
         super.onCreate(savedState);
         setContentView(R.layout.activity_forgot_password);
         database = new DBHelper(this);
-    }
-
-    private boolean isNetworkAvailable(Context context) {
-        return ((ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE))
-                .getActiveNetworkInfo() != null;
-    }
-
-    private boolean checkNetwork() {
-        boolean result = true;
-        if (!isNetworkAvailable(this)) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Internet connection")
-                    .setMessage("Dear customer, please turn on wifi or mobile data to proceed.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(
-                                        final DialogInterface dialog,
-                                        final int which) {
-                                }
-                            }).show();
-            result = false;
-        }
-        return result;
     }
 
     /**
@@ -90,8 +66,8 @@ public class ForgotPasswordActivity extends Activity {
             } else {
                 User user = database.getUserByUsername(username);
                 System.out.println("USER PRINTED HERE: " + user);
-                String email = user.getEmail();
-                List<String> toEmailList = Arrays.asList(email);
+                List<String> toEmailList = new ArrayList<String>();
+                toEmailList.add(user.getEmail());
                 String password = user.getPassword();
                 String emailBody = "Dear Customer, your forgotten password is: "
                         + password;
@@ -101,6 +77,31 @@ public class ForgotPasswordActivity extends Activity {
                 startActivity(intent);
             }
         }
+    }
+    
+
+    private boolean isNetworkAvailable(Context context) {
+        return ((ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE))
+                .getActiveNetworkInfo() != null;
+    }
+
+    private boolean checkNetwork() {
+        boolean result = true;
+        if (!isNetworkAvailable(this)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Internet connection")
+                    .setMessage("Dear customer, please turn on wifi or mobile data to proceed.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(
+                                        final DialogInterface dialog,
+                                        final int which) {
+                                }
+                            }).show();
+            result = false;
+        }
+        return result;
     }
     
     /**
