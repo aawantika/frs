@@ -17,7 +17,6 @@ import org.afree.data.xy.XYSeriesCollection;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 
 public class DepositGraphActivity extends Activity {

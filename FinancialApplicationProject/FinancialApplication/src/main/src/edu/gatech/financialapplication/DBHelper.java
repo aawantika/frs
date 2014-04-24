@@ -2,6 +2,8 @@ package edu.gatech.financialapplication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,17 +13,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.util.Pair;
 
 /**
  * Back-end database using S QLite.
  * 
  * @author Team 15
+ * @param <balances>
  */
-public class DBHelper extends SQLiteOpenHelper {
+public class DBHelper<balances> extends SQLiteOpenHelper {
 	private static final String seed = "GATECH_CS2340";
     protected int size = 0;
     private static final String DATABASE_NAME = "foobarsribshack.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     
     private static final String KEY_FNAME = "firstname";
     private static final String KEY_LNAME = "lastname";
@@ -59,6 +63,9 @@ public class DBHelper extends SQLiteOpenHelper {
             + DATABASE_TABLE_TRANSACTION + "(" + KEY_ACCOUNT + " TEXT,"
             + KEY_DATE + " TEXT," + KEY_AMOUNT + " TEXT," + KEY_DESCRIPTION
             + " TEXT," + KEY_CATEGORY + " TEXT," + KEY_TYPE + " TEXT)";
+    
+    private List<Pair<String, String>> balances;
+    private Set<String> dateSet;
 
     /**
      * Creates a new DB Helper.
@@ -89,6 +96,39 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // create new tables
         onCreate(db);
+    }
+    
+    public List<Pair<String, String>> getAllBalances(String accountNumber) {
+    	SQLiteDatabase db = this.getWritableDatabase();
+    	balances = new ArrayList<Pair<String, String>>();
+        dateSet = new TreeSet<String>();
+    	
+        Account account = getAccountByAccountNumber(accountNumber);
+        List<Transaction> transactionsList = getAllTransactions(accountNumber);
+        String date = transactionsList.get(0).getDate();
+        String initialBalance = account.getInitialBalance();
+        
+        Pair<String, String> initial = new Pair<String, String>(date, initialBalance);
+        dateSet.add(date);
+        balances.add(initial);
+        
+		for (int i = 1; i < transactionsList.size(); i++) {
+			date = transactionsList.get(i).getDate();
+			Float transaction = transactionsList.get(i).getAmount();
+			
+			if (dateSet.contains(date)) {
+				int size = balances.size();
+				Float oldBalance = Float.parseFloat(balances.get(size - 1).second);
+				Float newBalance = oldBalance + transaction;
+				balances.set(size - 1, new Pair<String, String>(date, newBalance.toString()));
+			} else {
+				Pair<String, String> temp = new Pair<String, String>(date);
+				dateSet.add(date);
+				balances.add(object);
+			}
+		}
+
+        return balances;
     }
 
     /**

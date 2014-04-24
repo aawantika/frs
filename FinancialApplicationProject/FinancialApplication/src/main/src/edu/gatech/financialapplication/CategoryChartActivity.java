@@ -17,7 +17,6 @@ import android.util.Log;
 
 public class CategoryChartActivity extends Activity {
 
-	private float totalWithdrawals;
 	private float gas, rent, clothing, business, groceries, entertainment;
 	private String accountNumber, username, finalStart, finalEnd;
 	private DBHelper db;
@@ -68,7 +67,6 @@ public class CategoryChartActivity extends Activity {
 	 */
 	private void populateCashCategories() {
 		for (Transaction t : spendingList) {
-			totalWithdrawals += t.getAmount();
 			if (t.getCategory().equals("Gas")) {
 				gas += t.getAmount();
 			} else if (t.getCategory().equals("Rent")) {
