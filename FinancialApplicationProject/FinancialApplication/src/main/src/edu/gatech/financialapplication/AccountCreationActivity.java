@@ -23,7 +23,7 @@ public class AccountCreationActivity extends Activity {
     private String username, firstname, lastname;
     private String accountNumber = createAccountNumber() + "";
     private DBHelper db;
-    private MediaPlayer errorPlayer;
+    private MediaPlayer errorPlayer, successPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class AccountCreationActivity extends Activity {
     	defaultAmount = ((TextView) findViewById(R.id.defaultAmount)).getText().toString();
     	 
 		if (checkAmount(defaultAmount)) {
+			playSuccess();
 			new AlertDialog.Builder(this)
 			.setTitle("Your account is created!")
 			.setMessage("Account number " + accountNumber + " is created. ")
@@ -139,5 +140,16 @@ public class AccountCreationActivity extends Activity {
     	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
     	errorPlayer.setLooping(false);
     	errorPlayer.start();
+    }
+    
+    /**
+     * Plays an success sound
+     */
+    private void playSuccess() {
+    	successPlayer = new MediaPlayer();
+    	successPlayer = MediaPlayer.create(this, R.raw.spenge);
+    	successPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	successPlayer.setLooping(false);
+    	successPlayer.start();
     }
 }

@@ -35,7 +35,7 @@ public class RegisterActivity extends Activity {
     private ProgressDialog pDialog;
     private Context context;
     private String POSTURL = "http://tomcatjndi-mygatech.rhcloud.com/CS2340postfrs1";
-    private MediaPlayer errorPlayer;
+    private MediaPlayer errorPlayer, successPlayer;
     
     @Override
     protected void onCreate(Bundle savedInstanceStt) {
@@ -69,6 +69,7 @@ public class RegisterActivity extends Activity {
 			post.execute();
 			dbHelp.addUser(user);
 			
+			playSuccess();
 			new AlertDialog.Builder(this)
 			.setTitle("Registration")
 			.setMessage("New user has been registered successfully.")
@@ -439,5 +440,16 @@ public class RegisterActivity extends Activity {
     	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
     	errorPlayer.setLooping(false);
     	errorPlayer.start();
+    }
+    
+    /**
+     * Plays an success sound
+     */
+    private void playSuccess() {
+    	successPlayer = new MediaPlayer();
+    	successPlayer = MediaPlayer.create(this, R.raw.spenge);
+    	successPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	successPlayer.setLooping(false);
+    	successPlayer.start();
     }
 }

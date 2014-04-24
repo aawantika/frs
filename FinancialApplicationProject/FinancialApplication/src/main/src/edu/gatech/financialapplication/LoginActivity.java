@@ -30,7 +30,7 @@ public class LoginActivity extends Activity implements
     private DBHelper db;
     private User user;
     private boolean userInDatabase;
-    private MediaPlayer errorPlayer;
+    private MediaPlayer errorPlayer, successPlayer;
 
     @Override
     protected void onCreate(final Bundle savedState) {
@@ -96,6 +96,7 @@ public class LoginActivity extends Activity implements
             userInDatabase = db.hasAccount(user);
             if (user != null && user.getUsername().equals(usernameInput)
                     && user.getPassword().equals(passwordInput)) {
+            	playSuccess();
                 new AlertDialog.Builder(this)
                         .setTitle("Success!")
                         .setMessage("Successful login.")
@@ -170,5 +171,16 @@ public class LoginActivity extends Activity implements
     	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
     	errorPlayer.setLooping(false);
     	errorPlayer.start();
+    }
+    
+    /**
+     * Plays an success sound
+     */
+    private void playSuccess() {
+    	successPlayer = new MediaPlayer();
+    	successPlayer = MediaPlayer.create(this, R.raw.spenge);
+    	successPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	successPlayer.setLooping(false);
+    	successPlayer.start();
     }
 }

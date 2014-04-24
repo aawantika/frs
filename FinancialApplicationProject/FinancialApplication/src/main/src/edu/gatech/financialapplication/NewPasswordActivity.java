@@ -17,7 +17,7 @@ public class NewPasswordActivity extends Activity {
 	private String username, newPassword, confirmPassword;
 	private DBHelper db;
 	private Context context;
-	private MediaPlayer errorPlayer;
+	private MediaPlayer errorPlayer, successPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class NewPasswordActivity extends Activity {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			
+			playSuccess();
 			new AlertDialog.Builder(this)
             .setTitle("Password Change.")
             .setMessage("The password was changed successfully!")
@@ -157,5 +157,16 @@ public class NewPasswordActivity extends Activity {
     	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
     	errorPlayer.setLooping(false);
     	errorPlayer.start();
+    }
+    
+    /**
+     * Plays an success sound
+     */
+    private void playSuccess() {
+    	successPlayer = new MediaPlayer();
+    	successPlayer = MediaPlayer.create(this, R.raw.spenge);
+    	successPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	successPlayer.setLooping(false);
+    	successPlayer.start();
     }
 }
