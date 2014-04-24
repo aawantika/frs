@@ -18,7 +18,13 @@ import org.afree.data.xy.XYSeriesCollection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class DepositGraphActivity extends Activity {
 
@@ -27,12 +33,13 @@ public class DepositGraphActivity extends Activity {
 	private List<Transaction> allDeposits;
 	private LineGraph lineGraph;
 	private DBHelper db;
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_deposit_graph);
 		db = new DBHelper(this);
+		context = this;
 		allDeposits = new ArrayList<Transaction>();
 
 		// pull from intent
@@ -42,9 +49,31 @@ public class DepositGraphActivity extends Activity {
 		finalEnd = getIntent().getStringExtra("finalEnd");
 
 		lineGraph = new LineGraph(this);
-		setContentView(lineGraph);
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		Button btn = new Button(this);
+		btn.setGravity(Gravity.CENTER);
+		btn.setText("back");
+		btn.setOnClickListener(myhandler1);
+		
+		LinearLayout ll = new LinearLayout(this);
+	    ll.setOrientation(LinearLayout.VERTICAL);
+	    ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+	    ll.setGravity(Gravity.CENTER);
+	    ll.addView(btn);
+	    ll.addView(lineGraph);
+	    setContentView(ll);
 	}
+	
+	View.OnClickListener myhandler1 = new View.OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = new Intent(context, TransactionActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumber);
+			bundle.putString("username", username);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+	};
 	
 	private Map<String, Float> sortDeposits() {
 		transactionList = new ArrayList<Transaction>();
