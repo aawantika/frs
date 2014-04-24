@@ -76,24 +76,33 @@ public class DepositGraphActivity extends Activity {
 		public LineGraph(Context context) {
 			super(context);
 
-			XYSeriesCollection dataset = getDataSet(sortDeposits());
+			XYSeriesCollection dataset = getDataSet();
 			AFreeChart chart = createChart(dataset);
 
 			setChart(chart);
 
 		}
 
-		private XYSeriesCollection getDataSet(Map<String, Float> depositData) {
+		private XYSeriesCollection getDataSet() {
 			XYSeriesCollection data = new XYSeriesCollection();
+			Map<String, Float> depositData = new TreeMap<String, Float>();
+			depositData.put("04/06/2014", 200.00f);
+			depositData.put("04/08/2014", 400.00f);
+			depositData.put("04/10/2014", 800.00f);
+			depositData.put("04/11/2014", 400.00f);
+			depositData.put("04/12/2014", 200.00f);
+			//sortDeposits();
+			
+			System.out.println("DATA: " + depositData);
 			Set<String> dates = depositData.keySet();
-
-			// take stuff and get the x and y values
+			
 			XYSeries graph = new XYSeries("Deposits");
 
 			for (String date : dates) {
-				float withdrawalAmount = depositData.get(date);
-				float dateValue = Float.parseFloat(date);
-				graph.add(withdrawalAmount, dateValue);
+				double withdrawalAmount = depositData.get(date);
+				date = date.replaceAll("/", "");
+				double dateValue = Double.parseDouble(date);
+				graph.add(dateValue, withdrawalAmount);
 			}
 
 			data.addSeries(graph);

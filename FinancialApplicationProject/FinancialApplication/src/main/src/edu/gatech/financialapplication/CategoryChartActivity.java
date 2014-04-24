@@ -9,9 +9,11 @@ import org.afree.chart.demo.DemoView;
 import org.afree.chart.plot.PiePlot;
 import org.afree.data.general.DefaultPieDataset;
 import org.afree.data.general.PieDataset;
+import org.afree.graphics.SolidColor;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -116,6 +118,13 @@ public class CategoryChartActivity extends Activity {
 					false,
 					false);
 			PiePlot plot = (PiePlot) chart.getPlot();
+			plot.setSectionPaintType("Gas", new SolidColor(Color.CYAN));
+			plot.setSectionPaintType("Rent", new SolidColor(Color.CYAN));
+			plot.setSectionPaintType("Clothing", new SolidColor(Color.CYAN));
+			plot.setSectionPaintType("Business", new SolidColor(Color.CYAN));
+			plot.setSectionPaintType("Groceries", new SolidColor(Color.CYAN));
+			plot.setSectionPaintType("Entertainment", new SolidColor(Color.CYAN));
+			
 			return chart;
 		}
 	}
