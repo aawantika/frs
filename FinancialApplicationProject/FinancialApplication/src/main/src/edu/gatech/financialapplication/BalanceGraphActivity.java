@@ -5,6 +5,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.afree.chart.AFreeChart;
+import org.afree.chart.ChartFactory;
+import org.afree.chart.axis.NumberAxis;
+import org.afree.chart.demo.DemoView;
+import org.afree.chart.plot.PlotOrientation;
+import org.afree.chart.plot.XYPlot;
+import org.afree.data.xy.XYDataset;
+import org.afree.data.xy.XYSeries;
+import org.afree.data.xy.XYSeriesCollection;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;

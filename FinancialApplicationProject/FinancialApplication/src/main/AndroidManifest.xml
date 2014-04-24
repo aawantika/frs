@@ -94,26 +94,17 @@
         </activity>
         <activity
             android:name="edu.gatech.financialapplication.ForgotPasswordActivity"
-<<<<<<< HEAD
-=======
             android:screenOrientation="portrait"
->>>>>>> FETCH_HEAD
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="edu.gatech.financialapplication.IncomeSourceActivity"
-<<<<<<< HEAD
-=======
             android:screenOrientation="portrait"
->>>>>>> FETCH_HEAD
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="edu.gatech.financialapplication.CashFlowActivity"
-<<<<<<< HEAD
-=======
             android:screenOrientation="portrait"
->>>>>>> FETCH_HEAD
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -140,34 +131,6 @@
             android:name="edu.gatech.financialapplication.CashFlowUserActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.GraphActivity"
-            android:label="@string/title_activity_graph" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.GraphDateActivity"
-            android:label="@string/title_activity_graph_report" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.GraphDate"
-            android:label="@string/title_activity_graph_date" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.WithdrawalGraphActivity"
-            android:label="@string/title_activity_withdrawal_graph" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.BalanceGraphActivity"
-            android:label="@string/title_activity_balance_graph" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.DepositGraphActivity"
-            android:label="@string/title_activity_deposit_graph" >
-        </activity>
-        <activity
-            android:name="edu.gatech.financialapplication.CategoryChartActivity"
-            android:label="@string/title_activity_category_chart" >
         </activity>
     </application>
 

@@ -2,7 +2,6 @@ package edu.gatech.financialapplication;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.afree.chart.AFreeChart;
 import org.afree.chart.ChartFactory;
@@ -10,20 +9,11 @@ import org.afree.chart.demo.DemoView;
 import org.afree.chart.plot.PiePlot;
 import org.afree.data.general.DefaultPieDataset;
 import org.afree.data.general.PieDataset;
-import org.afree.data.xy.XYSeriesCollection;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 
 public class CategoryChartActivity extends Activity {
 
