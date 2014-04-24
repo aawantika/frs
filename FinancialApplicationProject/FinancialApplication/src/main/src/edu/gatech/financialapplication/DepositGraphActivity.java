@@ -51,7 +51,7 @@ public class DepositGraphActivity extends Activity {
 		lineGraph = new LineGraph(this);
 		Button btn = new Button(this);
 		btn.setGravity(Gravity.CENTER);
-		btn.setText("Transactions");
+		btn.setText("Home");
 		btn.setOnClickListener(myhandler);
 		
 		LinearLayout ll = new LinearLayout(this);
