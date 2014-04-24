@@ -3,6 +3,7 @@ package edu.gatech.financialapplication;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.afree.chart.AFreeChart;
@@ -24,7 +25,6 @@ public class DepositGraphActivity extends Activity {
 	private String username, accountNumber, finalStart, finalEnd;
 	private List<Transaction> transactionList;
 	private List<Transaction> allDeposits;
-	private Map<String, Float> depositGraphData;
 	private LineGraph lineGraph;
 	private DBHelper db;
 
@@ -41,14 +41,12 @@ public class DepositGraphActivity extends Activity {
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
 
-		depositGraphData = sortDeposits();
-
 		lineGraph = new LineGraph(this);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(lineGraph);
 	}
 
-	private void getDeposits() {
+	private Map<String, Float> sortDeposits() {
 		transactionList = db.getAllTransactionsByUsername(username);
 		for (Transaction t : transactionList) {
 			String date = t.getDate();
@@ -59,9 +57,7 @@ public class DepositGraphActivity extends Activity {
 				allDeposits.add(t);
 			}
 		}
-	}
 
-	private Map<String, Float> sortDeposits() {
 		Map<String, Float> dates = new TreeMap<String, Float>();
 		float amount;
 		for (Transaction t : allDeposits) {
@@ -80,34 +76,27 @@ public class DepositGraphActivity extends Activity {
 		public LineGraph(Context context) {
 			super(context);
 
-			final XYSeriesCollection dataset = getDataSet(null);
-			final AFreeChart chart = createChart(dataset);
+			XYSeriesCollection dataset = getDataSet(sortDeposits());
+			AFreeChart chart = createChart(dataset);
 
 			setChart(chart);
 
 		}
 
-		private XYSeriesCollection getDataSet(Map<String, Float> stuff) {
+		private XYSeriesCollection getDataSet(Map<String, Float> depositData) {
 			XYSeriesCollection data = new XYSeriesCollection();
+			Set<String> dates = depositData.keySet();
+
 			// take stuff and get the x and y values
-			XYSeries series3 = new XYSeries("Deposits");
-			XYSeries deposits = new XYSeries("Deposits");
-			//date, deposit
-			for (int x = 0; x < stuff.size(); x++) {
-				deposits.add(2*x, x);
+			XYSeries graph = new XYSeries("Deposits");
+
+			for (String date : dates) {
+				float withdrawalAmount = depositData.get(date);
+				float dateValue = Float.parseFloat(date);
+				graph.add(withdrawalAmount, dateValue);
 			}
-			series3.add(3.0, 4.0);
-			series3.add(4.0, 3.0);
-			series3.add(5.0, 2.0);
-			series3.add(6.0, 3.0);
-			series3.add(7.0, 6.0);
-			series3.add(8.0, 3.0);
-			series3.add(9.0, 4.0);
-			series3.add(10.0, 3.0);
 
-			data.addSeries(deposits);
-
-			// get data sets with date and amount
+			data.addSeries(graph);
 
 			return data;
 		}

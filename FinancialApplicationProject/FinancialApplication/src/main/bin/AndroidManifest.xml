@@ -132,6 +132,31 @@
             android:screenOrientation="portrait"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.GraphActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.BalanceGraphActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.DepositGraphActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.WithdrawalGraphActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.gatech.financialapplication.CategoryChartActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

@@ -19,9 +19,8 @@ import android.util.Pair;
  * Back-end database using S QLite.
  * 
  * @author Team 15
- * @param <balances>
  */
-public class DBHelper<balances> extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
 	private static final String seed = "GATECH_CS2340";
     protected int size = 0;
     private static final String DATABASE_NAME = "foobarsribshack.db";
@@ -63,9 +62,6 @@ public class DBHelper<balances> extends SQLiteOpenHelper {
             + DATABASE_TABLE_TRANSACTION + "(" + KEY_ACCOUNT + " TEXT,"
             + KEY_DATE + " TEXT," + KEY_AMOUNT + " TEXT," + KEY_DESCRIPTION
             + " TEXT," + KEY_CATEGORY + " TEXT," + KEY_TYPE + " TEXT)";
-    
-    private List<Pair<String, String>> balances;
-    private Set<String> dateSet;
 
     /**
      * Creates a new DB Helper.
@@ -99,14 +95,14 @@ public class DBHelper<balances> extends SQLiteOpenHelper {
     }
     
     public List<Pair<String, String>> getAllBalances(String accountNumber) {
-    	SQLiteDatabase db = this.getWritableDatabase();
-    	balances = new ArrayList<Pair<String, String>>();
-        dateSet = new TreeSet<String>();
+        List<Pair<String, String>> balances = new ArrayList<Pair<String, String>>();
+        Set<String> dateSet = new TreeSet<String>();
     	
         Account account = getAccountByAccountNumber(accountNumber);
         List<Transaction> transactionsList = getAllTransactions(accountNumber);
         String date = transactionsList.get(0).getDate();
-        String initialBalance = account.getInitialBalance();
+        String initialBalance = (Float.parseFloat(account.getInitialBalance())
+        		+ transactionsList.get(0).getAmount()) + "";
         
         Pair<String, String> initial = new Pair<String, String>(date, initialBalance);
         dateSet.add(date);
@@ -115,19 +111,19 @@ public class DBHelper<balances> extends SQLiteOpenHelper {
 		for (int i = 1; i < transactionsList.size(); i++) {
 			date = transactionsList.get(i).getDate();
 			Float transaction = transactionsList.get(i).getAmount();
+			int size = balances.size();
+			Float oldBalance = Float.parseFloat(balances.get(size - 1).second);
+			Float newBalance = oldBalance + transaction;
 			
 			if (dateSet.contains(date)) {
-				int size = balances.size();
-				Float oldBalance = Float.parseFloat(balances.get(size - 1).second);
-				Float newBalance = oldBalance + transaction;
 				balances.set(size - 1, new Pair<String, String>(date, newBalance.toString()));
 			} else {
-				Pair<String, String> temp = new Pair<String, String>(date);
+				Pair<String, String> temp = new Pair<String, String>(date, newBalance + "");
 				dateSet.add(date);
-				balances.add(object);
+				balances.add(temp);
 			}
 		}
-
+		
         return balances;
     }
 
