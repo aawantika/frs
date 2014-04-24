@@ -49,11 +49,10 @@ public class DepositGraphActivity extends Activity {
 		finalEnd = getIntent().getStringExtra("finalEnd");
 
 		lineGraph = new LineGraph(this);
-		
 		Button btn = new Button(this);
 		btn.setGravity(Gravity.CENTER);
-		btn.setText("back");
-		btn.setOnClickListener(myhandler1);
+		btn.setText("Transactions");
+		btn.setOnClickListener(myhandler);
 		
 		LinearLayout ll = new LinearLayout(this);
 	    ll.setOrientation(LinearLayout.VERTICAL);
@@ -64,7 +63,7 @@ public class DepositGraphActivity extends Activity {
 	    setContentView(ll);
 	}
 	
-	View.OnClickListener myhandler1 = new View.OnClickListener() {
+	View.OnClickListener myhandler = new View.OnClickListener() {
 		public void onClick(View v) {
 			Intent intent = new Intent(context, TransactionActivity.class);
 			Bundle bundle = new Bundle();
