@@ -35,6 +35,7 @@ public class BalanceGraphActivity extends Activity {
 	private DBHelper db;
 	private Context context;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

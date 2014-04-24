@@ -36,6 +36,7 @@ public class WithdrawalGraphActivity extends Activity {
 	private Context context;
 	private DBHelper db;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -32,6 +32,7 @@ public class CategoryChartActivity extends Activity {
 	private Context context;
 	private PieChart pieChart;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
