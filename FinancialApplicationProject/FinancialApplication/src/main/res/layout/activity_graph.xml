@@ -105,4 +105,23 @@
         android:layout_below="@+id/mpc"
         android:background="#3a7099" />
 	
+	<TextView
+        android:id="@+id/border5"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ct"
+        android:background="#3a7099" />
+
+	<Button
+	    android:id="@+id/ct"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/mpc"
+	    android:background="@drawable/large_rectangle_selectorbutton"
+	    android:onClick="onTransactionsClick"
+	    android:text="@string/ct" />
+	
 </RelativeLayout>

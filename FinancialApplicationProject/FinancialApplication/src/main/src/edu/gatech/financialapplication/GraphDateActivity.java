@@ -140,6 +140,8 @@ public class GraphDateActivity extends Activity {
 			intent = new Intent(this, WithdrawalGraphActivity.class);
 		} else if ("moneyPerCategory".equals(type)) {
 			intent = new Intent(this, CategoryChartActivity.class);
+		} else if ("depositWithdrawal".equals(type)) {
+			intent = new Intent(this, CompareTransactionsActivity.class);
 		}
 		
 		String finalStart = monthFromString + "" + dayFromString + ""

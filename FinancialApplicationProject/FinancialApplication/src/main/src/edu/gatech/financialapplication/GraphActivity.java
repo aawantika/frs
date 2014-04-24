@@ -73,6 +73,16 @@ public class GraphActivity extends Activity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
+    
+    public void onTransactionsClick(View view) {
+        Intent intent = new Intent(this, GraphDateActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", "depositWithdrawal");
+        bundle.putString("accountNumber", accountNumberTemp);
+        bundle.putString("username", username);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     public void onBackClick(View view){
         finish();
