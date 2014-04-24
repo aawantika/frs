@@ -3,6 +3,7 @@ package edu.gatech.financialapplication;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.afree.chart.AFreeChart;
@@ -19,15 +20,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class WithdrawalGraphActivity extends Activity {
 
 	private String username, accountNumber, finalStart, finalEnd;
 	private List<Transaction> transactionList;
 	private List<Transaction> allWithdrawals;
-	private Map<String, Float> withdrawalGraphData;
 	private LineGraph lineGraph;
 	private DBHelper db;
 
@@ -44,14 +42,12 @@ public class WithdrawalGraphActivity extends Activity {
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
 		
-		withdrawalGraphData = sortWithdrawals();
-
 		lineGraph = new LineGraph(this);
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(lineGraph);
 	}
 
-	private void getWithdrawals() {
+	private Map<String, Float> sortWithdrawals() {
 		transactionList = db.getAllTransactionsByUsername(username);
 		for (Transaction t : transactionList) {
 			String date = t.getDate();
@@ -62,9 +58,7 @@ public class WithdrawalGraphActivity extends Activity {
 						allWithdrawals.add(t);
 			}
 		}
-	}
-
-	private Map<String, Float> sortWithdrawals() {
+		
 		Map<String, Float> dates = new TreeMap<String, Float>();
 		float amount;
 		for (Transaction t : allWithdrawals) {
@@ -83,35 +77,38 @@ public class WithdrawalGraphActivity extends Activity {
 		public LineGraph(Context context) {
 			super(context);
 			
-			final XYSeriesCollection dataset = getDataSet(null);
+			final XYSeriesCollection dataset = getDataSet();
 	        final AFreeChart chart = createChart(dataset);
 
 	        setChart(chart);
 			
 		}
 
-		private XYSeriesCollection getDataSet(Map<String, Float> stuff) {
+		private XYSeriesCollection getDataSet() {
 			XYSeriesCollection data = new XYSeriesCollection();
-			//take stuff and get the x and y values
-			XYSeries series3 = new XYSeries("Thing");
 			XYSeries withdrawals = new XYSeries("Withdrawals");
-			series3.add(3.0, 4.0);
-			series3.add(4.0, 3.0);
-			series3.add(5.0, 2.0);
-			series3.add(6.0, 3.0);
-			series3.add(7.0, 6.0);
-			series3.add(8.0, 3.0);
-			series3.add(9.0, 4.0);
-			series3.add(10.0, 3.0);
 			
+			Map<String, Float> withdrawalData = new TreeMap<String, Float>();
+			Set<String> dates = withdrawalData.keySet();
+			withdrawalData.put("04/06/2014", 200.00f);
+			withdrawalData.put("04/08/2014", 400.00f);
+			withdrawalData.put("04/10/2014", 800.00f);
+			withdrawalData.put("04/11/2014", 400.00f);
+			withdrawalData.put("04/12/2014", 200.00f);
+			
+			for (String date : dates) {
+				double withdrawalAmount = withdrawalData.get(date);
+				date = date.replaceAll("/", "");
+				double dateValue = Double.parseDouble(date);
+				withdrawals.add(dateValue, withdrawalAmount);
+			}
+			
+			data.addSeries(withdrawals);
 
-			data.addSeries(series3);
-
-			// get data sets with date and amount
 
 			return data;
 		}
-
+		
 		public AFreeChart createChart(XYSeriesCollection data) {
 			XYDataset dataset = data;
 			AFreeChart chart = ChartFactory.createXYLineChart(

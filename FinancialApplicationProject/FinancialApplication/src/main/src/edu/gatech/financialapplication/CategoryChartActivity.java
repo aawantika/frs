@@ -118,12 +118,12 @@ public class CategoryChartActivity extends Activity {
 					false,
 					false);
 			PiePlot plot = (PiePlot) chart.getPlot();
-			plot.setSectionPaintType("Gas", new SolidColor(Color.CYAN));
-			plot.setSectionPaintType("Rent", new SolidColor(Color.CYAN));
-			plot.setSectionPaintType("Clothing", new SolidColor(Color.CYAN));
-			plot.setSectionPaintType("Business", new SolidColor(Color.CYAN));
-			plot.setSectionPaintType("Groceries", new SolidColor(Color.CYAN));
-			plot.setSectionPaintType("Entertainment", new SolidColor(Color.CYAN));
+			plot.setSectionPaintType("Gas", new SolidColor(Color.rgb(112, 146, 190)));
+			plot.setSectionPaintType("Rent", new SolidColor(Color.rgb(57, 131, 204)));
+			plot.setSectionPaintType("Clothing", new SolidColor(Color.rgb(146, 188, 186)));
+			plot.setSectionPaintType("Business", new SolidColor(Color.rgb(60, 185, 185)));
+			plot.setSectionPaintType("Groceries", new SolidColor(Color.rgb(79, 116, 153)));
+			plot.setSectionPaintType("Entertainment", new SolidColor(Color.rgb(171, 173, 239)));
 			
 			return chart;
 		}

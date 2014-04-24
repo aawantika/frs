@@ -19,6 +19,7 @@ import org.afree.data.xy.XYSeriesCollection;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 
 public class DepositGraphActivity extends Activity {
 
@@ -43,6 +44,10 @@ public class DepositGraphActivity extends Activity {
 
 		lineGraph = new LineGraph(this);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+	}
+	
+	public void onGraphClick(View view) {
 		setContentView(lineGraph);
 	}
 
@@ -85,6 +90,8 @@ public class DepositGraphActivity extends Activity {
 
 		private XYSeriesCollection getDataSet() {
 			XYSeriesCollection data = new XYSeriesCollection();
+			XYSeries deposits = new XYSeries("Deposits");
+			
 			Map<String, Float> depositData = new TreeMap<String, Float>();
 			depositData.put("04/06/2014", 200.00f);
 			depositData.put("04/08/2014", 400.00f);
@@ -96,16 +103,14 @@ public class DepositGraphActivity extends Activity {
 			System.out.println("DATA: " + depositData);
 			Set<String> dates = depositData.keySet();
 			
-			XYSeries graph = new XYSeries("Deposits");
-
 			for (String date : dates) {
 				double withdrawalAmount = depositData.get(date);
 				date = date.replaceAll("/", "");
 				double dateValue = Double.parseDouble(date);
-				graph.add(dateValue, withdrawalAmount);
+				deposits.add(dateValue, withdrawalAmount);
 			}
 
-			data.addSeries(graph);
+			data.addSeries(deposits);
 
 			return data;
 		}

@@ -3,6 +3,7 @@ package edu.gatech.financialapplication;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.afree.chart.AFreeChart;
@@ -18,13 +19,12 @@ import org.afree.data.xy.XYSeriesCollection;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Pair;
 
 public class BalanceGraphActivity extends Activity {
 
 	private String username, accountNumber, finalStart, finalEnd;
-	private List<Transaction> transactionList;
-	private List<Transaction> allBalances;
-	private Map<String, Float> balanceGraphData;
+	private List<Pair<String, String>> balances;
 	private LineGraph lineGraph;
 	private DBHelper db;
 
@@ -33,47 +33,27 @@ public class BalanceGraphActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_withdrawal_graph);
 		db = new DBHelper(this);
-		allBalances = new ArrayList<Transaction>();
-
+		balances = new ArrayList<Pair<String, String>>();
+		
 		// pull from intent
 		accountNumber = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
 
-		balanceGraphData = sortWithdrawals();
-
 		lineGraph = new LineGraph(this);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(lineGraph);
 	}
 
-	private void getWithdrawals() {
-		transactionList = db.getAllTransactionsByUsername(username);
-		for (Transaction t : transactionList) {
-			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)
-					&& t.getAccount().equals(accountNumber)
-					&& t.getType().equals("balance")) {
-				allBalances.add(t);
+	private void getBalances() {
+		List<Pair<String, String>> balanceList = db.getAllBalances(accountNumber);
+		for (Pair<String, String> balance : balanceList) {
+			String date = balance.first;
+			if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)) {
+				balances.add(balance);
 			}
 		}
-	}
-
-	private Map<String, Float> sortWithdrawals() {
-		getWithdrawals();
-		Map<String, Float> dates = new TreeMap<String, Float>();
-		float amount;
-		for (Transaction t : allBalances) {
-			if (dates.containsKey(t.getDate())) {
-				amount = dates.get(t.getDate());
-				dates.put(t.getDate(), amount + t.getAmount());
-			} else {
-				dates.put(t.getDate(), t.getAmount());
-			}
-		}
-		return dates;
 	}
 
 	private class LineGraph extends DemoView {
@@ -81,32 +61,37 @@ public class BalanceGraphActivity extends Activity {
 		public LineGraph(Context context) {
 			super(context);
 
-			final XYSeriesCollection dataset = getDataSet(null);
+			final XYSeriesCollection dataset = getDataSet();
 			final AFreeChart chart = createChart(dataset);
 
 			setChart(chart);
 		}
 
-		private XYSeriesCollection getDataSet(Map<String, Float> stuff) {
+		private XYSeriesCollection getDataSet() {
 			XYSeriesCollection data = new XYSeriesCollection();
-			// take stuff and get the x and y values
-			XYSeries series3 = new XYSeries("Thing");
-			series3.add(3.0, 4.0);
-			series3.add(4.0, 3.0);
-			series3.add(5.0, 2.0);
-			series3.add(6.0, 3.0);
-			series3.add(7.0, 6.0);
-			series3.add(8.0, 3.0);
-			series3.add(9.0, 4.0);
-			series3.add(10.0, 3.0);
-
-			data.addSeries(series3);
-
-			// get data sets with date and amount
+			XYSeries balance = new XYSeries("Balances");
+			
+			Map<String, Float> balanceData = new TreeMap<String, Float>();
+			balanceData.put("04/06/2014", 200.00f);
+			balanceData.put("04/08/2014", 400.00f);
+			balanceData.put("04/10/2014", 800.00f);
+			balanceData.put("04/11/2014", 400.00f);
+			balanceData.put("04/12/2014", 200.00f);
+			//getBalances();
+			
+			Set<String> dates = balanceData.keySet();
+			for (String date : dates) {
+				double balanceAmount = balanceData.get(date);
+				date = date.replaceAll("/", "");
+				double dateValue = Double.parseDouble(date);
+				balance.add(dateValue, balanceAmount);
+			}
+			
+			data.addSeries(balance);
 
 			return data;
 		}
-
+			
 		public AFreeChart createChart(XYSeriesCollection data) {
 			XYDataset dataset = data;
 			AFreeChart chart = ChartFactory.createXYLineChart(
