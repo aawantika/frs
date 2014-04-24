@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ public class AccountCreationActivity extends Activity {
     private String username, firstname, lastname;
     private String accountNumber = createAccountNumber() + "";
     private DBHelper db;
+    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,8 @@ public class AccountCreationActivity extends Activity {
     	boolean result = true;
 
     	if (defaultAmount.equals("")) {
-    		 result = false;
+    		result = false;
+    		playError();
 			new AlertDialog.Builder(this)
 			.setTitle("Information error")
 			.setMessage("Please enter an amount.")
@@ -84,6 +88,7 @@ public class AccountCreationActivity extends Activity {
 					}).show();
     	} else if (Float.parseFloat(defaultAmount) < 100.00f) {
     		result = false;
+    		playError();
             new AlertDialog.Builder(this)
             .setTitle("Information error")
             .setMessage("Minimum amount must be 100 USD.")
@@ -123,5 +128,16 @@ public class AccountCreationActivity extends Activity {
      */
     public void onBackClick(View view){
         finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }

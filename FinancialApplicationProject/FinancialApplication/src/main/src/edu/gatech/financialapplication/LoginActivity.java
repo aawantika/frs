@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -28,6 +30,7 @@ public class LoginActivity extends Activity implements
     private DBHelper db;
     private User user;
     private boolean userInDatabase;
+    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(final Bundle savedState) {
@@ -125,6 +128,7 @@ public class LoginActivity extends Activity implements
                                 }).show();
             } else if (user != null && user.getUsername().equals(usernameInput)
                     && !user.getPassword().equals(passwordInput)) {
+            	playError();
                 new AlertDialog.Builder(this)
                         .setTitle("Wrong Password")
                         .setMessage("Check password hint for hint.")
@@ -139,6 +143,7 @@ public class LoginActivity extends Activity implements
                 pHintText.setText("Password Hint: " + phintDB);
             }
         } else {
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Wrong crendential!")
                     .setMessage("Please check your username or password.")
@@ -154,5 +159,16 @@ public class LoginActivity extends Activity implements
     
     public void onCancelClick(View view){
         finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }

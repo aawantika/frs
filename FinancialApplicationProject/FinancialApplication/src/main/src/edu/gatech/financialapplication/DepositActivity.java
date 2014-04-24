@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ public class DepositActivity extends Activity {
 	private String accountNumber, username;
     private DBHelper database;
     private DateGrabber dateGrabber;
+    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class DepositActivity extends Activity {
     	
     	 if ("".equals(reason)) { 
     		 result = false;
+    		 playError();
              new AlertDialog.Builder(this)
                      .setTitle("Information error")
                      .setMessage("Sorry, reason can't be blank.")
@@ -72,6 +76,7 @@ public class DepositActivity extends Activity {
                              }).show();
          } else if (" ".equals(reason.substring(0,1))) { 
         	 result = false;
+        	 playError();
              new AlertDialog.Builder(this)
                      .setTitle("Information error")
                      .setMessage("Sorry, reason can't be a space.")
@@ -92,6 +97,7 @@ public class DepositActivity extends Activity {
     	
     	if (amount.equals("")) {
    		 result = false;
+   		 playError();
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Sorry, amount can't be blank.")
@@ -104,6 +110,7 @@ public class DepositActivity extends Activity {
                             }).show();
         } else if (Float.parseFloat(amount) <= 0) {
     		 result = false;
+    		 playError();
              new AlertDialog.Builder(this)
                      .setTitle("Information error")
                      .setMessage("Sorry, invalid amount. \nAmount must be greater than 0.")
@@ -120,5 +127,16 @@ public class DepositActivity extends Activity {
     
     public void onBackClick(View view){
         finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }

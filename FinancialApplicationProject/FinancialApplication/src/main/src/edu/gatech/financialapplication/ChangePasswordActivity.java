@@ -7,6 +7,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +23,7 @@ public class ChangePasswordActivity extends Activity {
 	private DBHelper db;
 	private ListView listview;
 	private String username;
+	private MediaPlayer errorPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class ChangePasswordActivity extends Activity {
 
 	public void onPasswordClick(View view) {
 		if (users.size() == 0) {
+			playError();
 			new AlertDialog.Builder(this)
 					.setTitle("Password Error.")
 					.setMessage("There are no users to select from!")
@@ -92,5 +96,16 @@ public class ChangePasswordActivity extends Activity {
     public void onLogoutClick(View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }
