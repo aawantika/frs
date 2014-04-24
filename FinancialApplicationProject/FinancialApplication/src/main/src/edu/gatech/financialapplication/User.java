@@ -165,6 +165,7 @@ public class User {
     }
 
 	public String debug() {
-		return "Name: " + firstname + " " + lastname + "\nUsername: " + username;
+		return "Name: " + firstname + " " + lastname + "\nUsername: " 
+				+ username  + "\nPassword: " + password ;
 	}
 }

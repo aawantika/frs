@@ -112,7 +112,7 @@ public class ConsumerSpendingActivity extends Activity {
 	 * 
 	 * @param view The view being used.
 	 */
-	public void onClick(View view) {
+	public void onBackClick(View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("accountNumber", accountNumber);

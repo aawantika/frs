@@ -71,7 +71,7 @@ public class CashFlowUserActivity extends Activity {
 			netFlowText.setText(netFlowString);
 			netFlowText.setTextColor(Color.rgb(34, 139, 34));
 		} else if (netFlow < 0) {
-			netFlowString = "-" + Float.toString(netFlow);
+			netFlowString = Float.toString(netFlow);
 			netFlowText.setText(netFlowString);
 			netFlowText.setTextColor(Color.RED);
 		} else {
@@ -82,8 +82,7 @@ public class CashFlowUserActivity extends Activity {
 	/**
 	 * On click to go back to the general menu.
 	 * 
-	 * @param view
-	 *            The view being used.
+	 * @param view The view being used.
 	 */
 	public void onBackClick(View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);

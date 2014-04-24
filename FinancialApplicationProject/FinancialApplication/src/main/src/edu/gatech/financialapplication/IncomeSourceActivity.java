@@ -73,7 +73,7 @@ public class IncomeSourceActivity extends Activity {
 	 * 
 	 * @param view The view being used.
 	 */
-	public void onTransactionClick (View view) {
+	public void onBackClick (View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("accountNumber", accountNumber);
@@ -81,14 +81,4 @@ public class IncomeSourceActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
-	
-	/**
-	 * Go back to date page
-	 * 
-	 * @param view View being used
-	 */
-	public void returnToPrev(View view){
-        finish();
-    }
-
 }

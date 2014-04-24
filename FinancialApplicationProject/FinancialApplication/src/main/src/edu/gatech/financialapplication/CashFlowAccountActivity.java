@@ -73,7 +73,7 @@ public class CashFlowAccountActivity extends Activity {
 			netFlowText.setText(netFlowString);
 			netFlowText.setTextColor(Color.rgb(34,139,34));
 		} else if (netFlow < 0) {
-			netFlowString = "-" + Float.toString(netFlow);
+			netFlowString = Float.toString(netFlow);
 			netFlowText.setText(netFlowString);
 			netFlowText.setTextColor(Color.RED);
 		} else {

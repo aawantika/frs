@@ -26,7 +26,7 @@ public class SendMailTask extends AsyncTask {
 
 	protected void onPreExecute() {
 		statusDialog = new ProgressDialog(sendMailActivity);
-		statusDialog.setMessage("Getting ready...");
+		statusDialog.setMessage("Sending Email...");
 		statusDialog.setIndeterminate(false);
 		statusDialog.setCancelable(false);
 		statusDialog.show();
@@ -36,6 +36,7 @@ public class SendMailTask extends AsyncTask {
 	protected Object doInBackground(Object... args) {
 		try {
 			Log.i("SendMailTask", "About to instantiate GMail...");
+			@SuppressWarnings("unchecked")
 			GMail androidEmail = new GMail((List) args[0], (String) args[1]);
 			androidEmail.createEmailMessage();
 			androidEmail.sendEmail();

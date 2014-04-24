@@ -175,6 +175,6 @@
         android:layout_marginTop="11dp"
         android:layout_marginLeft="5dp"
         android:background="@drawable/back_button"
-        android:onClick="returnToPrev"/>
+        android:onClick="onBackClick"/>
     
 </RelativeLayout>
