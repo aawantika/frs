@@ -54,6 +54,9 @@ public class CategoryChartActivity extends Activity {
 		Button btn = new Button(this);
 		btn.setGravity(Gravity.CENTER);
 		btn.setText("Home");
+		btn.setGravity(Gravity.CENTER);
+		btn.setBackground(this.getResources().getDrawable(R.drawable.rounded_rectanglebutton));
+		btn.setOnClickListener(myhandler);
 		btn.setOnClickListener(myhandler);
 		
 		LinearLayout ll = new LinearLayout(this);

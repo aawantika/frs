@@ -55,6 +55,7 @@ public class BalanceGraphActivity extends Activity {
 		lineGraph = new LineGraph(this);
 		Button btn = new Button(this);
 		btn.setGravity(Gravity.CENTER);
+		btn.setBackground(this.getResources().getDrawable(R.drawable.rounded_rectanglebutton));
 		btn.setText("Home");
 		btn.setOnClickListener(myhandler);
 		

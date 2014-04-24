@@ -49,6 +49,7 @@ public class CompareTransactionsActivity extends Activity {
 		Button btn = new Button(this);
 		btn.setGravity(Gravity.CENTER);
 		btn.setText("Home");
+		btn.setBackground(this.getResources().getDrawable(R.drawable.rounded_rectanglebutton));
 		btn.setOnClickListener(myhandler);
 		
 		LinearLayout ll = new LinearLayout(this);
