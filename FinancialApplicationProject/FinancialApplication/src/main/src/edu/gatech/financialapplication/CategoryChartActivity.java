@@ -13,9 +13,15 @@ import org.afree.graphics.SolidColor;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class CategoryChartActivity extends Activity {
 
@@ -23,14 +29,14 @@ public class CategoryChartActivity extends Activity {
 	private String accountNumber, username, finalStart, finalEnd;
 	private DBHelper db;
 	private List<Transaction> spendingList, transactionList;
+	private Context context;
 	private PieChart pieChart;
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category_chart);
-		
+		context = this;
 		db = new DBHelper(this);
 		spendingList = new ArrayList<Transaction>();
 		
@@ -42,11 +48,32 @@ public class CategoryChartActivity extends Activity {
 		
 		populateCorrectList();
 		populateCashCategories();
+
 		pieChart = new PieChart(this);
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(pieChart);
+		Button btn = new Button(this);
+		btn.setGravity(Gravity.CENTER);
+		btn.setText("Transactions");
+		btn.setOnClickListener(myhandler);
 		
+		LinearLayout ll = new LinearLayout(this);
+	    ll.setOrientation(LinearLayout.VERTICAL);
+	    ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+	    ll.setGravity(Gravity.CENTER);
+	    ll.addView(btn);
+	    ll.addView(pieChart);
+	    setContentView(ll);
 	}
+	
+	View.OnClickListener myhandler = new View.OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = new Intent(context, TransactionActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumber);
+			bundle.putString("username", username);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+	};
 	
 	/**
 	 * Populates a list with transactions that are within date range.

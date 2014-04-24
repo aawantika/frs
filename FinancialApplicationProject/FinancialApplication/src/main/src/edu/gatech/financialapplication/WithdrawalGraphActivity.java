@@ -18,8 +18,14 @@ import org.afree.data.xy.XYSeriesCollection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class WithdrawalGraphActivity extends Activity {
 
@@ -27,6 +33,7 @@ public class WithdrawalGraphActivity extends Activity {
 	private List<Transaction> transactionList;
 	private List<Transaction> allWithdrawals;
 	private LineGraph lineGraph;
+	private Context context;
 	private DBHelper db;
 
 	@Override
@@ -34,6 +41,7 @@ public class WithdrawalGraphActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_withdrawal_graph);
 		db = new DBHelper(this);
+		context = this;
 		allWithdrawals = new ArrayList<Transaction>();
 
 		// pull from intent
@@ -43,9 +51,30 @@ public class WithdrawalGraphActivity extends Activity {
 		finalEnd = getIntent().getStringExtra("finalEnd");
 		
 		lineGraph = new LineGraph(this);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(lineGraph);
+		Button btn = new Button(this);
+		btn.setGravity(Gravity.CENTER);
+		btn.setText("Transactions");
+		btn.setOnClickListener(myhandler);
+		
+		LinearLayout ll = new LinearLayout(this);
+	    ll.setOrientation(LinearLayout.VERTICAL);
+	    ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+	    ll.setGravity(Gravity.CENTER);
+	    ll.addView(btn);
+	    ll.addView(lineGraph);
+	    setContentView(ll);
 	}
+	
+	View.OnClickListener myhandler = new View.OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = new Intent(context, TransactionActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumber);
+			bundle.putString("username", username);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+	};
 
 	private Map<String, Float> sortWithdrawals() {
 		//transactionList = db.getAllTransactionsByUsername(username);
@@ -145,36 +174,4 @@ public class WithdrawalGraphActivity extends Activity {
 		}
 
 	}
-
-	// get the dates
-	// get the withdrawal amounts
-	// use map
-	// show graph
-
-	/*
-	 * 
-	 * /** Populates a list with transactions that are within date range.
-	 */
-	/*
-	 * private void getProperDeposits() { transactionList =
-	 * db.getAllTransactionsByUsername(username); for (Transaction t :
-	 * transactionList) { Log.i("MONTH ", t.getDate()); String date =
-	 * t.getDate(); if ((finalStart.compareTo(date) <= 0) &&
-	 * (finalEnd.compareTo(date) >= 0) && t.getType().equals("deposit")) {
-	 * 
-	 * Log.i("transaction in cs", t.toString()); withinDates.add(t);
-	 * totalDeposits += t.getAmount(); } } }
-	 * 
-	 * /** On click to go back to the general menu.
-	 * 
-	 * @param view The view being used.
-	 */
-	/*
-	 * public void onTransactionClick(View view) { Intent intent = new
-	 * Intent(this, TransactionActivity.class); Bundle bundle = new Bundle();
-	 * bundle.putString("accountNumber", accountNumber);
-	 * bundle.putString("username", username); intent.putExtras(bundle);
-	 * startActivity(intent); }
-	 */
-
 }

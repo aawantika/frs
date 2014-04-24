@@ -18,8 +18,14 @@ import org.afree.data.xy.XYSeriesCollection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class BalanceGraphActivity extends Activity {
 
@@ -27,12 +33,14 @@ public class BalanceGraphActivity extends Activity {
 	private List<Pair<String, String>> balances;
 	private LineGraph lineGraph;
 	private DBHelper db;
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_withdrawal_graph);
 		db = new DBHelper(this);
+		context = this;
 		balances = new ArrayList<Pair<String, String>>();
 		
 		// pull from intent
@@ -44,9 +52,30 @@ public class BalanceGraphActivity extends Activity {
 		getBalances();
 		
 		lineGraph = new LineGraph(this);
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(lineGraph);
+		Button btn = new Button(this);
+		btn.setGravity(Gravity.CENTER);
+		btn.setText("Transactions");
+		btn.setOnClickListener(myhandler);
+		
+		LinearLayout ll = new LinearLayout(this);
+	    ll.setOrientation(LinearLayout.VERTICAL);
+	    ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+	    ll.setGravity(Gravity.CENTER);
+	    ll.addView(btn);
+	    ll.addView(lineGraph);
+	    setContentView(ll);
 	}
+	
+	View.OnClickListener myhandler = new View.OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = new Intent(context, TransactionActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("accountNumber", accountNumber);
+			bundle.putString("username", username);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+	};
 
 	private void getBalances() {
 		List<Pair<String, String>> balanceList = db.getAllBalances(accountNumber);
