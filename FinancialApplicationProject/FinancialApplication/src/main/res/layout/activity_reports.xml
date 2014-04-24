@@ -119,7 +119,7 @@
     <TextView
         android:id="@+id/border5"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0.5dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/cfrUser"
         android:background="#3a7099" />
