@@ -48,13 +48,18 @@ public class WithdrawalGraphActivity extends Activity {
 	}
 
 	private Map<String, Float> sortWithdrawals() {
-		transactionList = db.getAllTransactionsByUsername(username);
+		//transactionList = db.getAllTransactionsByUsername(username);
+		transactionList = new ArrayList<Transaction>();
+		transactionList.add(new Withdrawal(accountNumber, "04062014", 200.00f, "reason1", "Gas"));
+		transactionList.add(new Withdrawal(accountNumber, "04082014", 400.00f, "reason1", "Clothing"));
+		transactionList.add(new Withdrawal(accountNumber, "04102014", 800.00f, "reason1", "Entertainment"));
+		transactionList.add(new Withdrawal(accountNumber, "04112014", 400.00f, "reason1", "Gas"));
+		transactionList.add(new Withdrawal(accountNumber, "04122014", 200.00f, "reason1", "Groceries"));
+		
 		for (Transaction t : transactionList) {
 			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)
-					&& t.getAccount().equals(accountNumber)
-					&& t.getType().equals("withdrawal")) {
+			if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)
+					&& t.getAccount().equals(accountNumber) && t.getType().equals("withdrawal")) {
 						allWithdrawals.add(t);
 			}
 		}
@@ -88,13 +93,8 @@ public class WithdrawalGraphActivity extends Activity {
 			XYSeriesCollection data = new XYSeriesCollection();
 			XYSeries withdrawals = new XYSeries("Withdrawals");
 			
-			Map<String, Float> withdrawalData = new TreeMap<String, Float>();
+			Map<String, Float> withdrawalData = sortWithdrawals();
 			Set<String> dates = withdrawalData.keySet();
-			withdrawalData.put("04/06/2014", 200.00f);
-			withdrawalData.put("04/08/2014", 400.00f);
-			withdrawalData.put("04/10/2014", 800.00f);
-			withdrawalData.put("04/11/2014", 400.00f);
-			withdrawalData.put("04/12/2014", 200.00f);
 			
 			for (String date : dates) {
 				double withdrawalAmount = withdrawalData.get(date);

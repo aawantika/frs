@@ -17,9 +17,9 @@ public class Withdrawal extends Transaction {
      * @param aDescriptor is the type of transaction being made.
      * @param aCategory is the category under which the transaction is being made.
      */
-    public Withdrawal(String aAccount, String aDate, float aAmount,
-            String aDescriptor, String aCategory) {
-        super(aAccount, aDate, aAmount, aDescriptor, aCategory, "withdrawal");
+    public Withdrawal(String account, String date, float amount,
+            String descriptor, String category) {
+        super(account, date, amount, descriptor, category, "withdrawal");
     }
 
     @Override

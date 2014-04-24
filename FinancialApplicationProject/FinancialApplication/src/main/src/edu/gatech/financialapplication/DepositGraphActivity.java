@@ -55,12 +55,10 @@ public class DepositGraphActivity extends Activity {
 		transactionList.add(new Deposit(accountNumber, "04122014", 200.00f, "reason1"));
 		
 		//transactionList = db.getAllTransactionsByUsername(username);
-		System.out.println("SIZE: " + transactionList.size());
-		System.out.println(finalStart + " " + finalEnd);
 		for (Transaction t : transactionList) {
 			String date = t.getDate();
 			if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)
-					) {
+					&& t.getAccount().equals(accountNumber) && t.getType().equals("deposit")) {
 				allDeposits.add(t);
 			}
 		}
