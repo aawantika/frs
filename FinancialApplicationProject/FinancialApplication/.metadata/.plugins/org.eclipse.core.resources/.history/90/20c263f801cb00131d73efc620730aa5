@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FooBar\'s Rib Shack</string>
+
+    <!-- TextView -->
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="passwordHintText">Password Hint</string>
+    <string name="email">Email</string>
+    <string name="amount">Amount</string>
+    <string name="balance">Balance</string>
+    <string name="totalDeposits">Total Deposits</string>
+    <string name="totalWithdrawals">Total Withdrawals</string>
+    <string name="category">Category</string>
+    <string name="reason">Reason</string>
+    <string name="date">Date</string>
+    <string name="startDate">Start Date</string>
+    <string name="endDate">End Date</string>
+    <string name="defaultAmount">Default Amount</string>
+    <string name="forgotPassword">Forgot Password?</string>
+    <string name="netFlow">Net Flow</string>
+    <string name="accountNum">Account Number:</string>
+    <string name="oldPassword">Old Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+
+    <!-- Hints/EditText -->
+    <string name="usernameHint">Enter username</string>
+    <string name="passwordHint">Enter password</string>
+    <string name="passwordHintTextHint">Enter hint</string>
+    <string name="firstnameHint">Enter first name</string>
+    <string name="lastnameHint">Enter last name</string>
+    <string name="emailHint">gburdell9@gatech.edu</string>
+    <string name="dateHint">01/01/2014</string>
+    <string name="defaultAmountHint">100USD or higher</string>
+    <string name="reasonHint">Enter reason</string>
+    <string name="amountHint">Enter amount</string>
+    <string name="categoryHint">Enter category</string>
+    <string name="oldPasswordHint">Enter old password</string>
+    <string name="newPasswordHint">Enter new password</string>
+    <string name="confirmPasswordHint">Reenter password</string>
+    <string name="day">DD</string>
+    <string name="month">MM</string>
+    <string name="year">YYYY</string>
+
+    <!-- Buttons -->
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="createAccount">Create Account</string>
+    <string name="submit">Submit</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="reports">Reports</string>
+    <string name="graphs">Graphs</string>
+    <string name="back">Transactions</string>
+    <string name="unused">unused</string>
+    <string name="cancel">Cancel</string>
+    <string name="home">Home</string>
+    <string name="changePassword">Change Password</string>
+
+    <!-- Titles -->
+    <string name="registration">REGISTRATION</string>
+    <string name="createAccountTitle">CREATE ACCOUNT</string>
+    <string name="depositTitle">DEPOSIT</string>
+    <string name="withdrawalTitle">WITHDRAWAL</string>
+    <string name="reportsTitle">REPORTS</string>
+    <string name="loginTitle">LOGIN</string>
+    <string name="homeTitle">HOME</string>
+    <string name="forgotTitle">FORGOT PASSWORD</string>
+    <string name="csrTitle">CONSUMER SPENDING</string>
+    <string name="isrTitle">INCOME SOURCE</string>
+    <string name="cfrTitle">CASH FLOW</string>
+    <string name="thrTitle">TRANSACTION HISTORY</string>
+
+    <!-- Splash Screen -->
+    <string name="teamNumber">Team 15</string>
+    <string name="tika">Aawantika Sahu</string>
+    <string name="max">Jason Bires</string>
+    <string name="joseph">Hyun Jong Lee</string>
+    <string name="prav">Pravallika Tadikonda</string>
+    <string name="shannon">Shannon Nguyen</string>
+
+    <!-- Date Picker -->
+    <string name="startDateTV">Enter Start Date</string>
+    <string name="endDateTV">Enter End Date</string>
+
+    <!-- Reports -->
+    <string name="scr">Spending Category Report</string>
+    <string name="isr">Income Source Report</string>
+    <string name="cfr">Cash Flow Report</string>
+    <string name="thr">Transaction History Report</string>
+
+    <!-- Categories for Withdrawal -->
+    <string name="category_prompt">Choose category</string>
+
+    <string-array name="category_array">
+        <item>Gas</item>
+        <item>Rent</item>
+        <item>Clothing</item>
+        <item>Business</item>
+        <item>Groceries</item>
+        <item>Entertainment</item>
+    </string-array>
+
+    <!-- ?? -->
+    <string name="gas">Gas</string>
+    <string name="rent">Rent</string>
+    <string name="clothing">Clothing</string>
+    <string name="business">Business</string>
+    <string name="groceries">Groceries</string>
+    <string name="entertainment">Entertainment</string>
+
+    <!-- ??? -->
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="title_activity_graph">GraphActivity</string>
+
+</resources>

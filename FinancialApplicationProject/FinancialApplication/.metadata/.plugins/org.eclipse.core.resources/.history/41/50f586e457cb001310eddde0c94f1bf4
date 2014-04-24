@@ -1,0 +1,88 @@
+package edu.gatech.financialapplication;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.afree.chart.demo.DemoView;
+
+import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.os.Build;
+
+public class CategoryChartActivity extends Activity {
+
+	private String accountNumber, username, finalStart, finalEnd;
+	private DBHelper db;
+	private List<Transaction> spendingList, transactionList;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_category_chart);
+		
+		db = new DBHelper(this);
+		spendingList = new ArrayList<Transaction>();
+		
+		// pull from intent
+		accountNumber = getIntent().getStringExtra("accountNumber");
+		username = getIntent().getStringExtra("username");
+		finalStart = getIntent().getStringExtra("finalStart");
+		finalEnd = getIntent().getStringExtra("finalEnd");
+		
+		spendingList = db.getAllTransactionsByUsername(username);
+	}
+	
+	/**
+	 * Populates a list with transactions that are within date range.
+	 */
+	private void populateCorrectList() {
+		transactionList = db.getAllTransactionsByUsername(username);
+		for (Transaction t : transactionList) {
+			Log.i("MONTH ", t.getDate());
+			String date = t.getDate();
+			if ((finalStart.compareTo(date) <= 0)
+					&& (finalEnd.compareTo(date) >= 0)
+					&& t.getType().equals("withdrawal")) {
+				spendingList.add(t);
+			}
+		}
+	}
+	
+	/**
+	 * Fills in money buckets with corresponding transaction values.
+	 */
+	private void populateCashCategories() {
+		for (Transaction t : withinDates) {
+			totalWithdrawals += t.getAmount();
+			if (t.getCategory().equals("Gas")) {
+				gas += t.getAmount();
+			} else if (t.getCategory().equals("Rent")) {
+				rent += t.getAmount();
+			} else if (t.getCategory().equals("Clothing")) {
+				clothing += t.getAmount();
+			} else if (t.getCategory().equals("Business")) {
+				business += t.getAmount();
+			} else if (t.getCategory().equals("Groceries")) {
+				groceries += t.getAmount();
+			} else if (t.getCategory().equals("Entertainment")) {
+				entertainment += t.getAmount();
+			}
+		}
+	}
+	
+	private class PieChart extends DemoView {
+		public PieChart(Context context) {
+			super(context);
+		}
+	}
+}

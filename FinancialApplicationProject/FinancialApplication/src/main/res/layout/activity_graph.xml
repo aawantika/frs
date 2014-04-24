@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.gatech.financialapplication.GraphActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:text="@string/graphsTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="71dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/back_button"
+        android:onClick="onBackClick" />
+
+ 	<Button
+        android:id="@+id/bd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onBalanceClick"
+        android:text="@string/bd" />
+
+    <Button
+        android:id="@+id/dd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/bd"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onDepositClick"
+        android:text="@string/dd" />
+            
+    <Button
+        android:id="@+id/wd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/dd"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onWithdrawalClick"
+        android:text="@string/wd" />
+
+    <Button
+        android:id="@+id/mpc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/wd"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onCategoryClick"
+        android:text="@string/mpc" />
+
+	<TextView
+        android:id="@+id/border1"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bd"
+        android:background="#3a7099" />
+		
+	<TextView
+        android:id="@+id/border2"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dd"
+        android:background="#3a7099" />
+	
+	<TextView
+        android:id="@+id/border3"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/wd"
+        android:background="#3a7099" />	
+        
+	<TextView
+        android:id="@+id/border4"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/mpc"
+        android:background="#3a7099" />
+	
+</RelativeLayout>

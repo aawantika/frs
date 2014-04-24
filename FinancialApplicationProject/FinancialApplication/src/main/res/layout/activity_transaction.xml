@@ -65,7 +65,7 @@
         android:layout_toLeftOf="@+id/divider"
         android:layout_margin="0dp"
         android:background="@drawable/grid_itembutton"
-        android:onClick="onReportsClick"
+        android:onClick="onGraphsClick"
         android:text="@string/graphs"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceMedium" />

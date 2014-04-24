@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e3ecef"
+    tools:context=".ReportDateActivity"
+    tools:ignore="MergeRootFrame" >
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:text="@string/reportsTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="71dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/back_button"
+        android:onClick="onBackClick" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/endText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/rounded_rectanglebutton"
+        android:onClick="onDateClick"
+        android:text="@string/submit"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/startText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="76dp"
+        android:layout_toLeftOf="@+id/submit"
+        android:text="@string/startDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/endText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startText"
+        android:layout_below="@+id/startText"
+        android:layout_marginTop="42dp"
+        android:text="@string/endDate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/endText"
+        android:layout_alignLeft="@+id/submit"
+        android:layout_marginLeft="9dp"
+        android:text="@string/startDateTV"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/endText"
+        android:layout_alignBottom="@+id/endText"
+        android:layout_alignLeft="@+id/startDate"
+        android:text="@string/endDateTV"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

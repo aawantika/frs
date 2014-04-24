@@ -148,6 +148,14 @@ public class ReportDateActivity extends Activity {
 			intent = new Intent(this, CashFlowActivity.class);
 		} else if ("transactionHistory".equals(type)) {
 			intent = new Intent(this, TransactionHistoryActivity.class);
+		} else if ("balanceVSDate".equals(type)) {
+			intent = new Intent(this, BalanceGraphActivity.class);
+		} else if ("depositVSDate".equals(type)) {
+			intent = new Intent(this, DepositGraphActivity.class);
+		} else if ("withdrawalVSDate".equals(type)) {
+			intent = new Intent(this, WithdrawalGraphActivity.class);
+		} else if ("moneyPerCategory".equals(type)) {
+			intent = new Intent(this, CategoryChartActivity.class);
 		}
 		
 		String finalStart = monthFromString + "" + dayFromString + ""

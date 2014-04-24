@@ -1,0 +1,47 @@
+package edu.gatech.financialapplication;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.afree.chart.demo.DemoView;
+
+import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.os.Build;
+
+public class CategoryChartActivity extends Activity {
+
+	private String accountNumber, username, finalStart, finalEnd;
+	private DBHelper db;
+	private List<Transaction> spending;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_category_chart);
+		
+		db = new DBHelper(this);
+		spending = new ArrayList<Transaction>();
+		
+		// pull from intent
+		accountNumber = getIntent().getStringExtra("accountNumber");
+		username = getIntent().getStringExtra("username");
+		finalStart = getIntent().getStringExtra("finalStart");
+		finalEnd = getIntent().getStringExtra("finalEnd");
+	}
+	
+	private class PieChart extends DemoView {
+		public PieChart(Context context) {
+			super(context);
+		}
+	}
+}

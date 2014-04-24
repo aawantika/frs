@@ -33,7 +33,7 @@ public class TransactionActivity extends Activity {
 		setContentView(R.layout.activity_transaction);
 		listview = (ListView) findViewById(R.id.accountLV);
 		db = new DBHelper(this);
-		
+
 		accountNumberTemp = getIntent().getStringExtra("accountNumber");
 		username = getIntent().getStringExtra("username");
 
@@ -119,6 +119,20 @@ public class TransactionActivity extends Activity {
 	 */
 	public void onReportsClick(View view) {
 		Intent intent = new Intent(this, ReportsActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("accountNumber", accountNumberTemp);
+		bundle.putString("username", username);
+		intent.putExtras(bundle);
+		startActivity(intent);
+	}
+	
+	/**
+	 * On click for switching to the view to view the reports.
+	 * 
+	 * @param view The view being used.
+	 */
+	public void onGraphsClick(View view) {
+		Intent intent = new Intent(this, GraphActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("accountNumber", accountNumberTemp);
 		bundle.putString("username", username);

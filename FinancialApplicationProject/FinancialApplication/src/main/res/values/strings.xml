@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FooBar's Rib Shack</string>
+    <string name="app_name">FooBar\'s Rib Shack</string>
 
     <!-- TextView -->
     <string name="firstname">First Name</string>
@@ -67,6 +67,7 @@
     <string name="depositTitle">DEPOSIT</string>
     <string name="withdrawalTitle">WITHDRAWAL</string>
     <string name="reportsTitle">REPORTS</string>
+    <string name="graphsTitle">GRAPHS</string>
     <string name="loginTitle">LOGIN</string>
     <string name="homeTitle">HOME</string>
     <string name="forgotTitle">FORGOT PASSWORD</string>
@@ -93,6 +94,12 @@
     <string name="cfr">Cash Flow Report</string>
     <string name="thr">Transaction History Report</string>
 
+    <!-- Graphs -->
+    <string name="bd">Balance vs. Date</string>
+    <string name="wd">Widthdrawals vs. Date</string>
+    <string name="dd">Deposits vs. Date</string>
+    <string name="mpc">Money Per Category</string>
+
     <!-- Categories for Withdrawal -->
     <string name="category_prompt">Choose category</string>
 
@@ -117,6 +124,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="logout">Logout</string>
-
+    <string name="title_activity_graph">GraphActivity</string>
+    <string name="title_activity_graph_report">GraphReportActivity</string>
+    <string name="title_activity_graph_date">GraphDate</string>
+    <string name="title_activity_withdrawal_graph">WithdrawalGraphActivity</string>
+    <string name="title_activity_balance_graph">BalanceGraphActivity</string>
+    <string name="title_activity_deposit_graph">DepositGraphActivity</string>
+    <string name="title_activity_category_chart">CategoryChartActivity</string>
 
 </resources>
