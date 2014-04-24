@@ -19,7 +19,6 @@ import org.afree.data.xy.XYSeriesCollection;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 
 public class DepositGraphActivity extends Activity {
 
@@ -43,22 +42,25 @@ public class DepositGraphActivity extends Activity {
 		finalEnd = getIntent().getStringExtra("finalEnd");
 
 		lineGraph = new LineGraph(this);
+		setContentView(lineGraph);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
 	}
 	
-	public void onGraphClick(View view) {
-		setContentView(lineGraph);
-	}
-
 	private Map<String, Float> sortDeposits() {
-		transactionList = db.getAllTransactionsByUsername(username);
+		transactionList = new ArrayList<Transaction>();
+		transactionList.add(new Deposit(accountNumber, "04062014", 200.00f, "reason1"));
+		transactionList.add(new Deposit(accountNumber, "04082014", 400.00f, "reason1"));
+		transactionList.add(new Deposit(accountNumber, "04102014", 800.00f, "reason1"));
+		transactionList.add(new Deposit(accountNumber, "04112014", 400.00f, "reason1"));
+		transactionList.add(new Deposit(accountNumber, "04122014", 200.00f, "reason1"));
+		
+		//transactionList = db.getAllTransactionsByUsername(username);
+		System.out.println("SIZE: " + transactionList.size());
+		System.out.println(finalStart + " " + finalEnd);
 		for (Transaction t : transactionList) {
 			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)
-					&& t.getAccount().equals(accountNumber)
-					&& t.getType().equals("deposit")) {
+			if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)
+					) {
 				allDeposits.add(t);
 			}
 		}
@@ -92,15 +94,7 @@ public class DepositGraphActivity extends Activity {
 			XYSeriesCollection data = new XYSeriesCollection();
 			XYSeries deposits = new XYSeries("Deposits");
 			
-			Map<String, Float> depositData = new TreeMap<String, Float>();
-			depositData.put("04/06/2014", 200.00f);
-			depositData.put("04/08/2014", 400.00f);
-			depositData.put("04/10/2014", 800.00f);
-			depositData.put("04/11/2014", 400.00f);
-			depositData.put("04/12/2014", 200.00f);
-			//sortDeposits();
-			
-			System.out.println("DATA: " + depositData);
+			Map<String, Float> depositData = sortDeposits();
 			Set<String> dates = depositData.keySet();
 			
 			for (String date : dates) {

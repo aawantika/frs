@@ -40,7 +40,9 @@ public class BalanceGraphActivity extends Activity {
 		username = getIntent().getStringExtra("username");
 		finalStart = getIntent().getStringExtra("finalStart");
 		finalEnd = getIntent().getStringExtra("finalEnd");
-
+		
+		getBalances();
+		
 		lineGraph = new LineGraph(this);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(lineGraph);
@@ -77,9 +79,19 @@ public class BalanceGraphActivity extends Activity {
 			balanceData.put("04/10/2014", 800.00f);
 			balanceData.put("04/11/2014", 400.00f);
 			balanceData.put("04/12/2014", 200.00f);
-			//getBalances();
-			
+			/*for(Pair<String, String> pair : balances) {
+				balanceData.put(pair.first, Float.parseFloat(pair.second));
+			}
+			*/
 			Set<String> dates = balanceData.keySet();
+			
+			/*db.addTransaction(new Deposit(accountNumber, "04/06/2014", 200.00f, "reason1"));
+			db.addTransaction(new Deposit(accountNumber, "04/08/2014", 400.00f, "reason1"));
+			db.addTransaction(new Deposit(accountNumber, "04/10/2014", 800.00f, "reason1"));
+			db.addTransaction(new Deposit(accountNumber, "04/11/2014", 400.00f, "reason1"));
+			db.addTransaction(new Deposit(accountNumber, "04/12/2014", 200.00f, "reason1"));
+			*/
+			
 			for (String date : dates) {
 				double balanceAmount = balanceData.get(date);
 				date = date.replaceAll("/", "");

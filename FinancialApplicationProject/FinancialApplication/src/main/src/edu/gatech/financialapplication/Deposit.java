@@ -15,9 +15,8 @@ public class Deposit extends Transaction {
      * @param aAmount is the amount of money being transacted.
      * @param aDescriptor is the type of transaction being made.
      */
-    public Deposit(final String aAccount, final String aDate,
-    		final float aAmount, final String aDescriptor) {
-        super(aAccount, aDate, aAmount, aDescriptor, "something", "deposit");
+    public Deposit(String account, String date, float amount, String descriptor) {
+        super(account, date, amount, descriptor, "something", "deposit");
 
     }
 
