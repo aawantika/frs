@@ -12,6 +12,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class RegisterActivity extends Activity {
     private ProgressDialog pDialog;
     private Context context;
     private String POSTURL = "http://tomcatjndi-mygatech.rhcloud.com/CS2340postfrs1";
+    private MediaPlayer errorPlayer, successPlayer;
     
     @Override
     protected void onCreate(Bundle savedInstanceStt) {
@@ -66,6 +69,7 @@ public class RegisterActivity extends Activity {
 			post.execute();
 			dbHelp.addUser(user);
 			
+			playSuccess();
 			new AlertDialog.Builder(this)
 			.setTitle("Registration")
 			.setMessage("New user has been registered successfully.")
@@ -88,6 +92,7 @@ public class RegisterActivity extends Activity {
     private boolean checkNetwork() {
         boolean result = true;
         if (!isNetworkAvailable(this)) {
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Internet connection")
                     .setMessage("Dear customer, please turn on wifi or mobile data to proceed.")
@@ -165,6 +170,7 @@ public class RegisterActivity extends Activity {
                 && dbHelp.getUserByUsername(username).getUsername()
                         .equalsIgnoreCase(username)) { 
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Duplicate")
                     .setMessage("Credential is duplicate!\nPlease check again.")
@@ -189,6 +195,7 @@ public class RegisterActivity extends Activity {
 
         if ("".equals(firstname)) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("First name error.")
                     .setMessage("Sorry, first name can't be blank.")
@@ -200,6 +207,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if (" ".equals(firstname.substring(0, 1))) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("First name error.")
                     .setMessage("Sorry, first name can't start with a space.")
@@ -223,6 +231,7 @@ public class RegisterActivity extends Activity {
         boolean result = true;
         if ("".equals(lastname)) { 
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, last name can't be blank.")
@@ -234,6 +243,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if (" ".equals(lastname.substring(0, 1))) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, last name can't start with a space.")
@@ -257,6 +267,7 @@ public class RegisterActivity extends Activity {
         boolean result = true;
         if ("".equals(username)) { 
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Username error.")
                     .setMessage("Sorry, username can't be blank.")
@@ -268,6 +279,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if ("admin".equals(username)) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Username error")
                     .setMessage("Sorry, cannot create new admin account.")
@@ -279,6 +291,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if (" ".equals(username.substring(0, 1))) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Username error.")
                     .setMessage("Sorry, username can't start with a space.")
@@ -302,6 +315,7 @@ public class RegisterActivity extends Activity {
         boolean result = true;
         if ("".equals(password)) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Password error")
                     .setMessage("Sorry, password can't be blank.")
@@ -313,6 +327,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if (" ".equals(password.substring(0, 1))) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Password error.")
                     .setMessage("Sorry, password can't start with a space.")
@@ -324,6 +339,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if (password.length() < 6) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Password error")
                     .setMessage(
@@ -348,6 +364,7 @@ public class RegisterActivity extends Activity {
         boolean result = true;
         if ("".equals(phint)) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Last name error.")
                     .setMessage("Sorry, password hint can't be blank.")
@@ -359,6 +376,7 @@ public class RegisterActivity extends Activity {
                             }).show();
         } else if (" ".equals(phint.substring(0, 1))) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Password hint error.")
                     .setMessage(
@@ -383,6 +401,7 @@ public class RegisterActivity extends Activity {
         boolean result = true;
         if ("".equals(email)) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Email error")
                     .setMessage("Sorry, email can't be blank.")
@@ -392,19 +411,9 @@ public class RegisterActivity extends Activity {
                                         int which) {
                                 }
                             }).show();
-        } else if (" ".equals(email.substring(0, 1))) {
-        	result = false;
-            new AlertDialog.Builder(this)
-                    .setTitle("Email error.")
-                    .setMessage("Sorry, email can't start with a space.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                }
-                            }).show();
         } else if (!email.matches("[a-zA-Z][^@&]*@[a-zA-Z][^@]*\\.(com|org|net|edu)")) {
         	result = false;
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Sorry, invalid email address; must end in com, org, net or edu.")
@@ -420,5 +429,27 @@ public class RegisterActivity extends Activity {
     
     public void onBackClick(View view){
         finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
+    }
+    
+    /**
+     * Plays an success sound
+     */
+    private void playSuccess() {
+    	successPlayer = new MediaPlayer();
+    	successPlayer = MediaPlayer.create(this, R.raw.spenge);
+    	successPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	successPlayer.setLooping(false);
+    	successPlayer.start();
     }
 }

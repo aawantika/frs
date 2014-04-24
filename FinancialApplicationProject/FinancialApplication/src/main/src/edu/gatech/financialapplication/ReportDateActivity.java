@@ -8,6 +8,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +38,8 @@ public class ReportDateActivity extends Activity {
 	static final int DATE_DIALOG_END = 999;
 
 	private Calendar c;
+	
+	private MediaPlayer errorPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceStt) {
@@ -144,8 +148,10 @@ public class ReportDateActivity extends Activity {
 			intent = new Intent(this, ConsumerSpendingActivity.class);
 		} else if ("incomeSource".equals(type)) {
 			intent = new Intent(this, IncomeSourceActivity.class);
-		} else if ("cashFlow".equals(type)) {
-			intent = new Intent(this, CashFlowActivity.class);
+		} else if ("cashFlowAccount".equals(type)) {
+			intent = new Intent(this, CashFlowAccountActivity.class);
+		} else if ("cashFlowUser".equals(type)) {
+			intent = new Intent(this, CashFlowUserActivity.class);
 		} else if ("transactionHistory".equals(type)) {
 			intent = new Intent(this, TransactionHistoryActivity.class);
 		} else if ("balanceVSDate".equals(type)) {
@@ -177,6 +183,7 @@ public class ReportDateActivity extends Activity {
 		boolean result = false;
 
 		if (start.compareTo(end) > 0) {
+			playError();
 			new AlertDialog.Builder(this)
 					.setTitle("Date input error.")
 					.setMessage("Sorry, end date can't be before start date.")
@@ -214,4 +221,15 @@ public class ReportDateActivity extends Activity {
 	public void onBackClick(View view) {
 		finish();
 	}
+	
+	/**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
+    }
 }

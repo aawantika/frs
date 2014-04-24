@@ -58,8 +58,8 @@ public class TransactionHistoryActivity extends Activity {
 		for (Transaction t : transactionList) {
 			Log.i("MONTH ", t.getDate());
 			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)) {
+			if (t.getAccount().equals(accountNumber) && 
+					(finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)) {
 				withinDates.add(t);
 			}
 		}

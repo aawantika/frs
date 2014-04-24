@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +29,7 @@ public class WithdrawalActivity extends Activity {
     private float amount;
     private DBHelper db;
     private DateGrabber dg;
+    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,7 @@ public class WithdrawalActivity extends Activity {
         reason = ((EditText) findViewById(R.id.editTextReason)).getText().toString();
 
         if (amount <= 0) { // empty amount
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Sorry, invalid amount. \nAmount must be greater than 0.")
@@ -88,6 +92,7 @@ public class WithdrawalActivity extends Activity {
                                 }
                             }).show();
         } else if (reason.equals("")) { // empty reason
+        	playError();
             new AlertDialog.Builder(this)
                     .setTitle("Information error")
                     .setMessage("Sorry, reason can't be blank.")
@@ -114,5 +119,16 @@ public class WithdrawalActivity extends Activity {
     
     public void onBackClick(View view){
         finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }

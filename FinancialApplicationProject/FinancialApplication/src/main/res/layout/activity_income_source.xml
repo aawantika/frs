@@ -7,19 +7,6 @@
     tools:context="edu.gatech.financialapplication.IncomeSourceActivity"
     tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_rectanglebutton"
-        android:text="@string/home"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff"
-        android:onClick="onTransactionClick" />
-
     <TextView
         android:id="@+id/totalDepositsText"
         android:layout_width="wrap_content"
@@ -46,7 +33,6 @@
         android:id="@+id/depositLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/backBtn"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/totalDeposits"
         android:paddingBottom="5dp" >
@@ -73,5 +59,16 @@
         android:textColor="#ffffff"
         android:text="@string/isrTitle"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="58dp"
+        android:layout_height="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/back_button"
+        android:onClick="onBackClick"/>
 
 </RelativeLayout>

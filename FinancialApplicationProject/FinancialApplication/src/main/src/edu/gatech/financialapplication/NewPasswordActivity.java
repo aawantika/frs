@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ public class NewPasswordActivity extends Activity {
 	private String username, newPassword, confirmPassword;
 	private DBHelper db;
 	private Context context;
+	private MediaPlayer errorPlayer, successPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class NewPasswordActivity extends Activity {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			
+			playSuccess();
 			new AlertDialog.Builder(this)
             .setTitle("Password Change.")
             .setMessage("The password was changed successfully!")
@@ -59,6 +62,7 @@ public class NewPasswordActivity extends Activity {
 		boolean result = true;
 		if (!password1.equals(password2)) {
 			result = false;
+			playError();
 			 new AlertDialog.Builder(this)
              .setTitle("Password input error.")
              .setMessage("Sorry, the passwords entered do not match.")
@@ -76,6 +80,7 @@ public class NewPasswordActivity extends Activity {
 	        boolean result = true;
 	        if ("".equals(password)) {
 	        	result = false;
+	        	playError();
 	            new AlertDialog.Builder(this)
 	                    .setTitle("Password error")
 	                    .setMessage("Sorry, password can't be blank.")
@@ -87,6 +92,7 @@ public class NewPasswordActivity extends Activity {
 	                            }).show();
 	        } else if (" ".equals(password.substring(0, 1))) {
 	        	result = false;
+	        	playError();
 	            new AlertDialog.Builder(this)
 	                    .setTitle("Password error.")
 	                    .setMessage("Sorry, password can't start with a space.")
@@ -98,6 +104,7 @@ public class NewPasswordActivity extends Activity {
 	                            }).show();
 	        } else if (password.length() < 6) {
 	        	result = false;
+	        	playError();
 	            new AlertDialog.Builder(this)
 	                    .setTitle("Password error")
 	                    .setMessage(
@@ -118,6 +125,7 @@ public class NewPasswordActivity extends Activity {
 		
 		if (user.getPassword().equals(newPass)) {
 			result = false;
+			playError();
 			new AlertDialog.Builder(this)
             .setTitle("Password Error.")
             .setMessage("The new password cannot match the old password.")
@@ -130,4 +138,35 @@ public class NewPasswordActivity extends Activity {
 		}
 		return result;
 	}
+	
+	/**
+	 * Goes to the previous screen
+	 * 
+	 * @param view the view being used
+	 */
+	public void onBackClick(View view) {
+		finish();
+	}
+	
+	/**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
+    }
+    
+    /**
+     * Plays an success sound
+     */
+    private void playSuccess() {
+    	successPlayer = new MediaPlayer();
+    	successPlayer = MediaPlayer.create(this, R.raw.spenge);
+    	successPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	successPlayer.setLooping(false);
+    	successPlayer.start();
+    }
 }

@@ -19,13 +19,8 @@ import android.util.AndroidRuntimeException;
  * @author Team 15
  */
 public class ForgotPassword {
-    /**
-     * The username of the admin email.
-     */
-    private static final String EMAIL_USERNAME = "cs2340frs@gmail.com";
-    /**
-     * The password of the admin email.
-     */
+
+	private static final String EMAIL_USERNAME = "cs2340frs@gmail.com";
     private static final String EMAIL_PASSWORD = "foobarsribshack";
 
     /**

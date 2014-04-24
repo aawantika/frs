@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e3ecef"
+    tools:context="edu.gatech.financialapplication.CashFlowActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="70dp"
+        android:text="@string/date"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/deposit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dateText"
+        android:layout_below="@+id/dateText"
+        android:layout_marginTop="36dp"
+        android:text="@string/totalDeposits"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/withdrawal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/deposit"
+        android:layout_below="@+id/deposit"
+        android:layout_marginTop="30dp"
+        android:text="@string/totalWithdrawals"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/netFlow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/withdrawal"
+        android:layout_below="@+id/withdrawal"
+        android:layout_marginTop="30dp"
+        android:text="@string/netFlow"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/netFlowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/netFlow"
+        android:layout_alignBottom="@+id/netFlow"
+        android:layout_alignLeft="@+id/withdrawalText"
+        android:text="@string/unused"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/withdrawalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/withdrawal"
+        android:layout_alignBottom="@+id/withdrawal"
+        android:layout_alignLeft="@+id/depositText"
+        android:text="@string/unused"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#16718d"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="@string/cfrTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="58dp"
+        android:layout_height="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/back_button"
+        android:onClick="onBackClick"/>
+
+    <TextView
+        android:id="@+id/depositText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/deposit"
+        android:layout_alignBottom="@+id/deposit"
+        android:layout_marginLeft="62dp"
+        android:layout_toRightOf="@+id/withdrawal"
+        android:text="@string/unused"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

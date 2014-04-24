@@ -67,36 +67,14 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/isr"
         android:background="#3a7099" />
-
-    <Button
-        android:id="@+id/cfr"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/border2"
-        android:layout_centerHorizontal="true"
-        android:onClick="onCFRClick"
-        android:text="@string/cfr"
-        android:textColor="#1c3f5a"
-        android:background="@drawable/large_rectangle_selectorbutton" />
     
     <TextView
         android:id="@+id/border3"
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/cfr"
+        android:layout_below="@+id/cfrAccount"
         android:background="#3a7099" />
-
-    <Button
-        android:id="@+id/thr"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/border3"
-        android:layout_centerHorizontal="true"
-        android:onClick="onTHRClick"
-        android:text="@string/thr"
-        android:textColor="#1c3f5a"
-        android:background="@drawable/large_rectangle_selectorbutton" />
     
     <TextView
         android:id="@+id/border4"
@@ -104,6 +82,46 @@
         android:layout_height="0.5dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/thr"
+        android:background="#3a7099" />
+
+    <Button
+        android:id="@+id/thr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/border2"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onTHRClick"
+        android:text="@string/thr"
+        android:textColor="#1c3f5a" />
+
+    <Button
+        android:id="@+id/cfrAccount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/thr"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:onClick="onCFRAccountClick"
+        android:text="@string/cfrAccount"
+        android:textColor="#1c3f5a" />
+
+    <Button
+        android:id="@+id/cfrUser"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/border3"
+        android:background="@drawable/large_rectangle_selectorbutton"
+        android:text="@string/cfrUser"
+        android:onClick="onCFRUserClick"
+        android:textColor="#1c3f5a" />
+    
+    <TextView
+        android:id="@+id/border5"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cfrUser"
         android:background="#3a7099" />
 
 </RelativeLayout>

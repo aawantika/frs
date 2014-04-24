@@ -73,7 +73,7 @@ public class CashFlowActivity extends Activity {
 		if (netFlow > 0) {
 			netFlowString = "+" + Float.toString(netFlow);
 			netFlowText.setText(netFlowString);
-			netFlowText.setTextColor(Color.GREEN);
+			netFlowText.setTextColor(Color.rgb(34,139,34));
 		} else if (netFlow < 0) {
 			netFlowString = "-" + Float.toString(netFlow);
 			netFlowText.setText(netFlowString);
@@ -96,5 +96,9 @@ public class CashFlowActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
+	
+	public void returnToPrev(View view){
+        finish();
+    }
 
 }

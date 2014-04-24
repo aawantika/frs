@@ -4,7 +4,7 @@
     <string name="app_name">FooBar\'s Rib Shack</string>
 
     <!-- TextView -->
-    <string name="firstname">First Name</string>
+   <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -27,7 +27,7 @@
     <string name="newPassword">New Password</string>
     <string name="confirmPassword">Confirm Password</string>
 
-    <!-- Hints/EditText -->
+     <!-- Hints/EditText -->
     <string name="usernameHint">Enter username</string>
     <string name="passwordHint">Enter password</string>
     <string name="passwordHintTextHint">Enter hint</string>
@@ -35,7 +35,7 @@
     <string name="lastnameHint">Enter last name</string>
     <string name="emailHint">gburdell9@gatech.edu</string>
     <string name="dateHint">01/01/2014</string>
-    <string name="defaultAmountHint">100USD or higher</string>
+    <string name="defaultAmountHint">100 USD or higher</string>
     <string name="reasonHint">Enter reason</string>
     <string name="amountHint">Enter amount</string>
     <string name="categoryHint">Enter category</string>
@@ -45,6 +45,7 @@
     <string name="day">DD</string>
     <string name="month">MM</string>
     <string name="year">YYYY</string>
+
 
     <!-- Buttons -->
     <string name="login">Log In</string>
@@ -71,10 +72,12 @@
     <string name="loginTitle">LOGIN</string>
     <string name="homeTitle">HOME</string>
     <string name="forgotTitle">FORGOT PASSWORD</string>
-    <string name="csrTitle">CONSUMER SPENDING</string>
+    <string name="csrTitle">SPENDING CATEGORY</string>
     <string name="isrTitle">INCOME SOURCE</string>
     <string name="cfrTitle">CASH FLOW</string>
     <string name="thrTitle">TRANSACTION HISTORY</string>
+    <string name="changePW">CHANGE PASSWORD</string>
+    <string name="newPW">NEW PASSWORD</string>
 
     <!-- Splash Screen -->
     <string name="teamNumber">Team 15</string>
@@ -91,7 +94,8 @@
     <!-- Reports -->
     <string name="scr">Spending Category Report</string>
     <string name="isr">Income Source Report</string>
-    <string name="cfr">Cash Flow Report</string>
+    <string name="cfrUser">User Cash Flow Report</string>
+    <string name="cfrAccount">Account Cash Flow Report</string>
     <string name="thr">Transaction History Report</string>
 
     <!-- Graphs -->
@@ -124,6 +128,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="logout">Logout</string>
+<<<<<<< HEAD
     <string name="title_activity_graph">GraphActivity</string>
     <string name="title_activity_graph_report">GraphReportActivity</string>
     <string name="title_activity_graph_date">GraphDate</string>
@@ -131,5 +136,7 @@
     <string name="title_activity_balance_graph">BalanceGraphActivity</string>
     <string name="title_activity_deposit_graph">DepositGraphActivity</string>
     <string name="title_activity_category_chart">CategoryChartActivity</string>
+=======
+>>>>>>> FETCH_HEAD
 
 </resources>

@@ -59,10 +59,8 @@ public class IncomeSourceActivity extends Activity {
 		for (Transaction t : transactionList) {
 			Log.i("MONTH ", t.getDate());
 			String date = t.getDate();
-			if ((finalStart.compareTo(date) <= 0)
-					&& (finalEnd.compareTo(date) >= 0)
-					&& t.getType().equals("deposit")) {
-				
+			if ((finalStart.compareTo(date) <= 0) && (finalEnd.compareTo(date) >= 0)
+					&& t.getType().equals("deposit") && t.getAccount().equals(accountNumber)) {
 				Log.i("transaction in cs", t.toString());
 				withinDates.add(t);
 				totalDeposits += t.getAmount();
@@ -75,7 +73,7 @@ public class IncomeSourceActivity extends Activity {
 	 * 
 	 * @param view The view being used.
 	 */
-	public void onTransactionClick (View view) {
+	public void onBackClick (View view) {
 		Intent intent = new Intent(this, TransactionActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("accountNumber", accountNumber);
@@ -83,5 +81,4 @@ public class IncomeSourceActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
-
 }

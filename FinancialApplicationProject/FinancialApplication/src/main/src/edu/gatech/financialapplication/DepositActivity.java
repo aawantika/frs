@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,22 +17,11 @@ import android.widget.EditText;
  * 
  */
 public class DepositActivity extends Activity {
-    /**
-     * An account number string.
-     */
-    private String accountNumber;
-    /**
-     * An username string.
-     */
-    private String username;
-    /**
-     * The database helper for getting database information.
-     */
+	
+	private String accountNumber, username;
     private DBHelper database;
-    /**
-     * DataGrabber to get and format the date.
-     */
     private DateGrabber dateGrabber;
+    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,70 +29,24 @@ public class DepositActivity extends Activity {
         setContentView(R.layout.activity_deposit);
         database = new DBHelper(this);
         dateGrabber = new DateGrabber();
-        // CHECKSTYLE:OFF
-        accountNumber = getIntent().getStringExtra("accountNumber"); // string
-                                                                     // necessary
-        username = getIntent().getStringExtra("username"); // string necessary
-        // CHECKSTYLE:ON
+
+        accountNumber = getIntent().getStringExtra("accountNumber");
+        username = getIntent().getStringExtra("username"); 
     }
 
     /**
      * On click for deposits to create a deposit transaction.
      * 
-     * @param view
-     *            The view being used.
+     * @param view The view being used.
      */
     public void onClick(final View view) {
-        final String tempDate = dateGrabber.createDate();
-        final String tempAmountString = ((EditText) findViewById(R.id.editTextAmount))
-                .getText().toString(); // ignore pmd
-        final float tempAmount = Float.parseFloat(tempAmountString);
-        final String tempReason = ((EditText) findViewById(R.id.editTextReason))
-                .getText().toString(); // ignore pmd
+    	String date = dateGrabber.createDate();
+        String amount = ((EditText) findViewById(R.id.editTextAmount)).getText().toString();
+        String reason = ((EditText) findViewById(R.id.editTextReason)).getText().toString();
 
-        if ("".equals(tempReason)) { // empty reason
-            new AlertDialog.Builder(this)
-                    // CHECKSTYLE:OFF
-                    .setTitle("Information error")
-                    // string necessary
-                    // CHECKSTYLE:ON
-                    .setMessage("Sorry, reason can't be blank.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(
-                                        final DialogInterface dialog,
-                                        final int which) {
-                                }
-                            }).show();
-        } else if (" ".equals(tempReason.substring(0,1))) { // empty reason
-            new AlertDialog.Builder(this)
-                    // CHECKSTYLE:OFF
-                    .setTitle("Information error")
-                    // string necessary
-                    // CHECKSTYLE:ON
-                    .setMessage("Sorry, reason can't be a space.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(
-                                        final DialogInterface dialog,
-                                        final int which) {
-                                }
-                            }).show();
-        } else if (tempAmount <= 0) { // empty firstname
-            new AlertDialog.Builder(this)
-                    .setTitle("Information error")
-                    .setMessage(
-                            "Sorry, invalid amount. \nAmount must be greater than 0.")
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(
-                                        final DialogInterface dialog,
-                                        final int which) {
-                                }
-                            }).show();
-        } else {
+      if (checkReason(reason) && checkAmount(amount)){
             final Transaction transaction = new Deposit(accountNumber,
-                    tempDate, tempAmount, tempReason);
+                    date, Float.parseFloat(amount), reason);
             database.addTransaction(transaction);
 
             final Intent intent = new Intent(this, TransactionActivity.class);
@@ -113,7 +58,85 @@ public class DepositActivity extends Activity {
         }
     }
     
+    private boolean checkReason(String reason) {
+    	boolean result = true;
+    	
+    	 if ("".equals(reason)) { 
+    		 result = false;
+    		 playError();
+             new AlertDialog.Builder(this)
+                     .setTitle("Information error")
+                     .setMessage("Sorry, reason can't be blank.")
+                     .setPositiveButton(android.R.string.ok,
+                             new DialogInterface.OnClickListener() {
+                                 public void onClick(
+                                         final DialogInterface dialog,
+                                         final int which) {
+                                 }
+                             }).show();
+         } else if (" ".equals(reason.substring(0,1))) { 
+        	 result = false;
+        	 playError();
+             new AlertDialog.Builder(this)
+                     .setTitle("Information error")
+                     .setMessage("Sorry, reason can't be a space.")
+                     .setPositiveButton(android.R.string.ok,
+                    		 new DialogInterface.OnClickListener() {
+                         public void onClick(
+                                 final DialogInterface dialog,
+                                 final int which) {
+                         }
+                     }).show();
+         } 
+    	 
+    	 return result;
+    }
+    
+    private boolean checkAmount(String amount) {
+    	boolean result = true;
+    	
+    	if (amount.equals("")) {
+   		 result = false;
+   		 playError();
+            new AlertDialog.Builder(this)
+                    .setTitle("Information error")
+                    .setMessage("Sorry, amount can't be blank.")
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(
+                                        final DialogInterface dialog,
+                                        final int which) {
+                                }
+                            }).show();
+        } else if (Float.parseFloat(amount) <= 0) {
+    		 result = false;
+    		 playError();
+             new AlertDialog.Builder(this)
+                     .setTitle("Information error")
+                     .setMessage("Sorry, invalid amount. \nAmount must be greater than 0.")
+                     .setPositiveButton(android.R.string.ok,
+                             new DialogInterface.OnClickListener() {
+                                 public void onClick(
+                                         final DialogInterface dialog,
+                                         final int which) {
+                                 }
+                             }).show();
+         } 
+    	 return result;
+    }
+    
     public void onBackClick(View view){
         finish();
+    }
+    
+    /**
+     * Plays an error sound
+     */
+    private void playError() {
+    	errorPlayer = new MediaPlayer();
+    	errorPlayer = MediaPlayer.create(this, R.raw.error);
+    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    	errorPlayer.setLooping(false);
+    	errorPlayer.start();
     }
 }
