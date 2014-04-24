@@ -24,7 +24,6 @@ public class ForgotPasswordActivity extends Activity {
  
     private DBHelper database;
     private String username;
-    private MediaPlayer errorPlayer;
 
     @Override
     protected void onCreate(final Bundle savedState) {
@@ -117,15 +116,5 @@ public class ForgotPasswordActivity extends Activity {
     public void onBackClick(View view) {
     	finish();
     }
-    
-    /**
-     * Plays an error sound
-     */
-    private void playError() {
-    	errorPlayer = new MediaPlayer();
-    	errorPlayer = MediaPlayer.create(this, R.raw.error);
-    	errorPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-    	errorPlayer.setLooping(false);
-    	errorPlayer.start();
-    }
+
 }
