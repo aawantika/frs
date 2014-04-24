@@ -111,33 +111,28 @@ public class WithdrawalGraphActivity extends Activity {
 
 		public LineGraph(Context context) {
 			super(context);
-			
-			final XYSeriesCollection dataset = getDataSet();
-	        final AFreeChart chart = createChart(dataset);
-
-	        setChart(chart);
-			
+			XYSeriesCollection dataset = getDataSet();
+			AFreeChart chart = createChart(dataset);
+			setChart(chart);
 		}
 
 		private XYSeriesCollection getDataSet() {
 			XYSeriesCollection data = new XYSeriesCollection();
 			XYSeries withdrawals = new XYSeries("Withdrawals");
-			
+
 			Map<String, Float> withdrawalData = sortWithdrawals();
 			Set<String> dates = withdrawalData.keySet();
-			
+
 			for (String date : dates) {
 				double withdrawalAmount = withdrawalData.get(date);
 				double dateValue = Double.parseDouble(date);
 				withdrawals.add(dateValue, withdrawalAmount);
 			}
-			
 			data.addSeries(withdrawals);
-
 
 			return data;
 		}
-		
+
 		public AFreeChart createChart(XYSeriesCollection data) {
 			XYDataset dataset = data;
 			AFreeChart chart = ChartFactory.createXYLineChart(
@@ -152,27 +147,17 @@ public class WithdrawalGraphActivity extends Activity {
 					);
 
 			XYPlot plot = (XYPlot) chart.getPlot();
-			
+
 			plot.setDomainZeroBaselineVisible(true);
 			plot.setRangeZeroBaselineVisible(true);
-			
+
 			// change the tick unit
 			final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 			rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-			
-			//color stuff
+
+			// color stuff
 			plot.setBackgroundAlpha(Color.CYAN);
-			//plot.setDomainGridlineEffect(Color.WHITE);
-			//plot.setRangeGridlinePaint(Color.WHITE);
-
-			//final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-			//renderer.setSeriesLinesVisible(0, false);
-			//renderer.setSeriesShapesVisible(1, false);
-			//plot.setRenderer(renderer);
 			return chart;
-
-
 		}
-
 	}
 }
